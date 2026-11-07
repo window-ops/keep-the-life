@@ -50,35 +50,88 @@
     setBtn.addEventListener("click", function () { setOpen(setBtn.getAttribute("aria-expanded") !== "true"); });
   }
 
-  /* pull up the settings from anywhere on the page: the o key, or a tap with
-     two fingers on a touch screen. With the masthead in view, the row opens
-     or closes in place. Further down, the row comes down as a bar over the
-     top of the window, the page stays where it is, and the same key, the
-     gesture or Escape puts the bar away again. */
-  var floating = false, wasHidden = true, holder = null, barAnim = null;
-  /* how far the bar has slid, as a share of its own height: 0 is in place,
-     -1 is out of sight above the window */
-  function barOffset() {
-    var h = setPanel.getBoundingClientRect().height || 1;
-    var m = getComputedStyle(setPanel).transform;
-    var y = m && m !== "none" ? new DOMMatrixReadOnly(m).m42 : 0;
-    return Math.max(-1, Math.min(0, y / h));
+  /* pull up the settings from anywhere on the page: the o key, a tap with
+     two fingers on a touch screen, or the Settings button beside the
+     floating contents. How they come depends on the width of the window:
+     - wide: with the masthead in view the row opens or closes in place;
+       further down it comes down as a bar over the top of the window;
+     - tablet (600 to 1199 px): a popover above the Settings button in the
+       bottom corner, opening upward like the contents menu;
+     - phone (below 600 px): a sheet up from the bottom edge.
+     The page stays where it is. The same key, the gesture, Escape, the Close
+     button, or on phones and tablets a tap outside puts them away again. */
+  var floating = false, wasHidden = true, holder = null, anim = null;
+  var phone = window.matchMedia("(max-width: 599px)");
+  var tablet = window.matchMedia("(min-width: 600px) and (max-width: 1199px)");
+  var mode = "top";
+  function currentMode() { return phone.matches ? "bottom" : tablet.matches ? "pop" : "top"; }
+  /* where the panel sits: 0 is in place, and the far end is out of sight:
+     -1 above the window, 1 below it, or for the popover 1 fully clipped */
+  var pos = 1;
+  function hiddenAt() { return mode === "top" ? -1 : 1; }
+  function frame(v) {
+    return mode === "pop"
+      ? { clipPath: "inset(" + v * 100 + "% 0 0 0)" }
+      : { transform: "translateY(" + v * 100 + "%)" };
   }
-  function slide(from, to, done) {
-    if (barAnim) { barAnim.cancel(); barAnim = null; }
-    barAnim = K.animate(setPanel, [
-      { transform: "translateY(" + from * 100 + "%)" },
-      { transform: "translateY(" + to * 100 + "%)" }
-    ], Math.max(60, 240 * Math.abs(to - from)), function () { barAnim = null; if (done) done(); });
-    if (!barAnim && done) done();
+  function move(to, done) {
+    var from = pos;
+    if (anim) {
+      /* a panel still moving is caught where it is and turned round */
+      var pr = anim.effect && anim.effect.getComputedTiming().progress;
+      if (typeof pr === "number") from = anim._from + (anim._to - anim._from) * pr;
+      anim.cancel(); anim = null;
+    }
+    pos = to;
+    anim = K.animate(setPanel, [frame(from), frame(to)], Math.max(60, (mode === "pop" ? 200 : 240) * Math.abs(to - from)),
+      function () { anim = null; if (done) done(); });
+    if (anim) { anim._from = from; anim._to = to; } else if (done) done();
+  }
+  var closeBtn = setPanel ? setPanel.querySelector(".set-close") : null;
+  /* Close ends the first line of settings, at the right. Which settings fit
+     on that line depends on the width, so the Close part goes first, the
+     line is measured, and the part moves after the last setting on it; the
+     line keeps the same settings, so it wraps the same way */
+  function placeClose() {
+    var part = closeBtn && closeBtn.parentNode;
+    var list = part && part.parentNode;
+    if (!list || !part.offsetWidth) return;
+    list.insertBefore(part, list.firstChild);
+    var top = part.getBoundingClientRect().top, last = null;
+    Array.prototype.forEach.call(list.children, function (el) {
+      if (el === part || !el.offsetWidth) return;
+      if (Math.abs(el.getBoundingClientRect().top - top) < 2) last = el;
+    });
+    if (last) list.insertBefore(part, last.nextSibling);
+  }
+  window.addEventListener("resize", function () { if (floating) placeClose(); });
+  /* the Settings button beside the contents is lit while the settings
+     float, the way the Contents button is while its menu is open */
+  var dockBtn = document.querySelector(".toc-set");
+  /* on phones and tablets, settings opened with the o key or the gesture
+     bring out a tucked dock too, so the lit Settings button shows, and tuck
+     it away again on closing, unless the reader moved the tab meanwhile */
+  var untucked = false, tuckMark = 0;
+  function dockOut(on) {
+    if (!K.setTocTucked) return;
+    if (on) {
+      if (mode === "top" || !K.body.classList.contains("toc-tucked")) return;
+      K.setTocTucked(false);
+      untucked = true;
+      tuckMark = K.tuckChanges || 0;
+    } else if (untucked) {
+      untucked = false;
+      if ((K.tuckChanges || 0) === tuckMark) K.setTocTucked(true);
+    }
   }
   function floatBar(on) {
     var already = K.body.classList.contains("settings-float");
-    /* a bar still sliding away is caught where it is and turned round */
-    var at = already && barAnim ? barOffset() : (already ? 0 : -1);
     floating = on;
+    if (dockBtn) dockBtn.setAttribute("aria-expanded", on ? "true" : "false");
     if (on) {
       if (!already) {
+        mode = currentMode();
+        pos = hiddenAt();
         wasHidden = setPanel.hidden;
         /* an open row leaves the masthead to become the bar: a placeholder of
            the same size keeps its place, so nothing on the page moves */
@@ -90,18 +143,25 @@
           setPanel.parentNode.insertBefore(holder, setPanel);
         }
         K.body.classList.add("settings-float");
+        K.body.classList.toggle("settings-pop", mode === "pop");
+        K.body.classList.toggle("settings-sheet", mode === "bottom");
         setPanel.hidden = false;
+        dockOut(true);
+        placeClose();
         if (row) row.dispatchEvent(new Event("scroll"));
       }
-      /* the bar slides down from the top edge of the window */
-      slide(at, 0);
-      var first = setPanel.querySelector("button, select, input");
-      if (first) first.focus({ preventScroll: true });
+      move(0);
+      /* the focus goes to the panel itself, so the next Tab reaches the first
+         setting and no button is marked as chosen when the panel opens */
+      setPanel.setAttribute("tabindex", "-1");
+      setPanel.focus({ preventScroll: true });
     } else {
-      /* and goes back up the same way */
-      slide(already ? at : 0, -1, function () {
+      /* and goes back the same way */
+      if (!already) return;
+      dockOut(false);
+      move(hiddenAt(), function () {
         if (floating) return;
-        K.body.classList.remove("settings-float");
+        K.body.classList.remove("settings-float", "settings-pop", "settings-sheet");
         setPanel.hidden = wasHidden;
         if (holder) { holder.remove(); holder = null; }
       });
@@ -110,9 +170,22 @@
   function pullUp() {
     if (!setBtn || !setPanel) return;
     if (floating) { floatBar(false); return; }
-    if (setBtn.getBoundingClientRect().bottom > 0) { setOpen(setBtn.getAttribute("aria-expanded") !== "true"); return; }
+    /* phones and tablets always use their floating panel, since the thumb is
+       down by the Settings button in the corner */
+    if (currentMode() === "top" && setBtn.getBoundingClientRect().bottom > 0) { setOpen(setBtn.getAttribute("aria-expanded") !== "true"); return; }
     floatBar(true);
   }
+  if (closeBtn) closeBtn.addEventListener("click", function () {
+    floatBar(false);
+    var back = document.querySelector(".toc-set");
+    if (back && back.offsetParent) back.focus({ preventScroll: true });
+  });
+  /* on phones and tablets a tap on the page outside the panel puts it away */
+  document.addEventListener("click", function (e) {
+    if (!floating || mode === "top") return;
+    if (setPanel.contains(e.target) || e.target.closest(".toc-set")) return;
+    floatBar(false);
+  });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && floating) floatBar(false);
   });

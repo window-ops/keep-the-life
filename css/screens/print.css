@@ -1,0 +1,852 @@
+/* Keep the Life, screen styles: printed matter: the newspaper, the AKV poster, the whiteboard, the hearing, the pinout and the Council's leaflet. */
+
+/* ---------------------------------------------------------------- newspaper */
+
+.paper {
+  --np-ink: #1d1b17;
+  margin: var(--s) 0;
+  padding: var(--l-1-25rem) var(--l-1-5rem);
+  background: #f1ece0;
+  color: var(--np-ink);
+  font: 400 var(--l-15px) / 1.5 var(--serif);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+
+.np-mast {
+  text-align: center;
+  border-bottom: var(--l-3px) double var(--np-ink);
+  padding-bottom: var(--l-0-5rem);
+}
+.np-name {
+  font: 800 clamp(var(--l-1-5rem), 5vw, var(--l-2-4rem)) / 1.05 var(--serif);
+  letter-spacing: var(--l-0-04em);
+}
+.np-date {
+  margin-top: var(--l-0-5rem);
+  padding-top: var(--l-0-3rem);
+  border-top: var(--l-1px) solid var(--np-ink);
+  font: 400 var(--l-12px) / 1.4 var(--sans);
+  letter-spacing: var(--l-0-04em);
+}
+
+.np-sec {
+  margin-block: var(--l-0-75rem) var(--l-0-25rem);
+  font: 600 var(--l-11px) var(--sans);
+  letter-spacing: var(--l-0-25em);
+  color: #8d2a1e;
+}
+.np-head {
+  margin: 0;
+  font: 800 clamp(var(--l-1-4rem), 3.5vw, var(--l-1-9rem)) / 1.12 var(--serif);
+}
+.np-by {
+  margin-block: var(--l-0-4rem) var(--l-0-75rem);
+  font: italic 400 var(--l-13px) var(--serif);
+  color: var(--c-4a463e);
+}
+.np-lead {
+  font-weight: 600;
+}
+
+.np-body p {
+  break-inside: avoid;
+  margin-bottom: var(--l-0-85rem);
+}
+.np-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 840px) {
+  .np-body {
+    columns: 2;
+    column-gap: var(--l-2rem);
+    column-rule: var(--l-1px) solid var(--c-cfc6b2);
+  }
+}
+
+.gloss {
+  display: block;
+  margin-top: var(--l-0-25rem);
+  font:
+    500 var(--l-1-1rem) / 1.25 "Caveat",
+    cursive;
+  color: #4b525b;
+}
+
+/* ---------------------------------------------------------------- AKV poster, A3 landscape */
+
+.ps-wrap {
+  container-type: inline-size;
+  margin-block: var(--s);
+}
+
+.poster {
+  margin: 0;
+  aspect-ratio: 420 / 297;
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  background: #fbfbf8;
+  color: #182233;
+  font-family: var(--sans);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+  overflow: hidden;
+}
+
+.ps-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4cqw 3.5cqw;
+  background: var(--akv-blue);
+  color: var(--white);
+}
+.ps-brand {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+}
+.ps-mark {
+  width: 4.2cqw;
+  height: 4.2cqw;
+  color: var(--akv-light);
+}
+.ps-logo {
+  font: 700 3.1cqw/1 var(--sans);
+  letter-spacing: 0.1em;
+}
+.ps-co {
+  font: 500 1.4cqw/1 var(--sans);
+  letter-spacing: var(--l-0-3em);
+  color: #c7d8f6;
+}
+.ps-big {
+  font: 700 5.6cqw/0.95 var(--sans);
+  letter-spacing: -0.02em;
+}
+.ps-big span {
+  color: var(--akv-light);
+}
+
+.ps-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5cqw;
+  padding: 4cqw 4cqw 3cqw;
+  font-size: 1.55cqw;
+  line-height: 1.4;
+}
+.ps-tag {
+  font: 500 1.05cqw var(--mono);
+  letter-spacing: var(--l-0-12em);
+  color: var(--akv-gray);
+}
+.ps-sub {
+  font: 600 2.3cqw/1.2 var(--sans);
+  color: var(--akv-blue);
+}
+.ps-h {
+  font: 700 1.05cqw var(--sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--akv-gray);
+  border-top: var(--l-1px) solid #d7dde6;
+  padding-top: 1cqw;
+}
+.ps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1cqw;
+}
+.ps-list li {
+  display: grid;
+  grid-template-columns: 3.2cqw 1fr;
+  align-items: baseline;
+}
+.ps-list b {
+  font: 700 2.6cqw/1 var(--sans);
+  color: var(--akv-blue);
+}
+.ps-rule {
+  margin-top: auto;
+  padding: 1cqw 1.4cqw;
+  background: #e7eef9;
+  border-left: 0.5cqw solid var(--akv-blue);
+  font-weight: 600;
+}
+.ps-foot {
+  font: 0.95cqw var(--mono);
+  color: var(--akv-gray);
+}
+
+@container (max-width: 599px) {
+  .poster {
+    aspect-ratio: auto;
+    grid-template-columns: 1fr;
+  }
+  .ps-left {
+    gap: var(--l-1-25rem);
+    padding: var(--l-1-25rem);
+  }
+  .ps-mark {
+    width: var(--l-2rem);
+    height: var(--l-2rem);
+  }
+  .ps-brand {
+    gap: var(--l-0-5rem);
+  }
+  .ps-logo {
+    font-size: var(--l-1-4rem);
+  }
+  .ps-co {
+    font-size: var(--l-0-7rem);
+  }
+  .ps-big {
+    font-size: var(--l-2rem);
+  }
+  .ps-right {
+    gap: var(--l-0-75rem);
+    padding: var(--l-1-25rem);
+    font-size: var(--l-0-9rem);
+  }
+  .ps-tag,
+  .ps-h,
+  .ps-foot {
+    font-size: 0.65rem;
+  }
+  .ps-sub {
+    font-size: var(--l-1-05rem);
+  }
+  .ps-h {
+    padding-top: var(--l-0-6rem);
+  }
+  .ps-list {
+    gap: var(--l-0-4rem);
+  }
+  .ps-list li {
+    grid-template-columns: var(--l-1-6rem) 1fr;
+  }
+  .ps-list b {
+    font-size: var(--l-1-2rem);
+  }
+  .ps-rule {
+    padding: var(--l-0-5rem) var(--l-0-7rem);
+    border-left-width: var(--l-3px);
+  }
+}
+
+/* ---------------------------------------------------------------- whiteboard, conference room 3 */
+
+.app-board .app-frame {
+  overflow: visible;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* printed matter and hearing documents bring their own paper or frame */
+.app-print .app-frame {
+  overflow: visible;
+  box-shadow: none;
+  border-radius: 0;
+}
+.app-print .paper,
+.app-print .ps-wrap,
+.app-print .doc {
+  margin-block: 0;
+}
+
+.wb-frame {
+  padding: var(--l-0-6rem) var(--l-0-6rem) 0;
+  background: var(--c-b9bec4);
+  border: var(--l-1px) solid var(--board-frame-edge);
+  border-radius: var(--l-4px);
+}
+
+.wb {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  column-gap: var(--l-2rem);
+  padding: var(--l-1-1rem) var(--l-1-4rem) var(--l-1-3rem);
+  background: var(--c-f5f6f3);
+  color: var(--marker-black);
+  font:
+    500 var(--l-1-28rem) / 1.15 "Caveat",
+    cursive;
+  overflow: hidden;
+}
+
+.wb-col {
+  position: relative;
+}
+.wb-right {
+  border-left: var(--l-2px) solid var(--marker-faint);
+  padding-left: var(--l-1-4rem);
+}
+
+.wb-top {
+  font-size: var(--l-1-6rem);
+  text-decoration: underline;
+  text-decoration-thickness: var(--l-2px);
+  text-underline-offset: var(--l-4px);
+}
+.wb-head {
+  margin-top: var(--l-0-7rem);
+  font-size: var(--l-1-45rem);
+  text-decoration: underline;
+  text-decoration-thickness: var(--l-2px);
+  text-underline-offset: var(--l-4px);
+}
+
+.wb-list {
+  list-style: none;
+  margin: var(--l-0-35rem) 0 0;
+  padding: 0;
+}
+.wb-list li {
+  padding-block: var(--l-0-12rem);
+}
+.wb-list + .wb-list {
+  margin-top: var(--l-0-6rem);
+}
+.wb-sub {
+  padding-left: var(--l-1-2rem);
+  font-size: 1.12rem;
+}
+
+.wb-drawing {
+  padding-block: var(--l-0-35rem);
+}
+.wb-dots {
+  display: block;
+  color: var(--marker-black);
+  max-width: var(--l-100pct);
+  height: auto;
+}
+
+.wb-blue {
+  color: var(--marker-blue);
+}
+.wb-red {
+  color: var(--marker-red);
+}
+.wb-arrow {
+  white-space: nowrap;
+}
+.wb .tr {
+  font: 400 var(--l-0-8rem) var(--sans);
+  color: #6b7076;
+}
+
+.wb-tray {
+  display: flex;
+  gap: var(--l-0-6rem);
+  justify-content: flex-end;
+  height: var(--l-0-9rem);
+  padding: var(--l-0-15rem) var(--l-1rem) 0;
+  background: #a8adb3;
+  margin: 0 -0.6rem;
+  border-top: var(--l-1px) solid var(--board-frame-edge);
+}
+.wb-tray i {
+  width: var(--l-3rem);
+  height: var(--l-0-55rem);
+  border-radius: var(--l-2px);
+}
+.wb-tray .k {
+  background: var(--marker-black);
+}
+.wb-tray .b {
+  background: var(--marker-blue);
+}
+.wb-tray .r {
+  background: var(--marker-red);
+}
+.wb-tray .e {
+  width: 4rem;
+  background: var(--c-3a3f45);
+  border-radius: var(--l-1px) var(--l-1px) var(--l-3px) var(--l-3px);
+}
+
+@media (max-width: 839px) {
+  .wb {
+    grid-template-columns: minmax(0, 1fr);
+    font-size: var(--l-1-15rem);
+    padding: var(--l-0-9rem) var(--l-1rem) var(--l-1-1rem);
+  }
+  .wb-right {
+    border-left: 0;
+    padding-left: 0;
+    border-top: var(--l-2px) solid var(--marker-faint);
+    margin-top: var(--l-0-9rem);
+    padding-top: var(--l-0-6rem);
+  }
+}
+
+/* ---------------------------------------------------------------- hearing: camera, shared screen, decision */
+
+.doc {
+  margin: var(--s) 0;
+  padding: 0;
+}
+.doc :is(p, dd, dl, li, ul, ol, table):last-child {
+  margin-bottom: 0;
+}
+
+/* a tile from the video call, dark in both themes */
+.call-tile {
+  position: relative;
+  container-type: inline-size;
+  padding: var(--l-0-6rem);
+  background: var(--c-0e0f11);
+  border: var(--l-1px) solid var(--c-2a2d31);
+  border-radius: var(--l-8px);
+}
+
+.call-name {
+  position: absolute;
+  left: var(--l-1-1rem);
+  bottom: var(--l-1-1rem);
+  padding: 0.15rem var(--l-0-45rem);
+  border-radius: var(--l-4px);
+  background: rgba(0, 0, 0, 0.62);
+  color: #f2f2f2;
+  font: 500 var(--l-0-72rem) var(--mono);
+}
+
+/* what her camera sees: the wall, the board in its aluminium frame with the
+   marker tray, and the edge of the desk in front */
+.call-room {
+  position: relative;
+  padding: 4cqw 4.5cqw 0;
+  background: #cbc4b4;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cr-board {
+  padding: 1cqw 1cqw 0;
+  background: var(--c-b9bec4);
+  border: 1px solid var(--board-frame-edge);
+  border-radius: var(--l-4px);
+}
+
+.cr-board .wb-tray {
+  margin: 0 -1cqw;
+}
+
+.cr-desk {
+  height: max(6cqw, var(--l-2-4rem));
+  margin: 2.5cqw -4.5cqw 0;
+  background: #5e5040;
+  border-top: 0.5cqw solid #776651;
+}
+
+/* Sato's whiteboard through her camera, written at the size of the board
+   in conference room 3 */
+.call-wb {
+  overflow-x: auto;
+  padding: 2cqw 2cqw 3cqw;
+  background: #f5f6f3;
+  color: var(--marker-black);
+  font:
+    500 var(--l-1-28rem) / 1.35 "Caveat",
+    cursive;
+  border-radius: var(--l-3px);
+}
+
+@media (max-width: 839px) {
+  .call-wb {
+    font-size: var(--l-1-15rem);
+  }
+}
+
+.cw-title {
+  font-size: 1.25em;
+  text-decoration: underline;
+  text-decoration-thickness: var(--l-2px);
+  text-underline-offset: 0.15em;
+}
+
+.cw-table {
+  width: var(--l-100pct);
+  margin-top: 0.4em;
+  border-collapse: collapse;
+}
+.cw-table th,
+.cw-table td {
+  padding: var(--l-0-08em) 0.7em var(--l-0-08em) 0;
+  text-align: left;
+  vertical-align: baseline;
+  border-bottom: var(--l-2px) solid var(--marker-faint);
+}
+.cw-table tr:last-child th,
+.cw-table tr:last-child td {
+  border-bottom: 0;
+}
+.cw-table thead th {
+  font-weight: 700;
+}
+.cw-table tbody th {
+  font-weight: 500;
+}
+.hb-v {
+  color: var(--marker-blue);
+  white-space: nowrap;
+}
+.hb-n {
+  color: var(--marker-black);
+}
+
+/* on a narrow tile the board keeps its layout and scrolls sideways,
+   the way a photo of it would be zoomed */
+@container (max-width: 599px) {
+  .cw-table {
+    min-width: 34em;
+  }
+}
+
+.cw-law {
+  margin-top: 0.4em;
+  color: var(--marker-red);
+  font-size: 1.1em;
+}
+.cw-verdict {
+  display: inline-block;
+  margin-top: 0.3em;
+  padding: 0 var(--l-0-45em);
+  border: var(--l-2px) solid var(--marker-red);
+  color: var(--marker-red);
+  font-size: var(--l-1-2em);
+  transform: rotate(-1deg);
+}
+
+/* the shared screen: a light document inside the dark call */
+.share {
+  background: var(--c-0e0f11);
+  border: var(--l-1px) solid var(--c-2a2d31);
+  border-radius: var(--l-8px);
+  overflow: hidden;
+}
+
+.share-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  padding: var(--l-0-35rem) var(--l-0-75rem);
+  background: #16261b;
+  color: #9fe0a9;
+  font: 500 var(--l-0-72rem) var(--mono);
+}
+
+.share-dot {
+  width: var(--l-8px);
+  height: var(--l-8px);
+  border-radius: var(--l-50pct);
+  background: #3ddc84;
+}
+
+.share-doc {
+  overflow-x: auto;
+  margin: var(--l-0-6rem);
+  padding: var(--l-1rem) var(--l-1-2rem);
+  background: #ffffff;
+  color: #1c1f24;
+  font: 400 0.92rem/1.45 var(--sans);
+  border-radius: var(--l-3px);
+}
+
+.sh-title {
+  margin: 0;
+  font: 700 1.25rem/1.25 var(--sans);
+}
+.sh-sub {
+  margin-top: var(--l-0-25rem);
+  color: #4b5563;
+  font-size: var(--l-0-85rem);
+}
+
+.sh-table {
+  width: var(--l-100pct);
+  min-width: 30rem;
+  margin-top: var(--l-0-75rem);
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+.sh-table th {
+  padding: var(--l-0-35rem) var(--l-0-6rem);
+  background: #eef1f4;
+  text-align: left;
+  font-weight: 600;
+}
+.sh-table td {
+  padding: var(--l-0-35rem) var(--l-0-6rem);
+  border-bottom: var(--l-1px) solid var(--c-e5e7eb);
+}
+.sh-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.ct-n {
+  color: var(--c-6b7280);
+}
+.ct-num {
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+.ct-tired td {
+  background: #fff6e3;
+}
+
+.sh-fit {
+  margin: var(--l-0-9rem) 0 0;
+}
+.sh-fit dt {
+  font-weight: 600;
+  font-size: var(--l-0-8rem);
+}
+.sh-fit dd {
+  margin: 0 0 var(--l-0-45rem);
+  font: 400 0.82rem/1.45 var(--mono);
+}
+
+.sh-foot {
+  margin-top: var(--l-0-9rem);
+  padding-top: var(--l-0-5rem);
+  border-top: var(--l-1px) solid var(--c-e5e7eb);
+  font: 500 0.68rem var(--mono);
+  letter-spacing: 0.12em;
+  color: var(--c-6b7280);
+}
+
+/* the Committee's decision, as paper */
+.doc-memo {
+  padding: 1.4rem var(--l-1-6rem);
+  background: #f6f4ee;
+  color: var(--c-1d1b17);
+  font: 400 15px/1.5 var(--serif);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+
+.dm-head {
+  padding-bottom: var(--l-0-6rem);
+  border-bottom: var(--l-1px) solid var(--c-1d1b17);
+}
+.dm-org {
+  font: 600 var(--l-0-7rem) var(--sans);
+  letter-spacing: 0.2em;
+  color: var(--c-6b665c);
+}
+.dm-title {
+  margin: var(--l-0-25rem) 0 0;
+  font: 800 1.5rem/1.15 var(--serif);
+}
+.dm-meta {
+  margin-top: var(--l-0-25rem);
+  font: 400 var(--l-0-8rem) / 1.4 var(--sans);
+  color: #4a463e;
+}
+
+.dm-list {
+  list-style: none;
+  margin: var(--l-0-9rem) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--l-0-6rem);
+}
+.dm-list li {
+  display: grid;
+  grid-template-columns: var(--l-1-6rem) minmax(0, 1fr);
+  align-items: baseline;
+}
+.dm-list b {
+  font: 700 var(--l-0-85rem) var(--sans);
+  color: var(--c-6b665c);
+}
+
+/* Kellerman's notebook: an A5 page of ruled paper, 148 x 210 mm, with a red
+   margin. Every line of writing sits on a ruled line, 7 mm apart. The rules
+   are a small SVG tile, the margin a second one. */
+.doc-note {
+  --nb-line: 7mm;
+  box-sizing: border-box;
+  width: var(--l-100pct);
+  max-width: 148mm;
+  margin-inline: auto;
+  padding: var(--nb-line) 6mm var(--nb-line) 22mm;
+  background-color: #fbf8ef;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='100'%3E%3Crect x='0' y='0' width='2' height='100' fill='%23e3a3a3'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='100' viewBox='0 0 10 100' preserveAspectRatio='none'%3E%3Crect x='0' y='96' width='10' height='4' fill='%23bfcbe0'/%3E%3C/svg%3E");
+  background-repeat: repeat-y, repeat;
+  background-size:
+    var(--l-1px) var(--l-100pct),
+    var(--l-100pct) var(--nb-line);
+  background-position:
+    18mm 0,
+    0 var(--nb-line);
+  color: #2a2f45;
+  font:
+    500 1.45rem / var(--nb-line) "Caveat",
+    cursive;
+  border-radius: var(--l-2px) var(--l-6px) var(--l-6px) var(--l-2px);
+  box-shadow:
+    0 var(--l-1px) 0 #e7e1d0,
+    0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+
+/* the pinout fills a whole page */
+.doc-note.nb-page {
+  aspect-ratio: 148 / 210;
+}
+
+/* one hand, one pen: every word is the same size, weight and ink, headings
+   are underlined, and every line sits on a rule */
+.doc-note * {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+.doc-note p,
+.doc-note ul,
+.doc-note ol,
+.doc-note dl,
+.doc-note dd,
+.doc-note table {
+  margin: 0;
+}
+.nb-title,
+.nb-h,
+.nb-chem dt,
+.nb-table th {
+  text-decoration: underline;
+  text-decoration-thickness: var(--l-1px);
+  text-underline-offset: var(--l-3px);
+}
+.doc-note .nb-h {
+  margin-top: var(--nb-line);
+}
+
+.nb-sketch {
+  display: block;
+  width: var(--l-100pct);
+  height: calc(var(--nb-line) * 8);
+  margin: var(--nb-line) 0 0;
+  fill: none;
+  stroke: var(--c-3a4060);
+  stroke-width: 1.4;
+}
+.doc-note .nb-sketch text {
+  fill: var(--c-3a4060);
+  stroke: none;
+  font:
+    500 17px "Caveat",
+    cursive;
+}
+.sk-board {
+  stroke-width: 1.8;
+}
+.sk-div {
+  stroke-dasharray: 4 4;
+}
+.sk-pad {
+  stroke-width: 2;
+}
+.sk-pins rect {
+  fill: var(--c-3a4060);
+  stroke: none;
+}
+.sk-cluster circle {
+  fill: var(--c-3a4060);
+  stroke: none;
+  opacity: 0.55;
+}
+
+.nb-list {
+  padding-left: var(--l-1-1rem);
+}
+.nb-num {
+  list-style: decimal;
+}
+
+.doc-note .nb-chem {
+  margin-top: var(--nb-line);
+}
+.nb-chem dd {
+  margin-left: var(--l-1rem);
+}
+.nb-f,
+.nb-m {
+  display: block;
+}
+.nb-f u {
+  text-decoration-thickness: var(--l-1px);
+  text-underline-offset: var(--l-3px);
+}
+
+.doc-note .nb-table {
+  margin-top: var(--nb-line);
+  border-collapse: collapse;
+}
+.nb-table th {
+  text-align: left;
+  padding: 0 var(--l-1rem) 0 0;
+}
+.nb-table td {
+  padding: 0 var(--l-1rem) 0 0;
+  vertical-align: baseline;
+}
+.nb-str {
+  white-space: nowrap;
+}
+/* a SMILES string is one long word; on a narrow page it breaks where it must */
+.nb-table td {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 599px) {
+  .doc-memo {
+    padding: var(--l-1rem) var(--l-1-1rem);
+  }
+  .doc-note {
+    padding-left: 12mm;
+    background-position:
+      9mm 0,
+      0 var(--nb-line);
+  }
+  .nb-sketch {
+    height: calc(var(--nb-line) * 5);
+  }
+}
+
+/* chapter 11: the Overseer Council's notice, a small leaflet. It is one of
+   the exceptions to the fixed paper sizes, like envelopes and other special
+   formats: it is as tall as its text, with no fold drawn on it, and has no
+   stamp, so the header runs the full width */
+.doc-mail.doc-notice {
+  max-width: 105mm;
+  aspect-ratio: auto;
+  padding: var(--l-1-1rem) var(--l-1-1rem) var(--l-1rem);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.doc-notice .ml-head {
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+}
+.doc-notice .ml-head dt {
+  margin-top: var(--l-0-5rem);
+}
+.doc-notice .ml-head dt:first-child {
+  margin-top: 0;
+}
+.nt-h {
+  margin: 0 0 var(--l-0-75rem);
+  padding-bottom: var(--l-0-5rem);
+  border-bottom: var(--l-2px) solid var(--c-1d1b17);
+  font: 700 var(--l-0-9rem) / 1.3 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}

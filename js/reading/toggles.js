@@ -30,6 +30,42 @@
     K.schedulePretty();
   }
 
+  /* a reply made only of stage directions keeps its place while they are
+     hidden: it says the reply was removed with them and offers a button that
+     brings them back, since the stage directions carry the story and hiding
+     them is only for comparing. The note is a div, so the counts on the
+     making page, which read the paragraphs, leave it out */
+  var actsBtn = document.querySelector('.tool[data-toggle="no-acts"]');
+  if (actsBtn) {
+    $$(".ln-act").forEach(function (ln) {
+      var note = document.createElement("div");
+      note.className = "act-gone";
+      var msg = document.createElement("span");
+      msg.textContent = "Reply removed: it contains only stage directions, which are hidden.";
+      var back = document.createElement("button");
+      back.type = "button";
+      back.className = "tool act-restore";
+      back.textContent = "Show stage directions";
+      back.addEventListener("click", function () {
+        /* the reply stays where it was on the screen while the text above
+           it grows back */
+        var top = ln.getBoundingClientRect().top;
+        actsBtn.click();
+        var hold = function () { window.scrollBy({ top: ln.getBoundingClientRect().top - top, behavior: "instant" }); };
+        hold();
+        /* pretty wrap may reflow the text a moment later; hold the reply again */
+        requestAnimationFrame(function () { requestAnimationFrame(hold); });
+        setTimeout(hold, 400);
+        ln.setAttribute("tabindex", "-1");
+        ln.focus({ preventScroll: true });
+      });
+      note.appendChild(msg);
+      note.appendChild(back);
+      var p = ln.querySelector(":scope > p");
+      ln.insertBefore(note, p ? p.nextSibling : null);
+    });
+  }
+
   $$(".tool[data-toggle]").forEach(function (btn) {
     var cls = btn.getAttribute("data-toggle");
     var stored = load(cls);

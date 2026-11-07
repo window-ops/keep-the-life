@@ -1,0 +1,26 @@
+/* Keep the Life, site styles: the motion setting. */
+
+/* motion: System follows the operating system, Reduced turns smooth
+   scrolling, transitions and animations off, Full keeps them on even when
+   the system asks for less */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) {
+    scroll-behavior: auto;
+  }
+  :root:not([data-motion="full"]) *,
+  :root:not([data-motion="full"]) *::before,
+  :root:not([data-motion="full"]) *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+:root[data-motion="reduced"] {
+  scroll-behavior: auto;
+}
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  transition: none !important;
+  animation: none !important;
+}

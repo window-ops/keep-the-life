@@ -1,0 +1,63 @@
+/* Keep the Life, site styles: box sizing, the page, paragraphs, buttons, focus and redaction bars. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--s);
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+p {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: var(--l-2px) solid var(--focus);
+  outline-offset: var(--l-2px);
+}
+
+kbd {
+  font: 500 var(--l-0-75rem) var(--mono);
+  border: var(--l-1px) solid var(--rule-2);
+  border-bottom-width: var(--l-2px);
+  border-radius: var(--l-3px);
+  padding: 0 0.3em;
+}
+
+.redact {
+  display: inline-block;
+  background: var(--redact);
+  color: transparent;
+  border: var(--l-1px) solid var(--redact-edge);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+/* translation of a foreign phrase, inline after it */
+.tr {
+  color: var(--mute);
+  font-size: 0.92em;
+}

@@ -1,0 +1,27 @@
+/* Keep the Life, site styles: tabs, shared by the chapters in tabbed view and by the row of pages at the top of each page in notes/. */
+
+.tab {
+  flex: none;
+  display: inline-flex;
+  gap: var(--l-0-45rem);
+  padding: var(--l-0-35rem) var(--l-0-7rem);
+  border: var(--l-1px) solid var(--rule-2);
+  background: transparent;
+  color: var(--ink-2);
+  font: 500 var(--l-0-85rem) var(--sans);
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--ink);
+  border-color: var(--ink-2);
+}
+.tab[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.tab-n {
+  font: 500 var(--l-0-75rem) / 1.5 var(--mono);
+  opacity: 0.7;
+}

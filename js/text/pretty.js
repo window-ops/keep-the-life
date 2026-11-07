@@ -312,6 +312,5 @@
   $$("details").forEach(function (d) { d.addEventListener("toggle", schedulePretty); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedulePretty);
 
-
   K.schedulePretty = schedulePretty;
 })(window.KeepTheLife);

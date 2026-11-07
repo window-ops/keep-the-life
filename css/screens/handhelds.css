@@ -1,0 +1,675 @@
+/* Keep the Life, screen styles: the bench kit's reader and Toma's phone, in chapter 10. */
+
+/* the reader: a handheld with one screen and three keys, on a cable to the
+   flat coil on the board's DEBUG pad. The screen keeps the proportions of the
+   real part at every size: the font scales with the reader's width, and a page
+   longer than the screen scrolls inside it. */
+.coil {
+  container-type: inline-size;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: var(--rd-pad) var(--rd-pad) var(--rd-pad-b);
+  background: linear-gradient(#2c2f34, #1c1e22);
+  border-radius: 1.1rem;
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.coil-screen {
+  --hi-bg: var(--lcd-ink);
+  --hi-fg: var(--lcd-black);
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: auto;
+  padding: var(--cs-pad-y) var(--cs-pad-x);
+  border-radius: var(--cs-radius);
+  font:
+    400 clamp(0.95rem, 3.9cqi, 1.45rem) / 1.22 "VT323",
+    var(--mono);
+  overflow-wrap: break-word;
+  /* the dark rim is a real border, so a title bar sits inside the glass and
+     never covers the rim */
+  border: 2px solid #0a0b0d;
+}
+/* the glass shading lies over everything on the screen, title bars
+   included, so it is drawn on an overlay above the content */
+.coil-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: max(0px, calc(var(--cs-radius) - 2px));
+  box-shadow: inset 0 0 1.2rem rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+.coil-screen p {
+  margin: 0 0 var(--cs-gap);
+}
+.cs-body > :last-child {
+  margin-bottom: 0;
+}
+/* a screen with a push block keeps what follows it at the bottom */
+.cs-body:has(.cs-push) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.cs-push {
+  flex: 1 1 auto;
+}
+/* a status screen: before the message at the top, the message in the middle,
+   what follows at the bottom, so the message is centered in that area and
+   stays selectable text. A title bar sits above the area, with the
+   same space under it as the screen keeps at its bottom edge. */
+.cs-centered {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.coil-screen .cs-centered > .cs-title {
+  margin-bottom: var(--cs-pad-y);
+}
+/* three rows: the outer two share the space equally, so the message sits in
+   the middle; a part too tall for its half pushes the message along and never
+   overlaps it */
+.cs-stack {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}
+.cs-stack > * {
+  min-width: 0;
+}
+.cs-head {
+  align-self: start;
+}
+.cs-foot {
+  align-self: end;
+}
+.cs-head > :last-child,
+.cs-foot > :last-child {
+  margin-bottom: 0;
+}
+.coil-screen .cs-stack > .cs-caps {
+  align-self: center;
+  margin: 0;
+}
+/* under a title bar the message is centered in the empty space between the
+   block above it and the line below it */
+:is(.cs-bios, .cs-win) .cs-stack {
+  display: flex;
+  flex-direction: column;
+}
+.coil-screen:is(.cs-bios, .cs-win) .cs-stack > .cs-caps {
+  margin-block: auto;
+}
+/* in this column the line below the message starts at the left margin, as
+   low-level software prints it; only the message itself is centered */
+:is(.cs-bios, .cs-win) .cs-stack > :is(.cs-head, .cs-foot) {
+  align-self: stretch;
+  text-align: left;
+}
+/* the pixel font leaves more room under its capitals than over them; this
+   moves the ink onto the measured middle */
+.coil-screen .cs-caps {
+  position: relative;
+  top: 0.03em;
+}
+/* a page only a little longer than the screen: the screen grows to fit (js/devices/screens.js) */
+:is(.coil-screen, .ph-screen).cs-grow {
+  aspect-ratio: auto;
+  overflow: visible;
+}
+.coil-keys {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  font: 600 0.62rem/1 var(--sans);
+  letter-spacing: 0.1em;
+  color: #a2a8ae;
+}
+.coil-keys span {
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.3rem;
+  background: #3a3e44;
+  box-shadow: 0 2px 0 #111215;
+}
+/* CTRL and ALT on the left, power on its own on the right */
+.coil-keys .coil-pw {
+  margin-left: auto;
+  background: #4b3c2b;
+}
+
+.cs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.9em;
+  margin-block: var(--cs-gap-s);
+}
+.coil-screen .cs-tabs {
+  margin-block: var(--cs-gap-s);
+}
+.cs-on,
+.cs-sel {
+  background: var(--hi-bg);
+  color: var(--hi-fg);
+}
+.cs-tab {
+  padding: 0 0.3em;
+}
+.cs-kv {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0 1em;
+  margin: 0 0 var(--cs-gap);
+}
+.cs-kv dd {
+  margin: 0;
+}
+/* option menus: a column of numbered list buttons, one highlighted */
+.cs-opts {
+  display: grid;
+  gap: var(--cs-gap-s);
+  margin: 0 0 var(--cs-gap);
+  padding: 0;
+  list-style: none;
+  counter-reset: opt;
+}
+.cs-opts li {
+  display: flex;
+  gap: 0.6em;
+  padding: 0.1em 0.5em;
+  border: 1px solid currentColor;
+  counter-increment: opt;
+}
+.cs-opts li::before {
+  content: counter(opt);
+  min-width: 1.1em;
+  text-align: right;
+  opacity: 0.75;
+}
+.cs-opts li.cs-sel::before {
+  opacity: 1;
+}
+/* a highlighted option or button takes the highlight color for its border
+   too, so the edge matches the fill */
+:is(.cs-opts li, .cs-btn).cs-sel {
+  border-color: var(--hi-bg);
+}
+.cs-list {
+  margin: 0 0 var(--cs-gap);
+  padding-left: 1.2em;
+}
+.cs-log {
+  list-style: none;
+  margin: 0 0 var(--cs-gap);
+  padding: 0;
+}
+.cs-log li {
+  white-space: pre-wrap;
+}
+/* a progress bar sits close under the line that names it */
+.cs-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0 0 var(--cs-gap-s);
+}
+.coil-screen :is(p, .cs-title, .cs-kv):has(+ .cs-bar) {
+  margin-bottom: var(--cs-gap-s);
+}
+.cs-bar span {
+  flex: 1;
+  height: 0.8em;
+  border: 1px solid currentColor;
+  background: linear-gradient(to right, currentColor var(--p), transparent var(--p));
+}
+.cs-bar b {
+  min-width: 3em;
+  font-weight: inherit;
+  text-align: right;
+}
+.coil-screen .cs-caps {
+  margin: 0 0 var(--cs-gap);
+  font-size: 1.6em;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.cs-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.cs-btn {
+  display: inline-block;
+  padding: 0 0.6em;
+  border: 1px solid currentColor;
+  line-height: 1.3;
+}
+/* a row of buttons under a message fills the width together */
+.cs-akv .cs-btns .cs-btn {
+  flex: 1 1 0;
+  text-align: center;
+}
+.cs-yesno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cs-gap-s) 0.6em;
+}
+.cs-pair {
+  display: inline-flex;
+  gap: 0.4em;
+}
+.cs-input .cs-caret {
+  letter-spacing: 0.1em;
+}
+.cs-table {
+  width: 100%;
+  margin: 0 0 var(--cs-gap);
+  border-collapse: collapse;
+  font: inherit;
+}
+.cs-table th {
+  font-weight: inherit;
+  text-align: left;
+  opacity: 0.75;
+  border-bottom: 1px solid currentColor;
+}
+.cs-table th,
+.cs-table td {
+  padding: 0 0.8em 0 0;
+  vertical-align: top;
+}
+/* every column keeps its words whole; only the last one wraps */
+.cs-table :is(th, td):not(:last-child) {
+  white-space: nowrap;
+}
+
+/* coreboot, the serial console and the crash: white on black */
+.cs-boot,
+.cs-console,
+.cs-panic {
+  background: var(--lcd-black);
+  color: var(--lcd-ink);
+}
+.cs-panic .cs-warn b {
+  color: #ff6b5e;
+}
+/* the implant's own menus: the reader's default green */
+.cs-akv {
+  --hi-bg: var(--lcd-green);
+  --hi-fg: var(--lcd-teal);
+  background: var(--lcd-teal);
+  color: var(--lcd-green);
+}
+/* the setup utility: a firmware screen in blue and gray */
+.cs-bios {
+  --hi-bg: var(--fw-gray);
+  --hi-fg: var(--fw-blue);
+  background: var(--fw-blue);
+  color: var(--fw-gray);
+}
+.cs-bios .cs-title {
+  margin: calc(var(--cs-pad-y) * -1) calc(var(--cs-pad-x) * -1) var(--cs-gap);
+  padding: 0.1em var(--cs-pad-x);
+  background: var(--fw-gray);
+  color: var(--fw-blue);
+}
+.cs-bios .cs-warn b {
+  color: #ffff55;
+}
+/* Program Manager, the Task List and its message boxes: a gray window with a
+   blue title bar, drawn in the reader's own font like everything else on it */
+.cs-win {
+  --hi-bg: var(--win-blue);
+  --hi-fg: #fff;
+  background: var(--win-gray);
+  color: #111;
+}
+.cs-win .cs-title {
+  position: sticky;
+  top: calc(var(--cs-pad-y) * -1);
+  z-index: 1;
+  margin: calc(var(--cs-pad-y) * -1) calc(var(--cs-pad-x) * -1) var(--cs-gap);
+  padding: 0.1em var(--cs-pad-x);
+  background: var(--win-blue);
+  color: #fff;
+}
+.cs-win .cs-opts li,
+.cs-win .cs-btn {
+  border: 0;
+  background: var(--win-face);
+  box-shadow: var(--win-bevel);
+}
+.cs-win .cs-btn.cs-sel {
+  background: var(--win-blue);
+  color: #fff;
+}
+.cs-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  gap: var(--cs-gap);
+  margin: 0 0 var(--cs-gap);
+}
+/* the box's edge is a real border, so the name bar sits inside it and the
+   edge runs unbroken round the whole group */
+.cs-group {
+  background: #fff;
+  border: 1px solid;
+  border-color: #fff #404040 #404040 #fff;
+}
+.coil-screen .cs-gname {
+  margin: 0;
+  padding: 0 0.4em;
+  background: var(--win-blue);
+  color: #fff;
+}
+/* program items: an icon over its name, the way a program manager shows what opens */
+.cs-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cs-gap-s) 0.4em;
+  margin: 0;
+  padding: 0.3em;
+  list-style: none;
+}
+.cs-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  width: 5.2em;
+  padding: 0.15em;
+  text-align: center;
+  line-height: 1;
+}
+.cs-ic {
+  width: 1.6em;
+  height: 1.6em;
+  padding: 0.15em;
+  fill: #fff;
+  stroke: var(--win-blue);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  background: var(--win-face);
+  box-shadow: var(--win-bevel);
+}
+.cs-status {
+  margin-top: var(--cs-gap);
+  padding-top: 0.2em;
+  border-top: 1px solid #808080;
+}
+/* error recovery and safe mode: gray on black, with the mode in the corners */
+.cs-recovery,
+.cs-safe {
+  --hi-bg: var(--win-gray);
+  --hi-fg: #000;
+  background: #000;
+  color: var(--win-gray);
+}
+.cs-safe {
+  padding-block: 1.6em;
+}
+.cs-safe .cs-group {
+  background: #111;
+  border-color: #555;
+}
+.cs-safe .cs-gname {
+  background: #333;
+}
+.cs-safe .cs-ic {
+  fill: #111;
+  stroke: var(--win-gray);
+  background: #222;
+  box-shadow: inset 0 0 0 1px #555;
+}
+.cs-corner {
+  position: absolute;
+  font-size: 0.85em;
+}
+.cs-c0 {
+  top: 0.3em;
+  left: 0.6em;
+}
+.cs-c1 {
+  top: 0.3em;
+  right: 0.6em;
+}
+.cs-c2 {
+  bottom: 0.3em;
+  left: 0.6em;
+}
+.cs-c3 {
+  bottom: 0.3em;
+  right: 0.6em;
+}
+
+/* Toma's phone, recovered from item storage: a Fairphone 4. A gray frame
+   with a lighter rim, a black bezel a little deeper at the chin, a waterdrop
+   notch in the middle of the top edge, and the volume and power keys on the
+   right side. The status bar and the gesture bar stay put while the page
+   scrolls between them, so both follow the screen's rounded corners. */
+:root {
+  --ph-frame: #6c7178;
+  --ph-rim: #a3a8ae;
+  --ph-bezel: #08090a;
+  --ph-screen-r: 1.45rem;
+}
+.phone {
+  position: relative;
+  max-width: 22rem;
+  margin-inline: auto;
+  padding: 0.5rem 0.5rem 0.95rem;
+  background: var(--ph-bezel);
+  border: 3px solid var(--ph-frame);
+  border-radius: 2.2rem;
+  box-shadow:
+    inset 0 0 0 1px var(--ph-rim),
+    0 0 0 1px #3b3f44,
+    0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+/* the keys on the right side: the volume rocker above, the power key below */
+.ph-keys,
+.ph-keys::after {
+  position: absolute;
+  right: -6px;
+  width: 3px;
+  background: var(--ph-frame);
+  border-radius: 0 2px 2px 0;
+}
+.ph-keys {
+  top: 21%;
+  height: 11%;
+}
+.ph-keys::after {
+  content: "";
+  top: 150%;
+  right: 0;
+  height: 60%;
+}
+.ph-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 9 / 19.5;
+  overflow: hidden;
+  background: #fff;
+  color: #1b1b1b;
+  border-radius: var(--ph-screen-r);
+}
+/* the status bar is as tall as the notch, with the clock and the icons kept
+   clear of the rounded corners */
+.ph-status {
+  position: relative;
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.7rem;
+  margin: 0;
+  padding: 0 1.35rem;
+  font: 500 0.8rem/1 var(--sans);
+}
+.ph-status::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2.1rem;
+  height: 1.05rem;
+  transform: translateX(-50%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 21'%3E%3Cpath d='M0 0h42c-6 0-8.5 2.5-9.6 7.2C30.6 15.6 26.4 20 21 20S11.4 15.6 9.6 7.2C8.5 2.5 6 0 0 0z' fill='%2308090a'/%3E%3C/svg%3E")
+    center top / 100% 100% no-repeat;
+}
+/* the front camera sits in the notch: a dark lens with a faint ring and a
+   small reflection */
+.ph-status::after {
+  content: "";
+  position: absolute;
+  top: 0.22rem;
+  left: 50%;
+  width: 0.62rem;
+  height: 0.62rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(150, 170, 210, 0.55) 0 8%, transparent 14%),
+    radial-gradient(circle, #141a26 0 38%, #05070b 42% 60%, #22262d 64% 72%, #0b0c0e 76%);
+}
+.ph-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.ph-sig {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+.ph-sig .ph-off {
+  opacity: 0.3;
+}
+/* the battery: an outlined cell filled to its level */
+.ph-bat {
+  position: relative;
+  width: 0.5rem;
+  height: 0.85rem;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+}
+.ph-bat::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 0.25rem;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+.ph-bat i {
+  position: absolute;
+  inset: auto 1px 1px;
+  height: calc(var(--b) - 2px);
+  background: currentColor;
+}
+/* the page between the two bars scrolls on its own, with no scrollbar drawn
+   over the screen */
+.ph-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.ph-body::-webkit-scrollbar {
+  display: none;
+}
+.ph-url {
+  margin: 0.2rem 0.8rem 0.6rem;
+  padding: 0.45rem 0.9rem;
+  background: #eceef1;
+  border-radius: 1.2rem;
+  font: 400 0.85rem/1.2 var(--sans);
+  color: #444;
+}
+.ph-page {
+  padding: 0.2rem 1.1rem 1rem;
+  font: 400 0.95rem/1.45 var(--sans);
+}
+.ph-page p {
+  margin: 0 0 0.5rem;
+}
+.ph-h {
+  font: 700 1.25rem/1.25 var(--serif);
+}
+.ph-sub {
+  color: #5a5a5a;
+  font-size: 0.82rem;
+}
+.ph-q {
+  font-style: italic;
+}
+.ph-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.ph-list li + li {
+  margin-top: 0.35rem;
+}
+/* the gesture bar: its own strip at the bottom, with the handle in its middle */
+.ph-nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  margin: 0;
+}
+.ph-handle {
+  display: block;
+  width: 34%;
+  height: 4px;
+  background: #1b1b1b;
+  border-radius: 2px;
+}
+.ph-screen.cs-grow {
+  overflow: hidden;
+}
+.ph-screen.cs-grow .ph-body,
+.fit-size .ph-body {
+  overflow: visible;
+}
+
+/* papers keep their size: an A4 sheet stays A4 and grows only when its text
+   needs more room, so it never breaks */
+.doc-letter,
+.doc-mail {
+  aspect-ratio: 210 / 297;
+}
+
+/* the reader's setting "Sizes: fit to content" drops the fixed proportions of
+   screens, sheets and pages, and lets each one take the height of what is on it */
+.fit-size :is(.coil-screen, .ph-screen, .doc-letter, .doc-mail, .doc-note.nb-page, .poster) {
+  aspect-ratio: auto;
+}
+.fit-size :is(.coil-screen, .ph-screen) {
+  overflow: visible;
+}
+/* the phone keeps clipping to its rounded screen; its page simply stops scrolling */
+.fit-size .ph-screen {
+  overflow: hidden;
+}
+
+@media (max-width: 599px) {
+  .coil {
+    --rd-pad: 0.6rem;
+    --rd-pad-b: 0.5rem;
+    border-radius: 0.9rem;
+  }
+  .cs-kv {
+    column-gap: 0.6em;
+  }
+  .cs-table th,
+  .cs-table td {
+    padding-right: 0.5em;
+  }
+}

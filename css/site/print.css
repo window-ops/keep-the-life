@@ -1,0 +1,18 @@
+/* Keep the Life, site styles: printing. */
+
+@media print {
+  .progress,
+  .set-btn,
+  .mast-tools-wrap,
+  .toc,
+  .plink,
+  .toast,
+  .notes-panel,
+  .ln-tools {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: var(--black);
+  }
+}

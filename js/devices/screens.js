@@ -86,7 +86,6 @@
     });
   }
 
-
   /* Open all screens: every folded screen and document opens, its caption
      loses the arrow and no longer folds it. Turned off again, each one goes
      back to how it was before. */

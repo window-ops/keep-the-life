@@ -1,0 +1,327 @@
+/* Keep the Life, site styles: the reading meter, the masthead, the settings row and its tools. */
+
+/* reading progress */
+
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--l-3px);
+  z-index: 20;
+}
+.progress span {
+  display: block;
+  height: var(--l-100pct);
+  width: 0;
+  background: var(--sp-k);
+}
+
+/* readers who prefer to read without a meter can switch it off */
+body:not(.show-progress) .progress {
+  display: none;
+}
+
+/* masthead: full width with a fixed gutter, so the settings never move
+   when the page width changes */
+
+.mast {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s);
+  padding: var(--s) var(--gutter);
+  background: var(--bg-2);
+  border-bottom: var(--l-1px) solid var(--rule);
+}
+
+.mast-title {
+  flex: 1 1 20rem;
+}
+.mast h1 {
+  margin: 0;
+  font: 800 clamp(var(--l-1-9rem), 4.5vw, var(--l-2-6rem)) / 1.05 var(--serif);
+  letter-spacing: -0.02em;
+}
+.mast-sub {
+  color: var(--ink-2);
+  font: 400 1.05rem/1.45 var(--serif);
+}
+
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-4rem);
+  font: 500 var(--l-0-78rem) var(--mono);
+  color: var(--ink);
+  background: transparent;
+  border: var(--l-1px) solid var(--rule-2);
+  padding: var(--l-0-35rem) var(--l-0-7rem);
+  cursor: pointer;
+}
+
+.tool:hover {
+  border-color: var(--ink-2);
+}
+.tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+  border-color: var(--rule-2);
+}
+.tool[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.tool .ico {
+  width: var(--l-12px);
+  height: var(--l-12px);
+}
+
+.set-btn .ico {
+  transition: transform var(--t-0-15s);
+}
+.set-btn[aria-expanded="true"] .ico {
+  transform: rotate(180deg);
+}
+
+/* settings: one row under the title, folded away with the button. A row
+   wider than the window scrolls sideways and keeps to one line */
+/* the wrapper holds the row's place in the masthead and draws the edge
+   fades over it, stopping short of the row's scrollbar so it stays usable */
+.mast-tools-wrap {
+  position: relative;
+  flex: 1 1 var(--l-100pct);
+  min-width: 0;
+  --sb: 0px;
+}
+.mast-tools-wrap::before,
+.mast-tools-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: var(--sb);
+  width: 3rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.mast-tools-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-2), transparent);
+}
+.mast-tools-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-2), transparent);
+}
+.mast-tools-wrap.fade-left::before,
+.mast-tools-wrap.fade-right::after {
+  opacity: 1;
+}
+/* the settings wrap onto as many lines as they need, in groups split by a thin rule */
+.mast-tools {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--l-0-5rem);
+}
+.tool-sep {
+  width: var(--l-1px);
+  margin-inline: var(--l-0-25rem);
+  background: var(--rule-2);
+}
+.mast-tools > * {
+  flex: none;
+  white-space: nowrap;
+}
+/* Firefox: the scrollbar under the row stays hidden until the pointer or the
+   keyboard focus is on the row */
+@supports (-moz-appearance: none) {
+  .mast-tools {
+    scrollbar-width: none;
+  }
+  .mast-tools:hover,
+  .mast-tools:focus-within {
+    scrollbar-width: thin;
+  }
+}
+.mast-tools .tool-group {
+  flex-wrap: nowrap;
+}
+.mast-tools-wrap::before,
+.mast-tools-wrap::after {
+  display: none;
+}
+.mast-tools-wrap[hidden] {
+  display: none;
+}
+
+/* without scripts there is nothing for settings to change */
+.no-js .set-btn,
+.no-js .mast-tools-wrap,
+.no-js .toc-keys,
+.no-js .plink {
+  display: none;
+}
+
+/* page width: one bordered control with its label in its own cell */
+.tool-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  border: var(--l-1px) solid var(--rule-2);
+  background: var(--panel);
+}
+
+.tg-label {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--l-0-6rem);
+  border-right: var(--l-1px) solid var(--rule-2);
+  font: 600 var(--l-0-72rem) var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.tool-group .tool {
+  border: 0;
+  border-right: var(--l-1px) solid var(--rule);
+  padding-inline: var(--l-0-6rem);
+}
+.tool-group .tool:last-child {
+  border-right: 0;
+}
+.tool-group .tool:hover {
+  background: var(--bg-2);
+}
+.tool-group .tool[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+.tool-group .tool:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.tg-out {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8ch;
+  border-right: var(--l-1px) solid var(--rule-2);
+  font: 500 var(--l-0-78rem) var(--mono);
+  color: var(--ink);
+}
+
+/* the settings pulled up away from the masthead: the same row, as a bar over
+   the top of the window */
+.settings-float .mast-tools-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  max-height: 70vh;
+  overflow: auto;
+  padding: var(--s) var(--gutter);
+  background: var(--bg-2);
+  border-bottom: var(--l-1px) solid var(--rule-2);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.settings-holder {
+  flex: 1 1 var(--l-100pct);
+  min-width: 0;
+}
+
+/* phones: the bar comes up from the bottom edge, and every line of settings
+   fills the width, so the buttons end in one even edge on the right. The
+   thin rules between groups give way to the line breaks */
+@media (max-width: 599px) {
+  .settings-float .mast-tools-wrap {
+    top: auto;
+    bottom: 0;
+    padding-bottom: calc(var(--s) + env(safe-area-inset-bottom, 0px));
+    border-bottom: 0;
+    border-top: var(--l-1px) solid var(--rule-2);
+    box-shadow: 0 calc(var(--l-8px) * -1) var(--l-24px) var(--shadow);
+  }
+  .mast-tools > * {
+    flex: 1 1 auto;
+  }
+  .mast-tools > .tool {
+    justify-content: center;
+  }
+  .mast-tools > .tool-sep {
+    display: none;
+  }
+  .mast-tools > .tool-group {
+    display: flex;
+    flex: 1 1 var(--l-100pct);
+  }
+  .mast-tools .tool-group .tool,
+  .mast-tools .tool-group .tg-out {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+  .mast-tools .tool-group .tg-label {
+    flex: none;
+  }
+}
+
+/* the Close button ends the first line of the floating panel on phones and
+   tablets, at the right, at its own size and set apart from the settings by
+   a thin rule (js/reading/settings.js places it); elsewhere the row has none */
+.set-close-part {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .settings-float .mast-tools > .set-close-part {
+    display: flex;
+    flex: none;
+    padding-left: var(--l-0-5rem);
+    border-left: var(--l-1px) solid var(--rule-2);
+  }
+}
+
+/* tablets: the settings open as a popover above the Settings button in the
+   bottom corner, as wide as a short column, and every line inside fills the
+   popover's width the same way it does on a phone */
+@media (min-width: 600px) and (max-width: 1199px) {
+  .settings-pop.settings-float .mast-tools-wrap {
+    top: auto;
+    left: auto;
+    right: var(--s);
+    bottom: calc(var(--s) * 4);
+    width: min(30rem, calc(100vw - var(--s) * 2));
+    max-height: min(70vh, 40rem);
+    padding: var(--s);
+    border: var(--l-1px) solid var(--rule-2);
+    box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+  }
+  .settings-pop .mast-tools > * {
+    flex: 1 1 auto;
+  }
+  .settings-pop .mast-tools > .tool {
+    justify-content: center;
+  }
+  .settings-pop .mast-tools > .tool-sep {
+    display: none;
+  }
+  .settings-pop .mast-tools > .tool-group {
+    display: flex;
+    flex: 1 1 var(--l-100pct);
+  }
+  .settings-pop .mast-tools .tool-group .tool,
+  .settings-pop .mast-tools .tool-group .tg-out {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+  .settings-pop .mast-tools .tool-group .tg-label {
+    flex: none;
+  }
+}
+
+/* the panel takes the focus when it opens, without a ring of its own */
+.mast-tools-wrap:focus,
+.mast-tools-wrap:focus-visible {
+  outline: none;
+}

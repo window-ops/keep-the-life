@@ -24,7 +24,7 @@
   var quotes = [];
   try { marks = JSON.parse(load("marks") || "{}") || {}; } catch (e) { marks = {}; }
   try { quotes = JSON.parse(load("quotes") || "[]") || []; } catch (e) { quotes = []; }
-  /* highlights saved before colours existed become orange */
+  /* highlights saved before colors existed become orange */
   Object.keys(marks).forEach(function (id) { if (marks[id].hl === true) marks[id].hl = "orange"; });
 
   function saveMarks() { save("marks", JSON.stringify(marks)); }
@@ -279,7 +279,6 @@
       });
       swatches.appendChild(sw);
     });
-
 
     var nt = button("ln-nt", "Add a note to this line", "note");
     var bm = button("ln-bm", "Bookmark this line as where I left", "bookmark");

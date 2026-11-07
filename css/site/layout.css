@@ -1,0 +1,354 @@
+/* Keep the Life, site styles: pretty wrap, the reading column and the contents. */
+
+/* pretty wrap: native where supported, the script fills in elsewhere.
+   pw-js is set on :root when the script detects that native pretty is too
+   weak (e.g. Firefox) and takes over; the CSS property is then turned off
+   so the browser's partial implementation does not fight the script. */
+.pretty * {
+  text-wrap-style: pretty;
+}
+.pw-js .pretty * {
+  text-wrap-style: auto;
+}
+
+/* layout: the reading column is centred when the window allows. On wide
+   screens the contents take a fixed slot in the left margin. When the column
+   is wider than the room left by that slot, it grows to the right. Hiding the
+   contents frees the slot, so a column that was held back by it expands.
+   Full width uses everything: beside the contents when they are shown, the
+   whole window when they are hidden. */
+
+.layout {
+  --toc-w: 15rem;
+  --toc-space: calc(var(--toc-w) + var(--s) * 2);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0 var(--gutter);
+}
+
+.story {
+  width: var(--l-100pct);
+  max-width: var(--page-max);
+  margin-inline: auto;
+}
+
+@media (min-width: 1200px) {
+  .layout {
+    grid-template-columns: max(var(--toc-space), (var(--l-100pct) - var(--page-max)) / 2) minmax(
+        0,
+        var(--page-max)
+      ) minmax(0, 1fr);
+  }
+  /* with highlights and notes on, the right margin keeps room for their panel */
+  .notes .layout {
+    grid-template-columns: max(var(--toc-space), (var(--l-100pct) - var(--page-max)) / 2) minmax(
+        0,
+        var(--page-max)
+      ) minmax(var(--toc-space), 1fr);
+  }
+  .toc {
+    grid-column: 1;
+    grid-row: 1;
+    width: var(--toc-w);
+    justify-self: end;
+    margin-right: calc(var(--s) * 2);
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow: auto;
+  }
+  .story {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: none;
+  }
+  .notes-panel {
+    grid-column: 3;
+    grid-row: 1;
+    width: var(--toc-w);
+    justify-self: start;
+    margin-left: calc(var(--s) * 2);
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow: auto;
+  }
+  .width-full .layout {
+    grid-template-columns: var(--toc-space) minmax(0, 1fr) 0;
+  }
+  .width-full .notes .layout {
+    grid-template-columns: var(--toc-space) minmax(0, 1fr) var(--toc-space);
+  }
+  /* without the contents the column is free to use the left margin too */
+  .no-toc .layout {
+    grid-template-columns: max(var(--l-0px), (var(--l-100pct) - var(--page-max)) / 2) minmax(
+        0,
+        var(--page-max)
+      ) minmax(0, 1fr);
+  }
+  .no-toc.notes .layout {
+    grid-template-columns: max(var(--l-0px), (var(--l-100pct) - var(--page-max)) / 2) minmax(
+        0,
+        var(--page-max)
+      ) minmax(var(--toc-space), 1fr);
+  }
+  .width-full .no-toc .layout {
+    grid-template-columns: 0 minmax(0, 1fr) 0;
+  }
+  .width-full .no-toc.notes .layout {
+    grid-template-columns: 0 minmax(0, 1fr) var(--toc-space);
+  }
+}
+
+.no-toc .toc {
+  display: none;
+}
+
+/* below the wide layout the contents become a floating menu: a button in the
+   bottom corner opens them over the page (js/reading/tocmenu.js), and a
+   Settings button beside it pulls up the settings from anywhere on the page.
+   Without scripts they stay in the page as a plain list. */
+.toc-dock {
+  display: none;
+}
+@media (max-width: 1199px) {
+  /* the button keeps the look of the settings buttons: the page's second
+     background, the ink, a thin rule and the mono face */
+  html:not(.no-js) .toc-dock {
+    --tuck-w: 1.7rem;
+    display: flex;
+    position: fixed;
+    right: var(--s);
+    bottom: var(--s);
+    z-index: 30;
+    box-shadow: 0 var(--l-4px) var(--l-14px) var(--shadow);
+    transition: transform 0.28s cubic-bezier(0.3, 0, 0.2, 1);
+  }
+  .toc-fab,
+  .toc-set,
+  .toc-tuck {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: 500 var(--l-0-78rem) var(--mono);
+    color: var(--ink);
+    background: var(--bg-2);
+    border: var(--l-1px) solid var(--rule-2);
+    cursor: pointer;
+  }
+  .toc-fab,
+  .toc-set {
+    padding: var(--l-0-6rem) var(--l-0-9rem);
+    border-left: 0;
+    transition: visibility 0s;
+  }
+  .toc-tuck {
+    width: var(--tuck-w);
+    padding: 0;
+    color: var(--mute);
+  }
+  /* the tab owns the edge the two share, so a hover on either one lights
+     every side of the part under the pointer */
+  .toc-fab:hover,
+  .toc-set:hover,
+  .toc-tuck:hover {
+    border-color: var(--ink-2);
+    color: var(--ink);
+  }
+  .toc-tuck:has(+ .toc-fab:hover),
+  .toc-fab:has(+ .toc-set:hover) {
+    border-right-color: var(--ink-2);
+  }
+  .toc-fab[aria-expanded="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .toc-set[aria-expanded="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .toc-tuck:has(+ .toc-fab[aria-expanded="true"]),
+  .toc-fab:has(+ .toc-set[aria-expanded="true"]) {
+    border-right-color: var(--ink);
+  }
+  .toc-tuck .ico {
+    width: var(--l-12px);
+    height: var(--l-12px);
+    transition: transform 0.28s;
+  }
+  /* tucked away: the whole button slides right, at its own size, until only
+     the tab is left at the screen edge, and the same tab slides it back */
+  html:not(.no-js) .toc-tucked .toc-dock {
+    transform: translateX(calc(100% - var(--tuck-w) + var(--s)));
+  }
+  .toc-tucked .toc-fab,
+  .toc-tucked .toc-set {
+    visibility: hidden;
+    transition: visibility 0s 0.28s;
+  }
+  .toc-tucked .toc-tuck .ico {
+    transform: rotate(180deg);
+  }
+
+  html:not(.no-js) .toc {
+    display: none;
+  }
+  html:not(.no-js) .toc-open .toc {
+    display: block;
+    position: fixed;
+    z-index: 29;
+    left: var(--s);
+    right: var(--s);
+    bottom: calc(var(--s) * 4);
+    max-width: 17rem;
+    max-height: min(70vh, 36rem);
+    margin-left: auto;
+    overflow: auto;
+    padding: var(--s);
+    background: var(--bg-2);
+    border: var(--l-1px) solid var(--rule-2);
+    box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+  }
+  /* the floating menu has its own background, so the edge fade would only
+     let the page show through it */
+  html:not(.no-js) .toc-open .toc {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  /* with the contents hidden, the Settings button stays in the dock */
+  .no-toc .toc-fab {
+    display: none !important;
+  }
+}
+
+/* the contents and the highlights and notes panel scroll on their own with
+   no scrollbar; a fade at the top or bottom edge shows there is more to
+   scroll in that direction */
+.toc,
+.notes-panel {
+  scrollbar-width: none;
+}
+.toc::-webkit-scrollbar,
+.notes-panel::-webkit-scrollbar {
+  display: none;
+}
+.fade-top,
+.fade-bottom {
+  --fade-top: 0px;
+  --fade-bottom: 0px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--c-000) var(--fade-top),
+    var(--c-000) calc(var(--l-100pct) - var(--fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--c-000) var(--fade-top),
+    var(--c-000) calc(var(--l-100pct) - var(--fade-bottom)),
+    transparent
+  );
+}
+.fade-top {
+  --fade-top: 3rem;
+}
+.fade-bottom {
+  --fade-bottom: 3rem;
+}
+
+/* contents */
+
+.toc {
+  padding: var(--s) 0;
+  font-size: var(--l-0-9rem);
+}
+
+.toc h2 {
+  margin: 0 0 var(--l-0-5rem);
+  font: 600 var(--l-0-72rem) var(--mono);
+  letter-spacing: var(--l-0-2em);
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc-ch + .toc-ch {
+  margin-top: var(--s);
+}
+.toc-ch ol {
+  margin-top: var(--l-0-25rem);
+  border-left: var(--l-1px) solid var(--rule);
+}
+
+.toc a {
+  display: flex;
+  gap: var(--l-0-6rem);
+  text-decoration: none;
+  color: var(--ink-2);
+  padding: var(--l-0-2rem) 0 var(--l-0-2rem) var(--l-0-75rem);
+  margin-left: -1px;
+  border-left: var(--l-2px) solid transparent;
+  line-height: 1.35;
+}
+
+.toc a:hover {
+  color: var(--ink);
+}
+.toc a.on {
+  color: var(--ink);
+  border-left-color: var(--sp-k);
+}
+.toc .toc-cht {
+  padding-left: 0;
+  border: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.toc-n {
+  font: 500 var(--l-0-75rem) / 1.6 var(--mono);
+  color: var(--mute);
+  min-width: var(--l-1-9rem);
+}
+.toc-keys {
+  margin: 0;
+  padding-top: var(--s);
+  color: var(--mute);
+  font-size: var(--l-0-78rem);
+}
+/* on touch screens the contents name the settings gesture */
+.toc-touch {
+  display: none;
+  margin: 0;
+  padding-top: var(--s);
+  color: var(--mute);
+  font-size: var(--l-0-78rem);
+}
+@media (hover: none) and (pointer: coarse) {
+  .toc-touch {
+    display: block;
+  }
+}
+/* without scripts there is no settings gesture to name */
+.no-js .toc-touch {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .toc {
+    border-bottom: var(--l-1px) solid var(--rule);
+  }
+  .toc-keys {
+    display: none;
+  }
+}

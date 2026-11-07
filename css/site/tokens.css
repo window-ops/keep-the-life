@@ -1,0 +1,161 @@
+/* Keep the Life, site styles: repeated values, the dark and light themes, and the gutter. */
+/* Breakpoints follow the Material Design window size classes: compact below 600px, medium 600 to 839px, expanded 840 to 1199px, large 1200 to 1599px, extra-large from 1600px. */
+
+/* repeated values, defined once and used by name below */
+:root {
+  --black: #000;
+  --c-000: #000;
+  --hl-blue: #6d9fdc;
+  --hl-green: #79b765;
+  --hl-orange: var(--sp-k);
+  --hl-pink: #d47aae;
+  --hl-yellow: #d9b84a;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --l-0-14em: 0.14em;
+  --l-0-15rem: 0.15rem;
+  --l-0-25rem: 0.25rem;
+  --l-0-2em: 0.2em;
+  --l-0-2rem: 0.2rem;
+  --l-0-35rem: 0.35rem;
+  --l-0-3rem: 0.3rem;
+  --l-0-45rem: 0.45rem;
+  --l-0-4rem: 0.4rem;
+  --l-0-5rem: 0.5rem;
+  --l-0-68rem: 0.68rem;
+  --l-0-6rem: 0.6rem;
+  --l-0-72rem: 0.72rem;
+  --l-0-75rem: 0.75rem;
+  --l-0-78rem: 0.78rem;
+  --l-0-7rem: 0.7rem;
+  --l-0-82rem: 0.82rem;
+  --l-0-85rem: 0.85rem;
+  --l-0-8rem: 0.8rem;
+  --l-0-9rem: 0.9rem;
+  --l-0px: 0px;
+  --l-1-1rem: 1.1rem;
+  --l-1-3rem: 1.3rem;
+  --l-1-4rem: 1.4rem;
+  --l-1-9rem: 1.9rem;
+  --l-100pct: 100%;
+  --l-11px: 11px;
+  --l-12px: 12px;
+  --l-13px: 13px;
+  --l-14px: 14px;
+  --l-1px: 1px;
+  --l-2-6rem: 2.6rem;
+  --l-2px: 2px;
+  --l-3px: 3px;
+  --l-4px: 4px;
+  --l-50pct: 50%;
+  --l-5px: 5px;
+  --l-6px: 6px;
+  --t-0-12s: 0.12s;
+  --t-0-15s: 0.15s;
+  --t-0-4s: 0.4s;
+  --t-0s: 0s;
+}
+
+:root {
+  --bg: #111214;
+  --bg-2: #17191c;
+  --panel: #1c1f23;
+  --ink: #e7e3da;
+  --ink-2: #b9b4a9;
+  --mute: #8a867d;
+  --rule: #2b2f34;
+  --rule-2: #3a3f45;
+  --redact: var(--black);
+  --redact-edge: var(--rule-2);
+  --focus: var(--sp-k);
+
+  --sp-t: #63b9ad;
+  --sp-k: #e0814a;
+  --sp-b: #9eabc8;
+  --sp-m: #b7a36a;
+  --sp-v: #c98fb0;
+  --sp-s: #e2d36b;
+  --sp-o: #8fbf7a;
+  --sp-p: #8aa9d6;
+  --sp-l: #b8a6e0;
+  --sp-h: #d98080;
+  --sp-c: #c8a684;
+  --sp-f: #6cc4d6;
+  --sp-r: #a9adb3;
+  --sp-z: #e69bc2;
+  --sp-g: #a3b38c;
+  --sp-pa: #a7b0ba;
+  --sp-e: #b6be72;
+  --sp-ck: #d9a865;
+  --sp-le: #83b7cc;
+  --sp-ch: #c9a3e2;
+  --sp-wg: #b5c290;
+  --sp-it: #74d09c;
+  --sp-rc: #c8b89e;
+  --sp-fa: #dc9470;
+  --sp-ce: #a3b4c4;
+  --sp-t-bg: rgba(99, 185, 173, 0.07);
+
+  --serif: "Newsreader", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* one spacing step, used above and below every block */
+  --s: 1rem;
+  /* a smaller step, for narration that falls between replies */
+  --xs: 0.5rem;
+  /* a doubled step, for the space around chapter headers */
+  --m: 2rem;
+  --gutter: 16px;
+  --page-max: 76rem;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #efebe3;
+  --bg-2: #e6e1d6;
+  --panel: #f7f4ee;
+  --ink: #1d1c1a;
+  --ink-2: #3c3a36;
+  --mute: #6d695f;
+  --rule: #d3ccbe;
+  --rule-2: #bfb7a7;
+  --redact: #121212;
+  --redact-edge: var(--redact);
+  --focus: var(--sp-k);
+
+  --sp-t: #23786c;
+  --sp-k: #b0521c;
+  --sp-b: #4b5878;
+  --sp-m: #7a6420;
+  --sp-v: #8a3e6b;
+  --sp-s: #7d6a00;
+  --sp-o: #3f7a2e;
+  --sp-p: #355f9a;
+  --sp-l: #5b4a9a;
+  --sp-h: #a33a3a;
+  --sp-c: #7a5a36;
+  --sp-f: #1f7586;
+  --sp-r: #565b62;
+  --sp-z: #a3346b;
+  --sp-g: #55663d;
+  --sp-pa: #4f5862;
+  --sp-e: #5f661c;
+  --sp-ck: #8a5a12;
+  --sp-le: #2c6880;
+  --sp-ch: #6b3f8c;
+  --sp-wg: #56653a;
+  --sp-it: #1f6b45;
+  --sp-rc: #6a5b42;
+  --sp-fa: #93421d;
+  --sp-ce: #44566a;
+  --sp-t-bg: rgba(35, 120, 108, 0.08);
+
+  color-scheme: light;
+}
+
+@media (min-width: 840px) {
+  :root {
+    --gutter: 2rem;
+  }
+}

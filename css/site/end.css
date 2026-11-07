@@ -1,0 +1,40 @@
+/* Keep the Life, site styles: the footer and the toast. */
+
+.end {
+  margin-block: calc(var(--s) * 2) 0;
+  padding-top: var(--s);
+  border-top: var(--l-3px) double var(--rule-2);
+  color: var(--mute);
+  font-size: var(--l-0-85rem);
+}
+
+.tabbed .end {
+  margin-block: 0;
+}
+
+.toast {
+  position: fixed;
+  left: var(--l-50pct);
+  bottom: var(--s);
+  z-index: 30;
+  transform: translateX(-50%);
+  padding: var(--l-0-5rem) var(--l-0-9rem);
+  font: 500 var(--l-0-8rem) var(--mono);
+  color: var(--ink);
+  background: var(--panel);
+  border: var(--l-1px) solid var(--rule-2);
+  border-radius: var(--l-6px);
+  box-shadow: 0 var(--l-4px) var(--l-14px) var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.toast.on {
+  opacity: 1;
+}
+
+/* links in the footer take the accent colour */
+.end a {
+  color: var(--sp-k);
+}

@@ -1,0 +1,104 @@
+/* Keep the Life, screen styles: the shared shell of every screen and printed piece. */
+
+.app {
+  margin-block: var(--s);
+}
+
+.app-cap {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-6rem);
+  list-style: none;
+  cursor: pointer;
+  padding-block: 0 var(--l-0-35rem);
+  font: 600 var(--l-0-7rem) / 1.3 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  color: var(--mute);
+}
+
+.app-cap::-webkit-details-marker {
+  display: none;
+}
+
+.app-cap::before {
+  content: "";
+  border-left: 5px solid currentColor;
+  border-top: var(--l-4px) solid transparent;
+  border-bottom: var(--l-4px) solid transparent;
+  transition: transform 0.15s;
+}
+
+.app[open] > .app-cap::before {
+  transform: rotate(90deg);
+}
+/* Screens: always open. The caption stays as a label, with no arrow and
+   nothing to click */
+.open-all .app > .app-cap {
+  cursor: default;
+}
+.open-all .app > .app-cap::before {
+  display: none;
+}
+/* a folded attachment is only its caption, with nothing under it; the space
+   under the caption closes with the drawer, at the same pace */
+.app-cap {
+  transition: padding-bottom 0.28s cubic-bezier(0.3, 0, 0.2, 1);
+}
+.app:not([open]) > .app-cap {
+  padding-bottom: 0;
+}
+.app-cap:hover {
+  color: var(--ink);
+}
+
+.app-frame {
+  overflow-x: auto;
+  border-radius: var(--l-6px);
+  box-shadow:
+    0 0 0 var(--l-1px) rgba(255, 255, 255, 0.06),
+    0 var(--l-8px) var(--l-24px) var(--shadow);
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "liga" 0,
+    "calt" 0;
+}
+
+.win-title {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  min-height: var(--l-2rem);
+  padding: 0 var(--l-0-6rem);
+  font: 500 var(--l-0-78rem) var(--sans);
+}
+
+.win-ctl {
+  display: inline-flex;
+  gap: var(--l-0-45rem);
+  margin-left: auto;
+}
+.win-ctl i {
+  width: var(--l-0-7rem);
+  height: var(--l-0-7rem);
+  border-radius: var(--l-50pct);
+  background: currentColor;
+  opacity: 0.28;
+}
+
+.ico {
+  width: var(--l-16px);
+  height: var(--l-16px);
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.no-motion .tv-c,
+.no-motion .k-cur {
+  animation: none;
+}

@@ -1,0 +1,277 @@
+/* Keep the Life, screen styles: the chemistry lab's graphing calculator in chapter 11, drawn by js/devices/calculator.js from the text in the story. */
+
+/* chapter 11: the chemistry lab's graphing calculator. A gray case, a pixel
+   display of 216 by 144 dots in the case's proportions, and a row of keys
+   under it that the reader can show or hide. The glass is plain where nothing
+   is lit; the dots of each character show one by one, with a very thin gap
+   round each, the way a dot matrix keeps typed text legible. */
+:root {
+  --calc-case: #5d6166;
+  --calc-case-2: #44474b;
+  --calc-key: #2f3134;
+  --calc-key-ink: #d9dbde;
+  --calc-lcd: #a7b198;
+  --calc-ink: #101410;
+}
+.calc {
+  max-width: 24rem;
+  margin-inline: auto;
+  padding: var(--l-1rem) var(--l-1rem) var(--l-0-9rem);
+  background: linear-gradient(var(--calc-case), var(--calc-case-2));
+  border-radius: var(--l-1rem) var(--l-1rem) var(--l-1-6rem) var(--l-1-6rem);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.calc-lcd {
+  padding: var(--l-0-4rem);
+  border-radius: var(--l-4px);
+  background: var(--calc-lcd);
+  box-shadow: inset 0 0 0 2px #2b2f27;
+}
+.calc-px {
+  display: block;
+  width: 100%;
+  height: auto;
+  shape-rendering: crispEdges;
+}
+.calc-px .px-on,
+.calc-px .px-dot {
+  fill: var(--calc-ink);
+}
+/* the gaps between the dots of a character stay a faint line, even and thin
+   at any size, so the text reads dark and clear */
+.calc-px .px-dot {
+  shape-rendering: geometricPrecision;
+}
+
+/* the catalog: six lines of a long list. Play moves it up a line at a time,
+   the way the list moves while the arrow key is held down; the cursor stays
+   on the top line */
+.calc.playing .calc-roll {
+  animation: calc-roll calc(var(--calc-steps) * 0.16s) steps(var(--calc-steps), end) infinite;
+}
+@keyframes calc-roll {
+  from {
+    transform: translate(0, var(--calc-row));
+  }
+  to {
+    transform: translate(0, calc(var(--calc-row) - var(--calc-steps) * var(--calc-row)));
+  }
+}
+/* the animation is the scene itself, so it plays when it is asked for, even
+   when motion is reduced elsewhere on the page */
+:root .calc.playing .calc-roll {
+  animation: calc-roll calc(var(--calc-steps) * 0.16s) steps(var(--calc-steps), end) infinite !important;
+}
+
+/* the screen keys: one row right under the display, always there */
+.calc-keys {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-4rem);
+  margin-top: var(--l-0-75rem);
+  font: 600 0.6rem/1 var(--sans);
+  letter-spacing: 0.04em;
+  color: var(--calc-key-ink);
+}
+.calc-key {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: var(--l-0-25rem) 0;
+  border-radius: var(--l-0-25rem) var(--l-0-25rem) 0.6rem 0.6rem;
+  background: #3a3d42;
+  box-shadow: 0 var(--l-2px) 0 #151618;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.calc-play {
+  flex: none;
+  padding: var(--l-0-25rem) var(--l-0-6rem);
+  border: 0;
+  border-radius: var(--l-0-25rem);
+  background: var(--calc-key);
+  box-shadow: 0 var(--l-2px) 0 #151618;
+  color: var(--calc-key-ink);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.calc-play:hover {
+  background: #3a3d41;
+}
+.calc-play[aria-pressed="true"] {
+  background: var(--calc-key-ink);
+  color: var(--calc-key);
+  box-shadow: none;
+  transform: translateY(var(--l-2px));
+}
+
+/* the full keypad: five columns, the arrow pad beside the first two rows,
+   each key with its second function printed above it in blue */
+.calc-pad {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--l-0-5rem) var(--l-0-4rem);
+  margin-top: var(--l-0-9rem);
+  font: 600 0.62rem/1 var(--sans);
+  color: var(--calc-key-ink);
+}
+.k {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.18rem;
+  min-width: 0;
+  text-align: center;
+}
+.k-sec {
+  height: 0.55rem;
+  font: 600 0.5rem/1 var(--sans);
+  color: #8fb2e6;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.k-cap {
+  padding: var(--l-0-4rem) 0;
+  border-radius: var(--l-0-25rem);
+  background: var(--calc-key);
+  box-shadow: 0 var(--l-2px) 0 #151618;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.k-2nd .k-cap {
+  background: #3c5a8a;
+}
+.k-alpha .k-cap {
+  background: #4e7a4a;
+}
+.k-num .k-cap {
+  background: #c9ccd0;
+  color: #1d1f22;
+  font-size: 0.78rem;
+  padding-block: 0.32rem;
+}
+.k-op .k-cap {
+  background: #6b7685;
+}
+.k-arrows {
+  position: relative;
+  grid-column: 4 / 6;
+  grid-row: 1 / 3;
+  align-self: center;
+  justify-self: center;
+  width: 4.6rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #2a2c2f;
+  box-shadow: 0 var(--l-2px) 0 #151618;
+}
+.k-ar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.6rem;
+  color: var(--calc-key-ink);
+}
+.k-up {
+  top: 0.1rem;
+  left: calc(50% - 0.75rem);
+}
+.k-down {
+  bottom: 0.1rem;
+  left: calc(50% - 0.75rem);
+}
+.k-left {
+  left: 0.1rem;
+  top: calc(50% - 0.75rem);
+}
+.k-right {
+  right: 0.1rem;
+  top: calc(50% - 0.75rem);
+}
+
+/* the switch for the keypad sits on the case above the display, in the strip
+   where a calculator carries its name */
+.calc-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: calc(var(--l-0-5rem) * -1) 0 var(--l-0-4rem);
+}
+/* the brand printed on the case */
+.calc-brand {
+  padding-left: var(--l-0-25rem);
+  font: italic 700 0.82rem/1 var(--sans);
+  letter-spacing: 0.02em;
+  color: #d7dadd;
+}
+.calc-keys-toggle {
+  padding: var(--l-0-25rem) var(--l-0-4rem);
+  border: 0;
+  border-radius: var(--l-0-25rem);
+  background: transparent;
+  color: #b9bdc2;
+  font: 600 0.6rem/1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.calc-keys-toggle:hover {
+  background: #3a3d41;
+  color: var(--calc-key-ink);
+}
+:is(.calc-play, .calc-keys-toggle):focus-visible {
+  outline: var(--l-2px) solid var(--focus);
+  outline-offset: var(--l-2px);
+}
+/* keypad hidden: the case closes up under the screen keys */
+.calc-nokeys .calc-pad {
+  display: none;
+}
+.calc-nokeys .calc-pad.k-keep {
+  display: grid;
+}
+
+/* the story's own text for each screen. Once js/devices/calculator.js has
+   drawn the display it stays in the page, hidden; without scripts it stands
+   on a plain display of the same green, the mode in the top right corner,
+   results to the right, and the catalog as a list that scrolls */
+.calc-on > .calc-src {
+  display: none;
+}
+.calc:not(.calc-on) {
+  padding: var(--l-0-9rem) var(--l-1rem);
+  background: var(--calc-lcd);
+  box-shadow:
+    inset 0 0 0 2px #2b2f27,
+    0 0 0 var(--l-0-6rem) var(--calc-case),
+    0 var(--l-8px) var(--l-24px) var(--shadow);
+  color: var(--calc-ink);
+  font: 1.35rem/1.15 "VT323", var(--mono);
+}
+.calc:not(.calc-on)::before {
+  content: attr(data-mode);
+  display: block;
+  text-align: right;
+}
+.calc:not(.calc-on) > p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.calc:not(.calc-on) > .calc-out {
+  text-align: right;
+}
+.calc:not(.calc-on) > .calc-desc {
+  font: 1rem/1.4 var(--sans);
+}
+.calc:not(.calc-on) > .calc-catalog {
+  max-height: 7em;
+  margin: 0;
+  padding: 0 0 0 1ch;
+  overflow-y: auto;
+  list-style: none;
+}

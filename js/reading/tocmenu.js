@@ -1,6 +1,8 @@
 /* Keep the Life: contents as a floating menu. Below the wide layout the
    contents leave the page and open from a button at the bottom corner; a
-   chosen section, Escape or a tap outside closes the menu again. */
+   chosen section, Escape or a tap outside closes the menu again. A Settings
+   button beside it pulls up the settings from anywhere on the page. On a
+   phone the two start tucked to a tab at the screen edge. */
 (function (K) {
   "use strict";
 
@@ -44,20 +46,32 @@
     K.body.classList.toggle("toc-tucked", on);
     if (on) open(false);
     tuck.setAttribute("aria-pressed", on ? "true" : "false");
-    var label = on ? "Show the contents button" : "Hide the contents button";
+    var label = on ? "Show the contents and settings buttons" : "Hide the contents and settings buttons";
     tuck.setAttribute("aria-label", label);
     tuck.title = label;
   }
   if (tuck) {
-    tucked(K.load("tocTucked") === "1");
+    /* the reader's own choice wins; without one, phones start tucked, so the
+       buttons leave the whole screen to the text */
+    var kept = K.load("tocTucked");
+    tucked(kept === null ? window.matchMedia("(max-width: 599px)").matches : kept === "1");
     tuck.addEventListener("click", function () {
       var on = !K.body.classList.contains("toc-tucked");
       tucked(on);
       K.save("tocTucked", on ? "1" : "0");
+      K.tuckChanges = (K.tuckChanges || 0) + 1;
     });
+    /* the settings can bring the dock out for a while without changing the
+       reader's saved choice */
+    K.setTocTucked = tucked;
   }
 
   btn.addEventListener("click", function () { open(!K.body.classList.contains("toc-open")); });
+  var setBtn = document.querySelector(".toc-set");
+  if (setBtn) setBtn.addEventListener("click", function () {
+    open(false);
+    if (K.pullUpSettings) K.pullUpSettings();
+  });
   toc.addEventListener("click", function (e) { if (e.target.closest("a")) open(false); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && K.body.classList.contains("toc-open")) { open(false); btn.focus(); }

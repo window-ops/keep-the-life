@@ -1,0 +1,433 @@
+/* Keep the Life, site styles: the reader's highlights, notes, bookmark and panel. */
+
+/* reader's highlights and notes */
+[data-hl="speaker"] {
+  --hlc: var(--c);
+}
+[data-hl="yellow"] {
+  --hlc: var(--hl-yellow);
+}
+[data-hl="orange"] {
+  --hlc: var(--hl-orange);
+}
+[data-hl="green"] {
+  --hlc: var(--hl-green);
+}
+[data-hl="blue"] {
+  --hlc: var(--hl-blue);
+}
+[data-hl="pink"] {
+  --hlc: var(--hl-pink);
+}
+
+.ln.is-hl {
+  background: color-mix(in srgb, var(--hlc) 15%, transparent);
+  box-shadow: inset var(--l-3px) 0 0 var(--hlc);
+}
+
+.ln-tools {
+  position: absolute;
+  top: 0;
+  right: var(--l-0-5rem);
+  z-index: 3;
+  display: flex;
+  padding: var(--l-2px);
+  background: var(--panel);
+  border: var(--l-1px) solid var(--rule-2);
+  border-radius: var(--l-6px);
+  box-shadow: 0 var(--l-2px) 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--t-0-12s),
+    visibility var(--t-0s) linear var(--t-0-12s);
+}
+
+/* the toolbar waits for a deliberate hover, so moving the mouse across the text does not flash it */
+.ln:hover .ln-tools {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--t-0-12s) var(--t-0-4s),
+    visibility var(--t-0s) var(--t-0-4s);
+}
+.ln:focus-within .ln-tools,
+.ln.tools-open .ln-tools {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+.ln-btn {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: var(--l-1-4rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--l-4px);
+  background: none;
+  color: var(--mute);
+  cursor: pointer;
+}
+
+.ln-btn:hover {
+  color: var(--ink);
+  background: var(--bg-2);
+}
+.ln-btn + .ln-btn {
+  margin-left: var(--l-2px);
+}
+.ln-btn .ico {
+  width: var(--l-13px);
+  height: var(--l-13px);
+}
+.ln-hl[aria-pressed="true"] {
+  color: var(--hlc);
+}
+.ln.is-hl .ln-hl {
+  color: var(--hlc);
+}
+
+/* the bookmark: one per reader, "this is where I left", shown as a ribbon
+   hanging from the divider above the reply. It belongs to the notes mode */
+.ln-bm[aria-pressed="true"] {
+  color: var(--sp-k);
+}
+.ln.is-bm::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--l-1px) * -1);
+  left: 0;
+  width: 10px;
+  height: 16px;
+  background: var(--sp-k);
+  clip-path: polygon(
+    0 0,
+    var(--l-100pct) 0,
+    var(--l-100pct) var(--l-100pct),
+    50% 70%,
+    0 var(--l-100pct)
+  );
+}
+
+/* colour choices open beside the highlight button */
+.ln-swatches {
+  display: flex;
+  align-items: center;
+  gap: var(--l-2px);
+  padding-right: var(--l-4px);
+  margin-right: var(--l-2px);
+  border-right: var(--l-1px) solid var(--rule-2);
+}
+.ln-swatches[hidden] {
+  display: none;
+}
+.ln-sw[data-color] {
+  width: var(--l-1-1rem);
+  height: var(--l-1-1rem);
+  margin: 0 var(--l-1px);
+  border-radius: var(--l-50pct);
+  border: var(--l-2px) solid transparent;
+}
+.ln-sw[data-color="speaker"] {
+  background: var(--c);
+}
+.ln-sw[data-color="yellow"] {
+  background: var(--hl-yellow);
+}
+.ln-sw[data-color="orange"] {
+  background: var(--hl-orange);
+}
+.ln-sw[data-color="green"] {
+  background: var(--hl-green);
+}
+.ln-sw[data-color="blue"] {
+  background: var(--hl-blue);
+}
+.ln-sw[data-color="pink"] {
+  background: var(--hl-pink);
+}
+.ln-sw[data-color]:hover {
+  background-clip: padding-box;
+  border-color: var(--ink-2);
+}
+.ln-sw[aria-pressed="true"] {
+  border-color: var(--ink);
+}
+
+/* a reply with a note shows a small note mark before the speaker's name */
+.ln.has-note .sp::before {
+  content: "";
+  display: inline-block;
+  width: var(--l-12px);
+  height: var(--l-12px);
+  margin-right: var(--l-0-4rem);
+  vertical-align: -1px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M3 2.5h7l3 3v8H3z'/%3E%3Cpath d='M5.5 7.5h5M5.5 10h3.5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M3 2.5h7l3 3v8H3z'/%3E%3Cpath d='M5.5 7.5h5M5.5 10h3.5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+body:not(.notes) .ln.has-note .sp::before {
+  display: none;
+}
+
+.ln-note {
+  grid-column: 2;
+  padding-top: var(--l-0-45rem);
+}
+.ln-note textarea {
+  display: block;
+  width: var(--l-100pct);
+  min-height: 2.2rem;
+  padding: var(--l-0-4rem) var(--l-0-6rem);
+  resize: vertical;
+  border: var(--l-1px) dashed var(--rule-2);
+  background: var(--bg-2);
+  color: var(--ink);
+  font: italic 400 0.95rem/1.45 var(--serif);
+}
+
+.ln-note textarea:focus {
+  outline: var(--l-2px) solid var(--focus);
+  outline-offset: var(--l-1px);
+  border-style: solid;
+}
+
+/* quote button over a selection */
+.sel-quote {
+  position: absolute;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-35rem);
+  padding: var(--l-0-3rem) var(--l-0-6rem);
+  border: var(--l-1px) solid var(--rule-2);
+  border-radius: var(--l-6px);
+  background: var(--panel);
+  color: var(--ink);
+  font: 500 var(--l-0-78rem) var(--mono);
+  box-shadow: 0 var(--l-4px) var(--l-14px) var(--shadow);
+  cursor: pointer;
+}
+.sel-quote[hidden] {
+  display: none;
+}
+.sel-quote:hover {
+  border-color: var(--ink-2);
+}
+.sel-quote .ico {
+  width: var(--l-13px);
+  height: var(--l-13px);
+}
+
+/* the panel on the right */
+.notes-panel {
+  padding: var(--s) 0;
+  font-size: var(--l-0-9rem);
+}
+.notes-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  list-style: none;
+  cursor: pointer;
+  font: 600 var(--l-0-72rem) var(--mono);
+  letter-spacing: var(--l-0-2em);
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.notes-panel > summary::-webkit-details-marker {
+  display: none;
+}
+.notes-panel > summary::after {
+  content: "";
+  margin-left: auto;
+  border-left: var(--l-4px) solid transparent;
+  border-right: var(--l-4px) solid transparent;
+  border-top: var(--l-5px) solid currentColor;
+  transition: transform var(--t-0-15s);
+}
+.notes-panel:not([open]) > summary::after {
+  transform: rotate(-90deg);
+}
+.notes-count {
+  min-width: var(--l-1-4rem);
+  padding: 0 var(--l-0-35rem);
+  text-align: center;
+  border: var(--l-1px) solid var(--rule-2);
+  letter-spacing: 0;
+}
+.notes-count:empty {
+  display: none;
+}
+.notes-empty {
+  padding-top: var(--l-0-5rem);
+  color: var(--mute);
+  font-size: var(--l-0-82rem);
+  line-height: 1.45;
+}
+.notes-panel ol {
+  list-style: none;
+  margin: var(--l-0-5rem) 0 0;
+  padding: 0;
+  border-left: var(--l-1px) solid var(--rule);
+}
+.notes-panel ol:empty {
+  display: none;
+}
+.notes-panel a {
+  display: flex;
+  gap: var(--l-0-6rem);
+  padding: var(--l-0-25rem) 0 var(--l-0-25rem) var(--l-0-75rem);
+  margin-left: -1px;
+  border-left: var(--l-2px) solid transparent;
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: var(--l-0-85rem);
+  line-height: 1.35;
+}
+.notes-panel a:hover {
+  color: var(--ink);
+}
+.notes-panel a.has-hl {
+  border-left-color: var(--hlc);
+}
+.panel-sec[hidden] {
+  display: none;
+}
+.notes-sub {
+  margin-top: var(--s);
+  font: 600 var(--l-0-68rem) var(--mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.quotes li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--l-0-2rem);
+}
+.quotes a {
+  flex: 1;
+}
+.quotes q {
+  display: block;
+  font: italic 400 var(--l-0-9rem) / 1.4 var(--serif);
+  color: var(--ink);
+  quotes: '"' '"';
+}
+.q-who {
+  display: block;
+  padding-top: var(--l-0-15rem);
+  font: 500 var(--l-0-68rem) var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.q-del {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--l-1-3rem);
+  height: var(--l-1-3rem);
+  margin-top: var(--l-0-25rem);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--mute);
+  cursor: pointer;
+}
+.q-del:hover {
+  color: var(--ink);
+}
+.q-del .ico {
+  width: var(--l-11px);
+  height: var(--l-11px);
+}
+.notes-clear {
+  margin-top: var(--l-0-5rem);
+  padding: var(--l-0-2rem) var(--l-0-5rem);
+  border: var(--l-1px) solid var(--rule-2);
+  background: none;
+  color: var(--mute);
+  font: 500 var(--l-0-75rem) var(--mono);
+  cursor: pointer;
+}
+.notes-clear:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 1199px) {
+  .toc {
+    order: 1;
+  }
+  .notes-panel {
+    order: 2;
+    border-bottom: var(--l-1px) solid var(--rule);
+  }
+  .story {
+    order: 3;
+  }
+}
+
+/* highlights and notes switched off: nothing of them shows, nothing is lost */
+body:not(.notes) .notes-panel,
+body:not(.notes) .ln-tools,
+body:not(.notes) .ln-note,
+body:not(.notes) #t-bm,
+body:not(.notes) .key-bm {
+  display: none;
+}
+body:not(.notes) .ln.is-bm::before {
+  content: none;
+}
+body:not(.notes) .ln.is-hl {
+  background: none;
+  box-shadow: none;
+}
+
+.no-acts .act {
+  display: none;
+}
+/* a reply made only of stage directions keeps its row and its rules, and
+   says in its place that it was removed, with a button that brings the stage
+   directions back (js/reading/toggles.js) */
+.act-gone {
+  display: none;
+}
+.no-acts .ln-act > p {
+  display: none;
+}
+.no-acts .act-gone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--xs);
+  color: var(--mute);
+  font-style: italic;
+}
+.act-gone .act-restore {
+  font-style: normal;
+}
+
+@media (max-width: 599px) {
+  .ln {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--l-0-15rem);
+    padding: var(--l-0-6rem) 0 var(--l-0-6rem) var(--l-0-7rem);
+    border-left: var(--l-2px) solid var(--c);
+  }
+  .ln-note {
+    grid-column: 1;
+  }
+  .sp {
+    text-align: left;
+  }
+  .ln-cont > p {
+    grid-column: 1;
+  }
+}

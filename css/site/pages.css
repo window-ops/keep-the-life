@@ -1,0 +1,296 @@
+/* Keep the Life, site styles: the pages in notes/: concept, summary, making and critics. */
+
+/* the concept page: the premise, the ideas, and the SCP Wiki articles the
+   story draws on. It uses the story's measures: the same page width, the
+   section heading of .sec h3, the scene's serif, and --s above and below
+   every block. */
+.cx {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: 0 var(--gutter) var(--s);
+}
+/* smart margins: every block carries --s above and below and no padding, so
+   neighboring margins collapse into one --s; the first and last child of a
+   section give their outer margin to the section itself */
+.cx section {
+  margin-block: var(--s);
+}
+.cx section > :first-child {
+  margin-top: 0;
+}
+.cx section > :last-child {
+  margin-bottom: 0;
+}
+.cx h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-75rem);
+  margin-block: 0;
+  font: 600 var(--l-0-82rem) / 1.3 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.cx h2::after {
+  content: "";
+  flex: 1;
+  border-top: var(--l-1px) solid var(--rule);
+}
+.cx h3 {
+  margin-block: var(--s);
+  font: 600 1.25rem/1.3 var(--serif);
+  color: var(--ink);
+}
+.cx p,
+.cx-conv {
+  margin-block: var(--s);
+  font: 400 1.14rem/1.6 var(--serif);
+  color: var(--ink-2);
+}
+.cx-conv {
+  padding-left: var(--l-1-1rem);
+}
+.cx a {
+  color: var(--sp-k);
+}
+/* the pages outside the story: one row of tabs to move between them, the
+   page in view filled like a selected tab in the story */
+.cx-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--l-0-25rem);
+  margin-block: var(--s);
+}
+.cx .cx-tabs .tab {
+  text-decoration: none;
+  color: var(--ink-2);
+}
+.cx .cx-tabs .tab:hover {
+  color: var(--ink);
+}
+.cx .cx-tabs .tab[aria-current="page"] {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+/* the last entry of a list has no rule under it */
+.cx-item:last-child,
+.gl-item:last-child,
+.sm-item:last-child {
+  border-bottom: 0;
+}
+/* a letter's first term sits as far under the heading as its last term sits
+   over the next heading, the same space the sections keep */
+.gl-item:first-child {
+  padding-top: 0;
+}
+.gl-item:last-child {
+  padding-bottom: 0;
+}
+.cx-list {
+  list-style: none;
+  margin-block: var(--s);
+  padding: 0;
+}
+/* the anomalies are divided by dashed lines, as in the glossary; the first
+   has no space or line above it and the last no space below */
+.cx-item {
+  padding-block: var(--s);
+  border-bottom: var(--l-1px) dashed var(--rule-2);
+}
+.cx-item:first-child {
+  padding-top: 0;
+}
+.cx-item:last-child {
+  padding-bottom: 0;
+}
+.cx .cx-item h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--xs) var(--l-0-75rem);
+  margin-block: 0 var(--xs);
+  font: 600 1rem/1.3 var(--mono);
+}
+.cx-title {
+  font: 600 1.25rem/1.3 var(--serif);
+}
+.cx-class {
+  margin-left: auto;
+  font: 500 var(--l-0-72rem) / 1.3 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  text-transform: uppercase;
+  color: var(--mute);
+}
+/* inside a list item the parts follow each other with the same small space
+   under each one and none above */
+.cx .cx-desc {
+  margin-block: 0;
+}
+/* the line under the description sits a little closer, so the two gaps in
+   the entry look the same once the larger leading of the description is
+   counted */
+.cx .cx-story {
+  margin-block: var(--l-0-3rem) 0;
+}
+.cx li > p,
+.cx li > :first-child {
+  margin-top: 0;
+}
+.cx .cx-story {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: var(--mute);
+}
+.cx-story span {
+  font: 600 var(--l-0-72rem) var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.cx .end {
+  margin-block: var(--s) 0;
+}
+/* the footer's single paragraph carries no margin, as in the story */
+.cx .end p {
+  margin: 0;
+}
+/* the making page's notice when its figures cannot be counted: a panel with
+   an accent edge, set apart from the text, and a link drawn as a button */
+.mk-notice {
+  margin-block: var(--s);
+  padding: var(--s) var(--l-1-1rem);
+  border: var(--l-1px) solid var(--sp-k);
+  border-left-width: var(--l-6px);
+  border-radius: var(--l-6px);
+  background: var(--panel);
+}
+.cx .mk-notice p {
+  margin-block: var(--xs);
+}
+.cx .mk-notice > :first-child {
+  margin-top: 0;
+}
+.cx .mk-notice > :last-child {
+  margin-bottom: 0;
+}
+.cx .mk-notice .mk-notice-head {
+  font: 600 1.25rem/1.3 var(--serif);
+  color: var(--ink);
+}
+.cx a.mk-go {
+  display: inline-block;
+  padding: var(--l-0-5rem) var(--l-1-1rem);
+  border-radius: var(--l-3px);
+  background: var(--sp-k);
+  color: var(--bg);
+  font: 600 var(--l-0-85rem) / 1.3 var(--mono);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+/* on hover the button stays orange and turns a shade darker, which keeps
+   its text readable in both themes */
+.cx a.mk-go:hover,
+.cx a.mk-go:focus-visible {
+  background: color-mix(in srgb, var(--sp-k) 85%, #000);
+  color: var(--bg);
+}
+
+/* the summary page: each chapter with its picture beside the text, the
+   picture above it on phones */
+.sm-list {
+  list-style: none;
+  margin-block: 0;
+  padding: 0;
+}
+.sm-item {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--s);
+  padding-block: var(--s);
+  border-bottom: var(--l-1px) solid var(--rule);
+}
+.sm-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--l-6px);
+}
+.cx .sm-text h3 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--l-0-75rem);
+  margin: 0;
+}
+.sm-n {
+  font: 600 var(--l-0-85rem) / 1 var(--mono);
+  color: var(--sp-k);
+}
+.cx .sm-text h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.cx .sm-text h3 a:hover {
+  color: var(--sp-k);
+  text-decoration: underline;
+}
+.cx .sm-when {
+  margin-block: var(--xs);
+  font: 500 var(--l-0-72rem) / 1.4 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.cx .sm-text p:not(.sm-when) {
+  margin-block: var(--xs);
+}
+.cx .sm-text > :last-child,
+.cx .sm-text > p:not(.sm-when):last-child {
+  margin-bottom: 0;
+}
+/* the first chapter has no space above it and the last none under it */
+.sm-item:first-child {
+  padding-top: 0;
+}
+.sm-item:last-child {
+  padding-bottom: 0;
+}
+@media (max-width: 599px) {
+  .sm-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sm-art {
+    max-width: 20rem;
+  }
+}
+
+/* without scripts: the making page's figures and its waiting line stay out
+   of sight, and the noscript note says why */
+.no-js #mk-counts {
+  display: none;
+}
+
+/* the making page's comparison of two speakers: two menus in the page's own
+   colors, then the line that compares them */
+.cx .mk-compare-pick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--xs);
+}
+.mk-compare-pick select {
+  margin-left: var(--l-0-35rem);
+  padding: var(--l-0-25rem) var(--l-0-5rem);
+  border: var(--l-1px) solid var(--rule-2);
+  border-radius: var(--l-3px);
+  background: var(--bg-2);
+  color: var(--ink);
+  font: 500 var(--l-0-85rem) / 1.3 var(--sans);
+}
+.mk-compare-pick select:hover {
+  border-color: var(--ink-2);
+}
+.cx .mk-compare-note {
+  font-size: 1rem;
+  color: var(--mute);
+}

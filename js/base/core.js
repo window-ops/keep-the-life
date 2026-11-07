@@ -49,7 +49,6 @@
      unless the reader has chosen to remember settings */
   try { if (!rememberAlways()) ownKeys(window.localStorage).forEach(function (k) { window.localStorage.removeItem(k); }); } catch (e) { /* storage unavailable */ }
 
-
   /* removes one saved value */
   function remove(k) { try { var a = area(); if (a) a.removeItem(KEY + k); } catch (e) { /* storage unavailable */ } }
 

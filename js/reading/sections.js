@@ -182,7 +182,6 @@
     });
   });
 
-
   /* fade the edges of the contents and the notes panel where there is more
      to scroll; the panel's content changes as notes are added, so it is
      watched as well */

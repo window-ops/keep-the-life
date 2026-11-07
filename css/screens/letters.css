@@ -1,0 +1,264 @@
+/* Keep the Life, screen styles: letters by hand and screened mail, in chapter 9. */
+
+/* Kellerman's letters are on spare A4 ruled paper, so a long letter stays
+   short on the page: the same rules and red margin as her
+   notebook, 210 mm wide. The drop shadow sits on the wrapper. */
+.lt-wrap {
+  filter: drop-shadow(0 var(--l-6px) var(--l-12px) var(--shadow));
+}
+.doc-letter {
+  position: relative;
+  max-width: 210mm;
+  box-shadow: none;
+  border-radius: 0 0 var(--l-2px) var(--l-2px);
+  /* spare paper, torn off by hand: an uneven top edge */
+  clip-path: polygon(
+    0% 10.7px,
+    2.94% 4.4px,
+    4.76% 1px,
+    6.02% 1.7px,
+    7.91% 0.6px,
+    10.42% 3.8px,
+    12.98% 0.4px,
+    15.66% 4.9px,
+    17.95% 7.2px,
+    20.57% 4.3px,
+    22.96% 0.6px,
+    24.89% 4.4px,
+    26.77% 1.4px,
+    28% 6.1px,
+    29.27% 0.7px,
+    30.16% 4.3px,
+    32.93% 2.8px,
+    34.42% 5.8px,
+    36.54% 0.8px,
+    39.22% 6.2px,
+    40.59% 6.9px,
+    42.81% 6px,
+    45.95% 3.1px,
+    46.81% 9.1px,
+    49.95% 10.7px,
+    52.04% 9.5px,
+    53.67% 7.3px,
+    54.93% 3.5px,
+    56.21% 10.7px,
+    57.52% 4px,
+    58.73% 6.1px,
+    60.14% 6.8px,
+    62.01% 6.7px,
+    64.76% 9.1px,
+    66.55% 6.2px,
+    68.88% 2.2px,
+    70.67% 8.3px,
+    72.79% 5.7px,
+    75.1% 4.2px,
+    77.91% 7.1px,
+    78.9% 4.1px,
+    80.26% 3.5px,
+    82.14% 0px,
+    83.84% 5.9px,
+    86.73% 5.1px,
+    87.94% 3.2px,
+    88.94% 3.6px,
+    91.39% 4.2px,
+    93.45% 6.7px,
+    94.46% 10.2px,
+    96.46% 9px,
+    98.71% 2.4px,
+    100% 2.5px,
+    100% 100%,
+    0 100%
+  );
+}
+/* the back of the same sheet: the torn edge mirrored */
+.doc-letter.lt-back {
+  clip-path: polygon(
+    0% 2.5px,
+    1.29% 2.4px,
+    3.54% 9px,
+    5.54% 10.2px,
+    6.55% 6.7px,
+    8.61% 4.2px,
+    11.06% 3.6px,
+    12.06% 3.2px,
+    13.27% 5.1px,
+    16.16% 5.9px,
+    17.86% 0px,
+    19.74% 3.5px,
+    21.1% 4.1px,
+    22.09% 7.1px,
+    24.9% 4.2px,
+    27.21% 5.7px,
+    29.33% 8.3px,
+    31.12% 2.2px,
+    33.45% 6.2px,
+    35.24% 9.1px,
+    37.99% 6.7px,
+    39.86% 6.8px,
+    41.27% 6.1px,
+    42.48% 4px,
+    43.79% 10.7px,
+    45.07% 3.5px,
+    46.33% 7.3px,
+    47.96% 9.5px,
+    50.05% 10.7px,
+    53.19% 9.1px,
+    54.05% 3.1px,
+    57.19% 6px,
+    59.41% 6.9px,
+    60.78% 6.2px,
+    63.46% 0.8px,
+    65.58% 5.8px,
+    67.07% 2.8px,
+    69.84% 4.3px,
+    70.73% 0.7px,
+    72% 6.1px,
+    73.23% 1.4px,
+    75.11% 4.4px,
+    77.04% 0.6px,
+    79.43% 4.3px,
+    82.05% 7.2px,
+    84.34% 4.9px,
+    87.02% 0.4px,
+    89.58% 3.8px,
+    92.09% 0.6px,
+    93.98% 1.7px,
+    95.24% 1px,
+    97.06% 4.4px,
+    100% 10.7px,
+    100% 100%,
+    0 100%
+  );
+}
+.lt-k {
+  color: var(--letter-ink);
+}
+.doc-letter .lt-text {
+  position: relative;
+}
+.doc-letter :is(.lt-text, .lt-through) p + p {
+  text-indent: 1em;
+}
+.doc-letter .lt-greet + p {
+  text-indent: 0;
+}
+.doc-letter .lt-sign {
+  text-align: right;
+  text-indent: 0;
+  padding-right: 8mm;
+}
+
+/* the back of the same sheet: the red margin is now on the right, her
+   letter shows through the paper mirrored, and Toma writes over it in pencil
+   in his own print hand */
+.lt-back {
+  padding: var(--nb-line) 22mm var(--nb-line) 6mm;
+  background-position:
+    calc(100% - 18mm) 0,
+    0 var(--nb-line);
+}
+/* her text and his share one grid cell, so the sheet is as tall as the
+   longer of the two sides; mirrored inside the content box, her lines land
+   where they were written on the front */
+.lt-back {
+  display: grid;
+}
+.lt-back > .lt-through,
+.lt-back > .lt-text {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+.lt-through {
+  transform: scaleX(-1);
+  color: var(--letter-ink);
+  opacity: 0.09;
+  filter: blur(0.9px);
+  user-select: none;
+}
+.lt-t .lt-text {
+  font:
+    400 1.3rem / var(--nb-line) "Patrick Hand",
+    cursive;
+  color: #3b3d42;
+}
+.lt-t .lt-text * {
+  font: inherit;
+}
+
+/* screened mail: a typed page with the screening office's rubber stamp */
+.doc-mail {
+  position: relative;
+  max-width: 170mm;
+  margin-inline: auto;
+  padding: var(--l-1-6rem) var(--l-1-6rem) 1.4rem;
+  background: #f7f6f1;
+  color: var(--c-1d1b17);
+  font: 400 14px/1.6 var(--mono);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.ml-head {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--l-0-15rem) var(--l-0-9rem);
+  /* the rule runs the full width of the page; only the text keeps clear of
+     the stamp in the corner */
+  margin: 0 0 var(--l-1rem);
+  padding: 0 7.5rem var(--l-0-75rem) 0;
+  border-bottom: var(--l-1px) solid var(--c-1d1b17);
+}
+.ml-head dt {
+  font-weight: 600;
+}
+.ml-head dt::after {
+  content: ":";
+}
+.ml-head dd {
+  margin: 0;
+}
+.ml-body p {
+  margin: 0 0 var(--l-0-75rem);
+}
+.ml-sign {
+  margin: var(--l-1rem) 0 0;
+}
+
+/* the stamp: blue ink pressed unevenly, a little crooked, printed over the
+   paper with multiply so the type underneath stays readable */
+.ml-stamp {
+  position: absolute;
+  top: var(--l-1-1rem);
+  right: var(--l-1-1rem);
+  margin: 0;
+  padding: var(--l-0-25rem) var(--l-0-6rem);
+  border: var(--l-3px) double var(--stamp-blue);
+  border-radius: var(--l-3px);
+  color: var(--stamp-blue);
+  font: 700 var(--l-1-1rem) / 1 var(--sans);
+  letter-spacing: 0.18em;
+  transform: rotate(-3deg);
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.9'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.9'/%3E%3C/filter%3E%3Crect width='160' height='60' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 599px) {
+  .lt-back {
+    padding-right: 12mm;
+    padding-left: 6mm;
+    background-position:
+      calc(100% - 9mm) 0,
+      0 var(--nb-line);
+  }
+  .doc-mail {
+    padding: var(--l-1rem) var(--l-1-1rem);
+    font-size: 13px;
+  }
+  .ml-head {
+    grid-template-columns: minmax(0, 1fr);
+    padding-right: 0;
+  }
+  .ml-head dt {
+    margin-top: var(--l-0-25rem);
+  }
+}

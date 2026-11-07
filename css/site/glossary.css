@@ -1,0 +1,116 @@
+/* Keep the Life, site styles: the glossary page. */
+
+/* the glossary: a row of letters, then each letter's terms, the term in the
+   serif heading face and its chapters in small mono under the definition */
+.cx .gl-intro {
+  margin-block: var(--s);
+}
+.gl-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--l-0-25rem) var(--l-0-6rem);
+  margin-block: var(--s);
+  font: 600 var(--l-0-85rem) / 1.6 var(--mono);
+}
+.gl-index a {
+  color: var(--sp-k);
+  text-decoration: none;
+}
+.gl-index a:hover {
+  text-decoration: underline;
+}
+.gl-list {
+  margin: 0;
+}
+/* terms are divided by a dashed line, so the solid rule stays the mark of a
+   heading */
+.gl-item {
+  padding-block: var(--xs);
+  border-bottom: var(--l-1px) dashed var(--rule-2);
+}
+.gl-item dt {
+  font: 600 1.12rem/1.3 var(--serif);
+  color: var(--ink);
+}
+.gl-item dd {
+  margin: 0;
+}
+.cx .gl-item dd p {
+  margin: var(--l-0-25rem) 0 0;
+}
+.cx .gl-ref {
+  font: 500 var(--l-0-72rem) / 1.5 var(--mono);
+  color: var(--mute);
+}
+.gl-ref span {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.gl-ref a {
+  color: var(--sp-k);
+}
+/* the sort control and the letters share one row above the terms */
+/* the links run on in the same line after the sort control and wrap under
+   it, the way words wrap, so a long row of subjects starts beside the sort */
+.gl-bar {
+  margin-block: var(--s);
+  line-height: 2;
+}
+.gl-bar .gl-sort {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: var(--s);
+  line-height: normal;
+}
+.gl-bar .gl-index {
+  display: inline;
+  margin: 0;
+}
+.gl-bar .gl-index a {
+  display: inline-block;
+  margin-right: var(--l-0-6rem);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.gl-index[hidden] {
+  display: none;
+}
+/* text for screen readers only */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* on a phone the sort control stays on one line */
+@media (max-width: 599px) {
+  .gl-bar .gl-sort {
+    flex-wrap: nowrap;
+  }
+  .gl-sort .tool,
+  .gl-sort .tg-label {
+    padding-inline: var(--l-0-45rem);
+  }
+}
+.gl-bar .gl-index.gl-words a {
+  margin-right: 0;
+}
+/* the dot hangs after each subject, so a wrapped line starts on a word */
+.gl-index.gl-words a:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin: 0 var(--l-0-6rem);
+  border-radius: 50%;
+  background: var(--mute);
+  vertical-align: 0.2em;
+}
+
+/* without scripts the terms stay in A to Z order, so the sort control,
+   which needs a script, is left out */
+.no-js .gl-sort {
+  display: none;
+}
