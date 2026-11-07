@@ -2,7 +2,7 @@
 
 The brief is split by topic into the files in `docs/`. Each one can be read and edited on its own.
 
-| File | What it holds |
+| File | What it contains |
 | --- | --- |
 | [docs/premise.md](docs/premise.md) | the premise and the cast, with each speaker's line color |
 | [docs/world.md](docs/world.md) | the fixed rules of the world |
