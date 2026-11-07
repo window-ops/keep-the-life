@@ -51,12 +51,27 @@
     });
   });
 
-  /* keyboard: n next section, p previous, b bookmark, s top of the page */
+  /* the key list in the contents is folded away until asked for */
+  var keysBtn = document.querySelector(".toc-keys-btn");
+  var keysList = document.getElementById("toc-keys");
+  if (keysBtn && keysList) {
+    keysBtn.addEventListener("click", function () {
+      var show = keysList.hidden;
+      keysList.hidden = !show;
+      keysBtn.setAttribute("aria-expanded", String(show));
+      keysBtn.querySelector(".tk-label").textContent = show ? "Hide keys" : "Show keys";
+    });
+  }
+
+  /* keyboard: n next section, p previous, b bookmark, s top of the page,
+     e bottom of the page; the Keys setting switches them off */
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!body.classList.contains("keys")) return;
     var t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.closest(".ghidra"))) return;
     if (e.key === "s" || e.key === "S") { e.preventDefault(); K.scrollWindow(0); return; }
+    if (e.key === "e" || e.key === "E") { e.preventDefault(); K.scrollWindow(document.documentElement.scrollHeight); return; }
     if ((e.key === "b" || e.key === "B") && body.classList.contains("notes")) { e.preventDefault(); K.goBookmark(); return; }
     if (e.key !== "n" && e.key !== "p") return;
     var idx = K.sections.findIndex(function (s) { return s.id === K.current; });

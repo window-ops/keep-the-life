@@ -43,7 +43,7 @@
     <script src="js/devices/ghidra.js" defer></script>
     <script src="js/making/counts.js" defer></script>
   </head>
-  <body class="pretty show-progress">
+  <body class="pretty show-progress keys">
     <div class="progress" aria-hidden="true"><span></span></div>
     <header class="mast">
       <div class="mast-title">
@@ -64,6 +64,7 @@
           <button type="button" class="tool" data-toggle="open-all" aria-pressed="false">Screens: foldable</button>
           <button type="button" class="tool" data-toggle="show-progress" data-default="1" aria-pressed="true">Reading progress: on</button>
           <button type="button" class="tool" data-toggle="no-motion" aria-pressed="false">Stop blinking</button>
+          <button type="button" class="tool" data-toggle="keys" data-default="1" aria-pressed="true">Keys: on</button>
           <span class="tool-sep" aria-hidden="true"></span>
           <button type="button" class="tool" data-toggle="notes" aria-pressed="false">Highlights and notes: off</button>
           <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
@@ -96,7 +97,11 @@
     <div class="layout">
       <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the contents and settings buttons" title="Hide the contents and settings buttons"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-fab" aria-expanded="false" aria-controls="toc">Contents</button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
       <nav class="toc" id="toc" aria-labelledby="toc-h">
-        <h2 id="toc-h">Contents</h2>
+        <div class="toc-head">
+          <h2 id="toc-h">Contents</h2>
+          <button type="button" class="toc-keys-btn" aria-expanded="false" aria-controls="toc-keys"><span class="tk-label">Show keys</span><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
+        </div>
+        <p class="toc-keys" id="toc-keys" hidden>Keys: <kbd>n</kbd> next section, <kbd>p</kbd> previous, <span class="key-bm"><kbd>b</kbd> bookmark, </span><kbd>s</kbd> top, <kbd>e</kbd> bottom, <kbd>o</kbd> settings</p>
         <ol>
           <li class="toc-ch">
             <a class="toc-cht" href="#c1"><span class="toc-n">01</span>Nine days</a>
@@ -206,7 +211,6 @@
             </ol>
           </li>
         </ol>
-        <p class="toc-keys">Keys: <kbd>n</kbd> next section, <kbd>p</kbd> previous, <span class="key-bm"><kbd>b</kbd> bookmark, </span><kbd>s</kbd> top, <kbd>o</kbd> settings</p>
         <p class="toc-touch">Tap with two fingers to open or close the settings.</p>
       </nav>
       <main class="story">

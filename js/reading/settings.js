@@ -194,6 +194,8 @@
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key !== "o" && e.key !== "O") return;
+    /* the Keys setting switches the key off */
+    if (!K.body.classList.contains("keys")) return;
     /* a held key repeats; only the first press counts */
     if (e.repeat) return;
     var t = e.target;

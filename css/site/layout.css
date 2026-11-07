@@ -320,9 +320,46 @@
   color: var(--mute);
   min-width: var(--l-1-9rem);
 }
+/* the heading row: Contents on the left, a quiet Show keys button on the
+   right that opens the key list under it */
+.toc-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s);
+  margin-bottom: var(--l-0-5rem);
+}
+.toc-head h2 {
+  margin: 0;
+}
+.toc-keys-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-2rem);
+  font: 500 var(--l-0-72rem) var(--mono);
+  letter-spacing: var(--l-0-2em);
+  text-transform: uppercase;
+  color: var(--mute);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.toc-keys-btn:hover {
+  color: var(--ink);
+}
+.toc-keys-btn .ico {
+  width: var(--l-12px);
+  height: var(--l-12px);
+  transition: transform 0.15s;
+}
+/* the arrow points up while the list is open */
+.toc-keys-btn[aria-expanded="true"] .ico {
+  transform: rotate(180deg);
+}
 .toc-keys {
   margin: 0;
-  padding-top: var(--s);
+  padding-bottom: var(--s);
   color: var(--mute);
   font-size: var(--l-0-78rem);
 }
@@ -348,7 +385,13 @@
   .toc {
     border-bottom: var(--l-1px) solid var(--rule);
   }
-  .toc-keys {
+  .toc-keys,
+  .toc-keys-btn {
     display: none;
   }
+}
+/* with the keys switched off there is nothing to list */
+body:not(.keys) .toc-keys,
+body:not(.keys) .toc-keys-btn {
+  display: none;
 }

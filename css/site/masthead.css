@@ -159,6 +159,7 @@ body:not(.show-progress) .progress {
 .no-js .set-btn,
 .no-js .mast-tools-wrap,
 .no-js .toc-keys,
+.no-js .toc-keys-btn,
 .no-js .plink {
   display: none;
 }

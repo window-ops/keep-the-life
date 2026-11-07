@@ -16,6 +16,7 @@
     if (cls === "no-motion") btn.textContent = on ? "Allow blinking" : "Stop blinking";
     if (cls === "pretty") btn.textContent = on ? "Pretty wrap: on" : "Pretty wrap: off";
     if (cls === "show-progress") btn.textContent = on ? "Reading progress: on" : "Reading progress: off";
+    if (cls === "keys") btn.textContent = on ? "Keys: on" : "Keys: off";
     if (cls === "fit-size") btn.textContent = on ? "Sizes: fit to content" : "Sizes: fixed";
     if (cls === "open-all") {
       btn.textContent = on ? "Screens: always open" : "Screens: foldable";
