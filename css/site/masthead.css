@@ -268,6 +268,20 @@ body:not(.show-progress) .progress {
   }
 }
 
+/* phones: the Settings button beside the contents opens the settings, so the
+   masthead keeps neither its own button nor the row it folds; the row shows
+   only as the sheet from the bottom edge */
+@media (max-width: 599px) {
+  html:not(.no-js) .mast:has(~ .layout .toc-set) .set-btn,
+  html:not(.no-js) .mast:has(~ .layout .toc-set) .mast-tools-wrap,
+  html:not(.no-js) .mast:has(~ .layout .toc-set) .settings-holder {
+    display: none;
+  }
+  html:not(.no-js) .settings-float .mast:has(~ .layout .toc-set) .mast-tools-wrap {
+    display: block;
+  }
+}
+
 /* the Close button ends the first line of the floating panel on phones and
    tablets, at the right, at its own size and set apart from the settings by
    a thin rule (js/reading/settings.js places it); elsewhere the row has none */

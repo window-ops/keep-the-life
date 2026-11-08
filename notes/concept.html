@@ -16,10 +16,12 @@
     <script src="../js/base/core.js" defer></script>
     <script src="../js/base/theme.js" defer></script>
     <script src="../js/base/motion.js" defer></script>
+    <script src="../js/base/redact.js" defer></script>
     <script src="../js/text/pretty.js" defer></script>
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
+    <script src="../js/base/scrollfocus.js" defer></script>
   </head>
   <body class="cx-page pretty">
     <header class="mast cx-mast">
@@ -48,6 +50,11 @@
             <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
           </div>
           <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="rd-label">
+            <span class="tg-label" id="rd-label">Redactions</span>
+            <button type="button" class="tool" data-redact-set="redacted" aria-pressed="true">Redacted</button><button type="button" class="tool" data-redact-set="static" aria-pressed="false">Static</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
             <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
@@ -63,7 +70,7 @@
       <h2 id="cx-concept">Concept</h2>
       <section aria-labelledby="cx-concept">
         <p>Keep the Life is a story set in the shared universe of the SCP Foundation, written as a roleplay and assembled into a book. Its present year is 2029.</p>
-        <p>Toma, the lead programmer at a software company called AKV Solutions, built an implant that keeps memories safe from amnestics. The implant cannot be fully removed, and the Foundation contains Toma as an anomaly under the designation SCP-<span class="redact" aria-label="redacted">████</span> at Site-<span class="redact" aria-label="redacted">██</span>, a self-contained underground site with no sky. The story follows his work to prove the device ordinary and have it classified as Explained, his friendship and later love with Dr. Iris Kellerman, the researcher assigned to his file, and the use the Foundation makes of the way he talks to anomalies.</p>
+        <p>Toma, the lead programmer at a software company called AKV Solutions, built an implant that keeps memories safe from amnestics. The implant cannot be fully removed, and the Foundation contains Toma as an anomaly under the designation SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span> at Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, a self-contained underground site with no sky. The story follows his work to prove the device ordinary and have it classified as Explained, his friendship and later love with Dr. Iris Kellerman, the researcher assigned to his file, and the use the Foundation makes of the way he talks to anomalies.</p>
       </section>
       <h2 id="cx-ideas">Ideas in the story</h2>
       <section class="cx-themes" aria-labelledby="cx-ideas">

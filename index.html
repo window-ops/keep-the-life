@@ -28,6 +28,7 @@
     <script src="js/base/core.js" defer></script>
     <script src="js/base/theme.js" defer></script>
     <script src="js/base/motion.js" defer></script>
+    <script src="js/base/redact.js" defer></script>
     <script src="js/text/pretty.js" defer></script>
     <script src="js/text/width.js" defer></script>
     <script src="js/reading/settings.js" defer></script>
@@ -42,6 +43,7 @@
     <script src="js/reading/position.js" defer></script>
     <script src="js/devices/ghidra.js" defer></script>
     <script src="js/making/counts.js" defer></script>
+    <script src="js/base/scrollfocus.js" defer></script>
   </head>
   <body class="pretty show-progress keys">
     <div class="progress" aria-hidden="true"><span></span></div>
@@ -82,6 +84,11 @@
           <div class="tool-group" role="group" aria-labelledby="sp-label">
             <span class="tg-label" id="sp-label">Scroll speed</span>
             <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="rd-label">
+            <span class="tg-label" id="rd-label">Redactions</span>
+            <button type="button" class="tool" data-redact-set="redacted" aria-pressed="true">Redacted</button><button type="button" class="tool" data-redact-set="static" aria-pressed="false">Static</button>
           </div>
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
@@ -223,7 +230,7 @@
           <section class="sec" id="c1-s1" aria-labelledby="c1-s1-h">
             <h3 id="c1-s1-h"><span class="sec-n">1.1</span>The delete mark<button type="button" class="plink" data-target="c1-s1" aria-label="Copy link to The delete mark">#</button></h3>
             <div class="scene">
-              <p>Site-<span class="redact" aria-label="redacted">██</span> has its long-term humanoid cells on the lower east corridor, behind a pair of airlocked doors and a desk where the night guard signs every entry. One of them belongs to Toma, designated SCP-<span class="redact" aria-label="redacted">████</span>, a former programmer at AKV Solutions whose anti-amnestic implant could never be fully removed, and who was downgraded from Keter to Euclid months ago. The cell has a bed, a shelf of borrowed books, a sink and his own recovered workstation, now air-gapped and bolted to the desk, its monitor filled with columns of disassembled instructions. The night log shows him awake for most of the last nine days, and at 03:10 on Saturday the guard flagged it to a researcher.</p>
+              <p>Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> has its long-term humanoid cells on the lower east corridor, behind a pair of airlocked doors and a desk where the night guard signs every entry. One of them belongs to Toma, designated SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>, a former programmer at AKV Solutions whose anti-amnestic implant could never be fully removed, and who was downgraded from Keter to Euclid months ago. The cell has a bed, a shelf of borrowed books, a sink and his own recovered workstation, now air-gapped and bolted to the desk, its monitor filled with columns of disassembled instructions. The night log shows him awake for most of the last nine days, and at 03:10 on Saturday the guard flagged it to a researcher.</p>
               <p>Dr. Iris Kellerman is twenty-eight, the newest researcher assigned to his file, and one of three staff cleared to enter the cell alone. Her copper-red hair falls on her shoulders in loose waves, parted in the middle, framing a pale face with dark brown eyes, thick dark brows, a thin line of eyeliner and lips in a muted red. She wears a loose white linen shirt open over a black top, her badge clipped to the pocket, and she carries a tray with a bowl of soup and a paper cup of tea from the staff canteen.</p>
             </div>
             <div class="ln" id="c1-s1-l1" data-sp="k">
@@ -279,10 +286,10 @@
                     </div>
                     <span class="g-mi" aria-hidden="true">Help</span>
                   </div>
-                  <div class="g-tools" aria-hidden="true"><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span></div>
+                  <div class="g-tools" aria-hidden="true"><img class="g-tb" src="svg/ghidra/save.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/back.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><img class="g-tb" src="svg/ghidra/forward.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/nav-selection.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/nav-highlight.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/nav-marker.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/direction.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-instruction.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-data.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-undefined.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-label.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-function.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-value.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-bookmark.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/copy.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/paste.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/undo.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/redo.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/apply.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/memory-map.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/open-project.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/reanalyze.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/function-graph.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/run-script.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/bytes.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/symbol-table.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/data-types.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/script-manager.svg" width="16" height="16" alt=""></div>
                   <div class="g-main">
                     <div class="g-side">
-                      <section class="g-pane g-trees" data-pane="trees" data-title="Program Trees" aria-label="Program Trees">
+                      <div role="group" class="g-pane g-trees" data-pane="trees" data-title="Program Trees" aria-label="Program Trees">
                         <div class="g-ph"><span class="g-ic g-ic-tree" aria-hidden="true"></span><span class="g-pt">Program Trees</span><button type="button" class="g-x" data-close="trees" aria-label="Close Program Trees"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <ul class="g-tree">
                           <li class="g-root">akv_core.bin</li>
@@ -292,8 +299,8 @@
                           <li>.data</li>
                           <li>.bss</li>
                         </ul>
-                      </section>
-                      <section class="g-pane g-symp" data-pane="symbols" data-title="Symbol Tree" aria-label="Symbol Tree">
+                      </div>
+                      <div role="group" class="g-pane g-symp" data-pane="symbols" data-title="Symbol Tree" aria-label="Symbol Tree">
                         <div class="g-ph"><span class="g-ic g-ic-sym" aria-hidden="true"></span><span class="g-pt">Symbol Tree</span><button type="button" class="g-x" data-close="symbols" aria-label="Close Symbol Tree"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <ul class="g-syms">
                           <li><button type="button" class="g-sym" data-fn="FUN_00401000" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>FUN_00401000</button></li>
@@ -307,9 +314,9 @@
                           <li><button type="button" class="g-sym" data-fn="sensor_read" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>sensor_read</button></li>
                           <li><button type="button" class="g-sym" data-fn="similarity" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>similarity</button></li>
                         </ul>
-                      </section>
+                      </div>
                     </div>
-                    <section class="g-pane g-list" data-pane="listing" data-title="Listing: akv_core.bin" aria-label="Listing">
+                    <div role="group" class="g-pane g-list" data-pane="listing" data-title="Listing: akv_core.bin" aria-label="Listing">
                       <div class="g-ph"><span class="g-ic g-ic-list" aria-hidden="true"></span><span class="g-pt">Listing: akv_core.bin</span><button type="button" class="g-x" data-close="listing" aria-label="Close Listing: akv_core.bin"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                       <div class="g-code g-lcode" role="listbox" tabindex="0" aria-label="Listing, use the arrow keys to move the cursor">
                         <div class="gl gl-ban" role="presentation">*************************************************************</div>
@@ -345,9 +352,9 @@
                         <div class="gl gl-ins" role="option" aria-selected="false" data-addr="0040b1c8" data-fnof="amnestic_mark" data-ins="orr w8,w8,#0x1"><span class="g-bm" aria-hidden="true"></span><span class="g-a">0040b1c8</span><span class="g-m">orr</span><span class="g-o">w8, w8, #0x1</span><span class="g-c">; set bit 0, DELETED</span></div>
                         <div class="gl gl-ins" role="option" aria-selected="false" data-addr="0040b1cc" data-fnof="amnestic_mark" data-ins="str w8,[x0,#0x18]"><span class="g-bm" aria-hidden="true"></span><span class="g-a">0040b1cc</span><span class="g-m">str</span><span class="g-o">w8, [x0, #0x18]</span></div>
                       </div>
-                    </section>
+                    </div>
                     <div class="g-decs">
-                      <section class="g-pane g-dec" data-pane="dec-0" data-title="Decompile: engram_reencode - (akv_core.bin)" data-fn="engram_reencode" aria-label="Decompile: engram_reencode - (akv_core.bin)">
+                      <div role="group" class="g-pane g-dec" data-pane="dec-0" data-title="Decompile: engram_reencode - (akv_core.bin)" data-fn="engram_reencode" aria-label="Decompile: engram_reencode - (akv_core.bin)">
                         <div class="g-ph"><span class="g-ic g-ic-dec" aria-hidden="true"></span><span class="g-pt">Decompile: engram_reencode - (akv_core.bin)</span><button type="button" class="g-x" data-close="dec-0" aria-label="Close Decompile: engram_reencode - (akv_core.bin)"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <div class="g-code g-dcode" tabindex="0">
                           <div class="gd"><span class="gd-n" aria-hidden="true">1</span><span class="gd-t"></span></div>
@@ -367,8 +374,8 @@
                           <div class="gd"><span class="gd-n" aria-hidden="true">15</span><span class="gd-t">  <span class="g-kw">return</span>;</span></div>
                           <div class="gd"><span class="gd-n" aria-hidden="true">16</span><span class="gd-t">}</span></div>
                         </div>
-                      </section>
-                      <section class="g-pane g-dec g-snap" data-pane="dec-1" data-title="Decompile: amnestic_mark - (akv_core.bin) [snapshot]" data-fn="amnestic_mark" aria-label="Decompile: amnestic_mark - (akv_core.bin) [snapshot]">
+                      </div>
+                      <div role="group" class="g-pane g-dec g-snap" data-pane="dec-1" data-title="Decompile: amnestic_mark - (akv_core.bin) [snapshot]" data-fn="amnestic_mark" aria-label="Decompile: amnestic_mark - (akv_core.bin) [snapshot]">
                         <div class="g-ph"><span class="g-ic g-ic-dec" aria-hidden="true"></span><span class="g-pt">Decompile: amnestic_mark - (akv_core.bin) [snapshot]</span><button type="button" class="g-x" data-close="dec-1" aria-label="Close Decompile: amnestic_mark - (akv_core.bin) [snapshot]"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <div class="g-code g-dcode" tabindex="0">
                           <div class="gd"><span class="gd-n" aria-hidden="true">1</span><span class="gd-t"></span></div>
@@ -382,16 +389,16 @@
                           <div class="gd"><span class="gd-n" aria-hidden="true">9</span><span class="gd-t">  <span class="g-kw">return</span>;</span></div>
                           <div class="gd"><span class="gd-n" aria-hidden="true">10</span><span class="gd-t">}</span></div>
                         </div>
-                      </section>
+                      </div>
                     </div>
                   </div>
-                  <section class="g-pane g-bottom" data-pane="bottom" data-title="Bookmarks" aria-label="Bookmarks">
+                  <div role="group" class="g-pane g-bottom" data-pane="bottom" data-title="Bookmarks" aria-label="Bookmarks">
                     <div class="g-ph"><span class="g-ic g-ic-bm" aria-hidden="true"></span><span class="g-pt">Bookmarks</span><button type="button" class="g-x" data-close="bottom" aria-label="Close Bookmarks"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                     <div class="g-table" role="table">
                       <div class="g-tr g-th" role="row"><span role="columnheader">Type</span><span role="columnheader">Category</span><span role="columnheader">Description</span><span role="columnheader">Location</span></div>
                       <div class="g-tr g-bmrow" role="row"><span role="cell">Note</span><span role="cell">race</span><span role="cell">race: load/modify/store on e-&gt;flags, no lock, core 0 vs core 1</span><span role="cell"><button type="button" class="g-goto" data-goto="0040a3e8" aria-label="Go to 0040a3e8">0040a3e8</button></span></div>
                     </div>
-                  </section>
+                  </div>
                   <div class="g-status" aria-live="polite"><span class="g-s-addr">0040a3e8</span><span class="g-s-fn">engram_reencode</span><span class="g-s-ins">str w8,[x19,#0x18]</span></div>
                 </div>
               </div>
@@ -436,10 +443,10 @@
                     </div>
                     <span class="g-mi" aria-hidden="true">Help</span>
                   </div>
-                  <div class="g-tools" aria-hidden="true"><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span><span class="g-tb"></span></div>
+                  <div class="g-tools" aria-hidden="true"><img class="g-tb" src="svg/ghidra/save.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/back.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><img class="g-tb" src="svg/ghidra/forward.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/nav-selection.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/nav-highlight.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/nav-marker.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/direction.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-instruction.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-data.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-undefined.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-label.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-function.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-value.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/next-bookmark.svg" width="16" height="16" alt=""><img class="g-tb g-tdd" src="svg/ghidra/menu-arrow.svg" width="7" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/copy.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/paste.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/undo.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/redo.svg" width="16" height="16" alt=""><span class="g-tsep"></span><img class="g-tb" src="svg/ghidra/apply.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/memory-map.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/open-project.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/reanalyze.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/function-graph.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/run-script.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/bytes.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/symbol-table.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/data-types.svg" width="16" height="16" alt=""><img class="g-tb" src="svg/ghidra/script-manager.svg" width="16" height="16" alt=""></div>
                   <div class="g-main">
                     <div class="g-side">
-                      <section class="g-pane g-trees" data-pane="trees" data-title="Program Trees" aria-label="Program Trees">
+                      <div role="group" class="g-pane g-trees" data-pane="trees" data-title="Program Trees" aria-label="Program Trees">
                         <div class="g-ph"><span class="g-ic g-ic-tree" aria-hidden="true"></span><span class="g-pt">Program Trees</span><button type="button" class="g-x" data-close="trees" aria-label="Close Program Trees"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <ul class="g-tree">
                           <li class="g-root">akv_core.bin</li>
@@ -449,8 +456,8 @@
                           <li>.data</li>
                           <li>.bss</li>
                         </ul>
-                      </section>
-                      <section class="g-pane g-symp" data-pane="symbols" data-title="Symbol Tree" aria-label="Symbol Tree">
+                      </div>
+                      <div role="group" class="g-pane g-symp" data-pane="symbols" data-title="Symbol Tree" aria-label="Symbol Tree">
                         <div class="g-ph"><span class="g-ic g-ic-sym" aria-hidden="true"></span><span class="g-pt">Symbol Tree</span><button type="button" class="g-x" data-close="symbols" aria-label="Close Symbol Tree"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <ul class="g-syms">
                           <li><button type="button" class="g-sym" data-fn="FUN_00401000" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>FUN_00401000</button></li>
@@ -464,9 +471,9 @@
                           <li><button type="button" class="g-sym" data-fn="sensor_read" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>sensor_read</button></li>
                           <li><button type="button" class="g-sym" data-fn="similarity" aria-pressed="false"><span class="g-f" aria-hidden="true">f</span>similarity</button></li>
                         </ul>
-                      </section>
+                      </div>
                     </div>
-                    <section class="g-pane g-list" data-pane="listing" data-title="Listing: akv_core.bin" aria-label="Listing">
+                    <div role="group" class="g-pane g-list" data-pane="listing" data-title="Listing: akv_core.bin" aria-label="Listing">
                       <div class="g-ph"><span class="g-ic g-ic-list" aria-hidden="true"></span><span class="g-pt">Listing: akv_core.bin</span><button type="button" class="g-x" data-close="listing" aria-label="Close Listing: akv_core.bin"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                       <div class="g-code g-lcode" role="listbox" tabindex="0" aria-label="Listing, use the arrow keys to move the cursor">
                         <div class="gl gl-ban" role="presentation">*************************************************************</div>
@@ -512,9 +519,9 @@
                         <div class="gl gl-ins" role="option" aria-selected="false" data-addr="0040c294" data-fnof="retrieve_recode" data-ins="ldp x29,x30,[sp],#48"><span class="g-bm" aria-hidden="true"></span><span class="g-a">0040c294</span><span class="g-m">ldp</span><span class="g-o">x29, x30, [sp], #48</span></div>
                         <div class="gl gl-ins" role="option" aria-selected="false" data-addr="0040c298" data-fnof="retrieve_recode" data-ins="ret"><span class="g-bm" aria-hidden="true"></span><span class="g-a">0040c298</span><span class="g-m">ret</span><span class="g-o"></span></div>
                       </div>
-                    </section>
+                    </div>
                     <div class="g-decs">
-                      <section class="g-pane g-dec" data-pane="dec-0" data-title="Decompile: retrieve_recode - (akv_core.bin)" data-fn="retrieve_recode" aria-label="Decompile: retrieve_recode - (akv_core.bin)">
+                      <div role="group" class="g-pane g-dec" data-pane="dec-0" data-title="Decompile: retrieve_recode - (akv_core.bin)" data-fn="retrieve_recode" aria-label="Decompile: retrieve_recode - (akv_core.bin)">
                         <div class="g-ph"><span class="g-ic g-ic-dec" aria-hidden="true"></span><span class="g-pt">Decompile: retrieve_recode - (akv_core.bin)</span><button type="button" class="g-x" data-close="dec-0" aria-label="Close Decompile: retrieve_recode - (akv_core.bin)"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                         <div class="g-code g-dcode" tabindex="0">
                           <div class="gd"><span class="gd-n" aria-hidden="true">1</span><span class="gd-t"></span></div>
@@ -539,13 +546,13 @@
                           <div class="gd"><span class="gd-n" aria-hidden="true">20</span><span class="gd-t">}</span></div>
                           <div class="gd"><span class="gd-n" aria-hidden="true">21</span><span class="gd-t"></span></div>
                         </div>
-                      </section>
+                      </div>
                     </div>
                   </div>
-                  <section class="g-pane g-bottom" data-pane="bottom" data-title="Console - Scripting" aria-label="Console">
+                  <div role="group" class="g-pane g-bottom" data-pane="bottom" data-title="Console - Scripting" aria-label="Console">
                     <div class="g-ph"><span class="g-ic g-ic-con" aria-hidden="true"></span><span class="g-pt">Console - Scripting</span><button type="button" class="g-x" data-close="bottom" aria-label="Close Console - Scripting"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
                     <div class="g-console">&gt;</div>
-                  </section>
+                  </div>
                   <div class="g-status" aria-live="polite"><span class="g-s-addr">0040c248</span><span class="g-s-fn">retrieve_recode</span><span class="g-s-ins">cmp w10,#0x3</span></div>
                 </div>
               </div>
@@ -591,7 +598,7 @@
                 <div class="ollama">
                   <div class="win-title o-title"><span>Ollama UI</span><span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span></div>
                   <div class="o-main">
-                    <aside class="o-side">
+                    <div class="o-side">
                       <div class="o-new"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg>New chat</div>
                       <p class="o-h">Today</p>
                       <ul>
@@ -604,7 +611,7 @@
                         <li>recode loop names</li>
                       </ul>
                       <div class="o-set">Settings</div>
-                    </aside>
+                    </div>
                     <div class="o-chat">
                       <p class="o-empty">What can I help with?</p>
                       <div class="o-compose">
@@ -687,7 +694,7 @@
                 <div class="ollama">
                   <div class="win-title o-title"><span>Ollama UI</span><span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span></div>
                   <div class="o-main">
-                    <aside class="o-side">
+                    <div class="o-side">
                       <div class="o-new"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg>New chat</div>
                       <p class="o-h">Today</p>
                       <ul>
@@ -700,7 +707,7 @@
                         <li>recode loop names</li>
                       </ul>
                       <div class="o-set">Settings</div>
-                    </aside>
+                    </div>
                     <div class="o-chat">
                       <div class="o-log">
                         <div class="o-user">where did you come from?</div>
@@ -763,10 +770,10 @@
                   <div class="v-menu" aria-hidden="true"><span>File</span><span>Virtual Machine</span><span>View</span><span>Send Key</span></div>
                   <div class="v-tools"><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Run" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v9l7.5-4.5z" fill="currentColor" stroke="none"/></svg></span><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Pause" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="2.5" height="9" fill="currentColor" stroke="none"/><rect x="9.5" y="3.5" width="2.5" height="9" fill="currentColor" stroke="none"/></svg></span><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Shut down" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span><span class="v-nic"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg>NIC: disconnected</span></div>
                   <div class="gn">
-                    <div class="gn-bar"><span class="gn-act" aria-label="Activities, workspace 1 of 2"><i></i><i></i></span><span class="gn-clock">Sat 04:02</span><span class="gn-tray"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Network disconnected" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Volume" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5l3-2.5v9L5 10H2.5z"/><path d="M10.5 6a3 3 0 0 1 0 4M12 4.2a5.5 5.5 0 0 1 0 7.6"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="System" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span></div>
+                    <div class="gn-bar"><span class="gn-act" role="img" aria-label="Activities, workspace 1 of 2"><i></i><i></i></span><span class="gn-clock">Sat 04:02</span><span class="gn-tray"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Network disconnected" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Volume" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5l3-2.5v9L5 10H2.5z"/><path d="M10.5 6a3 3 0 0 1 0 4M12 4.2a5.5 5.5 0 0 1 0 7.6"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="System" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span></div>
                     <div class="gn-desk">
                       <div class="adw naut">
-                        <aside class="n-side">
+                        <div class="n-side">
                           <div class="n-shead"><span class="adw-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Search" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5l3 3"/></svg></span><span>Files</span><span class="adw-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Main menu" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></span></div>
                           <ul class="n-places">
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 7.5L8 3l5.5 4.5V13a.5.5 0 0 1-.5.5H10V10H6v3.5H3a.5.5 0 0 1-.5-.5z"/></svg>Home</li>
@@ -774,14 +781,14 @@
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.2l1.7 3.6 3.9.5-2.9 2.7.8 3.9L8 11l-3.5 1.9.8-3.9-2.9-2.7 3.9-.5z" fill="currentColor" stroke="none"/></svg>Starred</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3" width="11" height="7.5" rx="1"/><path d="M8 10.5V13M5 13.5h6"/></svg>Network</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5a1 1 0 0 0 1 .9h3.8a1 1 0 0 0 1-.9l.6-8.5"/></svg>Trash</li>
-                            <li class="sep" role="separator"></li>
+                            <li class="sep" aria-hidden="true"></li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2.5h5l3 3v8H4z"/><path d="M9 2.5v3h3"/></svg>Documents</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12V4l6.5-1.5V10.5"/><circle cx="4.5" cy="12" r="1.5"/><circle cx="11" cy="10.5" r="1.5"/></svg>Music</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3" width="11" height="10" rx="1"/><circle cx="6" cy="6.5" r="1.2"/><path d="M2.5 11.5l3.5-3 3 2.5 2-1.5 2.5 2"/></svg>Pictures</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="8.5" height="7" rx="1"/><path d="M10.5 7l3.5-2v6l-3.5-2"/></svg>Videos</li>
                             <li><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5v8M4.5 7.5L8 11l3.5-3.5M3 13.5h10"/></svg>Downloads</li>
                           </ul>
-                        </aside>
+                        </div>
                         <div class="n-main">
                           <div class="n-head">
                             <span class="adw-btn n-nav"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Back" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg></span><span class="adw-btn n-nav"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Forward" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
@@ -800,25 +807,25 @@
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td><span class="n-name"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10l12-6 12 6v14l-12 6-12-6z" fill="#c69462"/><path d="M4 10l12 6 12-6M16 16v14" fill="none" stroke="#865e3c" stroke-width="1.2"/><path d="M10 7l12 6v4l-3-1.5V14L7 8.5z" fill="#e5c09a"/></svg>old_ai.safetensors.xz</span></td>
+                                  <td><span class="n-name"><img class="ico" src="svg/gnome/file-archive.svg" width="28" height="28" alt="">old_ai.safetensors.xz</span></td>
                                   <td>3.9 GB</td>
                                   <td>XZ archive</td>
                                   <td>12 Jun</td>
                                 </tr>
                                 <tr>
-                                  <td><span class="n-name"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h12l6 6v20H7z" fill="#fff" stroke="#9a9996"/><path d="M19 3v6h6" fill="#deddda" stroke="#9a9996"/><path d="M12.5 13l-1 11M17.5 13l-1 11M10 16.5h10M9.5 20.5h10" stroke="#3584e4" stroke-width="1.3"/></svg>old_ai.safetensors.xz.sha256</span></td>
+                                  <td><span class="n-name"><img class="ico" src="svg/gnome/file-hash.svg" width="28" height="28" alt="">old_ai.safetensors.xz.sha256</span></td>
                                   <td>97 bytes</td>
                                   <td>Text</td>
                                   <td>12 Jun</td>
                                 </tr>
                                 <tr>
-                                  <td><span class="n-name"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h12l6 6v20H7z" fill="#fff" stroke="#9a9996"/><path d="M19 3v6h6" fill="#deddda" stroke="#9a9996"/><path d="M13 13c-2 0-2 1-2 2.5s-.5 2.5-1.5 2.5c1 0 1.5 1 1.5 2.5s0 2.5 2 2.5M19 13c2 0 2 1 2 2.5s.5 2.5 1.5 2.5c-1 0-1.5 1-1.5 2.5s0 2.5-2 2.5" fill="none" stroke="#c88800" stroke-width="1.4"/></svg>config.json</span></td>
+                                  <td><span class="n-name"><img class="ico" src="svg/gnome/file-json.svg" width="28" height="28" alt="">config.json</span></td>
                                   <td>1.1 kB</td>
                                   <td>JSON</td>
                                   <td>12 Jun</td>
                                 </tr>
                                 <tr>
-                                  <td><span class="n-name"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h12l6 6v20H7z" fill="#fff" stroke="#9a9996"/><path d="M19 3v6h6" fill="#deddda" stroke="#9a9996"/><path d="M10 13h12M10 16.5h12M10 20h12M10 23.5h8" stroke="#77767b" stroke-width="1.2"/></svg>UPLOAD.TXT</span></td>
+                                  <td><span class="n-name"><img class="ico" src="svg/gnome/file-text.svg" width="28" height="28" alt="">UPLOAD.TXT</span></td>
                                   <td>214 bytes</td>
                                   <td>Text</td>
                                   <td>12 Jun</td>
@@ -857,7 +864,7 @@
                   <div class="v-menu" aria-hidden="true"><span>File</span><span>Virtual Machine</span><span>View</span><span>Send Key</span></div>
                   <div class="v-tools"><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Run" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v9l7.5-4.5z" fill="currentColor" stroke="none"/></svg></span><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Pause" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="2.5" height="9" fill="currentColor" stroke="none"/><rect x="9.5" y="3.5" width="2.5" height="9" fill="currentColor" stroke="none"/></svg></span><span class="v-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Shut down" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span><span class="v-nic"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg>NIC: disconnected</span></div>
                   <div class="gn">
-                    <div class="gn-bar"><span class="gn-act" aria-label="Activities, workspace 1 of 2"><i></i><i></i></span><span class="gn-clock">Sat 04:02</span><span class="gn-tray"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Network disconnected" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Volume" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5l3-2.5v9L5 10H2.5z"/><path d="M10.5 6a3 3 0 0 1 0 4M12 4.2a5.5 5.5 0 0 1 0 7.6"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="System" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span></div>
+                    <div class="gn-bar"><span class="gn-act" role="img" aria-label="Activities, workspace 1 of 2"><i></i><i></i></span><span class="gn-clock">Sat 04:02</span><span class="gn-tray"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Network disconnected" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="1.5" width="4" height="3.5" rx=".5"/><path d="M8 5v2.5M3.5 7.5h9M3.5 7.5V10M12.5 7.5V10"/><rect x="2" y="10" width="3" height="3.5" rx=".5"/><rect x="11" y="10" width="3" height="3.5" rx=".5"/><path d="M1.5 1.5l13 13"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Volume" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h2.5l3-2.5v9L5 10H2.5z"/><path d="M10.5 6a3 3 0 0 1 0 4M12 4.2a5.5 5.5 0 0 1 0 7.6"/></svg><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="System" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v5.5"/><path d="M4.6 4.5a5 5 0 1 0 6.8 0"/></svg></span></div>
                     <div class="gn-desk">
                       <div class="adw gedit">
                         <div class="ge-head"><span class="adw-btn solid">Open <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></span><span class="adw-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="New document" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></span><span class="ge-name">UPLOAD.TXT<small>~/exchange/out</small></span><span class="adw-btn solid">Save</span><span class="adw-btn"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Main menu" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></span><span class="adw-close"><svg class="ico" viewBox="0 0 16 16" role="img" aria-label="Close" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></span></div>
@@ -2802,7 +2809,7 @@
           <section class="sec" id="c4-s1" aria-labelledby="c4-s1-h">
             <h3 id="c4-s1-h"><span class="sec-n">4.1</span>The bare room<button type="button" class="plink" data-target="c4-s1" aria-label="Copy link to The bare room">#</button></h3>
             <div class="scene">
-              <p>Eight days after the first suggestion, and after Toma and Kellerman have declined it three more times, the Site Director's office stopped suggesting. On a Wednesday afternoon Toma is taken to a bare room on the lowest level of Site-<span class="redact" aria-label="redacted">██</span>, with a chair, a table, a microphone on a short stand and a single speaker set into the wall. Behind the one-way glass, Kellerman sits beside Dr. Anneke Voss, who leads the 239 team, and a medical technician who watches sedation readings on a monitor. Two floors below, behind three locked doors, SCP-239 lies in a hospital bed, brought up from her coma to light sedation for the first time in years. The rules came on a printed sheet, which Toma has left on the table: speak calmly, promise nothing, never tell her what is or isn't possible, and stop the second the technician says so.</p>
+              <p>Eight days after the first suggestion, and after Toma and Kellerman have declined it three more times, the Site Director's office stopped suggesting. On a Wednesday afternoon Toma is taken to a bare room on the lowest level of Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, with a chair, a table, a microphone on a short stand and a single speaker set into the wall. Behind the one-way glass, Kellerman sits beside Dr. Anneke Voss, who leads the 239 team, and a medical technician who watches sedation readings on a monitor. Two floors below, behind three locked doors, SCP-239 lies in a hospital bed, brought up from her coma to light sedation for the first time in years. The rules came on a printed sheet, which Toma has left on the table: speak calmly, promise nothing, never tell her what is or isn't possible, and stop the second the technician says so.</p>
             </div>
             <div class="ln" id="c4-s1-l1" data-sp="v">
               <b class="sp">Voss</b>
@@ -3604,9 +3611,9 @@
                     <div class="wb-col wb-right">
                       <p class="wb-head wb-blue">CICERO</p>
                       <ul class="wb-list wb-blue">
-                        <li><span class="wb-w" lang="la">DOCERE</span><span class="wb-arrow" aria-label="see line 44, 48, 52"> &#8594; 44, 48, 52</span> <span class="tr">(to teach)</span></li>
-                        <li><span class="wb-w" lang="la">DELECTARE</span><span class="wb-arrow" aria-label="see line 50"> &#8594; 50</span> <span class="tr">(to delight)</span></li>
-                        <li><span class="wb-w" lang="la">MOVERE</span><span class="wb-arrow" aria-label="see line 20"> &#8594; 20</span> <span class="tr">(to move)</span></li>
+                        <li><span class="wb-w" lang="la">DOCERE</span><span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">see lines</span> 44, 48, 52</span> <span class="tr">(to teach)</span></li>
+                        <li><span class="wb-w" lang="la">DELECTARE</span><span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">see line</span> 50</span> <span class="tr">(to delight)</span></li>
+                        <li><span class="wb-w" lang="la">MOVERE</span><span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">see line</span> 20</span> <span class="tr">(to move)</span></li>
                         <li><span class="wb-w" lang="la">DECORUM</span> <span class="tr">(what is fitting)</span></li>
                         <li><span class="wb-w" lang="la">GENUS TENUE</span> <span class="tr">(the plain style)</span></li>
                         <li><span class="wb-w" lang="la">EXEMPLUM</span> <span class="tr">(the example)</span></li>
@@ -3616,11 +3623,11 @@
                       </ul>
                       <p class="wb-head wb-red">MODERN</p>
                       <ul class="wb-list wb-red">
-                        <li>TOULMIN: A CLAIM NEEDS A WARRANT<span class="wb-arrow"> &#8594; SAY WHY</span></li>
-                        <li>ROGERS: UNDERSTAND FIRST<span class="wb-arrow"> &#8594; NEVER IMPOSE</span></li>
-                        <li>PERELMAN: THE PARTICULAR AUDIENCE<span class="wb-arrow"> &#8594; NEVER ASSUME BEHAVIOR</span></li>
-                        <li>BITZER: EACH SITUATION, ITS OWN ANSWER<span class="wb-arrow"> &#8594; DON'T RECYCLE THE METHOD</span></li>
-                        <li>BURKE: IDENTIFICATION<span class="wb-arrow"> &#8594; USE THEIR NAMES</span></li>
+                        <li>TOULMIN: A CLAIM NEEDS A WARRANT<span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">leads to</span> SAY WHY</span></li>
+                        <li>ROGERS: UNDERSTAND FIRST<span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">leads to</span> NEVER IMPOSE</span></li>
+                        <li>PERELMAN: THE PARTICULAR AUDIENCE<span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">leads to</span> NEVER ASSUME BEHAVIOR</span></li>
+                        <li>BITZER: EACH SITUATION, ITS OWN ANSWER<span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">leads to</span> DON'T RECYCLE THE METHOD</span></li>
+                        <li>BURKE: IDENTIFICATION<span class="wb-arrow"> <span aria-hidden="true">&#8594;</span><span class="vh">leads to</span> USE THEIR NAMES</span></li>
                       </ul>
                     </div>
                   </div>
@@ -3849,7 +3856,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>ETHICS COMMITTEE HEARING / DR. SATO'S CAMERA</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-call" aria-label="Dr. Sato's whiteboard, seen through her camera">
+                <blockquote class="doc doc-call" role="group" aria-label="Dr. Sato's whiteboard, seen through her camera">
                   <div class="call-tile ">
                     <div class="call-room">
                       <div class="cr-board">
@@ -3997,7 +4004,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>ETHICS COMMITTEE HEARING / SHARED SCREEN</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-call" aria-label="Dr. Voss's shared screen">
+                <blockquote class="doc doc-call" role="group" aria-label="Dr. Voss's shared screen">
                   <div class="share">
                     <div class="share-bar"><span class="share-dot" aria-hidden="true"></span>Dr. Anneke Voss is sharing her screen</div>
                     <div class="share-doc">
@@ -4156,10 +4163,10 @@
                   <header class="dm-head">
                     <p class="dm-org">SCP FOUNDATION / ETHICS COMMITTEE</p>
                     <h4 class="dm-title">Decision on Project Cicero</h4>
-                    <p class="dm-meta">Remote hearing, Site-<span class="redact" aria-label="redacted">██</span>, conference room 3 / Chair: Dr. T. Lindqvist</p>
+                    <p class="dm-meta">Remote hearing, Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, conference room 3 / Chair: Dr. T. Lindqvist</p>
                   </header>
                   <ol class="dm-list">
-                    <li><b>1</b><span>Project Cicero continues at Site-<span class="redact" aria-label="redacted">██</span> as a research project. Its rules and notes are experimental, and no site may use them as an interview procedure.</span></li>
+                    <li><b>1</b><span>Project Cicero continues at Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> as a research project. Its rules and notes are experimental, and no site may use them as an interview procedure.</span></li>
                     <li><b>2</b><span>The shared repository will state this status on every page. Sites having printed or laminated copies of the whiteboard will withdraw them within 30 days.</span></li>
                     <li><b>3</b><span>A comparative trial will run for six months at three sites, including those of Dr. Haas and Dr. Ferreira. It will compare Cicero, the crisis negotiation stairway and motivational interviewing, with the same subjects and different interviewers. Outcomes will include the content of each session as well as physiological readings.</span></li>
                     <li><b>4</b><span>Working drafts will be released to the shared archive only after review by the project lead.</span></li>
@@ -4290,7 +4297,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>KELLERMAN'S NOTEBOOK / PINOUT</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-note nb-page" aria-label="Kellerman's notebook: pinout of the bench unit">
+                <blockquote class="doc doc-note nb-page" role="group" aria-label="Kellerman's notebook: pinout of the bench unit">
                   <p class="nb-title">AKV implant, bench unit (dash one): pinout from the disassembly</p>
                   <svg class="nb-sketch" viewBox="0 0 380 150" role="img" aria-label="Pencil sketch of the implant board: a test area on the left with three large pads, WRITE, READ and DEBUG, and a switch; a usable area on the right with the NAND chip and ten numbered pins; a cluster of tiny unlabelled circles in the top right corner"><rect class="sk-board" x="6" y="8" width="368" height="134" rx="10"/><path class="sk-div" d="M172 14v122"/><text class="sk-lbl" x="18" y="28">TEST AREA</text><circle class="sk-pad" cx="42" cy="62" r="20"/><text x="42" y="100" text-anchor="middle">WRITE</text><circle class="sk-pad" cx="92" cy="62" r="20"/><text x="92" y="100" text-anchor="middle">READ</text><circle class="sk-pad" cx="142" cy="62" r="14"/><text x="142" y="100" text-anchor="middle">DEBUG</text><rect class="sk-sw" x="30" y="114" width="40" height="14" rx="2"/><text x="80" y="125">switch, off</text><text class="sk-lbl" x="186" y="28">USABLE AREA</text><rect class="sk-nand" x="196" y="40" width="96" height="50" rx="3"/><text x="244" y="70" text-anchor="middle">NAND</text><g class="sk-pins"><rect x="196" y="104" width="9" height="14" rx="1.5"/><text x="200.5" y="132" text-anchor="middle">1</text><rect x="213" y="104" width="9" height="14" rx="1.5"/><text x="217.5" y="132" text-anchor="middle">2</text><rect x="230" y="104" width="9" height="14" rx="1.5"/><text x="234.5" y="132" text-anchor="middle">3</text><rect x="247" y="104" width="9" height="14" rx="1.5"/><text x="251.5" y="132" text-anchor="middle">4</text><rect x="264" y="104" width="9" height="14" rx="1.5"/><text x="268.5" y="132" text-anchor="middle">5</text><rect x="281" y="104" width="9" height="14" rx="1.5"/><text x="285.5" y="132" text-anchor="middle">6</text><rect x="298" y="104" width="9" height="14" rx="1.5"/><text x="302.5" y="132" text-anchor="middle">7</text><rect x="315" y="104" width="9" height="14" rx="1.5"/><text x="319.5" y="132" text-anchor="middle">8</text><rect x="332" y="104" width="9" height="14" rx="1.5"/><text x="336.5" y="132" text-anchor="middle">9</text><rect x="349" y="104" width="9" height="14" rx="1.5"/><text x="353.5" y="132" text-anchor="middle">10</text></g><g class="sk-cluster"><circle cx="345" cy="22" r="2.2"/><circle cx="352" cy="22" r="2.2"/><circle cx="359" cy="22" r="2.2"/><circle cx="345" cy="29" r="2.2"/><circle cx="352" cy="29" r="2.2"/><circle cx="359" cy="29" r="2.2"/><circle cx="348.5" cy="36" r="2.2"/><circle cx="355.5" cy="36" r="2.2"/></g></svg>
                   <div class="nb-cols">
@@ -4353,7 +4360,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>KELLERMAN'S NOTEBOOK / SNS_SP MARKER</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-note" aria-label="Kellerman's notebook: the marker molecule">
+                <blockquote class="doc doc-note" role="group" aria-label="Kellerman's notebook: the marker molecule">
                   <p class="nb-title">SNS_SP marker, from serotonin</p>
                   <dl class="nb-chem">
                     <dt>serotonin</dt>
@@ -4380,7 +4387,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>KELLERMAN'S NOTEBOOK / .RODATA STRINGS</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-note" aria-label="Kellerman's notebook: strings and resolver output">
+                <blockquote class="doc doc-note" role="group" aria-label="Kellerman's notebook: strings and resolver output">
                   <p class="nb-title">.rodata strings and resolver output</p>
                   <table class="nb-table">
                     <thead>
@@ -5126,7 +5133,7 @@
               <summary class="app-cap"><span>LETTER / DR. KELLERMAN, A4, BY HAND, UNSCREENED</span></summary>
               <div class="app-frame">
                 <div class="lt-wrap">
-                  <blockquote class="doc doc-note doc-letter lt-k" aria-label="Kellerman's first letter, by hand">
+                  <blockquote class="doc doc-note doc-letter lt-k" role="group" aria-label="Kellerman's first letter, by hand">
                     <div class="lt-text">
                       <p class="lt-greet">Toma,</p>
                       <p>Pryce's office gave me this notice at ten past eight, outside the airlock, with both your coffee and mine in my hands. I drank both at my desk and read the notice carefully. It says I'm off your file until a conflict-of-interest review decides whether I can be trusted with it. The evidence is the night log, every evening I stayed past my shift, in minutes, for three months. The log counts the minutes and leaves out which box the guard ticked.</p>
@@ -5146,11 +5153,11 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>MAIL / SCREENING OFFICE / DR. L. MOREAU</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-mail" aria-label="Screened mail from Dr. Moreau">
+                <blockquote class="doc doc-mail" role="group" aria-label="Screened mail from Dr. Moreau">
                   <p class="ml-stamp">SCREENED</p>
                   <dl class="ml-head">
                     <dt>To</dt>
-                    <dd>SCP-<span class="redact" aria-label="redacted">████</span></dd>
+                    <dd>SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span></dd>
                     <dt>From</dt>
                     <dd>Dr. Lena Moreau, physical sciences, temporary assignment to your file</dd>
                     <dt>Copy</dt>
@@ -5174,11 +5181,11 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>MAIL / SCREENING OFFICE / DR. R. CALLOWAY</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-mail" aria-label="Screened mail from Dr. Calloway">
+                <blockquote class="doc doc-mail" role="group" aria-label="Screened mail from Dr. Calloway">
                   <p class="ml-stamp">SCREENED</p>
                   <dl class="ml-head">
                     <dt>To</dt>
-                    <dd>SCP-<span class="redact" aria-label="redacted">████</span></dd>
+                    <dd>SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span></dd>
                     <dt>From</dt>
                     <dd>Dr. Ruth Calloway, humanoid containment, temporary assignment to your file</dd>
                     <dt>Subject</dt>
@@ -5201,7 +5208,7 @@
               <summary class="app-cap"><span>LETTER / TOMA, A4, ON THE BACK OF DR. KELLERMAN'S LETTER</span></summary>
               <div class="app-frame">
                 <div class="lt-wrap">
-                  <blockquote class="doc doc-note doc-letter lt-back lt-t" aria-label="Toma's answer, written on the back of Kellerman's letter">
+                  <blockquote class="doc doc-note doc-letter lt-back lt-t" role="group" aria-label="Toma's answer, written on the back of Kellerman's letter">
                     <div class="lt-through" aria-hidden="true">
                       <p class="lt-greet">Toma,</p>
                       <p>Pryce's office gave me this notice at ten past eight, outside the airlock, with both your coffee and mine in my hands. I drank both at my desk and read the notice carefully. It says I'm off your file until a conflict-of-interest review decides whether I can be trusted with it. The evidence is the night log, every evening I stayed past my shift, in minutes, for three months. The log counts the minutes and leaves out which box the guard ticked.</p>
@@ -5270,7 +5277,7 @@
               <summary class="app-cap"><span>LETTER / DR. KELLERMAN, A4, SEALED</span></summary>
               <div class="app-frame">
                 <div class="lt-wrap">
-                  <blockquote class="doc doc-note doc-letter lt-k" aria-label="Kellerman's second letter, by hand">
+                  <blockquote class="doc doc-note doc-letter lt-k" role="group" aria-label="Kellerman's second letter, by hand">
                     <div class="lt-text">
                       <p class="lt-greet">Toma,</p>
                       <p>The portal leads to the Backrooms, which the presentation calls A-Space. The places where the rooms stop matching the rest of the building are the Null Zones, and that's where things also tunnel through. The Low-Proximity Magnetic Distortion System is also called the Threshold. I watched all of them over the last three nights in my quarters, and after the second one I slept with the light on. Your team had a strange idea of a joke.</p>
@@ -5312,7 +5319,7 @@
               <summary class="app-cap"><span>LETTER / DR. KELLERMAN, A4, SEALED</span></summary>
               <div class="app-frame">
                 <div class="lt-wrap">
-                  <blockquote class="doc doc-note doc-letter lt-k" aria-label="Kellerman's third letter, by hand">
+                  <blockquote class="doc doc-note doc-letter lt-k" role="group" aria-label="Kellerman's third letter, by hand">
                     <div class="lt-text">
                       <p class="lt-greet">Toma,</p>
                       <p>KV-31 Project. Using 32-... allow for the transport of cargo and personnel and equipment. The Lighting Tile Survey confirms the lights were manufactured by SYLVANIA.</p>
@@ -5363,7 +5370,7 @@
             </div>
             <div class="ln ln-pa" id="c10-s1-l2" data-sp="pa">
               <p class="pa-cap"><svg class="pa-mark" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M2 6.2h2.4L9 3v10L4.4 9.8H2z"/><path d="M11.4 6a3 3 0 0 1 0 4M13.2 4.4a5.4 5.4 0 0 1 0 7.2"/></svg>Site announcement</p>
-              <p><i class="act">The announcement tone sounds from the grille above the door and, a moment later, from every speaker in the corridor, a man's voice reads at an even pace, the way the evacuation drills are read</i> Attention, all personnel. By order of the Acting Site Director, Mobile Task Force Epsilon-11 has been deployed to Site-<span class="redact" aria-label="redacted">██</span> to restore normal operations. Personnel gathered in the canteen sector and the adjoining corridors without authorization are in breach of site regulations. Return to your assigned posts or quarters within fifteen minutes. Personnel who remain after that time will be detained, and their clearance suspended pending review. This order applies equally to all personnel, regardless of department or position.</p>
+              <p><i class="act">The announcement tone sounds from the grille above the door and, a moment later, from every speaker in the corridor, a man's voice reads at an even pace, the way the evacuation drills are read</i> Attention, all personnel. By order of the Acting Site Director, Mobile Task Force Epsilon-11 has been deployed to Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> to restore normal operations. Personnel gathered in the canteen sector and the adjoining corridors without authorization are in breach of site regulations. Return to your assigned posts or quarters within fifteen minutes. Personnel who remain after that time will be detained, and their clearance suspended pending review. This order applies equally to all personnel, regardless of department or position.</p>
             </div>
             <div class="ln" id="c10-s1-l3" data-sp="g">
               <b class="sp">Guard</b>
@@ -5436,7 +5443,7 @@
           <section class="sec" id="c10-s3" aria-labelledby="c10-s3-h">
             <h3 id="c10-s3-h"><span class="sec-n">10.3</span>Dash one<button type="button" class="plink" data-target="c10-s3" aria-label="Copy link to Dash one">#</button></h3>
             <div class="scene">
-              <p>Pell leaves the observation room at a run. In the corridor she is standing in her doorway in a hospital cloth with the bed rail in both hands, the pink mass heaped against the far wall where it fell. They take the service stairs, because the lift is where the operatives went. Item storage is a steel door at the far end of the research wing with a card reader beside it, and Pell's card turns the light green on the first try. Inside, on a shelf labeled SCP-<span class="redact" aria-label="redacted">████</span>, a sealed bag holds a spare implant marked dash one. On the shelf below sits the bench kit that came back from the lab when the requests were frozen: a flat inductive coil on a short cable to a handheld reader with a small screen, a pack of adhesive electrodes, and a bundle of leads, each one tagged with a pin name in Kellerman's handwriting.</p>
+              <p>Pell leaves the observation room at a run. In the corridor she is standing in her doorway in a hospital cloth with the bed rail in both hands, the pink mass heaped against the far wall where it fell. They take the service stairs, because the lift is where the operatives went. Item storage is a steel door at the far end of the research wing with a card reader beside it, and Pell's card turns the light green on the first try. Inside, on a shelf labeled SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>, a sealed bag holds a spare implant marked dash one. On the shelf below sits the bench kit that came back from the lab when the requests were frozen: a flat inductive coil on a short cable to a handheld reader with a small screen, a pack of adhesive electrodes, and a bundle of leads, each one tagged with a pin name in Kellerman's handwriting.</p>
             </div>
             <div class="ln" id="c10-s3-l1" data-sp="p">
               <b class="sp">Pell</b>
@@ -5493,7 +5500,7 @@
             </div>
             <div class="ln ln-pa" id="c10-s3-l6" data-sp="pa">
               <p class="pa-cap"><svg class="pa-mark" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M2 6.2h2.4L9 3v10L4.4 9.8H2z"/><path d="M11.4 6a3 3 0 0 1 0 4M13.2 4.4a5.4 5.4 0 0 1 0 7.2"/></svg>Site announcement</p>
-              <p><i class="act">The announcement tone sounds from the grille above the storage room door and from every speaker in the research wing, the same man's voice, a little faster than before</i> Attention, all personnel. Containment breach on the lowest level. SCP-239 is outside containment. Site-<span class="redact" aria-label="redacted">██</span> is in lockdown. Remain where you are and do not use the lifts. Mobile Task Force Epsilon-11 is responding. This order applies equally to all personnel.</p>
+              <p><i class="act">The announcement tone sounds from the grille above the storage room door and from every speaker in the research wing, the same man's voice, a little faster than before</i> Attention, all personnel. Containment breach on the lowest level. SCP-239 is outside containment. Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> is in lockdown. Remain where you are and do not use the lifts. Mobile Task Force Epsilon-11 is responding. This order applies equally to all personnel.</p>
             </div>
             <div class="scene scene-mid">
               <p>On Pell's phone a new message appears in the channel, two words in capitals: HUMAN CHAIN. Beyond the research wing doors comes the sound of hundreds of feet in the main corridor, all going the same way, toward the emergency stairs that lead to the surface.</p>
@@ -5633,7 +5640,7 @@
             </div>
             <div class="ln" id="c10-s5-l9" data-sp="e">
               <b class="sp">Commander</b>
-              <p><i class="act">looking down at the screen on his wrist, then walking out alone to the middle of the yard so the front rows can hear him</i> Message from the Overseers' office, for the people in this yard. <i class="act">reading from the screen</i> "The Council has been informed of the events at Site-<span class="redact" aria-label="redacted">██</span> tonight and has reviewed the working group's channel, the site announcements and the orders given to Epsilon-11. The reform working group consists of Foundation personnel, and the gathering will be handled as an internal grievance. It will not be handled as a defection of the kind that founded the Chaos Insurgency. Acting Director Pryce is relieved of command pending review. Epsilon-11 will hold the yard, detain no personnel, and search the site for the missing. Personnel are not required to return below tomorrow." <i class="act">lowering his wrist</i> Transport is coming from the nearest town in an hour.</p>
+              <p><i class="act">looking down at the screen on his wrist, then walking out alone to the middle of the yard so the front rows can hear him</i> Message from the Overseers' office, for the people in this yard. <i class="act">reading from the screen</i> "The Council has been informed of the events at Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> tonight and has reviewed the working group's channel, the site announcements and the orders given to Epsilon-11. The reform working group consists of Foundation personnel, and the gathering will be handled as an internal grievance. It will not be handled as a defection of the kind that founded the Chaos Insurgency. Acting Director Pryce is relieved of command pending review. Epsilon-11 will hold the yard, detain no personnel, and search the site for the missing. Personnel are not required to return below tomorrow." <i class="act">lowering his wrist</i> Transport is coming from the nearest town in an hour.</p>
             </div>
             <div class="ln" id="c10-s5-l10" data-sp="t">
               <b class="sp">Toma</b>
@@ -5664,7 +5671,7 @@
               <div class="app-frame">
                 <div class="phone" role="group" aria-label="Toma's phone: the Habeas Corpus Act 1679">
                   <div class="ph-screen">
-                    <p class="ph-status"><span class="ph-time">23:12</span><span class="ph-icons"><svg class="ph-sig" viewBox="0 0 16 16" aria-label="Signal, 2 of 4 bars"><path class="ph-off" d="M15 1v14H1z"/><path d="M8 8v7H1z"/></svg><span class="ph-bat" aria-label="Battery 41%"><i style="--b: 41%"></i></span><span>41%</span></span></p>
+                    <p class="ph-status"><span class="ph-time">23:12</span><span class="ph-icons"><svg class="ph-sig" viewBox="0 0 16 16" role="img" aria-label="Signal, 2 of 4 bars"><path class="ph-off" d="M15 1v14H1z"/><path d="M8 8v7H1z"/></svg><span class="ph-bat" role="img" aria-label="Battery 41%"><i style="--b: 41%"></i></span><span>41%</span></span></p>
                     <div class="ph-body">
                       <p class="ph-url"><span aria-hidden="true">⌕</span> habeas corpus act</p>
                       <div class="ph-page">
@@ -5827,7 +5834,7 @@
                         <dt>remote serial</dt>
                         <dd>connected (coil)</dd>
                       </dl>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Status</li>
                         <li role="option" aria-selected="false">Event log</li>
                         <li role="option" aria-selected="false">Restart</li>
@@ -5860,7 +5867,7 @@
                     <div class="cs-body">
                       <p class="cs-title">akv_recall 1.0-rc4 - Restart with parameters</p>
                       <p>Choose a parameter, or type one. The chip restarts when you confirm.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">loglevel=7</li>
                         <li role="option" aria-selected="false">store=ro</li>
                         <li role="option" aria-selected="false">coil_timeout=600</li>
@@ -5980,7 +5987,7 @@
                         <dt>Flagged for deletion</dt>
                         <dd>0</dd>
                       </dl>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Verify store</li>
                         <li role="option" aria-selected="false">Export store over remote serial</li>
                         <li role="option" aria-selected="true" class="cs-sel">Hand back to host (refresh all entries), estimated 4 min</li>
@@ -6009,7 +6016,7 @@
                       <p class="cs-title">AKV Setup Utility - Hand back to host</p>
                       <p class="cs-warn"><b>Warning:</b> this feature is in beta. Entries are returned to the host through the refresh path one at a time. The subject should stay awake and still until it finishes.</p>
                       <p>Wipe and lock the store after all entries are returned?</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Yes, wipe and lock</li>
                         <li role="option" aria-selected="false">No, keep the store</li>
                         <li role="option" aria-selected="false">Cancel</li>
@@ -6040,7 +6047,7 @@
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Hand back to host</p>
                       <p>Returning entries to host: 212 of 1,148</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="--p: 18%"><span></span><b>18%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="--p: 18%"><span></span><b>18%</b></div>
                       <p>Estimated time remaining: 3 min 20 s</p>
                       <p>Then: wipe store, lock store</p>
                     </div>
@@ -6065,7 +6072,7 @@
                       <p class="cs-title">AKV Setup Utility - Hand back to host - paused at 356 of 1,148</p>
                       <p class="cs-warn"><b>Read conflict:</b> entry 357 was opened by the host while it was being returned. The subject should not try to recall memories while they are being handed back.</p>
                       <p>Continue using traditional Unix file semantics? Entries are not locked, a read during the hand-back is allowed, and the last write wins.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Yes, use Unix semantics</li>
                         <li role="option" aria-selected="false">No, wait until the host stops reading</li>
                         <li role="option" aria-selected="false">Cancel hand-back</li>
@@ -6096,7 +6103,7 @@
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Hand back to host - paused at 356 of 1,148</p>
                       <p class="cs-warn"><b>Warning:</b> this is potentially dangerous. The host brain keeps its own copy of each memory. If the subject recalls an entry while it is being returned, the two copies may conflict, and the version written last is the one the subject keeps.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Continue with Unix semantics</li>
                         <li role="option" aria-selected="false">Go back</li>
                       </ol>
@@ -6130,7 +6137,7 @@
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Hand back to host - Unix semantics</p>
                       <p>Returning entries to host: 541 of 1,148</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="--p: 47%"><span></span><b>47%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="--p: 47%"><span></span><b>47%</b></div>
                       <p>Estimated time remaining: 1 min 50 s</p>
                       <p>Then: wipe store, lock store</p>
                     </div>
@@ -6198,7 +6205,7 @@
                         </tbody>
                       </table>
                       <p>Returning entries to host: 703 of 1,148</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="--p: 61%"><span></span><b>61%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="--p: 61%"><span></span><b>61%</b></div>
                     </div>
                   </div>
                   <div class="coil-keys" aria-hidden="true"><span>CTRL</span><span>ALT</span><span class="coil-pw">⏻</span></div>
@@ -6217,7 +6224,7 @@
                       <p class="cs-warn"><b>Harmful memory signature detected</b> in 9 entries</p>
                       <p>0357, 0362, 0398, 0431, 0433, 0520, 0618, 0644, 0702</p>
                       <p>These entries were captured with the affect channel stripped. Returning them to the host may restore the harm. Returning them might be dangerous.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Return stripped (affect channel stays removed)</li>
                         <li role="option" aria-selected="false">Skip flagged entries (wiped with the store)</li>
                         <li role="option" aria-selected="false">Return as captured</li>
@@ -6260,7 +6267,7 @@
                     <div class="cs-body">
                       <p class="cs-title">Confirm - Return stripped</p>
                       <p>Return 9 flagged entries with the affect channel removed? Under Unix semantics the host copies will be overwritten by the returned versions. This cannot be undone.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Confirm</li>
                         <li role="option" aria-selected="false">Back</li>
                       </ol>
@@ -6290,7 +6297,7 @@
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Hand back to host - Unix semantics</p>
                       <p>Returning entries to host: 1,148 of 1,148</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
                       <dl class="cs-kv">
                         <dt>Returned</dt>
                         <dd>1,139 as captured, 9 stripped</dd>
@@ -6338,7 +6345,7 @@
                         <dd>14</dd>
                       </dl>
                       <p>Marker check: checks every write site for amnestic_mark and clears what it finds. Last check: never.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Standard check (write sites only)</li>
                         <li role="option" aria-selected="false">Thorough check (write sites and surrounding tissue)</li>
                         <li role="option" aria-selected="false">Back</li>
@@ -6368,7 +6375,7 @@
                   <div class="coil-screen cs-bios" role="group" aria-label="Thorough marker check">
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Sensors - Marker check (thorough)</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
                       <dl class="cs-kv">
                         <dt>Write sites checked</dt>
                         <dd>14</dd>
@@ -6378,7 +6385,7 @@
                         <dd>6 sites, trace amounts</dd>
                       </dl>
                       <p>How should the marker be cleared?</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Unbind the ends (sulfur and phosphorus groups released, core left for the body)</li>
                         <li role="option" aria-selected="false">Destroy the substance entirely</li>
                         <li role="option" aria-selected="false">Back</li>
@@ -6413,7 +6420,7 @@
                     <div class="cs-body">
                       <p class="cs-title">AKV Setup Utility - Sensors - Clear marker</p>
                       <p>Marking amnestic_mark at 6 sites for immune clearance through TX0 and TX1.</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="--p: 100%"><span></span><b>100%</b></div>
                       <dl class="cs-kv">
                         <dt>Sites signaled</dt>
                         <dd>6 of 6</dd>
@@ -6459,7 +6466,7 @@
                         <dt>amnestic_mark</dt>
                         <dd>0x00</dd>
                       </dl>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Restart in default mode</li>
                         <li role="option" aria-selected="true" class="cs-sel">Power off (synchronous unmount, then cut supply)</li>
                         <li role="option" aria-selected="false">Back</li>
@@ -6497,7 +6504,7 @@
                         <dt>Immune response at 6 marked sites</dt>
                         <dd>checking</dd>
                       </dl>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="--p: 66%"><span></span><b>66%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="--p: 66%"><span></span><b>66%</b></div>
                       <dl class="cs-kv">
                         <dt>Cleared</dt>
                         <dd>4 of 6</dd>
@@ -6528,7 +6535,7 @@
                       <p class="cs-title">AKV Setup Utility - Power off</p>
                       <p class="cs-warn"><b>Immune response stalled</b> at 2 of 6 marked sites</p>
                       <p>This is common in early users: the immune system has not yet learned to recognize amnestic_mark, and clearance can stall after the first signal.</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Signal again</li>
                         <li role="option" aria-selected="false">Wait and recheck in 10 min</li>
                         <li role="option" aria-selected="false">Power off anyway (marker remains at 2 sites)</li>
@@ -6815,7 +6822,7 @@
                       <p class="cs-title">AKV Error Recovery - akv_recall 1.0-rc4</p>
                       <p>akv_recall did not shut down successfully. If a task stopped responding, or the system restarted to protect the host, you may be able to recover by choosing one of the options below.</p>
                       <p>Error state saved: crash_0001 (store lock, sync_unmount, PID 412)</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="false">Safe mode</li>
                         <li role="option" aria-selected="false">Safe mode with serial console</li>
                         <li role="option" aria-selected="false">Last known good configuration</li>
@@ -6848,7 +6855,7 @@
                     <div class="cs-body">
                       <p class="cs-title">Last known good configuration</p>
                       <p>Configurations recorded as good, newest first:</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">23:31:02 (setup mode, store wiped and locked, amnestic_mark 0x00, before power off)</li>
                         <li role="option" aria-selected="false">23:27:45 (setup mode, store wiped and locked, before marker check)</li>
                         <li role="option" aria-selected="false">23:21:16 (setup mode, store unlocked, 1148 entries, before hand-back)</li>
@@ -6894,7 +6901,7 @@
                       </dl>
                       <p class="cs-yesno"><span>Start in Program Manager?</span><span class="cs-pair"><span class="cs-btn cs-sel">Yes</span><span class="cs-btn">No</span></span></p>
                       <p class="cs-yesno"><span>When a task stalls, let the OOM handler end it and release the locks it holds?</span><span class="cs-pair"><span class="cs-btn cs-sel">Yes</span><span class="cs-btn">No</span></span></p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Start with this configuration</li>
                         <li role="option" aria-selected="false">Back</li>
                       </ol>
@@ -6926,13 +6933,13 @@
                   <div class="coil-screen cs-recovery" role="group" aria-label="Starting configuration">
                     <div class="cs-body">
                       <p class="cs-title">Starting configuration 23:31:02</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--p: 25%"><span></span><b>25%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--p: 25%"><span></span><b>25%</b></div>
                       <p>This configuration contains a running process that cannot be started automatically:</p>
                       <ul class="cs-list">
                         <li>sync_unmount (power off requested at 23:31:02)</li>
                       </ul>
                       <p>Continue with this process off?</p>
-                      <ol class="cs-opts" role="listbox">
+                      <ol class="cs-opts" role="listbox" aria-label="Menu">
                         <li role="option" aria-selected="true" class="cs-sel">Continue with the process off</li>
                         <li role="option" aria-selected="false">Back</li>
                       </ol>
@@ -6961,7 +6968,7 @@
                   <div class="coil-screen cs-recovery" role="group" aria-label="Start error">
                     <div class="cs-body">
                       <p class="cs-title">Starting configuration 23:31:02</p>
-                      <div class="cs-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--p: 25%"><span></span><b>25%</b></div>
+                      <div class="cs-bar" role="progressbar" aria-label="Progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="--p: 25%"><span></span><b>25%</b></div>
                       <p>Error: process sync_unmount cannot be turned off in this configuration.</p>
                       <p>Start in safe mode?</p>
                       <p class="cs-btns"><span class="cs-btn cs-sel">Yes</span><span class="cs-btn">No</span></p>
@@ -7142,7 +7149,7 @@
                       <table class="cs-table">
                         <thead>
                           <tr>
-                            <th scope="col"></th>
+                            <th scope="col"><span class="vh">File</span></th>
                             <th scope="col">USER</th>
                             <th scope="col">PID</th>
                             <th scope="col">ACCESS</th>
@@ -7624,7 +7631,7 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>CALCULATOR / POLAR GRAPH</span></summary>
               <div class="app-frame">
-                <div class="calc" role="group" aria-label="The graph of r = sin(4θ) from 0 to 2.5" data-mode="POLAR" data-graph="-2 2 -1.333333 1.333333" data-polar="sin(4θ)" data-tmin="0" data-tmax="2.5" data-tstep="0.05">
+                <div class="calc" role="group" aria-label="The graph of r equals sine of 4 theta, from 0 to 2.5" data-mode="POLAR" data-graph="-2 2 -1.333333 1.333333" data-polar="sin(4θ)" data-tmin="0" data-tmax="2.5" data-tstep="0.05">
                   <p class="calc-desc">Polar graph of r equals sine 4 theta, theta from 0 to 2.5: three petals and the start of a fourth, drawn from the center</p>
                 </div>
               </div>
@@ -8074,7 +8081,7 @@
               <div class="app-frame">
                 <div class="phone" role="group" aria-label="Toma's phone: wormhole theories">
                   <div class="ph-screen">
-                    <p class="ph-status"><span class="ph-time">10:12</span><span class="ph-icons"><svg class="ph-sig" viewBox="0 0 16 16" aria-label="Signal, 1 of 4 bars"><path class="ph-off" d="M15 1v14H1z"/><path d="M4.5 11.5v3.5H1z"/></svg><span class="ph-bat" aria-label="Battery 63%"><i style="--b: 63%"></i></span><span>63%</span></span></p>
+                    <p class="ph-status"><span class="ph-time">10:12</span><span class="ph-icons"><svg class="ph-sig" viewBox="0 0 16 16" role="img" aria-label="Signal, 1 of 4 bars"><path class="ph-off" d="M15 1v14H1z"/><path d="M4.5 11.5v3.5H1z"/></svg><span class="ph-bat" role="img" aria-label="Battery 63%"><i style="--b: 63%"></i></span><span>63%</span></span></p>
                     <div class="ph-body">
                       <p class="ph-url"><span aria-hidden="true">⌕</span> wormhole theories</p>
                       <div class="ph-page">
@@ -8168,11 +8175,11 @@
             <details class="app app-print" open>
               <summary class="app-cap"><span>NOTICE / OVERSEER COUNCIL, REVIEW OF CONTAINMENT</span></summary>
               <div class="app-frame">
-                <blockquote class="doc doc-mail doc-notice" aria-label="Overseer Council notice: review of containment">
+                <blockquote class="doc doc-mail doc-notice" role="group" aria-label="Overseer Council notice: review of containment">
                   <p class="nt-h">Overseer Council: Review of Containment</p>
                   <dl class="ml-head">
                     <dt>Subject</dt>
-                    <dd>SCP-<span class="redact" aria-label="redacted">████</span></dd>
+                    <dd>SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span></dd>
                     <dt>Status</dt>
                     <dd>Euclid, held at a temporary site</dd>
                     <dt>Next review</dt>

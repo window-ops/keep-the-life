@@ -16,10 +16,12 @@
     <script src="../js/base/core.js" defer></script>
     <script src="../js/base/theme.js" defer></script>
     <script src="../js/base/motion.js" defer></script>
+    <script src="../js/base/redact.js" defer></script>
     <script src="../js/text/pretty.js" defer></script>
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
+    <script src="../js/base/scrollfocus.js" defer></script>
   </head>
   <body class="cx-page pretty">
     <header class="mast cx-mast">
@@ -46,6 +48,11 @@
           <div class="tool-group" role="group" aria-labelledby="sp-label">
             <span class="tg-label" id="sp-label">Scroll speed</span>
             <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="rd-label">
+            <span class="tg-label" id="rd-label">Redactions</span>
+            <button type="button" class="tool" data-redact-set="redacted" aria-pressed="true">Redacted</button><button type="button" class="tool" data-redact-set="static" aria-pressed="false">Static</button>
           </div>
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
@@ -153,7 +160,7 @@
       <h2 id="cl-story">In the story</h2>
       <section aria-labelledby="cl-story">
         <ul class="cx-conv">
-          <li><strong>Toma:</strong> held under SCP-<span class="redact" aria-label="redacted">████</span>, downgraded from Keter to Euclid once regular interviews began. His device is under review for Explained, which would end his status as an anomaly and make him staff who can never be released. His file discusses Class C and Class B for that case (Addendum H on the <a href="file.html">file page</a>).</li>
+          <li><strong>Toma:</strong> held under SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>, downgraded from Keter to Euclid once regular interviews began. His device is under review for Explained, which would end his status as an anomaly and make him staff who can never be released. His file discusses Class C and Class B for that case (Addendum H on the <a href="file.html">file page</a>).</li>
           <li><strong>The implant:</strong> his file allows it for E-Class personnel and rules it out for D-Class personnel, since D-Class receive amnestics at the end of their term.</li>
           <li><strong>SCP-239:</strong> classed Keter while she was kept asleep, and reclassified as Euclid by the Overseer Council in chapter 11.</li>
           <li><strong>Containment and danger:</strong> Kellerman says in chapter 2 that object classes only measure how hard something is to keep in a room, and say nothing about who is in it. The ACS adds the Risk Class, which measures harm to a person.</li>

@@ -55,6 +55,26 @@ kbd {
   letter-spacing: -0.05em;
   user-select: none;
 }
+/* with the Redactions setting on static, a bar plays a burst of static
+   when it is clicked or tapped */
+.redact-static .redact {
+  cursor: pointer;
+}
+
+/* text for screen readers only. It stays inline: positioned absolutely, the
+   browser would report it as a block, and NVDA starts a new line at every
+   block, which broke the reading at each redaction. A box one pixel wide,
+   cancelled by its margin, keeps it in the line without moving the text */
+.vh {
+  display: inline-block;
+  width: var(--l-1px);
+  height: var(--l-1px);
+  margin-right: calc(var(--l-1px) * -1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  vertical-align: baseline;
+}
 
 /* translation of a foreign phrase, inline after it */
 .tr {

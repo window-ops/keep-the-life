@@ -56,7 +56,7 @@
           s.actLens.push(w);
         });
         var speech = p.cloneNode(true);
-        Array.prototype.forEach.call(speech.querySelectorAll("i.act, .tr"), function (el) { el.parentNode.removeChild(el); });
+        Array.prototype.forEach.call(speech.querySelectorAll("i.act, .tr, .vh"), function (el) { el.parentNode.removeChild(el); });
         var text = speech.textContent;
         var w = words(text);
         s.words += w; total.words += w;

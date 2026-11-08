@@ -90,26 +90,31 @@
   margin: 0;
 }
 
+/* the toolbar: Ghidra's buttons as icons from svg/ghidra/, in groups split
+   by a thin rule, a small arrow beside the buttons that open a list */
 .g-tools {
   display: flex;
+  align-items: center;
   gap: var(--l-4px);
   padding: var(--l-4px) var(--l-0-6rem);
   border-bottom: var(--l-1px) solid var(--g-line);
 }
 .g-tb {
+  display: block;
+  flex: none;
   width: var(--l-16px);
   height: var(--l-16px);
-  border-radius: var(--l-2px);
-  background: #55595c;
 }
-.g-tb:nth-child(3n) {
-  background: #5677a8;
+.g-tb.g-tdd {
+  width: auto;
+  margin-left: calc(var(--l-3px) * -1);
 }
-.g-tb:nth-child(5n) {
-  background: #5c8a52;
-}
-.g-tb:nth-child(7n) {
-  background: #a8763e;
+.g-tsep {
+  flex: none;
+  width: var(--l-1px);
+  height: var(--l-16px);
+  margin-inline: var(--l-2px);
+  background: var(--g-line);
 }
 
 .g-main {
@@ -301,7 +306,7 @@
 }
 
 .gl-ban {
-  color: #6d6d6d;
+  color: #898989;
   padding-left: 4.2ch;
 }
 .gl-sig {
@@ -318,7 +323,7 @@
   min-width: 26ch;
 }
 .g-xref {
-  color: #7d8790;
+  color: #808a92;
 }
 .gl-lab {
   padding-left: 13ch;
@@ -379,6 +384,14 @@
 .gl-ins.sel {
   background: #3b4a2c;
 }
+/* the address and the mnemonic grow lighter on the selected line, so they
+   keep their contrast against its green */
+.gl-ins.sel .g-a {
+  color: #b5b5b5;
+}
+.gl-ins.sel .g-m {
+  color: #90b4ff;
+}
 .g-lcode:focus-visible {
   outline: var(--l-1px) solid #a5c26b;
   outline-offset: -1px;
@@ -392,12 +405,15 @@
 .gd.sel {
   background: #3a3d2a;
 }
+.gd.sel .gd-n {
+  color: #a4a7aa;
+}
 .gd-n {
   flex: none;
   width: 3.4ch;
   padding-right: 0.8ch;
   text-align: right;
-  color: #606366;
+  color: #85898c;
   border-right: var(--l-1px) solid #333;
   margin-right: 0.8ch;
 }
@@ -581,7 +597,7 @@
   color: var(--white);
 }
 .o-side li.none {
-  color: #6f6f6f;
+  color: #818181;
   font-style: italic;
 }
 .o-set {
@@ -613,7 +629,7 @@
   border: var(--l-1px) solid var(--ollama-chip);
 }
 .o-input {
-  color: var(--ollama-muted);
+  color: #989898;
   padding-bottom: var(--l-0-6rem);
 }
 .o-row {
@@ -844,7 +860,7 @@
 
 .gn {
   background-color: #7d8ce3;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2252%22%20height%3D%2290%22%20viewBox%3D%220%200%2052%2090%22%3E%3Cpath%20d%3D%22M0%200L-26%20-15L0%20-30L26%20-15z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M0%200L-26%20-15L-26%2015L0%2030z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M0%200L26%20-15L26%2015L0%2030z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M52%200L26%20-15L52%20-30L78%20-15z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M52%200L26%20-15L26%2015L52%2030z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M52%200L78%20-15L78%2015L52%2030z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M26%20-45L0%20-60L26%20-75L52%20-60z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M26%20-45L0%20-60L0%20-30L26%20-15z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M26%20-45L52%20-60L52%20-30L26%20-15z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M26%2045L0%2030L26%2015L52%2030z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M26%2045L0%2030L0%2060L26%2075z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M26%2045L52%2030L52%2060L26%2075z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M-26%2045L-52%2030L-26%2015L0%2030z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M-26%2045L-52%2030L-52%2060L-26%2075z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M-26%2045L0%2030L0%2060L-26%2075z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M78%2045L52%2030L78%2015L104%2030z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M78%2045L52%2030L52%2060L78%2075z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M78%2045L104%2030L104%2060L78%2075z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M0%2090L-26%2075L0%2060L26%2075z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M0%2090L-26%2075L-26%20105L0%20120z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M0%2090L26%2075L26%20105L0%20120z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M52%2090L26%2075L52%2060L78%2075z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M52%2090L26%2075L26%20105L52%20120z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M52%2090L78%2075L78%20105L52%20120z%22%20fill%3D%22%235264d2%22%2F%3E%3Cpath%20d%3D%22M26%20135L0%20120L26%20105L52%20120z%22%20fill%3D%22%23c3c8f2%22%2F%3E%3Cpath%20d%3D%22M26%20135L0%20120L0%20150L26%20165z%22%20fill%3D%22%237d8ce3%22%2F%3E%3Cpath%20d%3D%22M26%20135L52%20120L52%20150L26%20165z%22%20fill%3D%22%235264d2%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("../../svg/gnome/wallpaper.svg");
   background-size: 52px 90px;
 }
 
@@ -1098,7 +1114,7 @@
   padding-right: 0.8ch;
   margin-right: 1ch;
   text-align: right;
-  color: var(--dim-gray);
+  color: #757575;
 }
 .ge-l:first-child {
   background: #f0f3f9;

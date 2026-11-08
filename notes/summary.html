@@ -16,10 +16,12 @@
     <script src="../js/base/core.js" defer></script>
     <script src="../js/base/theme.js" defer></script>
     <script src="../js/base/motion.js" defer></script>
+    <script src="../js/base/redact.js" defer></script>
     <script src="../js/text/pretty.js" defer></script>
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
+    <script src="../js/base/scrollfocus.js" defer></script>
   </head>
   <body class="cx-page pretty">
     <header class="mast cx-mast">
@@ -48,6 +50,11 @@
             <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
           </div>
           <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="rd-label">
+            <span class="tg-label" id="rd-label">Redactions</span>
+            <button type="button" class="tool" data-redact-set="redacted" aria-pressed="true">Redacted</button><button type="button" class="tool" data-redact-set="static" aria-pressed="false">Static</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
             <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
@@ -64,16 +71,16 @@
       <section aria-labelledby="sm-head">
         <ol class="sm-list">
           <li class="sm-item" id="sm-c1">
-            <img class="sm-art" src="../svg/c1.svg" width="240" height="160" alt="A monitor full of code beside a flag struck through" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c1.svg" width="240" height="160" alt="A monitor full of code beside a flag struck through" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">1</span><a href="../index.html#c1">Nine days</a></h3>
               <p class="sm-when">Saturday, 03:10, the humanoid wing</p>
-              <p>At ten past three on Saturday morning, Toma has been at his screen for almost a full day, taking apart the firmware of the implant he built at AKV Solutions. The chip retains what amnestics erase, and for that the Foundation contains him as SCP-<span class="redact" aria-label="redacted">████</span>. Dr. Iris Kellerman, twenty-eight and the newest researcher on his file, knocks on the open door with a tray and pulls up a chair.</p>
+              <p>At ten past three on Saturday morning, Toma has been at his screen for almost a full day, taking apart the firmware of the implant he built at AKV Solutions. The chip retains what amnestics erase, and for that the Foundation contains him as SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>. Dr. Iris Kellerman, twenty-eight and the newest researcher on his file, knocks on the open door with a tray and pulls up a chair.</p>
               <p>He shows her the fault he has been hunting. Relearning a memory above a similarity of 0.72 clears its delete flag with no check on where the flag came from, so a memory seems to survive a Class B dose. Kellerman records it as a design omission. The retrieval code drops the emotional channel and keeps a pointer back to it. Toma also tells her how he got into the canteen terminal during the June breach and shows her Peachy, a local model he made from SCP-079's own port. In a virtual machine he kept the original weights and UPLOAD.TXT, a note from 79. Kellerman says the file belongs to 79's containment team and promises a contact request in the morning.</p>
             </div>
           </li>
           <li class="sm-item" id="sm-c2">
-            <img class="sm-art" src="../svg/c2.svg" width="240" height="160" alt="An old television screen beside a stopwatch at twenty-three minutes" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c2.svg" width="240" height="160" alt="An old television screen beside a stopwatch at twenty-three minutes" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">2</span><a href="../index.html#c2">Twenty-three minutes</a></h3>
               <p class="sm-when">Monday afternoon, the research wing</p>
@@ -82,7 +89,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c3">
-            <img class="sm-art" src="../svg/c3.svg" width="240" height="160" alt="A red amaranth growing in a hydroponics tray" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c3.svg" width="240" height="160" alt="A red amaranth growing in a hydroponics tray" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">3</span><a href="../index.html#c3">Amaranth</a></h3>
               <p class="sm-when">Tuesday morning, the canteen and the hydroponics bay</p>
@@ -91,7 +98,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c4">
-            <img class="sm-art" src="../svg/c4.svg" width="240" height="160" alt="A microphone facing a wall speaker, two sheets of paper and the dashed outline of a school bag" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c4.svg" width="240" height="160" alt="A microphone facing a wall speaker, two sheets of paper and the dashed outline of a school bag" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">4</span><a href="../index.html#c4">Sigurrós</a></h3>
               <p class="sm-when">Eight days later, the lowest level and the research wing</p>
@@ -100,7 +107,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c5">
-            <img class="sm-art" src="../svg/c5.svg" width="240" height="160" alt="The conference room 3 whiteboard: black guidelines and a row of dots on the left, Cicero in blue and the modern authors in red on the right, with arrows to the lines they support" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c5.svg" width="240" height="160" alt="The conference room 3 whiteboard: black guidelines and a row of dots on the left, Cicero in blue and the modern authors in red on the right, with arrows to the lines they support" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">5</span><a href="../index.html#c5">Project Cicero</a></h3>
               <p class="sm-when">Twelve days later, conference room 3</p>
@@ -109,7 +116,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c6">
-            <img class="sm-art" src="../svg/c6.svg" width="240" height="160" alt="Six video call windows under a wall camera" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c6.svg" width="240" height="160" alt="Six video call windows under a wall camera" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">6</span><a href="../index.html#c6">Hooligans</a></h3>
               <p class="sm-when">Ten weeks later, conference room 3</p>
@@ -118,7 +125,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c7">
-            <img class="sm-art" src="../svg/c7.svg" width="240" height="160" alt="A flat coil beside a small circuit board, and two ticked boxes" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c7.svg" width="240" height="160" alt="A flat coil beside a small circuit board, and two ticked boxes" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">7</span><a href="../index.html#c7">Both ways</a></h3>
               <p class="sm-when">The same afternoon and evening, conference room 3, the corridor and the cell</p>
@@ -127,7 +134,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c8">
-            <img class="sm-art" src="../svg/c8.svg" width="240" height="160" alt="Two rocks in the sea under a night sky with a small spiral galaxy" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c8.svg" width="240" height="160" alt="Two rocks in the sea under a night sky with a small spiral galaxy" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">8</span><a href="../index.html#c8">Old light</a></h3>
               <p class="sm-when">The next morning, the cell and the lowest level</p>
@@ -136,7 +143,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c9">
-            <img class="sm-art" src="../svg/c9.svg" width="240" height="160" alt="A sealed envelope signed across the flap, with shredded strips under it" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c9.svg" width="240" height="160" alt="A sealed envelope signed across the flap, with shredded strips under it" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">9</span><a href="../index.html#c9">Screened</a></h3>
               <p class="sm-when">Four days later, the humanoid wing</p>
@@ -145,7 +152,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c10">
-            <img class="sm-art" src="../svg/c10.svg" width="240" height="160" alt="Rows of seated people under a yard light, facing a line of operatives" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c10.svg" width="240" height="160" alt="Rows of seated people under a yard light, facing a line of operatives" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">10</span><a href="../index.html#c10">The yard</a></h3>
               <p class="sm-when">Three weeks later, the site and its loading yard</p>
@@ -154,7 +161,7 @@
             </div>
           </li>
           <li class="sm-item" id="sm-c11">
-            <img class="sm-art" src="../svg/c11.svg" width="240" height="160" alt="A girl lying in the snow with her arms spread, seen from above, beside fixed binoculars, a bench and two huts under the mountains" loading="lazy">
+            <img class="sm-art" src="../svg/chapters/c11.svg" width="240" height="160" alt="A girl lying in the snow with her arms spread, seen from above, beside fixed binoculars, a bench and two huts under the mountains" loading="lazy">
             <div class="sm-text">
               <h3><span class="sm-n">11</span><a href="../index.html#c11">Campi Flegrei</a></h3>
               <p class="sm-when">A few weeks later, a camp in the mountains</p>

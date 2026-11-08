@@ -178,6 +178,37 @@
     }
   }
 
+  /* ------------------------------------------------------------ spoken */
+
+  /* the display's lines as a screen reader should say them: a screen reader
+     reads the calculator's signs by their shapes, so 1 RAD>DEG would come out
+     as "1 rad greater deg". Each sign the story uses becomes its words */
+  var UNITS = { RAD: ["radian", "radians"], DEG: ["degree", "degrees"], GRAD: ["grad", "grads"] };
+  var MODES = { RAD: "radians", DEG: "degrees", GRAD: "grads", CAS: "computer algebra", POLAR: "polar", GRAPH: "graph", CATALOG: "catalog" };
+  var FUNCS = { sin: "sine", cos: "cosine", tan: "tangent", sqrt: "square root", ln: "natural log", abs: "absolute value" };
+  function unit(u, n) { var w = UNITS[u]; return w ? w[n === "1" ? 0 : 1] : u; }
+  function power(p) { return p === "2" ? " squared" : p === "3" ? " cubed" : " to the power of " + p; }
+  function spoken(s) {
+    var m;
+    /* a conversion: 1 RAD>DEG */
+    if ((m = /^([0-9.]+) ([A-Z]+)>([A-Z]+)$/.exec(s))) return m[1] + " " + unit(m[2], m[1]) + " to " + unit(m[3], "2");
+    /* an integral: ∫(x^2,x) */
+    if ((m = /^∫\((.+),([a-z])\)$/.exec(s))) return "integral of " + spoken(m[1]) + ", with respect to " + m[2];
+    return s
+      .replace(/([0-9.]+)E(-?[0-9]+)/g, function (a, b, e) { return b.replace(/\.$/, "") + " times 10" + power(e); })
+      .replace(/\^\(?([0-9a-zθ]+)\)?/g, function (a, p) { return power(p); })
+      .replace(/([a-z]+)\(([^()]*)\)/g, function (a, f, x) { return (FUNCS[f] || f) + " of " + x; })
+      .replace(/\//g, " over ")
+      .replace(/=/g, " equals ")
+      .replace(/([0-9])θ/g, "$1 θ")
+      .replace(/θ([a-z])/g, "θ $1")
+      .replace(/θ/g, "theta")
+      .replace(/\($/, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  K.calcSpoken = spoken;
+
   /* ------------------------------------------------------------ the screen */
 
   var uid = 0;
@@ -228,13 +259,13 @@
       svg.style.setProperty("--calc-row", LH + "px");
       svg.appendChild(svgEl("path", { fill: "url(#" + dotId + ")", d: toPath(txt) }));
       svg.appendChild(g);
-      label.push("The catalog, " + items.length + " items, starting at " + items.slice(0, 3).join(", "));
+      label.push(items.length + " items, starting at " + items.slice(0, 3).map(spoken).join(", "));
     } else {
       var lines = calc.querySelectorAll(".calc-in, .calc-out");
       Array.prototype.forEach.call(lines, function (p, k) {
         var s = p.textContent.trim();
         if (p.classList.contains("calc-out")) right(txt, s, k); else left(txt, s, k);
-        label.push(s);
+        label.push(spoken(s));
       });
       if (mode) right(txt, mode, 0);
       if (calc.hasAttribute("data-graph")) {
@@ -246,10 +277,11 @@
       svg.appendChild(svgEl("path", { fill: "url(#" + dotId + ")", d: toPath(txt) }));
       var desc = calc.querySelector(".calc-desc");
       if (desc) label = [desc.textContent.trim()];
-      if (mode) label.push("Mode " + mode);
+      if (mode) label.push("Mode " + (MODES[mode] || mode));
     }
-    var name = calc.getAttribute("aria-label");
-    svg.setAttribute("aria-label", (name && !desc && !list ? name + ". " : "") + label.join(", ").replace(/, Mode/, ". Mode"));
+    /* the group around the calculator already says what the screen is, so
+       the display says only what it shows */
+    svg.setAttribute("aria-label", label.join(", ").replace(/, Mode/, ". Mode"));
     return svg;
   }
 
