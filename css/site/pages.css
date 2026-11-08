@@ -1,4 +1,4 @@
-/* Keep the Life, site styles: the pages in notes/: concept, summary, making and critics. */
+/* Keep the Life, site styles: the pages in notes/: concept, summary, making, critics, file and classes. */
 
 /* the concept page: the premise, the ideas, and the SCP Wiki articles the
    story draws on. It uses the story's measures: the same page width, the
@@ -293,4 +293,443 @@
 .cx .mk-compare-note {
   font-size: 1rem;
   color: var(--mute);
+}
+
+/* the file page: the field lines of the article sit close together, and a
+   quoted decision gets an accent edge like the making page's notice */
+.cx .fl-field {
+  margin-block: var(--l-0-3rem);
+}
+.fl-quote {
+  margin: var(--s) 0;
+  padding-left: var(--l-1-1rem);
+  border-left: var(--l-2px) solid var(--rule-2);
+}
+.cx .fl-quote p {
+  margin-block: var(--l-0-5rem);
+}
+.cx .fl-quote > :first-child {
+  margin-top: 0;
+}
+.cx .fl-quote > :last-child {
+  margin-bottom: 0;
+}
+
+/* the file page's attached document: a bordered sheet set apart from the
+   addenda, with its title in the mono face of the section headings */
+.fl-doc {
+  margin-block: var(--s);
+  padding: var(--s);
+  border: var(--l-1px) solid var(--rule-2);
+}
+.cx .fl-doc-title {
+  margin-block: 0 var(--s);
+  font: 600 var(--l-0-82rem) / 1.4 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cx .fl-doc-points li + li {
+  margin-top: var(--l-0-5rem);
+}
+.cx .fl-doc > :last-child {
+  margin-bottom: 0;
+}
+
+/* the date under each addendum heading, in the small mono face of the
+   section headings */
+.fl-addhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 var(--s);
+  margin-block: var(--s);
+}
+.cx .fl-addhead h3,
+.cx .fl-date {
+  margin: 0;
+}
+.cx .fl-date {
+  margin-left: auto;
+  font: 500 var(--l-0-78rem) / 1.4 var(--mono);
+  color: var(--mute);
+}
+
+/* the file page's header switch: Traditional or ACS, on the heading line;
+   without scripts there is only the traditional header */
+.fl-headrow {
+  position: relative;
+}
+/* the switch sits on the heading's line, over the right end of its rule,
+   and takes no height from it */
+.fl-format {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: calc(var(--l-0-75rem) * -1) 0 0 0 var(--bg);
+}
+.no-js .fl-format {
+  display: none;
+}
+.fl-classic[hidden],
+.acs[hidden] {
+  display: none;
+}
+
+/* the Anomaly Classification System bar: the item and its clearance level
+   on top, then the four classes, each marked in the ACS colors (green,
+   blue, yellow, orange, red for levels 1 to 5, gray for none); the text
+   stays in the page's ink so it reads in both themes */
+.acs {
+  --acs-0: #424248;
+  --acs-1: #009f6b;
+  --acs-2: #0087bd;
+  --acs-3: #ffd300;
+  --acs-4: #ff6d00;
+  --acs-5: #c40233;
+  margin-block: var(--s);
+  border: var(--l-1px) solid var(--rule-2);
+  font-family: var(--mono);
+}
+.acs-c0 { --acs: var(--acs-0); }
+.acs-c1 { --acs: var(--acs-1); }
+.acs-c2 { --acs: var(--acs-2); }
+.acs-c3 { --acs: var(--acs-3); }
+.acs-c4 { --acs: var(--acs-4); }
+.acs-c5 { --acs: var(--acs-5); }
+.acs-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  border-bottom: var(--l-1px) solid var(--rule-2);
+}
+.cx .acs-item {
+  margin: 0;
+  padding: var(--l-0-75rem) var(--s);
+  font: 600 1.1rem / 1.3 var(--mono);
+  color: var(--ink);
+  align-self: center;
+}
+.acs-lab {
+  display: block;
+  font: 600 var(--l-0-72rem) / 1.3 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.acs-item .acs-lab {
+  display: inline;
+  font-size: var(--l-0-85rem);
+}
+.acs-val {
+  font: 600 1rem / 1.4 var(--mono);
+  color: var(--ink);
+}
+.acs-level {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: var(--l-0-2rem) var(--l-0-75rem);
+  padding: var(--l-0-75rem) var(--s);
+  border-left: var(--l-1px) solid var(--rule-2);
+}
+.acs-lev-n {
+  font: 600 1.1rem / 1.2 var(--mono);
+  color: var(--ink);
+}
+.acs-lev-name {
+  font: 600 var(--l-0-72rem) / 1.2 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.acs-bars {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--l-3px);
+}
+.acs-bars i {
+  width: var(--l-1-1rem);
+  height: var(--l-0-35rem);
+  border: var(--l-1px) solid var(--rule-2);
+}
+.acs-bars i.on {
+  background: var(--acs);
+  border-color: var(--acs);
+}
+.acs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+}
+.acs-cell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0 var(--l-0-75rem);
+  padding: var(--l-0-75rem) var(--s);
+  border-left: var(--l-3px) solid var(--acs);
+  box-shadow: inset 0 calc(var(--l-1px) * -1) 0 var(--rule);
+}
+.acs-dia {
+  grid-row: 1 / 3;
+  width: var(--l-0-75rem);
+  height: var(--l-0-75rem);
+  background: var(--acs);
+  transform: rotate(45deg);
+}
+.acs-cell .acs-lab,
+.acs-cell .acs-val {
+  grid-column: 2;
+}
+.cx .acs-note {
+  margin: 0;
+  padding: var(--l-0-5rem) var(--s);
+  font: 500 var(--l-0-78rem) / 1.4 var(--mono);
+  color: var(--mute);
+}
+
+/* under the ACS bar: a folded list of what each value means */
+.acs-why {
+  border-top: var(--l-1px) solid var(--rule);
+  padding: var(--l-0-5rem) var(--s);
+}
+.acs-why summary {
+  cursor: pointer;
+  font: 600 var(--l-0-72rem) / 1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.acs-why summary:hover {
+  color: var(--ink);
+}
+.cx .acs-why .cx-conv,
+.cx .acs-why p {
+  font-family: var(--serif);
+  margin-block: var(--l-0-5rem);
+}
+.cx .acs-why > :last-child {
+  margin-bottom: var(--l-0-25rem);
+}
+
+/* the file page's functional diagram: drawn in the page's own ink, read
+   paths in Toma's teal and written paths in Kellerman's orange; on narrow
+   screens the drawing keeps a legible size and scrolls sideways in its box */
+.fd-wrap {
+  margin-block: var(--s);
+  overflow-x: auto;
+}
+.fd {
+  display: block;
+  width: 100%;
+  min-width: 40rem;
+  height: auto;
+}
+.fd-box {
+  fill: var(--bg-2);
+  stroke: var(--rule-2);
+  stroke-width: 1;
+}
+.fd-tissue {
+  fill: var(--sp-t-bg);
+}
+.fd-store {
+  fill: var(--panel);
+}
+.fd-ctl,
+.fd-out {
+  fill: var(--panel);
+}
+.fd-chip {
+  fill: none;
+  stroke: var(--rule-2);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 4;
+}
+.fd-h {
+  font: 600 11px var(--mono);
+  letter-spacing: 0.12em;
+  fill: var(--mute);
+}
+.fd-t {
+  font: 600 12.5px var(--sans);
+  fill: var(--ink);
+}
+.fd-s {
+  font: 400 11px var(--sans);
+  fill: var(--ink-2);
+  white-space: pre;
+}
+.fd-ln {
+  fill: none;
+  stroke-width: 1.6;
+}
+.fd-read { stroke: var(--sp-t); }
+.fd-write { stroke: var(--sp-k); }
+.fd-ln.fd-ctl { stroke: var(--mute); fill: none; stroke-dasharray: 4 3; }
+.fd-hr { fill: var(--sp-t); }
+.fd-hw { fill: var(--sp-k); }
+.fd-hc { fill: var(--mute); }
+
+/* the file page's sketches of the board and the bench kit: pencil lines in
+   the page's ink on the document sheet, callouts in the sans face */
+.pc {
+  display: block;
+  width: 100%;
+  min-width: 40rem;
+  height: auto;
+}
+.pc-h {
+  font: 600 11px var(--mono);
+  letter-spacing: 0.12em;
+  fill: var(--mute);
+}
+.pc-board {
+  fill: var(--bg-2);
+  stroke: var(--ink-2);
+  stroke-width: 1.2;
+}
+.pc-div {
+  stroke: var(--rule-2);
+  stroke-dasharray: 3 3;
+}
+.pc-pad,
+.pc-sw,
+.pc-nand,
+.pc-pin {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+.pc-swk,
+.pc-cl {
+  fill: var(--ink-2);
+}
+.pc-lead {
+  fill: none;
+  stroke: var(--sp-t);
+  stroke-width: 0.9;
+}
+.pc-lbl {
+  font: 600 7px var(--mono);
+  letter-spacing: 0.1em;
+  fill: var(--mute);
+}
+.pc-tx {
+  font: 500 8px var(--mono);
+  fill: var(--ink-2);
+}
+.pc-pn {
+  font-size: 7px;
+}
+.pc-pnum {
+  font-size: 6px;
+}
+.pc-micro {
+  font: 400 2.6px var(--mono);
+  fill: var(--ink-2);
+}
+.pc-call {
+  fill: none;
+  stroke: var(--mute);
+  stroke-width: 0.8;
+  stroke-dasharray: 3 2;
+}
+.pc-dot {
+  fill: var(--sp-k);
+}
+.pc-t {
+  font: 600 12.5px var(--sans);
+  fill: var(--ink);
+}
+.pc-s {
+  font: 400 11px var(--sans);
+  fill: var(--ink-2);
+}
+.pc-mag {
+  fill: var(--panel);
+  stroke: var(--rule-2);
+}
+.pc-magt {
+  font: 500 11px var(--mono);
+  fill: var(--ink);
+}
+.pc-red {
+  fill: var(--redact);
+  stroke: var(--redact-edge);
+  stroke-width: 0.5;
+}
+.kt-body {
+  fill: var(--bg-2);
+  stroke: var(--ink-2);
+  stroke-width: 1.2;
+}
+/* the reader's screen in the colors of the story's unused implant screen
+   (chapter 10): the implant's own green on teal, in the reader's font */
+.kt-screen {
+  fill: #0d2a2a;
+  stroke: #0a0b0d;
+  stroke-width: 2;
+}
+.kt-scr {
+  font: 400 12px "VT323", var(--mono);
+  fill: #9fe3cf;
+}
+.kt-key {
+  fill: var(--panel);
+  stroke: var(--ink-2);
+}
+.kt-pw {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.kt-cable {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.kt-coilpad {
+  fill: var(--bg-2);
+  stroke: var(--ink-2);
+  stroke-width: 1.2;
+}
+.kt-coil {
+  fill: none;
+  stroke: var(--sp-k);
+  stroke-width: 1.4;
+}
+.kt-pack {
+  fill: var(--panel);
+  stroke: var(--ink-2);
+}
+.kt-el {
+  fill: var(--bg-2);
+  stroke: var(--ink-2);
+}
+.kt-elc {
+  fill: var(--ink-2);
+}
+
+/* copper on the board sketch: traces and vias in a copper tone, the ground
+   line wider */
+.pc-trace {
+  fill: none;
+  stroke: var(--sp-ck);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+  opacity: 0.8;
+}
+.pc-pour {
+  stroke-width: 3;
+}
+.pc-via {
+  fill: var(--bg-2);
+  stroke: var(--sp-ck);
+  stroke-width: 1;
 }

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Keep the Life: Classes</title>
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/site/tokens.css">
+    <link rel="stylesheet" href="../css/site/base.css">
+    <link rel="stylesheet" href="../css/site/masthead.css">
+    <link rel="stylesheet" href="../css/site/tabs.css">
+    <link rel="stylesheet" href="../css/site/end.css">
+    <link rel="stylesheet" href="../css/site/motion.css">
+    <link rel="stylesheet" href="../css/site/pages.css">
+    <link rel="stylesheet" href="../css/site/print.css">
+    <script src="../js/base/core.js" defer></script>
+    <script src="../js/base/theme.js" defer></script>
+    <script src="../js/base/motion.js" defer></script>
+    <script src="../js/text/pretty.js" defer></script>
+    <script src="../js/text/width.js" defer></script>
+    <script src="../js/pages/concept.js" defer></script>
+    <script src="../js/pages/settings.js" defer></script>
+  </head>
+  <body class="cx-page pretty">
+    <header class="mast cx-mast">
+      <div class="mast-title">
+        <h1>Keep the Life</h1>
+        <p class="mast-sub">How the SCP Foundation classifies anomalies, files and people</p>
+      </div>
+      <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+        <div class="mast-tools">
+          <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
+          <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="th-label">
+            <span class="tg-label" id="th-label">Theme</span>
+            <button type="button" class="tool" data-theme-set="dark" aria-pressed="true">Dark</button><button type="button" class="tool" data-theme-set="light" aria-pressed="false">Light</button><button type="button" class="tool" data-theme-set="system" aria-pressed="false">System</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="mo-label">
+            <span class="tg-label" id="mo-label">Motion</span>
+            <button type="button" class="tool" data-motion-set="system" aria-pressed="true">System</button><button type="button" class="tool" data-motion-set="reduced" aria-pressed="false">Reduced</button><button type="button" class="tool" data-motion-set="full" aria-pressed="false">Full</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="sp-label">
+            <span class="tg-label" id="sp-label">Scroll speed</span>
+            <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="pw-label">
+            <span class="tg-label" id="pw-label">Page width</span>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
+            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="cx">
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html" aria-current="page">Classes</a></nav>
+      <h2 id="cl-intro">Classes</h2>
+      <section aria-labelledby="cl-intro">
+        <p>Every file on the SCP Wiki opens with a few lines that classify the anomaly it describes. The oldest of them is the object class, which says how hard the anomaly is to contain. The Anomaly Classification System (ACS) adds the clearance needed to read the file, how far the anomaly could spread and how badly it can hurt a person. Two further scales describe people: security clearance levels say what staff may read, and personnel classes say what staff may come near. The <a href="file.html">file page</a> can show Toma's header in either form.</p>
+      </section>
+      <h2 id="cl-object">Object classes</h2>
+      <section aria-labelledby="cl-object">
+        <p>An object class measures how difficult an anomaly is to contain. It says nothing direct about how dangerous the anomaly is: a harmless object that slips out of every room is Keter, and a lethal one that stays put when left alone is Safe.</p>
+        <h3>Primary classes</h3>
+        <ul class="cx-conv">
+          <li><strong>Safe:</strong> easily and safely contained, often because the anomaly needs a deliberate trigger to act. Handling it can still be dangerous.</li>
+          <li><strong>Euclid:</strong> needs more resources to contain, or its containment is not always reliable, usually because it is poorly understood or unpredictable. Autonomous and sapient anomalies are generally Euclid.</li>
+          <li><strong>Keter:</strong> exceedingly difficult to contain consistently or reliably.</li>
+        </ul>
+        <p>The wiki gives an informal test for the three. If an anomaly locked in a box and left alone causes no trouble, it is Safe. If the outcome is uncertain, it is Euclid. If it easily gets out, it is Keter. If it is the box, it is Thaumiel.</p>
+        <h3>Non-standard classes</h3>
+        <ul class="cx-conv">
+          <li><strong>Neutralized:</strong> no longer anomalous, through destruction, disablement or the end of its effects.</li>
+          <li><strong>Explained:</strong> fully accounted for by mainstream science, or shown to be a hoax or a misunderstanding.</li>
+          <li><strong>Pending:</strong> not yet known well enough to be classed.</li>
+          <li><strong>Decommissioned:</strong> deliberately destroyed or stripped of its properties by the Foundation, with higher authorization.</li>
+          <li><strong>Uncontained:</strong> not yet contained; sometimes used in place of a class while containment is being restored.</li>
+        </ul>
+        <h3>Esoteric classes</h3>
+        <ul class="cx-conv">
+          <li><strong>Thaumiel:</strong> used by the Foundation to contain or counter other anomalies; its existence is classified at the highest levels.</li>
+          <li><strong>Apollyon:</strong> cannot be contained, or is expected to breach containment soon; usually a threat to the world.</li>
+          <li><strong>Archon:</strong> could be contained, but is left uncontained because containing it would have dire consequences.</li>
+          <li><strong>Cernunnos:</strong> could be contained, but the Foundation chooses not to for logistical or ethical reasons.</li>
+          <li><strong>Ticonderoga:</strong> cannot be contained and does not need to be, often because it is widespread or out of reach.</li>
+        </ul>
+        <p>Authors may also invent a class for a single story. The wiki advises using the primary classes unless the story needs something else.</p>
+      </section>
+      <h2 id="cl-acs">The Anomaly Classification System</h2>
+      <section aria-labelledby="cl-acs">
+        <p>The ACS shows the classification as a bar at the top of a file. It keeps the object class, renamed Containment Class, and adds four fields around it. The ACS guide states that the system is meant to enhance the object class system. On the file page the bar marks each value in the colors of the ACS add-on: green, blue, yellow, orange and red for the steps from 1 to 5, and gray for none.</p>
+        <h3>Clearance level</h3>
+        <p>The clearance level of the bar is the level an employee needs to be given permission to read the file. The ACS adapts the Foundation's clearance levels into six steps:</p>
+        <ol class="cx-conv">
+          <li>Unrestricted</li>
+          <li>Restricted</li>
+          <li>Confidential</li>
+          <li>Secret</li>
+          <li>Top Secret</li>
+          <li>Cosmic Top Secret</li>
+        </ol>
+        <h3>Containment class and secondary class</h3>
+        <p>The Containment Class is the object class, the "Contain" in Secure, Contain, Protect. The Secondary Class is optional and takes one of the esoteric classes, such as Thaumiel or Apollyon, when the primary class alone would mislead.</p>
+        <h3>Disruption class</h3>
+        <p>The Disruption Class measures an anomaly's ability to disturb the status quo or break the veil: how far and how fast its influence could spread, and how easily the Foundation could stop it.</p>
+        <ol class="cx-conv">
+          <li><strong>Dark:</strong> negligible disruption; the anomaly is inert unless interacted with and may affect only one person.</li>
+          <li><strong>Vlam:</strong> disruption confined to a small group, which the Foundation can neutralize fairly easily.</li>
+          <li><strong>Keneq:</strong> disruption that could reach about a city, spreads fast enough to be concerning and is moderately hard to neutralize.</li>
+          <li><strong>Ekhi:</strong> disruption that could reach a large metropolitan area, a country or the world, spreads swiftly and is hard to neutralize.</li>
+          <li><strong>Amida:</strong> reserved for anomalies against which the Foundation is in effect at war; the effects could reach the whole known world or beyond.</li>
+        </ol>
+        <h3>Risk class</h3>
+        <p>The Risk Class measures how severely an anomaly affects an individual person and how easily that person can recover. It concerns harm to one person, whatever the spread.</p>
+        <ol class="cx-conv">
+          <li><strong>Notice:</strong> effects from nearly nonexistent to mild; people nearby feel nothing and are in no danger.</li>
+          <li><strong>Caution:</strong> mild to moderate effects; people nearby may feel mild effects and face mild danger.</li>
+          <li><strong>Warning:</strong> moderate to significant effects; people nearby will feel mild effects and may feel major ones.</li>
+          <li><strong>Danger:</strong> significant to extreme effects; people nearby will feel major effects and may feel extreme ones.</li>
+          <li><strong>Critical:</strong> near-instant or extremely severe effects; death is highly likely, and recovery is considered impossible for those nearby.</li>
+        </ol>
+      </section>
+      <h2 id="cl-clearance">Security clearance levels</h2>
+      <section aria-labelledby="cl-clearance">
+        <p>The wiki's page on security clearance levels describes six levels for staff, numbered from 0:</p>
+        <ul class="cx-conv">
+          <li><strong>Level 0 (For Official Use Only):</strong> non-essential staff with no need for information about anomalies.</li>
+          <li><strong>Level 1 (Confidential):</strong> staff who work near anomalies without access to them or to information about them.</li>
+          <li><strong>Level 2 (Restricted):</strong> security and research staff who need direct access to information about anomalies, including most researchers, field agents and containment specialists.</li>
+          <li><strong>Level 3 (Secret):</strong> senior security and research staff who need in-depth data, including senior researchers, project managers and Mobile Task Force operatives.</li>
+          <li><strong>Level 4 (Top Secret):</strong> senior administration with site-wide or regional responsibilities, such as Site Directors and Mobile Task Force commanders.</li>
+          <li><strong>Level 5 (Thaumiel):</strong> the highest administration, with effectively unlimited access, such as the O5 Council.</li>
+        </ul>
+        <p>A file marked Level 3 in an ACS bar is Confidential, and a member of staff with Level 3 clearance is Secret on the older scale. The story counts levels the way characters speak of them: Kellerman holds level 3, SCP-2316 is a level four file, and level four is granted file by file and team by team.</p>
+      </section>
+      <h2 id="cl-personnel">Personnel classes</h2>
+      <section aria-labelledby="cl-personnel">
+        <p>Personnel classes say how close a person may come to anomalies.</p>
+        <ul class="cx-conv">
+          <li><strong>Class A:</strong> essential to strategic operations and never allowed direct access to anomalies. The O5 Council is always Class A.</li>
+          <li><strong>Class B:</strong> essential to local operations; may access only anomalies that have passed quarantine and have been cleared of mind-affecting or memetic effects.</li>
+          <li><strong>Class C:</strong> direct access to most anomalies that are not strictly hostile or dangerous. Those exposed to mind-affecting properties may be quarantined and evaluated.</li>
+          <li><strong>Class D:</strong> expendable personnel used with extremely hazardous anomalies, kept away from Class A and B staff and usually drawn from convicted criminals.</li>
+          <li><strong>Class E:</strong> a provisional class for field agents and containment staff exposed to dangerous effects while securing an anomaly; they are quarantined, monitored and cleared before returning to duty.</li>
+        </ul>
+      </section>
+      <h2 id="cl-story">In the story</h2>
+      <section aria-labelledby="cl-story">
+        <ul class="cx-conv">
+          <li><strong>Toma:</strong> held under SCP-<span class="redact" aria-label="redacted">████</span>, downgraded from Keter to Euclid once regular interviews began. His device is under review for Explained, which would end his status as an anomaly and make him staff who can never be released. His file discusses Class C and Class B for that case (Addendum H on the <a href="file.html">file page</a>).</li>
+          <li><strong>The implant:</strong> his file allows it for E-Class personnel and rules it out for D-Class personnel, since D-Class receive amnestics at the end of their term.</li>
+          <li><strong>SCP-239:</strong> classed Keter while she was kept asleep, and reclassified as Euclid by the Overseer Council in chapter 11.</li>
+          <li><strong>Containment and danger:</strong> Kellerman says in chapter 2 that object classes only measure how hard something is to keep in a room, and say nothing about who is in it. The ACS adds the Risk Class, which measures harm to a person.</li>
+        </ul>
+      </section>
+      <h2 id="cl-sources">Sources</h2>
+      <section aria-labelledby="cl-sources">
+        <ul class="cx-conv">
+          <li><a href="https://scp-wiki.wikidot.com/object-classes" rel="external">Object Classes</a>, <a href="https://scp-wiki.wikidot.com/anomaly-classification-system-guide" rel="external">Anomaly Classification System (ACS) Guide</a>, <a href="https://scp-wiki.wikidot.com/component:customizable-acs-guide" rel="external">Customizable ACS Add-On Guide</a> and <a href="https://scp-wiki.wikidot.com/security-clearance-levels" rel="external">Security Clearance Levels</a> (SCP Wiki)</li>
+        </ul>
+      </section>
+      <footer class="end">
+        <p>Written in the shared SCP universe (CC BY-SA 3.0). The <a href="concept.html">concept page</a> lists the anomalies and sources the story draws on, the <a href="summary.html">summary</a> gives each chapter in brief, the <a href="glossary.html">glossary</a> explains the terms the story uses, and the <a href="making.html">making page</a> describes how the story was written. The <a href="critics.html">critics page</a> answers objections to the way it was written.</p>
+      </footer>
+    </main>
+  </body>
+</html>

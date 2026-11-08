@@ -17,7 +17,9 @@
     <script src="../js/base/theme.js" defer></script>
     <script src="../js/base/motion.js" defer></script>
     <script src="../js/text/pretty.js" defer></script>
+    <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
+    <script src="../js/pages/settings.js" defer></script>
   </head>
   <body class="cx-page pretty">
     <header class="mast cx-mast">
@@ -25,9 +27,39 @@
         <h1>Keep the Life</h1>
         <p class="mast-sub">The chapters in brief</p>
       </div>
+      <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+        <div class="mast-tools">
+          <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
+          <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="th-label">
+            <span class="tg-label" id="th-label">Theme</span>
+            <button type="button" class="tool" data-theme-set="dark" aria-pressed="true">Dark</button><button type="button" class="tool" data-theme-set="light" aria-pressed="false">Light</button><button type="button" class="tool" data-theme-set="system" aria-pressed="false">System</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="mo-label">
+            <span class="tg-label" id="mo-label">Motion</span>
+            <button type="button" class="tool" data-motion-set="system" aria-pressed="true">System</button><button type="button" class="tool" data-motion-set="reduced" aria-pressed="false">Reduced</button><button type="button" class="tool" data-motion-set="full" aria-pressed="false">Full</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="sp-label">
+            <span class="tg-label" id="sp-label">Scroll speed</span>
+            <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="pw-label">
+            <span class="tg-label" id="pw-label">Page width</span>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
+            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
+          </div>
+        </div>
+      </div>
     </header>
     <main class="cx">
-      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html" aria-current="page">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a></nav>
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html" aria-current="page">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
       <h2 id="sm-head">Summary</h2>
       <section aria-labelledby="sm-head">
         <ol class="sm-list">
