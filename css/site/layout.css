@@ -10,6 +10,12 @@
 .pw-js .pretty * {
   text-wrap-style: auto;
 }
+/* the entries of the contents are short, so their lines are balanced, and
+   a two-line entry never ends on a lone word */
+.pretty .toc a,
+.pretty .news-head {
+  text-wrap-style: balance;
+}
 
 /* layout: the reading column is centred when the window allows. On wide
    screens the contents take a fixed slot in the left margin. When the column
@@ -106,94 +112,10 @@
   display: none;
 }
 
-/* below the wide layout the contents become a floating menu: a button in the
-   bottom corner opens them over the page (js/reading/tocmenu.js), and a
-   Settings button beside it pulls up the settings from anywhere on the page.
-   Without scripts they stay in the page as a plain list. */
-.toc-dock {
-  display: none;
-}
+/* below the wide layout the contents leave the page and open as a floating
+   menu from the dock (css/site/dock.css, js/reading/tocmenu.js); without
+   scripts they stay in the page as a plain list */
 @media (max-width: 1199px) {
-  /* the button keeps the look of the settings buttons: the page's second
-     background, the ink, a thin rule and the mono face */
-  html:not(.no-js) .toc-dock {
-    --tuck-w: 1.7rem;
-    display: flex;
-    position: fixed;
-    right: var(--s);
-    bottom: var(--s);
-    z-index: 30;
-    box-shadow: 0 var(--l-4px) var(--l-14px) var(--shadow);
-    transition: transform 0.28s cubic-bezier(0.3, 0, 0.2, 1);
-  }
-  .toc-fab,
-  .toc-set,
-  .toc-tuck {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font: 500 var(--l-0-78rem) var(--mono);
-    color: var(--ink);
-    background: var(--bg-2);
-    border: var(--l-1px) solid var(--rule-2);
-    cursor: pointer;
-  }
-  .toc-fab,
-  .toc-set {
-    padding: var(--l-0-6rem) var(--l-0-9rem);
-    border-left: 0;
-    transition: visibility 0s;
-  }
-  .toc-tuck {
-    width: var(--tuck-w);
-    padding: 0;
-    color: var(--mute);
-  }
-  /* the tab owns the edge the two share, so a hover on either one lights
-     every side of the part under the pointer */
-  .toc-fab:hover,
-  .toc-set:hover,
-  .toc-tuck:hover {
-    border-color: var(--ink-2);
-    color: var(--ink);
-  }
-  .toc-tuck:has(+ .toc-fab:hover),
-  .toc-fab:has(+ .toc-set:hover) {
-    border-right-color: var(--ink-2);
-  }
-  .toc-fab[aria-expanded="true"] {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
-  }
-  .toc-set[aria-expanded="true"] {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
-  }
-  .toc-tuck:has(+ .toc-fab[aria-expanded="true"]),
-  .toc-fab:has(+ .toc-set[aria-expanded="true"]) {
-    border-right-color: var(--ink);
-  }
-  .toc-tuck .ico {
-    width: var(--l-12px);
-    height: var(--l-12px);
-    transition: transform 0.28s;
-  }
-  /* tucked away: the whole button slides right, at its own size, until only
-     the tab is left at the screen edge, and the same tab slides it back */
-  html:not(.no-js) .toc-tucked .toc-dock {
-    transform: translateX(calc(100% - var(--tuck-w) + var(--s)));
-  }
-  .toc-tucked .toc-fab,
-  .toc-tucked .toc-set {
-    visibility: hidden;
-    transition: visibility 0s 0.28s;
-  }
-  .toc-tucked .toc-tuck .ico {
-    transform: rotate(180deg);
-  }
-
   html:not(.no-js) .toc {
     display: none;
   }
@@ -327,7 +249,14 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--s);
-  margin-bottom: var(--l-0-5rem);
+  margin-bottom: var(--s);
+}
+/* with the key list open, the list carries the space above the chapters in
+   its own bottom padding, which matches the margin used while it is hidden */
+@media (min-width: 1200px) {
+  html:not(.no-js) body.keys .toc-head:has(+ .toc-keys:not([hidden])) {
+    margin-bottom: var(--l-0-5rem);
+  }
 }
 .toc-head h2 {
   margin: 0;

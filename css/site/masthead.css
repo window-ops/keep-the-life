@@ -61,6 +61,11 @@ body:not(.show-progress) .progress {
 .tool:hover {
   border-color: var(--ink-2);
 }
+/* a link drawn as a tool, such as the Part 1 button in the masthead of
+   part 2 and the Part 2 button at the end of part 1 */
+a.tool {
+  text-decoration: none;
+}
 .tool:disabled {
   opacity: 0.4;
   cursor: default;
@@ -268,16 +273,21 @@ body:not(.show-progress) .progress {
   }
 }
 
-/* phones: the Settings button beside the contents opens the settings, so the
-   masthead keeps neither its own button nor the row it folds; the row shows
-   only as the sheet from the bottom edge */
+/* phones: the Settings button in the dock (beside the contents on the story,
+   alone on the pages in notes/) opens the settings, so the masthead keeps
+   neither its own button nor the row it folds; the row shows only as the
+   sheet from the bottom edge */
 @media (max-width: 599px) {
   html:not(.no-js) .mast:has(~ .layout .toc-set) .set-btn,
   html:not(.no-js) .mast:has(~ .layout .toc-set) .mast-tools-wrap,
-  html:not(.no-js) .mast:has(~ .layout .toc-set) .settings-holder {
+  html:not(.no-js) .mast:has(~ .layout .toc-set) .settings-holder,
+  html:not(.no-js) .mast:has(~ .toc-dock .toc-set) .set-btn,
+  html:not(.no-js) .mast:has(~ .toc-dock .toc-set) .mast-tools-wrap,
+  html:not(.no-js) .mast:has(~ .toc-dock .toc-set) .settings-holder {
     display: none;
   }
-  html:not(.no-js) .settings-float .mast:has(~ .layout .toc-set) .mast-tools-wrap {
+  html:not(.no-js) .settings-float .mast:has(~ .layout .toc-set) .mast-tools-wrap,
+  html:not(.no-js) .settings-float .mast:has(~ .toc-dock .toc-set) .mast-tools-wrap {
     display: block;
   }
 }

@@ -22,7 +22,7 @@
   var VISIBLE = LINES - 1; /* catalog rows under the header */
   var STEP_S = 0.16; /* seconds per catalog row while Play is on */
 
-  /* ------------------------------------------------------------ dots */
+  /* dots */
 
   function Dots() { this.on = {}; }
   Dots.prototype.set = function (x, y) {
@@ -53,7 +53,7 @@
     return out.join("");
   }
 
-  /* ------------------------------------------------------------ text */
+  /* text */
 
   function glyph(ch) {
     var hex = K.calcFont[ch] || K.calcFont["?"];
@@ -75,7 +75,7 @@
   function left(d, s, line) { text(d, s, 0, line * LH); }
   function right(d, s, line) { text(d, s, W - chars(s).length * CW, line * LH); }
 
-  /* ------------------------------------------------------------ graphs */
+  /* graphs */
 
   function windowOf(calc) {
     var v = (calc.getAttribute("data-graph") || "-2 2 -1.333333 1.333333").trim().split(/\s+/).map(Number);
@@ -178,7 +178,7 @@
     }
   }
 
-  /* ------------------------------------------------------------ spoken */
+  /* spoken */
 
   /* the display's lines as a screen reader should say them: a screen reader
      reads the calculator's signs by their shapes, so 1 RAD>DEG would come out
@@ -209,7 +209,7 @@
   }
   K.calcSpoken = spoken;
 
-  /* ------------------------------------------------------------ the screen */
+  /* the screen */
 
   var uid = 0;
 
@@ -285,7 +285,7 @@
     return svg;
   }
 
-  /* ------------------------------------------------------------ the case */
+  /* the case */
 
   var SCREEN_KEYS = ["Y=", "WINDOW", "ZOOM", "TRACE", "GRAPH"];
   /* each key: [class, second function, label] */

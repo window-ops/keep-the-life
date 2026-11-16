@@ -1,9 +1,10 @@
 /* Keep the Life: the Numbers section of the making page. Served over the
-   web, it reads ../index.html and counts it each time the page opens. Opened
-   from a disk, where the browser does not let it read another file, it takes
-   the counts the story sends back in the address after a probe
-   (../index.html?probe=making), then the counts the story saved in this tab,
-   and otherwise shows a notice with a button that runs the probe. */
+   web, it reads ../index.html and ../part2.html and counts both parts each
+   time the page opens. Opened from a disk, where the browser does not let it
+   read another file, it takes the counts the story sends back in the address
+   after a probe (../index.html?probe=making, which passes through part 2),
+   then the counts the story saved in this tab, and otherwise shows a notice
+   with a button that runs the probe. */
 (function (K) {
   "use strict";
 
@@ -31,9 +32,9 @@
   }
 
   var SOURCE = {
-    live: "Counted from the story file when this page opened.",
+    live: "Counted from both parts of the story when this page opened.",
     probe: "Counted by the story page just now.",
-    stored: "Counted when the story was last opened in this browser tab."
+    stored: "Counted when the story was last opened in this browser tab, from the parts opened in it."
   };
 
   /* two menus of every speaker, most replies first, and a line comparing
@@ -166,11 +167,17 @@
       return;
     }
     if (!window.fetch || !window.DOMParser || location.protocol === "file:") { fallback(); return; }
-    fetch("../index.html").then(function (r) {
-      if (!r.ok) throw new Error(String(r.status));
-      return r.text();
-    }).then(function (html) {
-      render(K.countStory(new DOMParser().parseFromString(html, "text/html")), "live");
+    function read(url) {
+      return fetch(url).then(function (r) {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.text();
+      }).then(function (html) { return K.countRaw(new DOMParser().parseFromString(html, "text/html")); });
+    }
+    /* part 2 is counted when it can be read, and part 1 alone otherwise */
+    read("../index.html").then(function (one) {
+      return read("../part2.html").then(function (two) { return K.mergeRaw(one, two); }, function () { return one; });
+    }).then(function (raw) {
+      render(K.finishCounts(raw), "live");
     }).catch(fallback);
   }
 

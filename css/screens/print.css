@@ -1,6 +1,6 @@
-/* Keep the Life, screen styles: printed matter: the newspaper, the AKV poster, the whiteboard, the hearing, the pinout and the Council's leaflet. */
+/* Keep the Life, screen styles: printed matter: the newspaper, the AKV poster, the whiteboard, the hearing, the pinout, the Council's leaflet and the Engrama blog post. */
 
-/* ---------------------------------------------------------------- newspaper */
+/* newspaper */
 
 .paper {
   --np-ink: #1d1b17;
@@ -73,7 +73,7 @@
   color: #4b525b;
 }
 
-/* ---------------------------------------------------------------- AKV poster, A3 landscape */
+/* AKV poster, A3 landscape */
 
 .ps-wrap {
   container-type: inline-size;
@@ -236,7 +236,7 @@
   }
 }
 
-/* ---------------------------------------------------------------- whiteboard, conference room 3 */
+/* whiteboard, conference room 3 */
 
 .app-board .app-frame {
   overflow: visible;
@@ -384,7 +384,7 @@
   }
 }
 
-/* ---------------------------------------------------------------- hearing: camera, shared screen, decision */
+/* hearing: camera, shared screen, decision */
 
 .doc {
   margin: var(--s) 0;
@@ -662,6 +662,1554 @@
 .dm-list b {
   font: 700 var(--l-0-85rem) var(--sans);
   color: var(--c-6b665c);
+}
+
+/* a court's judgment (part 2, chapter 6): the same paper, with the court's
+   names in its four languages, the parties, the subject, the operative part
+   and the signature. Each line keeps its English translation under it */
+.doc-ruling .dm-org {
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+.doc-ruling .dm-title {
+  font-size: 1.3rem;
+}
+.dr-parties,
+.dr-object,
+.dr-lead {
+  margin: var(--l-0-6rem) 0 0;
+}
+.dr-object {
+  font-style: italic;
+}
+.dr-lead {
+  font-weight: 700;
+}
+.doc-ruling .dm-list {
+  margin-top: var(--l-0-6rem);
+}
+.dr-sign {
+  margin: var(--l-0-9rem) 0 0;
+  padding-top: var(--l-0-6rem);
+  border-top: var(--l-1px) solid #cfc8b8;
+  font-size: 0.9em;
+}
+.doc-memo .tr-line {
+  color: #6b665c;
+}
+.dm-title .tr-line,
+.dr-lead .tr-line {
+  font-weight: 400;
+  font-size: 0.6em;
+}
+.dr-lead .tr-line {
+  font-size: 0.86em;
+}
+.dr-object .tr-line {
+  font-style: normal;
+}
+
+/* a company's blog post (part 3), shown open in its section: a white web
+   page under a dark bar with the company's name, the title, the author's
+   byline as on a professional blog, and the paragraphs, each followed by its
+   English translation */
+.web {
+  margin-block: 0;
+  background: #fbfbfa;
+  color: #1c2024;
+  font: 400 var(--l-15px) / 1.6 var(--sans);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.web-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s);
+  padding: var(--l-0-75rem) var(--l-1-5rem);
+  background: #17324a;
+  color: #ffffff;
+}
+.web-logo {
+  font: 700 var(--l-0-9rem) / 1 var(--mono);
+  letter-spacing: var(--l-0-2em);
+}
+.web-nav {
+  font: 500 var(--l-0-85rem) / 1 var(--sans);
+  color: #c4d3e0;
+}
+.web-body {
+  padding: var(--l-1-5rem);
+}
+.web-body p {
+  margin: 0 0 var(--l-0-85rem);
+}
+.web-body > :last-child {
+  margin-bottom: 0;
+}
+.web-title {
+  margin: 0 0 var(--s);
+  font: 700 var(--l-1-5rem) / 1.2 var(--sans);
+}
+.web-by {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-75rem);
+  margin-bottom: var(--s);
+  padding-bottom: var(--s);
+  border-bottom: var(--l-1px) solid #dfe2e5;
+}
+.web-av {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--l-2-4rem);
+  height: var(--l-2-4rem);
+  border-radius: 50%;
+  background: #17324a;
+  color: #ffffff;
+  font: 700 var(--l-1-1rem) / 1 var(--sans);
+}
+.web .web-by-t {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-size: var(--l-0-85rem);
+  line-height: 1.4;
+}
+.web-name {
+  font-weight: 700;
+}
+.web-role,
+.web-date {
+  color: #5d6670;
+}
+.web-lead {
+  font-weight: 500;
+}
+.web-body h5 {
+  margin-block: var(--s);
+  font: 700 var(--l-1-1rem) / 1.3 var(--sans);
+}
+.web-body h5 .tr-line {
+  font-size: 0.78em;
+  font-weight: 400;
+}
+.web-list {
+  margin: 0 0 var(--l-0-85rem);
+  padding-left: var(--l-1-5rem);
+}
+.web-list li + li {
+  margin-top: var(--l-0-5rem);
+}
+.web .tr-line {
+  color: #5d6670;
+}
+.web-title .tr-line {
+  font-size: 0.6em;
+}
+/* the article's own language switch, SK, EN and SK/EN, in the bar beside
+   Blog, one choice at a time. It
+   stands apart from the translation setting: inside the article the
+   original and the translation show as its buttons say, in every mode */
+.web-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s);
+}
+.web-lang {
+  display: flex;
+  gap: var(--l-2px);
+  padding: var(--l-2px);
+  border: var(--l-1px) solid #47627a;
+  border-radius: var(--l-3px);
+}
+.web-lang button {
+  padding: var(--l-0-2rem) var(--l-0-5rem);
+  border: 0;
+  border-radius: var(--l-2px);
+  background: transparent;
+  color: #c4d3e0;
+  font: 600 var(--l-0-72rem) / 1.2 var(--mono);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+/* the selected language fills its own button inside the frame, and the
+   frame keeps its border; a click leaves no focus ring */
+.web-lang button[aria-pressed="true"] {
+  background: #c4d3e0;
+  color: #17324a;
+}
+.web-lang button:focus {
+  outline: none;
+}
+.web-lang button:focus-visible {
+  outline: var(--l-2px) solid #ffffff;
+  outline-offset: var(--l-1px);
+}
+.no-js .web-lang {
+  display: none;
+}
+.web .tr-orig,
+body.gloss-translation .web .tr-orig {
+  display: inline;
+}
+body.gloss-original .web .tr,
+body.gloss-translation .web .tr.tr-line,
+.web .tr.tr-line {
+  display: block;
+  margin-top: 0.15em;
+  color: #5d6670;
+  font-family: var(--sans);
+  font-size: 0.86em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+body .web .web-title .tr.tr-line {
+  font-size: 0.6em;
+}
+body .web .web-body h5 .tr.tr-line {
+  font-size: 0.78em;
+}
+/* one language alone reads as the page's own text */
+.web[data-lang="sk"] .tr,
+body.gloss-original .web[data-lang="sk"] .tr,
+body.gloss-translation .web[data-lang="sk"] .tr.tr-line {
+  display: none;
+}
+.web[data-lang="en"] .tr-orig,
+body.gloss-translation .web[data-lang="en"] .tr-orig {
+  display: none;
+}
+body .web[data-lang="en"] .tr.tr-line,
+body .web[data-lang="en"] .web-title .tr.tr-line,
+body .web[data-lang="en"] .web-body h5 .tr.tr-line {
+  margin-top: 0;
+  color: inherit;
+  font: inherit;
+}
+
+/* Hollis's notebook (part 3): the same ruled page as Kellerman's, in her own
+   hand (Kalam, a handwriting face drawn in India) and blue ink, open on two
+   pages side by side, which stack when the column is too narrow for both */
+.nb-spread {
+  container-type: inline-size;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s);
+}
+.nb-spread .doc-note {
+  flex: 1 1 0;
+  min-width: min(100%, 22rem);
+  margin: 0;
+}
+.doc-note.nb-hollis {
+  color: #1d3b5c;
+  font:
+    400 1.15rem / var(--nb-line) "Kalam",
+    cursive;
+}
+
+/* Sigurrós's letter (part 3): one ruled page in a child's hand
+   (Schoolbell) and pencil grey, the place and date at the top right */
+.doc-note.nb-sig {
+  color: #3e4247;
+  font:
+    400 1.2rem / var(--nb-line) "Schoolbell",
+    cursive;
+}
+.nb-sig .nb-date {
+  text-align: right;
+}
+
+/* a European policy news site (part 3): the dark masthead with the
+   outlet's name and sections, then the kicker, headline, standfirst,
+   byline, body and one pull quote, in the site's serif */
+.news {
+  background: #ffffff;
+  color: #1b1b1f;
+  font: 400 var(--l-1rem) / 1.6 var(--serif);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.news-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--l-0-5rem) var(--s);
+  padding: var(--l-0-75rem) var(--l-1-5rem);
+  background: #111114;
+  color: #ffffff;
+}
+.news-name {
+  font: 800 var(--l-1-25rem) / 1 var(--serif);
+  letter-spacing: 0.06em;
+}
+.news-nav {
+  display: flex;
+  gap: var(--s);
+  color: #c9c9cf;
+  font: 600 var(--l-0-75rem) / 1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.news-body {
+  padding: var(--l-1-5rem);
+}
+.news .news-body p {
+  margin: 0 0 var(--s);
+}
+.news .news-body > :last-child {
+  margin-bottom: 0;
+}
+.news .news-kicker {
+  color: #b3261e;
+  font: 700 var(--l-0-75rem) / 1.2 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.news-head {
+  margin: 0 0 var(--l-0-75rem);
+  font: 800 var(--l-1-9rem) / 1.15 var(--serif);
+}
+.news .news-stand {
+  color: #45454d;
+  font-size: var(--l-1-1rem);
+}
+.news .news-by {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s);
+  padding-bottom: var(--s);
+  border-bottom: var(--l-1px) solid #dcdce0;
+  font: 400 var(--l-0-8rem) / 1.4 var(--sans);
+  color: #5c5c66;
+}
+.news-by b {
+  color: #1b1b1f;
+}
+.news-pull {
+  margin: var(--l-1-25rem) 0;
+  padding: var(--l-0-25rem) 0 var(--l-0-25rem) var(--s);
+  border-left: var(--l-3px) solid #b3261e;
+  font: 700 var(--l-1-25rem) / 1.35 var(--serif);
+}
+
+/* a Rocket.Chat workspace (part 3), Engrama's own, seen from Marek's
+   account: the dark room list with the Engrama logo, then the open channel
+   with its header, the day divider, the messages and the composer. The room
+   list folds away when the page narrows */
+.rc {
+  container-type: inline-size;
+  background: #ffffff;
+  color: #2f343d;
+  font: 400 var(--l-0-85rem) / 1.5 var(--sans);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.rc-in {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+}
+.rc-i {
+  flex: none;
+  width: 1.05em;
+  height: 1.05em;
+}
+.rc-side {
+  padding: var(--s) var(--l-0-5rem);
+  background: #1f2329;
+  color: #e4e7ea;
+}
+.rc .rc-side p,
+.rc-side ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rc .rc-side .rc-ws {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  padding: 0 var(--l-0-5rem) var(--s);
+  font-weight: 700;
+}
+.rc-logo {
+  width: var(--l-1-5rem);
+  height: var(--l-1-5rem);
+}
+.rc .rc-side .rc-search {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  margin-bottom: var(--s);
+  padding: var(--l-0-3rem) var(--l-0-6rem);
+  border-radius: var(--l-6px);
+  background: #2f343d;
+  color: #9ea2a8;
+}
+.rc .rc-side .rc-sec {
+  padding: var(--l-0-5rem) var(--l-0-5rem) var(--l-0-25rem);
+  color: #9ea2a8;
+  font-size: var(--l-0-75rem);
+  font-weight: 700;
+}
+.rc-side li {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  min-height: var(--l-2rem);
+  padding: 0 var(--l-0-5rem);
+  border-radius: var(--l-6px);
+}
+.rc-side .rc-on {
+  background: #2f343d;
+  font-weight: 700;
+}
+.rc-dot {
+  width: var(--l-8px);
+  height: var(--l-8px);
+  margin-inline: 0.15em;
+  border: var(--l-2px) solid #9ea2a8;
+  border-radius: 50%;
+}
+.rc-dot-on {
+  border-color: #2de0a5;
+  background: #2de0a5;
+}
+.rc-room {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.rc-head {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  padding: var(--l-0-75rem) var(--s);
+  border-bottom: var(--l-1px) solid #e4e7ea;
+}
+.rc-topic {
+  overflow: hidden;
+  color: #6c727a;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rc-tools {
+  display: flex;
+  gap: var(--l-0-75rem);
+  margin-left: auto;
+}
+.rc-list {
+  padding: var(--l-0-5rem) var(--s);
+}
+.rc .rc-day {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-75rem);
+  margin: var(--l-0-5rem) 0;
+  color: #6c727a;
+  font-size: var(--l-0-75rem);
+  font-weight: 700;
+}
+.rc .rc-day::before,
+.rc .rc-day::after {
+  content: "";
+  flex: 1;
+  border-top: var(--l-1px) solid #e4e7ea;
+}
+.rc-msg {
+  display: flex;
+  gap: var(--l-0-75rem);
+  padding: var(--l-0-5rem) 0;
+}
+.rc-av {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--l-2rem);
+  height: var(--l-2rem);
+  border-radius: var(--l-6px);
+  color: #ffffff;
+  font: 700 var(--l-0-85rem) / 1 var(--sans);
+}
+.rc-av-c {
+  background: #2f6f9f;
+}
+.rc-av-t {
+  background: #7a4fbf;
+}
+.rc-av-m {
+  background: #c2553a;
+}
+.rc-m {
+  min-width: 0;
+}
+.rc .rc-m p {
+  margin: 0;
+}
+.rc .rc-m p + p {
+  margin-top: var(--l-0-25rem);
+}
+.rc .rc-m .rc-who {
+  display: flex;
+  align-items: baseline;
+  gap: var(--l-0-5rem);
+}
+.rc-who span {
+  color: #9ea2a8;
+  font-size: var(--l-0-75rem);
+}
+.rc-compose {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-75rem);
+  margin: var(--l-0-5rem) var(--s) var(--s);
+  padding: var(--l-0-6rem) var(--l-0-75rem);
+  border: var(--l-1px) solid #cbced1;
+  border-radius: var(--l-6px);
+  color: #9ea2a8;
+}
+.rc-compose span {
+  flex: 1;
+}
+@container (max-width: 700px) {
+  .rc-in {
+    grid-template-columns: 1fr;
+  }
+  .rc-side,
+  .rc-topic {
+    display: none;
+  }
+}
+
+/* a GitLab project page (part 3), on Engrama's own GitLab, which shows the
+   Engrama logo in place of GitLab's: the dark theme, the top bar, the
+   project sidebar on the left, the project in the middle with its last
+   commit, files and README, and the project information on the right. The
+   columns fold away as the page narrows */
+.glab {
+  --gl-bg: #18171d;
+  --gl-panel: #222128;
+  --gl-line: #3a383f;
+  --gl-ink: #ececef;
+  --gl-mute: #a4a3a8;
+  --gl-link: #9dc7f1;
+  container-type: inline-size;
+  background: var(--gl-bg);
+  color: var(--gl-ink);
+  font: 400 var(--l-0-85rem) / 1.5 var(--sans);
+  border: var(--l-1px) solid var(--gl-line);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+.glab-i {
+  flex: none;
+  width: 1.05em;
+  height: 1.05em;
+}
+.glab-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s);
+  padding: var(--l-0-5rem) var(--s);
+  border-bottom: var(--l-1px) solid var(--gl-line);
+}
+.glab-logo {
+  flex: none;
+  width: var(--l-1-5rem);
+  height: var(--l-1-5rem);
+}
+.glab-logo-s {
+  width: var(--l-1rem);
+  height: var(--l-1rem);
+}
+.glab-search {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  flex: 0 1 22rem;
+  margin-inline: auto;
+  padding: var(--l-0-3rem) var(--l-0-6rem);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px);
+  background: var(--gl-panel);
+  color: var(--gl-mute);
+}
+.glab-search {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.glab-search kbd {
+  margin-left: auto;
+  padding: 0 var(--l-0-3rem);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-3px);
+  font: 400 var(--l-0-75rem) var(--mono);
+}
+.glab-signin,
+.glab-btn,
+.glab-star,
+.glab-sel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-4rem);
+  padding: var(--l-0-3rem) var(--l-0-6rem);
+  border-radius: var(--l-6px);
+  background: #333238;
+  white-space: nowrap;
+}
+.glab-btn-l {
+  background: var(--gl-ink);
+  color: var(--gl-bg);
+}
+.glab-star b {
+  padding-left: var(--l-0-5rem);
+  border-left: var(--l-1px) solid var(--gl-line);
+}
+.glab-main {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr;
+}
+.glab-side {
+  padding: var(--s) var(--l-0-5rem);
+  border-right: var(--l-1px) solid var(--gl-line);
+}
+.glab .glab-side p,
+.glab-side ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.glab .glab-side .glab-side-h {
+  padding: 0 var(--l-0-5rem) var(--l-0-5rem);
+  font-weight: 700;
+}
+.glab .glab-side .glab-side-proj {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  margin-bottom: var(--l-0-5rem);
+  padding: var(--l-0-4rem) var(--l-0-5rem);
+  border-radius: var(--l-6px);
+  background: #333238;
+  font-weight: 600;
+}
+.glab-side li {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-6rem);
+  min-height: var(--l-2rem);
+  padding: var(--l-0-25rem) var(--l-0-5rem);
+  border-radius: var(--l-6px);
+}
+/* the line between the pinned items and the groups keeps the same space
+   above and below it */
+.glab .glab-side .glab-groups {
+  margin-top: var(--l-0-5rem);
+  padding-top: var(--l-0-5rem);
+  border-top: var(--l-1px) solid var(--gl-line);
+}
+.glab-side li span {
+  flex: 1;
+}
+.glab-side li .glab-i:last-child {
+  color: var(--gl-mute);
+}
+.glab-side .glab-sub {
+  padding-left: calc(var(--l-0-5rem) + 1.05em + var(--l-0-6rem));
+}
+.glab-side .glab-sub b {
+  font-weight: 400;
+  color: var(--gl-mute);
+}
+.glab .glab-side .glab-help {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-6rem);
+  min-height: var(--l-2rem);
+  margin-top: var(--l-0-5rem);
+  padding: var(--l-0-25rem) var(--l-0-5rem);
+  border-radius: var(--l-6px);
+}
+.glab-page {
+  min-width: 0;
+  padding: var(--s) var(--l-1-25rem) var(--l-1-25rem);
+}
+.glab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s);
+  margin-bottom: var(--s);
+}
+.glab .glab-crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-4rem);
+  margin: 0;
+  color: var(--gl-mute);
+  font-size: var(--l-0-8rem);
+}
+.glab-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 13rem;
+  gap: var(--l-1-5rem);
+}
+.glab-head {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-75rem);
+  margin-bottom: var(--l-0-75rem);
+}
+.glab-head h4 {
+  margin: 0;
+  font: 700 var(--l-1-5rem) / 1.2 var(--sans);
+}
+.glab-head .glab-i {
+  color: var(--gl-mute);
+}
+.glab-av {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--l-2-4rem);
+  height: var(--l-2-4rem);
+  border-radius: var(--l-6px);
+  background: #3a2f63;
+  color: #c9b8ff;
+  font: 700 var(--l-1-1rem) / 1 var(--sans);
+}
+.glab-av-xs {
+  width: var(--l-1rem);
+  height: var(--l-1rem);
+  border-radius: var(--l-3px);
+  font-size: var(--l-0-6rem);
+}
+.glab-av-s {
+  width: var(--l-1-5rem);
+  height: var(--l-1-5rem);
+  border-radius: 50%;
+  background: #2f6f9f;
+  color: #ffffff;
+  font-size: var(--l-0-75rem);
+}
+.glab-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  margin-bottom: var(--l-0-75rem);
+}
+.glab-sel code {
+  font: 400 var(--l-0-85rem) var(--mono);
+}
+.glab-push {
+  flex: 1;
+}
+.glab-commit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--l-0-6rem);
+  padding: var(--l-0-75rem);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px) var(--l-6px) 0 0;
+  background: var(--gl-panel);
+}
+.glab .glab-commit p {
+  flex: 1 1 12rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.glab-commit p span {
+  color: var(--gl-mute);
+  font-size: var(--l-0-8rem);
+}
+.glab-ok {
+  padding: var(--l-0-1rem) var(--l-0-5rem);
+  border-radius: 1rem;
+  background: #24663b;
+  color: #91d4a8;
+  font-size: var(--l-0-75rem);
+}
+.glab-sha {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-4rem);
+  padding: var(--l-0-25rem) var(--l-0-5rem);
+  border-radius: var(--l-6px);
+  background: #333238;
+  font: 400 var(--l-0-8rem) var(--mono);
+}
+.glab-tw {
+  overflow-x: auto;
+  border: var(--l-1px) solid var(--gl-line);
+  border-top: 0;
+  border-radius: 0 0 var(--l-6px) var(--l-6px);
+}
+.glab-files {
+  width: 100%;
+  border-collapse: collapse;
+}
+.glab-files th,
+.glab-files td {
+  padding: var(--l-0-5rem) var(--l-0-75rem);
+  border-top: var(--l-1px) solid var(--gl-line);
+  text-align: left;
+}
+.glab-files th {
+  border-top: 0;
+  background: var(--gl-panel);
+  font-weight: 700;
+}
+.glab-files th:last-child,
+.glab-files td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+.glab-files td {
+  color: var(--gl-mute);
+}
+.glab-files td:first-child {
+  color: var(--gl-ink);
+  white-space: nowrap;
+}
+.glab-name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+}
+.glab-readme {
+  margin-top: var(--s);
+  padding: 0 var(--l-1-25rem) var(--s);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px);
+}
+.glab .glab-readme .glab-readme-h {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  margin: 0 calc(var(--l-1-25rem) * -1) var(--s);
+  padding: var(--l-0-5rem) var(--l-0-75rem);
+  border-bottom: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px) var(--l-6px) 0 0;
+  background: var(--gl-panel);
+  font-weight: 700;
+}
+.glab-readme h5 {
+  margin-block: var(--s);
+  padding-bottom: var(--l-0-25rem);
+  border-bottom: var(--l-1px) solid var(--gl-line);
+  font: 600 var(--l-1-25rem) / 1.3 var(--sans);
+}
+.glab-readme h6 {
+  margin-block: var(--s);
+  font: 600 var(--l-1rem) / 1.3 var(--sans);
+}
+.glab .glab-readme p,
+.glab-readme ul {
+  margin: 0 0 var(--l-0-75rem);
+}
+.glab .glab-readme > :last-child {
+  margin-bottom: 0;
+}
+.glab-readme ul {
+  padding-left: var(--l-1-25rem);
+}
+.glab-readme code {
+  padding: 0 var(--l-0-25rem);
+  border-radius: var(--l-3px);
+  background: #333238;
+  font: 400 0.9em var(--mono);
+}
+.glab .glab-info p {
+  margin: 0 0 var(--l-0-75rem);
+}
+.glab .glab-info p:last-child {
+  margin-bottom: 0;
+}
+.glab .glab-info .glab-info-h {
+  margin-bottom: var(--l-0-25rem);
+  font-weight: 700;
+}
+.glab .glab-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--l-0-3rem);
+}
+.glab-topics span {
+  padding: 0 var(--l-0-5rem);
+  border-radius: 1rem;
+  background: #333238;
+  font-size: var(--l-0-75rem);
+}
+.glab-stats {
+  margin: 0 0 var(--l-0-75rem);
+  padding: var(--l-0-75rem) 0 0;
+  border-top: var(--l-1px) solid var(--gl-line);
+  list-style: none;
+}
+.glab-stats li {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  padding-block: var(--l-0-2rem);
+}
+.glab-stats b {
+  font-weight: 700;
+}
+/* narrower pages fold the left sidebar, then put the project information
+   under the files */
+@container (max-width: 820px) {
+  .glab-main {
+    grid-template-columns: 1fr;
+  }
+  .glab-side,
+  .glab-explore,
+  .glab-search kbd {
+    display: none;
+  }
+}
+@container (max-width: 640px) {
+  .glab-cols {
+    grid-template-columns: 1fr;
+  }
+  .glab-search {
+    flex-basis: 10rem;
+  }
+  .glab-files td:nth-child(2),
+  .glab-files th:nth-child(2) {
+    display: none;
+  }
+}
+
+/* an EU declaration of conformity (part 3): the memo paper of the
+   Council's documents, the numbered points of Annex IV of the medical device
+   regulation, each under a short heading with its facts as label and value
+   rows or short lists, and the signature under a rule */
+.doc-ce {
+  margin-block: 0;
+}
+.doc-ce .dm-list > li + li {
+  margin-top: var(--l-0-5rem);
+}
+.doc-ce .dce-h {
+  margin: 0 0 var(--l-0-2rem);
+  font: 700 var(--l-0-85rem) / 1.4 var(--sans);
+}
+.dce-kv {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0 var(--s);
+  margin: 0;
+}
+.dce-kv dt {
+  color: var(--c-6b665c);
+  font: 600 var(--l-0-8rem) / 1.6 var(--sans);
+}
+.dce-kv dd {
+  margin: 0;
+}
+.dce-ul {
+  margin: 0;
+  padding-left: var(--l-1-1rem);
+}
+.dce-ul li {
+  display: list-item;
+}
+.doc-ce .dce-sign {
+  margin: var(--l-0-9rem) 0 0;
+  padding-top: var(--l-0-6rem);
+  border-top: var(--l-1px) solid #cfc8b8;
+  font-size: 0.9em;
+}
+@media (max-width: 560px) {
+  .dce-kv {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .dce-kv dd + dt {
+    margin-top: var(--l-0-4rem);
+  }
+}
+
+/* a lawyer's letter (part 3): the memo paper, as tall as its text, the
+   sender and the date on one line, the addressee, the subject line and the
+   signature */
+.doc-lawyer {
+  margin-block: 0;
+}
+.doc-lawyer .dl-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--l-0-5rem) var(--s);
+  padding-bottom: var(--l-0-6rem);
+  border-bottom: var(--l-1px) solid var(--c-1d1b17);
+}
+.doc-lawyer p {
+  margin: 0 0 var(--l-0-75rem);
+}
+.doc-lawyer .dl-head p {
+  margin: 0;
+}
+.doc-lawyer .dl-from {
+  font: 700 var(--l-0-85rem) / 1.4 var(--sans);
+}
+.doc-lawyer .dl-date {
+  font: 400 var(--l-0-85rem) / 1.4 var(--sans);
+}
+.doc-lawyer .dl-to {
+  margin-top: var(--s);
+}
+.doc-lawyer .dl-re {
+  font-weight: 700;
+}
+.doc-lawyer .dl-sign {
+  margin: var(--l-1-25rem) 0 0;
+}
+
+/* an employment contract (part 3): the memo paper, the sections of the
+   Romanian model contract by letter, each line with its translation, and
+   the two signatures side by side */
+.doc-cim {
+  margin-block: 0;
+}
+.doc-cim .dm-list > li + li {
+  margin-top: var(--l-0-5rem);
+}
+.doc-cim .dm-list p {
+  margin: 0;
+}
+.doc-cim .dm-list p + p {
+  margin-top: var(--l-0-25rem);
+}
+.doc-cim .dce-h {
+  margin: 0 0 var(--l-0-2rem);
+  font: 700 var(--l-0-85rem) / 1.4 var(--sans);
+}
+.doc-cim .dm-title .tr-line {
+  font-size: 0.6em;
+  font-weight: 400;
+}
+/* the contract's own language switch, RO, EN and RO/EN, at the top right of
+   the paper beside the employer's name. It stands apart from the translation
+   setting, like the switch of the Engrama article */
+.cim-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--l-0-5rem) var(--s);
+}
+.cim-top .dm-org {
+  margin: 0;
+}
+.cim-lang {
+  display: flex;
+  gap: var(--l-2px);
+  padding: var(--l-2px);
+  border: var(--l-1px) solid #b9b19f;
+  border-radius: var(--l-3px);
+}
+.cim-lang button {
+  padding: var(--l-0-2rem) var(--l-0-5rem);
+  border: 0;
+  border-radius: var(--l-2px);
+  background: transparent;
+  color: #4a463e;
+  font: 600 var(--l-0-72rem) / 1.2 var(--mono);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.cim-lang button[aria-pressed="true"] {
+  background: #4a463e;
+  color: #f7f3ea;
+}
+.cim-lang button:focus {
+  outline: none;
+}
+.cim-lang button:focus-visible {
+  outline: var(--l-2px) solid #1d1b17;
+  outline-offset: var(--l-1px);
+}
+.no-js .cim-lang {
+  display: none;
+}
+.doc-cim .tr-orig,
+body.gloss-translation .doc-cim .tr-orig {
+  display: inline;
+}
+body.gloss-original .doc-cim .tr,
+body.gloss-translation .doc-cim .tr.tr-line,
+.doc-cim .tr.tr-line {
+  display: block;
+  margin-top: 0.15em;
+  color: #6b665c;
+  font-family: var(--sans);
+  font-size: 0.86em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+body .doc-cim .dm-title .tr.tr-line {
+  font-size: 0.6em;
+}
+.doc-cim[data-lang="ro"] .tr,
+body.gloss-original .doc-cim[data-lang="ro"] .tr,
+body.gloss-translation .doc-cim[data-lang="ro"] .tr.tr-line {
+  display: none;
+}
+.doc-cim[data-lang="en"] .tr-orig,
+body.gloss-translation .doc-cim[data-lang="en"] .tr-orig {
+  display: none;
+}
+body .doc-cim[data-lang="en"] .tr.tr-line,
+body .doc-cim[data-lang="en"] .dm-title .tr.tr-line {
+  margin-top: 0;
+  color: inherit;
+  font: inherit;
+}
+.cim-sign {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s) var(--l-2rem);
+  margin-top: var(--l-0-9rem);
+  padding-top: var(--l-0-6rem);
+  border-top: var(--l-1px) solid #cfc8b8;
+}
+.cim-sign p {
+  flex: 1 1 12rem;
+  margin: 0;
+  font-size: 0.9em;
+}
+.cim-line {
+  display: block;
+  margin-top: var(--l-0-75rem);
+  padding-top: var(--l-0-25rem);
+  border-top: var(--l-1px) dotted #8a8478;
+}
+.cim-hand {
+  font:
+    500 var(--l-1-25rem) / 1 "Patrick Hand",
+    cursive;
+  color: #1d3b5c;
+}
+
+/* the Official Journal of the European Union (part 3): the header with the
+   series and the language, the number and the date under a rule, the title,
+   the articles with their headings, and the ELI at the foot */
+.oj {
+  container-type: inline-size;
+  background: #ffffff;
+  color: #1b1b1f;
+  font: 400 var(--l-0-9rem) / 1.55 var(--serif);
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+  padding: var(--l-1-25rem) var(--l-1-5rem);
+}
+.oj-head {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: var(--s);
+  font: 400 var(--l-0-85rem) / 1.3 var(--serif);
+}
+.oj-head span:last-child {
+  text-align: right;
+}
+.oj-lang {
+  padding: var(--l-0-1rem) var(--l-0-4rem);
+  background: #1b1b1f;
+  color: #ffffff;
+  font: 700 var(--l-0-75rem) / 1.2 var(--sans);
+}
+.oj .oj-ref {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--l-0-5rem) 0 var(--s);
+  padding-bottom: var(--l-0-25rem);
+  border-bottom: var(--l-2px) solid #1b1b1f;
+  font: 700 var(--l-0-85rem) / 1.3 var(--serif);
+}
+.oj-body p {
+  margin: 0 0 var(--l-0-6rem);
+}
+.oj .oj-title {
+  margin-bottom: var(--s);
+  text-align: center;
+  font-weight: 700;
+}
+.oj-arts {
+  border-top: var(--l-1px) solid #c8c8cc;
+}
+/* each article on a row: its number and title on the left, its paragraphs
+   on the right; the two stack when the page is narrow */
+.oj-a {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: var(--l-0-25rem) var(--l-1-25rem);
+  padding: var(--l-0-75rem) 0;
+  border-bottom: var(--l-1px) solid #e2e2e6;
+}
+.oj-a h5 {
+  margin: 0;
+  font: 700 var(--l-0-85rem) / 1.5 var(--serif);
+}
+.oj .oj-a p,
+.oj-a ol {
+  margin: 0;
+}
+.oj-a ol {
+  padding: 0;
+  list-style: none;
+}
+.oj-a li + li,
+.oj .oj-a p + ol {
+  margin-top: var(--l-0-3rem);
+}
+.oj-num {
+  counter-reset: oj-n;
+}
+.oj-num li {
+  counter-increment: oj-n;
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+}
+.oj-num li::before {
+  content: counter(oj-n) ".";
+}
+.oj-alpha {
+  counter-reset: oj-a;
+}
+.oj-alpha li {
+  counter-increment: oj-a;
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+}
+.oj-alpha li::before {
+  content: "(" counter(oj-a, lower-alpha) ")";
+}
+@container (max-width: 560px) {
+  .oj-a {
+    grid-template-columns: 1fr;
+  }
+}
+.oj .oj-eli {
+  margin: var(--s) 0 0;
+  padding-top: var(--l-0-25rem);
+  border-top: var(--l-1px) solid #c8c8cc;
+  font: 400 var(--l-0-75rem) / 1.4 var(--sans);
+  color: #5c5c66;
+  overflow-wrap: anywhere;
+}
+
+/* GitLab's releases page (part 3): the milestone with its progress bar and
+   the releases, newest first, on the same dark theme as the project page */
+.glab-rels .glab-page {
+  padding: var(--s) var(--l-1-25rem) var(--l-1-25rem);
+}
+.glab-mile,
+.glab-rel {
+  margin-top: var(--s);
+  padding: var(--l-0-75rem) var(--s);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px);
+  background: var(--gl-panel);
+}
+.glab .glab-mile p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 var(--s);
+  margin: 0;
+}
+.glab-mile p span,
+.glab .glab-mile .glab-mile-n {
+  color: var(--gl-mute);
+}
+.glab-bar-p {
+  height: var(--l-8px);
+  margin: var(--l-0-5rem) 0;
+  border-radius: var(--l-8px);
+  background: #333238;
+  overflow: hidden;
+}
+.glab-bar-p span {
+  display: block;
+  height: 100%;
+  background: #2da160;
+}
+.glab-rel header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--l-0-25rem) var(--l-0-75rem);
+  margin-bottom: var(--l-0-5rem);
+}
+.glab-rel h5 {
+  display: flex;
+  align-items: center;
+  gap: var(--l-0-5rem);
+  margin: 0;
+  font: 700 var(--l-1rem) / 1.3 var(--sans);
+}
+.glab-badge {
+  padding: 0 var(--l-0-5rem);
+  border-radius: 1rem;
+  background: #5c3b00;
+  color: #f5d9a8;
+  font-size: var(--l-0-75rem);
+}
+.glab-rel-when {
+  margin-left: auto;
+  color: var(--gl-mute);
+  font-size: var(--l-0-8rem);
+}
+.glab .glab-rel p {
+  margin: 0;
+}
+.glab .glab-mile .glab-mile-n + .glab-mile-n {
+  margin-top: var(--l-0-25rem);
+  color: var(--gl-ink);
+}
+/* an issue under the releases: the Open badge, the title and number, the
+   line saying who opened it, and the comments */
+.glab-issue {
+  margin-top: var(--s);
+  padding: var(--l-0-75rem) var(--s);
+  border: var(--l-1px) solid var(--gl-line);
+  border-radius: var(--l-6px);
+}
+.glab-issue header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--l-0-25rem) var(--l-0-75rem);
+}
+.glab-issue h5 {
+  margin: 0;
+  font: 700 var(--l-1rem) / 1.3 var(--sans);
+}
+.glab-issue h5 span {
+  color: var(--gl-mute);
+  font-weight: 400;
+}
+.glab-open {
+  padding: 0 var(--l-0-5rem);
+  border-radius: 1rem;
+  background: #24663b;
+  color: #91d4a8;
+  font-size: var(--l-0-75rem);
+}
+.glab .glab-issue-meta {
+  margin: var(--l-0-25rem) 0 var(--l-0-5rem);
+  color: var(--gl-mute);
+  font-size: var(--l-0-8rem);
+}
+.glab-note {
+  display: flex;
+  gap: var(--l-0-75rem);
+  padding: var(--l-0-6rem) 0 0;
+  border-top: var(--l-1px) solid var(--gl-line);
+}
+.glab-note:not(:last-child) {
+  margin-bottom: var(--l-0-6rem);
+}
+.glab .glab-note p {
+  margin: 0;
+}
+.glab .glab-note .glab-note-h {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--l-0-5rem);
+}
+.glab-note-h span {
+  color: var(--gl-mute);
+  font-size: var(--l-0-8rem);
+}
+.glab-av-k {
+  background: #6b4fa3;
+}
+.glab-av-a {
+  background: #2d7f6a;
+}
+.glab-av-v {
+  background: #9a5b2a;
+}
+.glab-av-m {
+  background: #c2553a;
+}
+.glab .glab-rel p + p {
+  margin-top: var(--l-0-25rem);
+}
+
+/* a postcard (part 3): one card, 3 by 2 in proportion and as wide as the
+   column allows, showing one side at a time. With the script
+   (js/reading/postcard.js) it turns over in place, with a button under it;
+   without it both sides show, one under the other. Kellerman writes in her
+   own hand, as in her notebook; the stamp and the postmark sit above the
+   address. The lettering grows with the card */
+.pc {
+  container-type: inline-size;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+.pc-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s);
+}
+.pc-front,
+.pc-back {
+  box-sizing: border-box;
+  aspect-ratio: 3 / 2;
+  box-shadow: 0 var(--l-8px) var(--l-24px) var(--shadow);
+}
+/* when the written side makes the card taller than 3 by 2, the picture
+   keeps its whole width, centred, with the sky above it and the lake below */
+.pc-front {
+  position: relative;
+  background: linear-gradient(#bcd6e8 50%, #3f6f88 50%);
+}
+.pc-front img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.pc-cap {
+  position: absolute;
+  left: var(--l-0-75rem);
+  bottom: var(--l-0-5rem);
+  color: #ffffff;
+  font: 600 clamp(0.75rem, 1.8cqi, 0.95rem) / 1 var(--sans);
+  letter-spacing: 0.06em;
+}
+.pc-back {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(0.75rem, 3cqi, 1.5rem);
+  padding: clamp(0.75rem, 3cqi, 1.5rem);
+  background: #fbf8ef;
+  color: #2a2f45;
+}
+.pc-msg {
+  padding-right: clamp(0.75rem, 3cqi, 1.5rem);
+  border-right: var(--l-1px) solid #cfc8b8;
+  font:
+    500 clamp(1.05rem, 2.9cqi, 1.4rem) / 1.25 "Caveat",
+    cursive;
+}
+.pc-msg p {
+  margin: 0 0 0.35em;
+}
+.pc-msg .pc-sig {
+  margin: 0.5em 0 0;
+  font-size: 1.25em;
+}
+.pc-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s);
+}
+.pc-stamps {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--l-0-5rem);
+}
+.pc-stamp {
+  display: grid;
+  place-items: end center;
+  width: 3.6rem;
+  height: 4.3rem;
+  padding-bottom: var(--l-0-25rem);
+  border: var(--l-3px) dotted #fbf8ef;
+  outline: var(--l-1px) solid #b3261e;
+  background: linear-gradient(#cfe3f0 55%, #8ea3b3 55%, #8ea3b3 75%, #6f9db4 75%);
+  color: #b3261e;
+  font: 700 var(--l-0-55rem) / 1 var(--sans);
+  letter-spacing: 0.08em;
+}
+.pc-mark {
+  display: grid;
+  place-items: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border: var(--l-2px) solid #4b525b;
+  border-radius: 50%;
+  color: #4b525b;
+  font: 600 var(--l-0-55rem) / 1.3 var(--sans);
+  text-align: center;
+  transform: rotate(-8deg);
+  opacity: 0.8;
+}
+.pc-addr {
+  margin: 0;
+  font:
+    500 clamp(1.1rem, 3cqi, 1.45rem) / 1.5 "Caveat",
+    cursive;
+}
+/* a narrow card puts the address under the message, and the card grows
+   as tall as its writing */
+@container (max-width: 34rem) {
+  .pc-back {
+    grid-template-columns: 1fr;
+    aspect-ratio: auto;
+  }
+  .pc-msg {
+    padding: 0 0 var(--l-0-75rem);
+    border-right: 0;
+    border-bottom: var(--l-1px) solid #cfc8b8;
+  }
+  .pc-side {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+  .pc-stamps {
+    order: 2;
+  }
+}
+
+/* turning: both sides share one place, the back faces away until the card
+   turns. The side turned away is inert (set by the script) */
+.pc-js .pc-card {
+  gap: 0;
+  perspective: 160rem;
+}
+.pc-js .pc-front,
+.pc-js .pc-back {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease;
+}
+.pc-js .pc-front {
+  aspect-ratio: auto;
+}
+.pc-js .pc-back {
+  transform: rotateY(180deg);
+}
+.pc-js[data-side="back"] .pc-front {
+  transform: rotateY(-180deg);
+}
+.pc-js[data-side="back"] .pc-back {
+  transform: rotateY(0deg);
+}
+.pc-turn {
+  display: block;
+  margin: var(--s) auto 0;
+}
+.pc-turn[hidden] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-js .pc-front,
+  .pc-js .pc-back {
+    transition: none;
+  }
 }
 
 /* Kellerman's notebook: an A5 page of ruled paper, 148 x 210 mm, with a red

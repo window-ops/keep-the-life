@@ -1,6 +1,6 @@
 /* Keep the Life, screen styles: Toma's workstation: Ghidra, the Ollama UI, Konsole and virt-manager with its GNOME guest. */
 
-/* ---------------------------------------------------------------- Ghidra, dark theme */
+/* Ghidra, dark theme */
 
 .ghidra {
   --g-chrome: #3c3f41;
@@ -534,7 +534,7 @@
   }
 }
 
-/* ---------------------------------------------------------------- Ollama UI */
+/* Ollama UI */
 
 .ollama {
   min-width: 640px;
@@ -753,7 +753,7 @@
   }
 }
 
-/* ---------------------------------------------------------------- Konsole, Breeze dark */
+/* Konsole, Breeze dark */
 
 .konsole {
   background: #232627;
@@ -801,7 +801,7 @@
   animation: blink var(--t-1-1s) steps(1) infinite;
 }
 
-/* ---------------------------------------------------------------- virt-manager with a GNOME guest */
+/* virt-manager with a GNOME guest */
 
 .vmm {
   min-width: 620px;

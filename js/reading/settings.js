@@ -4,7 +4,7 @@
 
   var load = K.load, save = K.save, root = K.root;
 
-  /* ---------------------------------------------------------- settings */
+  /* settings */
 
   var setBtn = document.querySelector(".set-btn");
   var setPanel = document.getElementById("settings");
@@ -23,7 +23,7 @@
        reached, so quick clicks never make it snap to full size first */
     var from = setPanel.hidden ? 0 : setPanel.getBoundingClientRect().height;
     if (rowAnim) { rowAnim.cancel(); rowAnim = null; }
-    save("settings-open", open ? "1" : "0");
+    save(openKey, open ? "1" : "0");
     setBtn.setAttribute("aria-expanded", String(open));
     setPanel.hidden = false;
     var full = setPanel.getBoundingClientRect().height;
@@ -45,8 +45,14 @@
     if (!rowAnim) done();
   }
 
+  /* the story keeps the row open unless the reader folded it; the pages in
+     notes/ keep their own open state and start folded (data-open-key and
+     data-start on the row) */
+  var openKey = (setPanel && setPanel.getAttribute("data-open-key")) || "settings-open";
+  var startOpen = !(setPanel && setPanel.getAttribute("data-start") === "closed");
   if (setBtn && setPanel) {
-    showSettings(load("settings-open") !== "0");
+    var kept = load(openKey);
+    showSettings(kept === null ? startOpen : kept === "1");
     setBtn.addEventListener("click", function () { setOpen(setBtn.getAttribute("aria-expanded") !== "true"); });
   }
 
@@ -260,7 +266,7 @@
     fade();
   }
 
-  /* ---------------------------------------------------------- remember settings */
+  /* remember settings */
 
   var storeBtn = document.getElementById("t-store");
 

@@ -356,26 +356,77 @@
   color: var(--mute);
 }
 
-/* the file page's header switch: Traditional or ACS, on the heading line;
-   without scripts there is only the traditional header */
+/* the archived revision: the Council's order in a bordered box over the
+   header, and the withdrawn description as a single mono marker */
+.fl-order {
+  margin-block: var(--s);
+  padding: var(--l-0-75rem) var(--s);
+  border: var(--l-2px) solid var(--rule-2);
+  text-align: center;
+}
+.cx .fl-order p {
+  margin: 0;
+}
+.cx .fl-order .fl-order-by {
+  margin-bottom: var(--l-0-4rem);
+  font: 600 var(--l-0-85rem) / 1.4 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cx .fl-void {
+  font: 600 var(--l-0-85rem) / 1.4 var(--mono);
+  letter-spacing: var(--l-0-14em);
+  color: var(--mute);
+}
+
+/* the file page's switches, File and Header, side by side on the heading
+   line; without scripts both revisions show with the traditional header */
 .fl-headrow {
   position: relative;
 }
-/* the switch sits on the heading's line, over the right end of its rule,
-   and takes no height from it */
-.fl-format {
+/* the switches sit on the heading's line, over the right end of its rule,
+   and take no height from it */
+.fl-switches {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  gap: var(--l-0-5rem);
   box-shadow: calc(var(--l-0-75rem) * -1) 0 0 0 var(--bg);
 }
-.no-js .fl-format {
+.no-js .fl-switches {
   display: none;
 }
+/* on a phone the heading line has no room for both, so they wrap onto
+   their own lines under it */
+@media (max-width: 599px) {
+  .fl-switches {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    margin-top: var(--l-0-5rem);
+    margin-bottom: var(--s);
+    box-shadow: none;
+  }
+}
 .fl-classic[hidden],
-.acs[hidden] {
+.acs[hidden],
+.fl-version[hidden] {
   display: none;
+}
+/* without scripts both revisions show, each under its label */
+.cx .fl-verlabel {
+  display: none;
+}
+.no-js .cx .fl-verlabel {
+  display: block;
+  margin-block: var(--s);
+  font: 600 var(--l-0-85rem) / 1.4 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
 }
 
 /* the Anomaly Classification System bar: the item and its clearance level

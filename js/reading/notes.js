@@ -4,7 +4,7 @@
 
   var $$ = K.$$, body = K.body, load = K.load, save = K.save;
 
-  /* ---------------------------------------------------------- highlights, notes and quotes */
+  /* highlights, notes and quotes */
 
   var HL_COLORS = ["speaker", "yellow", "orange", "green", "blue", "pink"];
   var ICON = {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/site/tokens.css">
     <link rel="stylesheet" href="../css/site/base.css">
     <link rel="stylesheet" href="../css/site/masthead.css">
+    <link rel="stylesheet" href="../css/site/dock.css">
     <link rel="stylesheet" href="../css/site/tabs.css">
     <link rel="stylesheet" href="../css/site/end.css">
     <link rel="stylesheet" href="../css/site/motion.css">
@@ -20,6 +21,8 @@
     <script src="../js/text/pretty.js" defer></script>
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
+    <script src="../js/reading/settings.js" defer></script>
+    <script src="../js/reading/tocmenu.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
     <script src="../js/base/scrollfocus.js" defer></script>
   </head>
@@ -30,8 +33,9 @@
         <p class="mast-sub">Concept and referenced anomalies</p>
       </div>
       <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
-      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" data-open-key="notes-settings-open" data-start="closed" hidden>
         <div class="mast-tools">
+          <span class="set-close-part"><button type="button" class="tool set-close">Close</button></span>
           <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
           <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
           <span class="tool-sep" aria-hidden="true"></span>
@@ -57,20 +61,29 @@
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
-            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
             <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
-            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
             <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
           </div>
         </div>
       </div>
     </header>
+    <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the settings button" title="Hide the settings button"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
     <main class="cx">
-      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html" aria-current="page">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="../part2.html">Part 2</a><a class="tab" href="../part3.html">Part 3</a><a class="tab" href="concept.html" aria-current="page">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
       <h2 id="cx-concept">Concept</h2>
       <section aria-labelledby="cx-concept">
-        <p>Keep the Life is a story set in the shared universe of the SCP Foundation, written as a roleplay and assembled into a book. Its present year is 2029.</p>
-        <p>Toma, the lead programmer at a software company called AKV Solutions, built an implant that keeps memories safe from amnestics. The implant cannot be fully removed, and the Foundation contains Toma as an anomaly under the designation SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span> at Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, a self-contained underground site with no sky. The story follows his work to prove the device ordinary and have it classified as Explained, his friendship and later love with Dr. Iris Kellerman, the researcher assigned to his file, and the use the Foundation makes of the way he talks to anomalies.</p>
+        <p>Keep the Life is a story set in the shared universe of the SCP Foundation, written as a roleplay and assembled into a book. Its present year is 2029 in part 1, part 2 opens at the end of April 2030, and part 3, a post-mortem in prose and documents, runs to the end of 2031.</p>
+        <p>Toma, the lead programmer at a software company called AKV Solutions, built an implant that keeps memories safe from amnestics. The implant cannot be fully removed, and the Foundation contains Toma as an anomaly under the designation SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span> at Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, a self-contained underground site with no sky. The story follows his work to prove the device ordinary and have it classified as Explained, his friendship and later love with Dr. Iris Kellerman, the researcher assigned to his file, and the use the Foundation makes of the way he talks to anomalies. In part 2 his file is Explained, and he works on assignments he consents to, the first of them beside SCP-2316 in Ohio. In part 3 he is back in Reghin, finishes the implant with a former colleague and returns to civil life.</p>
       </section>
       <h2 id="cx-ideas">Ideas in the story</h2>
       <section class="cx-themes" aria-labelledby="cx-ideas">
@@ -113,6 +126,7 @@
         <p>The Foundation is fallible. Its files contain claims that were never tested, a reformist faction wants research first and containment second, the Ethics Committee holds its hearings by video call, and draft guidelines spread between sites through a shared repository.</p>
         <p>Anomalies are bound to physics: thermodynamics applies to them, and their powers have costs that can be measured.</p>
         <p>The contained subject is a non-anomalous human, so containment raises questions of review, consent and release. The site also reverses the usual compartmentalization and begins telling staff what they guard.</p>
+        <p>The Foundation answers to courts. In part 2 the Swiss Federal Supreme Court orders the release of a member of staff without amnestics, and European states enforce the judgment over their agreements with the Foundation. The Overseer Council then weighs publishing the treaty it rests on, striking the clause that lets it investigate anything it considers a disturbance of public normality, and accepting the separation of powers. In part 3 the Foundation meets the conditions of the judgment once the enforcement court in Geneva sets a fine for each day of delay, and the file page closes his file by order of the Council.</p>
         <p>SCP-239 is a child who is spoken to. Her own account of her life is ranked above her file, and the sessions with her become the testing ground for Project Cicero.</p>
       </section>
       <h2 id="cx-conv">Conventions</h2>
@@ -195,7 +209,7 @@
           <li class="cx-item" id="scp-2316">
             <h3><a href="https://scp-wiki.wikidot.com/scp-2316" rel="external">SCP-2316</a><span class="cx-title">Field Trip</span><span class="cx-class">Keter</span></h3>
             <p class="cx-desc">A group of bodies in a lake, with a cognitohazard that makes viewers recognize them and enter the water.</p>
-            <p class="cx-story"><span>In the story:</span> The file Toma read like a plain article, which is why the implant was flagged (chapter 1).</p>
+            <p class="cx-story"><span>In the story:</span> The file Toma read like a plain article, which is why the implant was flagged (chapter 1). Pell looks at its photograph for the image test (chapter 11). In part 2 Toma describes the lake from its shore for a recording, in front of three researchers with implants, and the image test and the sound test pass (part 2, chapter 1). At the camp a transcript of the recording passes the text test with three implanted readers, each checked first with the Cognitive Resistance Value scan the article describes (part 2, chapter 3).</p>
           </li>
           <li class="cx-item" id="scp-2521">
             <h3><a href="https://scp-wiki.wikidot.com/scp-2521" rel="external">●●|●●●●●|●●|●</a><span class="cx-class">Keter</span></h3>
@@ -211,8 +225,8 @@
       </section>
       <h2 id="cx-other">Other sources</h2>
       <section aria-labelledby="cx-other">
-        <p>Amnestics sold to the public come from the <a href="https://www.youtube.com/watch?v=h8DNQjMZzx8" rel="external">Updated Amnestics Guide</a> of SCP Orientation. The Backrooms, A-Space, the Threshold, the Null Zones and Project KV-31 come from the Backrooms series by Kane Pixels. They appear on the implant's silkscreen and in the questions Toma and Kellerman use to check her letters.</p>
-        <p>Mobile Task Force Epsilon-11 is the SCP Wiki's internal security task force for containment breaches. The protest draws on <a href="https://www.protestgames.org/" rel="external">Casual Games for Protesters</a>, a collection of public domain games for marches and occupations started by Molleindustria and Harry Josephine Giles in 2017. The G-Man's line is from Half-Life 2 by Valve. The chemistry lab's calculator has the invented brand Qalculator, after <a href="https://qalculate.github.io/" rel="external">Qalculate!</a>, the free desktop calculator. The implant's firmware runs coreboot, and its power off calls a minified copy of g_mount_unmount from GLib's GIO library.</p>
+        <p>Amnestics sold to the public come from the <a href="https://www.youtube.com/watch?v=h8DNQjMZzx8" rel="external">Updated Amnestics Guide</a> of SCP Orientation. The text Hollis remembers from a pack of Class B, regressive retrograde at seventy-five milligrams for about one day, follows the SCP Wiki's <a href="https://scp-wiki.wikidot.com/updated-amnestics-guide" rel="external">Updated Amnestics Guide</a>. The red line on the strip is the one India prints on prescription-only medicines since the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6892007" rel="external">Red Line campaign</a> of 2016. The Backrooms, A-Space, the Threshold, the Null Zones and Project KV-31 come from the Backrooms series by Kane Pixels. They appear on the implant's silkscreen and in the questions Toma and Kellerman use to check her letters.</p>
+        <p>Mobile Task Force Epsilon-11 is the SCP Wiki's internal security task force for containment breaches. The protest draws on <a href="https://www.protestgames.org/" rel="external">Casual Games for Protesters</a>, a collection of public domain games for marches and occupations started by Molleindustria and Harry Josephine Giles in 2017. The G-Man's line is from Half-Life 2 by Valve. No Man's Sky, the game Toma misses in part 2, is by Hello Games. The reset dialog of the recording team's workstation follows the look of the Debian text installer, and its notices arrive like teletext pages. Kellerman cites CEDAW, the United Nations convention on discrimination against women, and Toma cites Camil Petrescu's novel <span lang="ro">Ultima noapte de dragoste, întâia noapte de război</span> (1930). The chemistry lab's calculator has the invented brand Qalculator, after <a href="https://qalculate.github.io/" rel="external">Qalculate!</a>, the free desktop calculator. The implant's firmware runs coreboot, and its power off calls a minified copy of g_mount_unmount from GLib's GIO library.</p>
       </section>
       <footer class="end">
         <p>Written in the shared SCP universe (CC BY-SA 3.0). The articles listed above belong to their original authors on the SCP Wiki. The <a href="summary.html">summary</a> gives each chapter in brief, the <a href="glossary.html">glossary</a> explains the terms the story uses, and the <a href="making.html">making page</a> describes how the story was written. The <a href="critics.html">critics page</a> answers objections to the way it was written.</p>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/site/tokens.css">
     <link rel="stylesheet" href="../css/site/base.css">
     <link rel="stylesheet" href="../css/site/masthead.css">
+    <link rel="stylesheet" href="../css/site/dock.css">
     <link rel="stylesheet" href="../css/site/tabs.css">
     <link rel="stylesheet" href="../css/site/end.css">
     <link rel="stylesheet" href="../css/site/motion.css">
@@ -21,6 +22,8 @@
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
     <script src="../js/pages/glossary.js" defer></script>
+    <script src="../js/reading/settings.js" defer></script>
+    <script src="../js/reading/tocmenu.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
     <script src="../js/base/scrollfocus.js" defer></script>
   </head>
@@ -31,8 +34,9 @@
         <p class="mast-sub">Glossary</p>
       </div>
       <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
-      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" data-open-key="notes-settings-open" data-start="closed" hidden>
         <div class="mast-tools">
+          <span class="set-close-part"><button type="button" class="tool set-close">Close</button></span>
           <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
           <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
           <span class="tool-sep" aria-hidden="true"></span>
@@ -53,20 +57,29 @@
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
-            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
             <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
-            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
             <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
           </div>
         </div>
       </div>
     </header>
+    <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the settings button" title="Hide the settings button"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
     <main class="cx">
-      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html" aria-current="page">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
-      <p class="gl-intro">Terms from the SCP universe, the sciences, computing, rhetoric and history that the story uses without explaining. The numbers after each entry open the chapters where it appears.</p>
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="../part2.html">Part 2</a><a class="tab" href="../part3.html">Part 3</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html" aria-current="page">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
+      <p class="gl-intro">Terms from the SCP universe, the sciences, computing, rhetoric and history that the story uses without explaining. The numbers after each entry open the chapters where it appears, in part 1 unless they are marked as part 2.</p>
       <div class="gl-bar">
-        <div class="tool-group gl-sort" role="group" aria-label="Sort the terms" data-subjects="SCP universe|The Backrooms|Computing and electronics|Mathematics|Physics and technology|Medicine and chemistry|Rhetoric, law and history|Games and protest|Places"><span class="tg-label">Sort</span><button type="button" class="tool" data-sort="alpha" aria-pressed="true">A to Z</button><button type="button" class="tool" data-sort="first" aria-pressed="false">First appearance</button><button type="button" class="tool" data-sort="subject" aria-pressed="false">Subject</button></div>
-        <nav class="gl-index" aria-label="Letters"><a href="#gl-A-h">A</a><a href="#gl-B-h">B</a><a href="#gl-C-h">C</a><a href="#gl-D-h">D</a><a href="#gl-E-h">E</a><a href="#gl-F-h">F</a><a href="#gl-G-h">G</a><a href="#gl-H-h">H</a><a href="#gl-I-h">I</a><a href="#gl-K-h">K</a><a href="#gl-L-h">L</a><a href="#gl-M-h">M</a><a href="#gl-N-h">N</a><a href="#gl-O-h">O</a><a href="#gl-P-h">P</a><a href="#gl-R-h">R</a><a href="#gl-S-h">S</a><a href="#gl-T-h">T</a><a href="#gl-U-h">U</a><a href="#gl-V-h">V</a><a href="#gl-W-h">W</a></nav>
+        <div class="tool-group gl-sort" role="group" aria-label="Sort the terms" data-subjects="SCP universe|The Backrooms|Computing and electronics|Mathematics|Physics and technology|Medicine and chemistry|Rhetoric, law and history|Games and protest|Society and culture|Places"><span class="tg-label">Sort</span><button type="button" class="tool" data-sort="alpha" aria-pressed="true">A to Z</button><button type="button" class="tool" data-sort="first" aria-pressed="false">First appearance</button><button type="button" class="tool" data-sort="subject" aria-pressed="false">Subject</button></div>
+        <nav class="gl-index" aria-label="Letters"><a href="#gl-A-h">A</a><a href="#gl-B-h">B</a><a href="#gl-C-h">C</a><a href="#gl-D-h">D</a><a href="#gl-E-h">E</a><a href="#gl-F-h">F</a><a href="#gl-G-h">G</a><a href="#gl-H-h">H</a><a href="#gl-I-h">I</a><a href="#gl-K-h">K</a><a href="#gl-L-h">L</a><a href="#gl-M-h">M</a><a href="#gl-N-h">N</a><a href="#gl-O-h">O</a><a href="#gl-P-h">P</a><a href="#gl-R-h">R</a><a href="#gl-S-h">S</a><a href="#gl-T-h">T</a><a href="#gl-U-h">U</a><a href="#gl-V-h">V</a><a href="#gl-W-h">W</a><a href="#gl-X-h">X</a><a href="#gl-Z-h">Z</a></nav>
       </div>
       <div class="gl-body">
         <h2 id="gl-A-h">A</h2>
@@ -76,14 +89,49 @@
               <dt>A-Space</dt>
               <dd>
                 <p>In the Backrooms series by Kane Pixels, the Async Research Institute's name for the Backrooms as a whole, which it hoped to turn into units of space for storage and housing.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="Screened">9</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="The acting director">9</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="acpi" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
+              <dt>ACPI</dt>
+              <dd>
+                <p>Advanced Configuration and Power Interface, the standard since 1996 through which a PC's operating system tells the hardware to sleep or to switch itself off. Many modern ARM boards and embedded controllers have no ACPI: they power off through the processor's firmware interface (PSCI) or through a power management chip named in the device tree, and some can only stop and report that it is safe to cut the power. A shutdown that ends on such a message, with a switch or a person making the final cut, also suits systems where the last step should be a deliberate act. In the story, the implant reports when it is safe to shut down, and the recording team's workstation says when it is safe to switch off.</p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="alan turing" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Rhetoric, law and history">
+              <dt>Alan Turing</dt>
+              <dd>
+                <p>The English mathematician who led codebreaking work at Bletchley Park in the Second World War and later worked on early computers at the University of Manchester. A memorial statue of him sits on a bench in Sackville Gardens, Manchester.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="aletsch glacier" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Places">
+              <dt>Aletsch Glacier</dt>
+              <dd>
+                <p>The largest glacier in the Alps, in the canton of Valais in Switzerland, about 23 kilometers long. It is part of the Jungfrau-Aletsch UNESCO World Heritage Site.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="alpha" data-first="18" data-first-title="The way home" data-first-name="Part 2, chapter 7: The way home" data-first-short="2.7" data-subject="Computing and electronics">
+              <dt>Alpha</dt>
+              <dd>
+                <p>An early version of a program, released for testing inside the team before its features are complete. A beta follows it, then the release candidates.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c7" title="The way home">7</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="amnestic" data-first="1" data-first-title="Nine days" data-subject="SCP universe">
               <dt>Amnestic</dt>
               <dd>
                 <p>In the SCP universe, a drug that erases memories. In the story, Class A removes the last few hours and Class B reaches a few weeks back, stronger classes go further, and in some countries they are sold without prescription.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c8" title="Old light">8</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c8" title="The first lesson">8</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c2" title="The night flight">2</a>, <a href="../part2.html#p2c3" title="Three readers">3</a>, <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c6" title="Three to two">6</a>, <a href="../part2.html#p2c7" title="The way home">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="amnestics department" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="SCP universe">
+              <dt>Amnestics Department</dt>
+              <dd>
+                <p>The Foundation department that develops amnestics and sets their doses. In the story, Hollis checked its dosing tables for field teams, from a single witness to a whole street, before she transferred to the SCP-2316 team.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="antiderivative" data-first="11" data-first-title="Campi Flegrei" data-subject="Mathematics">
@@ -97,7 +145,7 @@
               <dt>Apollyon</dt>
               <dd>
                 <p>In the SCP universe, the object class for an anomaly that cannot be contained and is expected to break out.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="async research institute" data-first="7" data-first-title="Both ways" data-subject="The Backrooms">
@@ -105,6 +153,13 @@
               <dd>
                 <p>The research company of the Backrooms series by Kane Pixels, which builds the Threshold and opens a doorway into the Backrooms in the late 1980s.</p>
                 <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="auto rickshaw" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Society and culture">
+              <dt>Auto rickshaw</dt>
+              <dd>
+                <p>A three-wheeled motorized taxi common in Indian cities, usually called an auto. Many drivers own their vehicle on a loan in their own name.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
               </dd>
             </div>
           </dl>
@@ -116,7 +171,7 @@
               <dt>Backrooms</dt>
               <dd>
                 <p>An internet legend of endless empty office rooms with yellow walls and buzzing lights. The story uses the version of the video series by Kane Pixels.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="ballast" data-first="11" data-first-title="Campi Flegrei" data-subject="Physics and technology">
@@ -124,6 +179,27 @@
               <dd>
                 <p>The part of a fluorescent light that gives the tube a high voltage to start and then limits the current, which would otherwise keep rising until the tube burned out.</p>
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="bern" data-first="15" data-first-title="The Thermidorian gathering" data-first-name="Part 2, chapter 4: The Thermidorian gathering" data-first-short="2.4" data-subject="Places">
+              <dt>Bern</dt>
+              <dd>
+                <p>The federal city of Switzerland, seat of its government and of the foreign embassies, among them the Embassy of Romania.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="bios" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>BIOS</dt>
+              <dd>
+                <p>The firmware that starts a PC and hands it to the operating system, used from the early 1980s until UEFI replaced it. In the story, the Foundation builds its own BIOS for its secure workstations.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="bletchley park" data-first="3" data-first-title="The hydroponics bay" data-subject="Rhetoric, law and history">
+              <dt>Bletchley Park</dt>
+              <dd>
+                <p>The country house in England where British codebreakers read German ciphers during the Second World War, among them the Enigma. Its staff kept their work secret for decades after the war.</p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="broken windows policing" data-first="11" data-first-title="Campi Flegrei" data-subject="Rhetoric, law and history">
@@ -142,7 +218,7 @@
               <dt>Campi Flegrei</dt>
               <dd>
                 <p>The Phlegraean Fields, from Greek for burning (καύση): a volcanic caldera west of Naples whose ground slowly rises and sinks, last erupted in 1538. In the story, the name the reformers give their camp in the Alps: campi means both fields and camps in Italian, and both places are hilly ground. The concept page has more.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="casimir effect" data-first="11" data-first-title="Campi Flegrei" data-subject="Physics and technology">
@@ -152,25 +228,67 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="chaos insurgency" data-first="3" data-first-title="Amaranth" data-subject="SCP universe">
+            <div class="gl-item" data-term="cedaw" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Rhetoric, law and history">
+              <dt>CEDAW</dt>
+              <dd>
+                <p>The Convention on the Elimination of All Forms of Discrimination against Women, adopted by the United Nations in 1979. Its committee states that polygamous marriage contravenes a woman's right to equality.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="chaos insurgency" data-first="3" data-first-title="The hydroponics bay" data-subject="SCP universe">
               <dt>Chaos Insurgency</dt>
               <dd>
                 <p>In the SCP universe, a group that broke away from the Foundation and uses anomalies as weapons.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="chillon castle" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Places">
+              <dt>Chillon Castle</dt>
+              <dd>
+                <p>A medieval castle on a rock island on the shore of Lake Geneva, near Montreux in the canton of Vaud.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="cicero" data-first="4" data-first-title="Sigurrós" data-subject="Rhetoric, law and history">
               <dt>Cicero</dt>
               <dd>
                 <p>Marcus Tullius Cicero (106 to 43 BC), Roman orator, lawyer and statesman, whose writings on rhetoric are still taught. Project Cicero in the story is named after him.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c8" title="Old light">8</a>, <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c8" title="The first lesson">8</a>, <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="ciorba" data-first="18" data-first-title="The way home" data-first-name="Part 2, chapter 7: The way home" data-first-short="2.7" data-subject="Society and culture">
+              <dt><span lang="ro">Ciorbă</span></dt>
+              <dd>
+                <p>A Romanian sour soup, made with vegetables and often meat and soured with borș or lemon juice.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c7" title="The way home">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="cod numeric personal" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Society and culture">
+              <dt><span lang="ro">Cod numeric personal</span></dt>
+              <dd>
+                <p>The personal numeric code, a 13-digit number given to every Romanian citizen at birth and printed on identity documents.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="cognitive resistance value" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="SCP universe">
+              <dt>Cognitive Resistance Value</dt>
+              <dd>
+                <p>In the SCP-2316 file, a score a reader must reach before the file opens, checked by an automated verification. In the story, it is measured from the eyes before each file opens.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="cognitive therapy" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Medicine and chemistry">
+              <dt>Cognitive therapy</dt>
+              <dd>
+                <p>A form of psychotherapy, developed by Aaron Beck in the 1960s, that looks for errors in the way a person interprets events and works with the person to correct them. It is the basis of cognitive behavioral therapy.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="cognitohazard" data-first="1" data-first-title="Nine days" data-subject="SCP universe">
               <dt>Cognitohazard</dt>
               <dd>
                 <p>In the SCP universe, something that harms a person through the act of seeing, hearing or knowing it. The reader's screens call such an entry a harmful memory.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="computer algebra system" data-first="11" data-first-title="Campi Flegrei" data-subject="Computing and electronics">
@@ -180,25 +298,39 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="conservation of energy" data-first="6" data-first-title="Hooligans" data-subject="Physics and technology">
+            <div class="gl-item" data-term="conservation of energy" data-first="6" data-first-title="The hearing" data-subject="Physics and technology">
               <dt>Conservation of energy</dt>
               <dd>
                 <p>The law that energy is neither created nor destroyed, only changed from one form to another. It follows from the laws of physics staying the same over time.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="The hearing">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="consul" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt>Consul</dt>
+              <dd>
+                <p>A state's official in another country who looks after its citizens there: visits citizens who are detained, issues documents and helps them deal with local authorities.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="coreboot" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
               <dt>Coreboot</dt>
               <dd>
                 <p>Free firmware that starts a computer's hardware and then hands over to a payload, the program that runs next. The implant's firmware is built on it.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="crisis negotiation stairway" data-first="6" data-first-title="Hooligans" data-subject="Rhetoric, law and history">
+            <div class="gl-item" data-term="crisis negotiation stairway" data-first="6" data-first-title="The hearing" data-subject="Rhetoric, law and history">
               <dt>Crisis negotiation stairway</dt>
               <dd>
                 <p>A model used by police negotiators, also called the behavioral change stairway: active listening, empathy, rapport, influence and, last, a change in behavior.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="The hearing">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="csm" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>CSM</dt>
+              <dd>
+                <p>Compatibility Support Module, a part of UEFI firmware that imitates an old BIOS, so older systems can still start.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
           </dl>
@@ -210,28 +342,35 @@
               <dt>D-Class</dt>
               <dd>
                 <p>In the SCP universe, personnel used for dangerous tests, usually prisoners.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="Amaranth">3</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="The hydroponics bay">3</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="dark energy" data-first="4" data-first-title="Sigurrós" data-subject="Physics and technology">
               <dt>Dark energy</dt>
               <dd>
                 <p>The unexplained cause of the accelerating expansion of the universe, measured since 1998.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c8" title="Old light">8</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c8" title="The first lesson">8</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="dash one" data-first="2" data-first-title="Twenty-three minutes" data-subject="SCP universe">
+              <dt>Dash one</dt>
+              <dd>
+                <p>The suffix -1 of an item designation, spoken as "dash one". In the story, the spare and bench units of Toma's implant are logged under his file as SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>-1 and kept sealed in item storage.</p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="decompiling" data-first="1" data-first-title="Nine days" data-subject="Computing and electronics">
               <dt>Decompiling</dt>
               <dd>
                 <p>Turning a compiled program back into readable code, to see what it does. Ghidra is the tool Toma uses.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c3" title="Amaranth">3</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c3" title="The hydroponics bay">3</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="degree, radian and grad" data-first="11" data-first-title="Campi Flegrei" data-subject="Mathematics">
               <dt>Degree, radian and grad</dt>
               <dd>
                 <p>Three ways to divide a full turn: 360 degrees, about 6.28 radians (two pi), or 400 grads. One radian is the angle at which the arc along the circle is as long as its radius, about 57.3 degrees.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="docere, delectare, movere" data-first="5" data-first-title="Project Cicero" data-subject="Rhetoric, law and history">
@@ -253,32 +392,60 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="enforcement court" data-first="19" data-first-title="Post-mortem" data-first-name="Part 3, chapter 1: Post-mortem" data-first-short="3.1" data-subject="Rhetoric, law and history">
+              <dt>Enforcement court</dt>
+              <dd>
+                <p>In Swiss civil procedure, the court that enforces a judgment ordering a party to do something, refrain from something or tolerate something. It can threaten a criminal penalty or set a disciplinary fine of up to 1,000 francs for each day of non-compliance.</p>
+                <p class="gl-ref"><span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="entropy" data-first="4" data-first-title="Sigurrós" data-subject="Physics and technology">
               <dt>Entropy</dt>
               <dd>
                 <p>A measure of disorder. In a closed system it never decreases, which is the second law of thermodynamics.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c10" title="The yard">10</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="epsilon-11" data-first="10" data-first-title="The yard" data-subject="SCP universe">
               <dt>Epsilon-11</dt>
               <dd>
                 <p>In the SCP universe, the Mobile Task Force that handles containment breaches inside Foundation sites, also called Nine-Tailed Fox.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="ethics committee" data-first="3" data-first-title="Amaranth" data-subject="SCP universe">
+            <div class="gl-item" data-term="ethics committee" data-first="3" data-first-title="The hydroponics bay" data-subject="SCP universe">
               <dt>Ethics Committee</dt>
               <dd>
                 <p>In the SCP universe, the Foundation body that reviews the treatment of staff and anomalies.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c9" title="Screened">9</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c9" title="The acting director">9</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="eu declaration of conformity" data-first="19" data-first-title="Post-mortem" data-first-name="Part 3, chapter 1: Post-mortem" data-first-short="3.1" data-subject="Rhetoric, law and history">
+              <dt>EU declaration of conformity</dt>
+              <dd>
+                <p>The document in which a manufacturer declares, under its sole responsibility, that a medical device meets Regulation (EU) 2017/745. Annex IV of the regulation lists its contents, and a device of class III also needs certificates from a notified body. With it, the device carries the CE marking.</p>
+                <p class="gl-ref"><span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="euclid" data-first="1" data-first-title="Nine days" data-subject="SCP universe">
               <dt>Euclid</dt>
               <dd>
                 <p>In the SCP universe, the object class for an anomaly that needs active containment, or whose behavior is not fully understood.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="european convention on human rights" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt>European Convention on Human Rights</dt>
+              <dd>
+                <p>The treaty of the Council of Europe signed in 1950, which Switzerland ratified in 1974. Its Article 5 protects the right to liberty and gives anyone detained the right to have a court decide quickly whether the detention is lawful.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="european court of human rights" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt>European Court of Human Rights</dt>
+              <dd>
+                <p>The court in Strasbourg that rules on complaints that a state has broken the European Convention on Human Rights, once the courts of that state have been tried.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="exotic matter" data-first="11" data-first-title="Campi Flegrei" data-subject="Physics and technology">
@@ -292,7 +459,7 @@
               <dt>Explained</dt>
               <dd>
                 <p>In the SCP universe, the class for something once thought anomalous and later understood by ordinary science.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c7" title="Both ways">7</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c7" title="Both ways">7</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
           </dl>
@@ -300,6 +467,20 @@
         <h2 id="gl-F-h">F</h2>
         <section class="gl-sec" id="gl-F" aria-labelledby="gl-F-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="federal department of foreign affairs" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt>Federal Department of Foreign Affairs</dt>
+              <dd>
+                <p>The foreign ministry of Switzerland, through which foreign embassies in Bern deal with the Swiss authorities.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="federal supreme court" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Federal Supreme Court</dt>
+              <dd>
+                <p>The highest court of Switzerland, with its seat at Mon-Repos in Lausanne. Its judgments are final within Switzerland. Most cases are decided in writing, and a case on which the judges of a panel disagree goes to a public deliberation.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="fenfluramine" data-first="10" data-first-title="The yard" data-subject="Medicine and chemistry">
               <dt>Fenfluramine</dt>
               <dd>
@@ -311,14 +492,21 @@
               <dt>Firmware</dt>
               <dd>
                 <p>The software built into a device that controls its hardware.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c2" title="The night flight">2</a>, <a href="../part2.html#p2c3" title="Three readers">3</a>, <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="fluorescent tube" data-first="3" data-first-title="Amaranth" data-subject="Physics and technology">
+            <div class="gl-item" data-term="first communion" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Society and culture">
+              <dt>First communion</dt>
+              <dd>
+                <p>The Catholic rite in which a child receives the Eucharist for the first time, usually at seven to nine years old, often with the family dressed for the occasion.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="fluorescent tube" data-first="3" data-first-title="The hydroponics bay" data-subject="Physics and technology">
               <dt>Fluorescent tube</dt>
               <dd>
                 <p>A glass tube of gas that gives off ultraviolet light when current runs through it; a white coating inside turns it into visible light. A troffer is the ceiling fitting that holds the tubes.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
           </dl>
@@ -351,21 +539,49 @@
               <dt>GIO</dt>
               <dd>
                 <p>The input and output library of GLib, the base library of the GNOME desktop, which handles files, drives and mounts. Its g_mount_unmount function, deprecated since GLib 2.22, is copied into the implant's power off.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="golani" data-first="6" data-first-title="Hooligans" data-subject="Rhetoric, law and history">
+            <div class="gl-item" data-term="gitlab" data-first="7" data-first-title="Both ways" data-subject="Computing and electronics">
+              <dt>GitLab</dt>
+              <dd>
+                <p>A platform for keeping source code in Git repositories, with issues, releases and pipelines. A company can use the public site or run it on its own server.</p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c7" title="Both ways">7</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="gmbh" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Society and culture">
+              <dt>GmbH</dt>
+              <dd>
+                <p>Gesellschaft mit beschränkter Haftung, the limited liability company of German-speaking countries such as Germany and Austria.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="golani" data-first="6" data-first-title="The hearing" data-subject="Rhetoric, law and history">
               <dt>Golani</dt>
               <dd>
                 <p>Romanian for hooligans. In 1990 Romania's president Ion Iliescu used the word for the protesters at University Square in Bucharest, who then adopted it, and the protest became known as the Golaniad. His words, mocking those who sided with the protesters, were: "<span lang="ro">Și sunt unii care le plâng de milă câtorva golani care provoacă dezordine în centrul... în centrul orașului.</span>" <span class="tr">(And there are some who weep with pity for a few hooligans who are causing disorder in the center... in the center of the city.)</span></p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="gpl" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Computing and electronics">
+              <dt>GPL</dt>
+              <dd>
+                <p>The GNU General Public License, a free software license. Anyone who receives a program under it may run, study, change and share it, and anyone who passes on the binary must also make its source code available.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="group of interest" data-first="7" data-first-title="Both ways" data-subject="SCP universe">
               <dt>Group of Interest</dt>
               <dd>
                 <p>In the SCP universe, an organization outside the Foundation that knows about anomalies or works with them.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c7" title="Both ways">7</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c7" title="Both ways">7</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="gruezi" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Society and culture">
+              <dt><span lang="gsw">Grüezi</span></dt>
+              <dd>
+                <p>A greeting in the Swiss German of Zürich and much of northern and eastern Switzerland. <span lang="gsw">Grüezi mitenand</span> greets several people at once.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
           </dl>
@@ -373,11 +589,11 @@
         <h2 id="gl-H-h">H</h2>
         <section class="gl-sec" id="gl-H" aria-labelledby="gl-H-h">
           <dl class="gl-list">
-            <div class="gl-item" data-term="habeas corpus" data-first="9" data-first-title="Screened" data-subject="Rhetoric, law and history">
+            <div class="gl-item" data-term="habeas corpus" data-first="9" data-first-title="The acting director" data-subject="Rhetoric, law and history">
               <dt>Habeas corpus</dt>
               <dd>
                 <p>Latin for that you have the body: a court order that makes a jailer bring a prisoner before a judge and show the cause of the detention. The English Habeas Corpus Act of 1679 set its rules.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="human chain" data-first="10" data-first-title="The yard" data-subject="Games and protest">
@@ -411,11 +627,18 @@
         <h2 id="gl-K-h">K</h2>
         <section class="gl-sec" id="gl-K" aria-labelledby="gl-K-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="kasba peth" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Places">
+              <dt>Kasba Peth</dt>
+              <dd>
+                <p>The oldest quarter of Pune, a crowded area of narrow streets. In the story, where Hollis grew up in a two-room apartment.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="keter" data-first="1" data-first-title="Nine days" data-subject="SCP universe">
               <dt>Keter</dt>
               <dd>
                 <p>In the SCP universe, the object class for an anomaly that is hard to contain or that keeps trying to break out.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="kicad" data-first="7" data-first-title="Both ways" data-subject="Computing and electronics">
@@ -423,6 +646,20 @@
               <dd>
                 <p>Free software for designing electronic circuits and the boards they sit on.</p>
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c7" title="Both ways">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="kirchenfeld" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Places">
+              <dt>Kirchenfeld</dt>
+              <dd>
+                <p>A quarter of Bern on the south bank of the Aare, where many embassies stand. The Embassy of Romania is at Kirchenfeldstrasse 78.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="kota" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Places">
+              <dt>Kota</dt>
+              <dd>
+                <p>A city in Rajasthan, India, known for its coaching centers, where students from across the country live in hostels and prepare for the engineering and medical entrance examinations.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
               </dd>
             </div>
           </dl>
@@ -437,18 +674,39 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="logarithm" data-first="6" data-first-title="Hooligans" data-subject="Mathematics">
+            <div class="gl-item" data-term="linz" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Places">
+              <dt>Linz</dt>
+              <dd>
+                <p>The capital of Upper Austria, on the Danube. In the story, where AKV Solutions had its small office.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c2" title="The night flight">2</a>, <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c7" title="The way home">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="log kya kahenge" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Society and culture">
+              <dt>Log kya kahenge</dt>
+              <dd>
+                <p>Hindi for "what will people say": a common phrase for the fear of gossip and of the family's standing, often named as a reason why families in India hide addiction and mental illness and delay treatment.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="logarithm" data-first="6" data-first-title="The hearing" data-subject="Mathematics">
               <dt>Logarithm</dt>
               <dd>
                 <p>The power a number must be raised to in order to give another. Growth with the logarithm is fast at first and then slower and slower.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="The hearing">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="low proximity magnetic distortion system" data-first="7" data-first-title="Both ways" data-subject="The Backrooms">
               <dt>Low Proximity Magnetic Distortion System</dt>
               <dd>
                 <p>In the Backrooms series by Kane Pixels, the machine that opens a doorway into the Backrooms, also called the Threshold. The concept page explains its place in the story.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="lugano convention" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Lugano Convention</dt>
+              <dd>
+                <p>A 2007 treaty between the European Union, Denmark, Iceland, Norway and Switzerland on jurisdiction in civil and commercial matters. A judgment given in one of these states is recognized in the others without a new trial, and a court of the state where it is to be enforced declares it enforceable on application.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
           </dl>
@@ -456,6 +714,20 @@
         <h2 id="gl-M-h">M</h2>
         <section class="gl-sec" id="gl-M" aria-labelledby="gl-M-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="mass comparator" data-first="6" data-first-title="The hearing" data-subject="Physics and technology">
+              <dt>Mass comparator</dt>
+              <dd>
+                <p>A precision balance that weighs an object against a reference mass, sensitive enough to detect a loss of a few micrograms.</p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="The hearing">6</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="mnestic" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Medicine and chemistry">
+              <dt>Mnestic</dt>
+              <dd>
+                <p>In the SCP universe, a drug that strengthens or restores memory, the opposite of an amnestic. Toma calls them biological, temporary and sometimes risky.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="mobile task force" data-first="10" data-first-title="The yard" data-subject="SCP universe">
               <dt>Mobile Task Force</dt>
               <dd>
@@ -463,11 +735,18 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="motivational interviewing" data-first="6" data-first-title="Hooligans" data-subject="Rhetoric, law and history">
+            <div class="gl-item" data-term="mon-repos" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Places">
+              <dt>Mon-Repos</dt>
+              <dd>
+                <p>A park in Lausanne and the palace in it, the seat of the Swiss Federal Supreme Court.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="motivational interviewing" data-first="6" data-first-title="The hearing" data-subject="Rhetoric, law and history">
               <dt>Motivational interviewing</dt>
               <dd>
                 <p>A counseling method that helps a person find their own reasons to change, used in medicine and addiction treatment.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c6" title="The hearing">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="mri" data-first="7" data-first-title="Both ways" data-subject="Physics and technology">
@@ -475,6 +754,20 @@
               <dd>
                 <p>Magnetic resonance imaging: a hospital scanner that uses a very strong magnet. It can damage electronics that are not built for it.</p>
                 <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="munca la negru" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Society and culture">
+              <dt><span lang="ro">Muncă la negru</span></dt>
+              <dd>
+                <p>Romanian for undeclared work: work without a written contract, without registration and without social contributions.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="mures county" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Places">
+              <dt>Mureș County</dt>
+              <dd>
+                <p>A county in the center of Romania, in Transylvania, with its seat at Târgu Mureș. Reghin is its second town.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
           </dl>
@@ -489,6 +782,27 @@
                 <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c7" title="Both ways">7</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="no man's sky" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Games and protest">
+              <dt>No Man's Sky</dt>
+              <dd>
+                <p>A space exploration game by Hello Games, released in 2016, set in a generated universe of planets. Its story involves three alien races, the Gek, the Korvax and the Vy'keen, and the Atlas, an entity at the center of the universe, which turns out to be a simulation.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="normality clause" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="SCP universe">
+              <dt>Normality clause</dt>
+              <dd>
+                <p>In the story, the clause of the treaty between the states and the Foundation that allows the Foundation to investigate anything it considers a disturbance of public normality.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="note verbale" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt>Note verbale</dt>
+              <dd>
+                <p>A formal diplomatic note written in the third person and left unsigned, sent from an embassy to the foreign ministry of the host state, or the other way round.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a></p>
+              </dd>
+            </div>
           </dl>
         </section>
         <h2 id="gl-O-h">O</h2>
@@ -501,18 +815,25 @@
                 <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="old light" data-first="8" data-first-title="Old light" data-subject="Physics and technology">
+            <div class="gl-item" data-term="official journal of the european union" data-first="19" data-first-title="Post-mortem" data-first-name="Part 3, chapter 1: Post-mortem" data-first-short="3.1" data-subject="Rhetoric, law and history">
+              <dt>Official Journal of the European Union</dt>
+              <dd>
+                <p>The publication of the European Union's acts. Its L series carries legislation, including international agreements, and since October 2023 each act is published as an issue of its own, cited by its number, its date and its European Legislation Identifier (ELI).</p>
+                <p class="gl-ref"><span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="old light" data-first="8" data-first-title="The first lesson" data-subject="Physics and technology">
               <dt>Old light</dt>
               <dd>
                 <p>Light from distant stars and galaxies that set out long ago. What is seen is the source as it was when the light left it, and it may no longer exist.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c8" title="Old light">8</a>, <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c8" title="The first lesson">8</a>, <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="overseer council" data-first="9" data-first-title="Screened" data-subject="SCP universe">
+            <div class="gl-item" data-term="overseer council" data-first="9" data-first-title="The acting director" data-subject="SCP universe">
               <dt>Overseer Council</dt>
               <dd>
                 <p>In the SCP universe, the highest authority of the Foundation, also called the O5 Council.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c9" title="Screened">9</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c9" title="The acting director">9</a>, <a href="../index.html#c10" title="The yard">10</a>, <a href="../index.html#c11" title="Campi Flegrei">11</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
           </dl>
@@ -524,7 +845,14 @@
               <dt>Payload</dt>
               <dd>
                 <p>The program that firmware starts once the hardware is ready. On the implant it is akv_recall.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="payment in kind" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Payment in kind</dt>
+              <dd>
+                <p>Paying a debt with goods or property at a value agreed between the parties or set by the court. The creditor has to consent to it.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="polar graph" data-first="11" data-first-title="Campi Flegrei" data-subject="Mathematics">
@@ -534,18 +862,74 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="population records office" data-first="19" data-first-title="Post-mortem" data-first-name="Part 3, chapter 1: Post-mortem" data-first-short="3.1" data-subject="Society and culture">
+              <dt>Population records office</dt>
+              <dd>
+                <p>In Romania, the local public service for the records of persons (SPCLEP), which issues identity cards. Since 2025 it issues the electronic identity card, and the application can be made at any such office in the country.</p>
+                <p class="gl-ref"><span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="private limited company" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Society and culture">
+              <dt>Private limited company</dt>
+              <dd>
+                <p>In India, a company whose owners are liable only for their shares, marked "Pvt Ltd" after its name.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="proces-verbal" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Rhetoric, law and history">
+              <dt><span lang="ro">Proces-verbal</span></dt>
+              <dd>
+                <p>In Romanian law and administration, the official written record of facts drawn up and signed by an authority.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="project cicero" data-first="5" data-first-title="Project Cicero" data-subject="Rhetoric, law and history">
               <dt>Project Cicero</dt>
               <dd>
                 <p>In the story, the project that turns the way Toma talks to anomalies into written guidelines.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="project kv-31" data-first="9" data-first-title="Screened" data-subject="The Backrooms">
+            <div class="gl-item" data-term="project kv-31" data-first="9" data-first-title="The acting director" data-subject="The Backrooms">
               <dt>Project KV-31</dt>
               <dd>
                 <p>In the Backrooms series by Kane Pixels, the Async Research Institute's project name for the Low Proximity Magnetic Distortion System.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c9" title="Screened">9</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c9" title="The acting director">9</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="protocol no. 1" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Protocol No. 1</dt>
+              <dd>
+                <p>The first additional protocol to the European Convention on Human Rights, which protects property, the right to education and free elections. Switzerland signed it in 1976 and has not ratified it.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="psychoeducation" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Medicine and chemistry">
+              <dt>Psychoeducation</dt>
+              <dd>
+                <p>The part of therapy in which a patient is taught about their condition and how it works, so they can recognize and manage it.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="public deliberation" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Public deliberation</dt>
+              <dd>
+                <p>At the Swiss Federal Supreme Court, the procedure used when the judges of a panel disagree on a draft judgment. The judges set out their views in front of the parties and the public, usually in two rounds, then vote by a show of hands, and the presiding judge reads the operative part of the judgment. The parties do not speak.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="pune" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Places">
+              <dt>Pune</dt>
+              <dd>
+                <p>A city in Maharashtra, western India, about 120 kilometers southeast of Mumbai, known for its universities. In the story, where Hollis grew up.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c2" title="The night flight">2</a>, <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="pupillary light reflex" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Medicine and chemistry">
+              <dt>Pupillary light reflex</dt>
+              <dd>
+                <p>The narrowing of the pupil when light reaches the eye, and its widening again after. Its delay, depth and recovery can be measured with a camera.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
           </dl>
@@ -567,18 +951,60 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="reading, ohio" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Places">
+              <dt>Reading, Ohio</dt>
+              <dd>
+                <p>In the story, the town near the lake that holds SCP-2316, whose containment zone is a fenced ring in the woods outside it.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="reading, pennsylvania" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Places">
+              <dt>Reading, Pennsylvania</dt>
+              <dd>
+                <p>A city in Berks County, Pennsylvania, on the Schuylkill River, about an hour and a half northwest of Philadelphia. Its Japanese-style pagoda on Mount Penn dates from 1908, and the Reading Railroad that took its name is one of the four railroads on the Monopoly board.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c1" title="Reading">1</a>, <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="recorder and snoop" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Society and culture">
+              <dt>Recorder and Snoop</dt>
+              <dd>
+                <p>Two independent Romanian news outlets known for investigative reporting.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="red line" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="Medicine and chemistry">
+              <dt>Red line</dt>
+              <dd>
+                <p>A vertical red line printed on Indian medicine packs to mark drugs sold only on prescription, introduced for antibiotics by the Ministry of Health and Family Welfare in 2016.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="reghin" data-first="2" data-first-title="Twenty-three minutes" data-subject="Places">
+              <dt>Reghin</dt>
+              <dd>
+                <p>A small town on the Mureș River in Mureș County, in Transylvania, Romania, surrounded by hills and mountains. In the story, where Toma comes from.</p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a>, <a href="../index.html#c3" title="The hydroponics bay">3</a>; <span>Part 2, chapters:</span> <a href="../part2.html#p2c2" title="The night flight">2</a>, <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>, <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a>, <a href="../part2.html#p2c7" title="The way home">7</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="regressive retrograde" data-first="12" data-first-title="Reading" data-first-name="Part 2, chapter 1: Reading" data-first-short="2.1" data-subject="SCP universe">
+              <dt>Regressive retrograde</dt>
+              <dd>
+                <p>The name the Updated Amnestics Guide gives to Class B amnestics, which erase the most recent memories first and work backward. The guide gives about one day of memory loss for 75 milligrams.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c1" title="Reading">1</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="release candidate" data-first="7" data-first-title="Both ways" data-subject="Computing and electronics">
               <dt>Release candidate</dt>
               <dd>
                 <p>A version of software believed to be ready, released for final testing before the finished version.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c7" title="Both ways">7</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c7" title="The way home">7</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="reverse engineering" data-first="3" data-first-title="Amaranth" data-subject="Computing and electronics">
+            <div class="gl-item" data-term="reverse engineering" data-first="3" data-first-title="The hydroponics bay" data-subject="Computing and electronics">
               <dt>Reverse engineering</dt>
               <dd>
                 <p>Working out how a finished product works by taking it apart, or by reading its compiled code.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c3" title="Amaranth">3</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a></p>
               </dd>
             </div>
           </dl>
@@ -586,6 +1012,13 @@
         <h2 id="gl-S-h">S</h2>
         <section class="gl-sec" id="gl-S" aria-labelledby="gl-S-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="s. r. o." data-first="15" data-first-title="The Thermidorian gathering" data-first-name="Part 2, chapter 4: The Thermidorian gathering" data-first-short="2.4" data-subject="Society and culture">
+              <dt>s. r. o.</dt>
+              <dd>
+                <p><span lang="sk">Spoločnosť s ručením obmedzeným</span>, the Slovak limited liability company, written <span lang="cs">společnost s ručením omezeným</span> in Czech. Its owners can lose only what they put in.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="safe mode" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
               <dt>Safe mode</dt>
               <dd>
@@ -600,11 +1033,46 @@
                 <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c1" title="Nine days">1</a>, <a href="../index.html#c2" title="Twenty-three minutes">2</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="sedation" data-first="3" data-first-title="Amaranth" data-subject="Medicine and chemistry">
+            <div class="gl-item" data-term="sbb" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Society and culture">
+              <dt>SBB</dt>
+              <dd>
+                <p>The Swiss Federal Railways (<span lang="de">Schweizerische Bundesbahnen</span>), the national railway company of Switzerland. A ticket bought online can be shown on a phone, in the SBB app or as a PDF with a QR code, which the conductor scans.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="schabowskis note" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>Schabowski's note</dt>
+              <dd>
+                <p>On 9 November 1989 Günter Schabowski, a member of the East German Politburo, read out new rules for travel to the West at a press conference. Asked when they took effect, he answered "immediately", and the rules had been meant to start the next day. Crowds gathered at the crossings in Berlin, and the guards at Bornholmer Straße opened the gate.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="schengen area" data-first="18" data-first-title="The way home" data-first-name="Part 2, chapter 7: The way home" data-first-short="2.7" data-subject="Rhetoric, law and history">
+              <dt>Schengen area</dt>
+              <dd>
+                <p>The group of European states that have abolished checks at their common borders. Romania became a full member on 1 January 2025, so a flight from Budapest to Târgu Mureș has no passport control.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c7" title="The way home">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="scipnet" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="SCP universe">
+              <dt>SCiPNET</dt>
+              <dd>
+                <p>The Foundation's internal computer network in the SCP universe, through which staff reach the files.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="sedation" data-first="3" data-first-title="The hydroponics bay" data-subject="Medicine and chemistry">
               <dt>Sedation</dt>
               <dd>
                 <p>Keeping a person calm or asleep with drugs.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="Amaranth">3</a>, <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c8" title="Old light">8</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c3" title="The hydroponics bay">3</a>, <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c8" title="The first lesson">8</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="semnez ca primarul" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Society and culture">
+              <dt><span lang="ro">Semnez ca primarul</span></dt>
+              <dd>
+                <p>Romanian for "I sign like the mayor": signing a paper without reading it, the way an official signs a stack of documents put in front of him.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="serotonin" data-first="7" data-first-title="Both ways" data-subject="Medicine and chemistry">
@@ -618,7 +1086,14 @@
               <dt>SIGKILL</dt>
               <dd>
                 <p>On Unix systems, the signal that stops a process at once, with no chance to clean up, sent with kill -9. Plain kill sends SIGTERM, which asks the process to stop.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="signal" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Computing and electronics">
+              <dt>Signal</dt>
+              <dd>
+                <p>A messaging app with end-to-end encryption, run by the nonprofit Signal Foundation.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="silkscreen" data-first="7" data-first-title="Both ways" data-subject="Computing and electronics">
@@ -649,6 +1124,27 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c1" title="Nine days">1</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="srl" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Society and culture">
+              <dt>SRL</dt>
+              <dd>
+                <p><span lang="ro">Societate cu răspundere limitată</span>, the Romanian limited liability company. Creditors can claim only the company's assets, and the owners can lose only their share.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="state secrets privilege" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt>State secrets privilege</dt>
+              <dd>
+                <p>A rule of United States law that allows the government to keep evidence out of a court case, or to have the case dismissed, when disclosure would harm national security. The Supreme Court recognized it in United States v. Reynolds in 1953.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="systemd and sysvinit" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>systemd and SysVinit</dt>
+              <dd>
+                <p>Init systems: the first program a Linux system starts, which starts and stops every other service. SysVinit is the older one, and systemd replaced it in most distributions in the 2010s.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
           </dl>
         </section>
         <h2 id="gl-T-h">T</h2>
@@ -661,25 +1157,74 @@
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
               </dd>
             </div>
+            <div class="gl-item" data-term="teletext" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>Teletext</dt>
+              <dd>
+                <p>A service that broadcast pages of text alongside a television signal, from the 1970s, each page called up by its three-digit number. In the story, the site sends its notices to terminals as numbered pages in the same way.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="thermidorian" data-first="15" data-first-title="The Thermidorian gathering" data-first-name="Part 2, chapter 4: The Thermidorian gathering" data-first-short="2.4" data-subject="Rhetoric, law and history">
+              <dt>Thermidorian</dt>
+              <dd>
+                <p>From Thermidor, a month of the French Republican calendar. On 9 Thermidor Year II (27 July 1794) the National Convention overthrew Robespierre, and the calmer period that followed is called the Thermidorian Reaction. In the story, the staff assembly that has met since the yard is called the Thermidorian gathering.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="thermodynamics" data-first="4" data-first-title="Sigurrós" data-subject="Physics and technology">
               <dt>Thermodynamics</dt>
               <dd>
                 <p>The physics of heat and energy. Its laws say energy is conserved and disorder grows.</p>
-                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="Hooligans">6</a>, <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapters:</span> <a href="../index.html#c4" title="Sigurrós">4</a>, <a href="../index.html#c5" title="Project Cicero">5</a>, <a href="../index.html#c6" title="The hearing">6</a>, <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
               </dd>
             </div>
-            <div class="gl-item" data-term="threshold" data-first="9" data-first-title="Screened" data-subject="The Backrooms">
+            <div class="gl-item" data-term="threshold" data-first="9" data-first-title="The acting director" data-subject="The Backrooms">
               <dt>Threshold</dt>
               <dd>
                 <p>In the Backrooms series by Kane Pixels, the other name of the Low Proximity Magnetic Distortion System, the machine that opens a doorway between the ordinary world and the Backrooms.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c9" title="Screened">9</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c9" title="The acting director">9</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="tianocore" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>TianoCore</dt>
+              <dd>
+                <p>The open-source implementation of UEFI firmware, used by many manufacturers and by virtual machines.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="titlu de calatorie" data-first="16" data-first-title="The barrier" data-first-name="Part 2, chapter 5: The barrier" data-first-short="2.5" data-subject="Society and culture">
+              <dt><span lang="ro">Titlu de călătorie</span></dt>
+              <dd>
+                <p>A travel document that a Romanian consulate issues to a citizen without a valid passport, so the citizen can return to Romania.</p>
+                <p class="gl-ref"><span>Part 2, chapters:</span> <a href="../part2.html#p2c5" title="The barrier">5</a>, <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="tolerance" data-first="2" data-first-title="Twenty-three minutes" data-subject="Medicine and chemistry">
               <dt>Tolerance</dt>
               <dd>
-                <p>The body's growing resistance to a drug taken often, so the same dose works less and the dose has to rise.</p>
+                <p>The body's growing resistance to a drug taken often, so the same dose is less effective over time and the dose has to rise.</p>
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c2" title="Twenty-three minutes">2</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="tort moral" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt><span lang="fr">Tort moral</span></dt>
+              <dd>
+                <p>The French term of Swiss law for non-material harm, such as suffering caused by an unlawful act. A court can award a sum of money in compensation, an <span lang="fr">indemnité pour tort moral</span>.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="transilvania airport" data-first="18" data-first-title="The way home" data-first-name="Part 2, chapter 7: The way home" data-first-short="2.7" data-subject="Places">
+              <dt>Transilvania Airport</dt>
+              <dd>
+                <p>The airport of Târgu Mureș, in Mureș County, south-west of the city.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c7" title="The way home">7</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="tribunalul mures" data-first="17" data-first-title="Three to two" data-first-name="Part 2, chapter 6: Three to two" data-first-short="2.6" data-subject="Rhetoric, law and history">
+              <dt><span lang="ro">Tribunalul Mureș</span></dt>
+              <dd>
+                <p>The tribunal of Mureș County, in Târgu Mureș. Under the Lugano Convention, an application to have a foreign judgment declared enforceable in Romania goes to a tribunal.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c6" title="Three to two">6</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
           </dl>
@@ -687,11 +1232,25 @@
         <h2 id="gl-U-h">U</h2>
         <section class="gl-sec" id="gl-U" aria-labelledby="gl-U-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="uefi" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
+              <dt>UEFI</dt>
+              <dd>
+                <p>Unified Extensible Firmware Interface, the firmware standard that replaced the BIOS in PCs.</p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="ultima noapte de dragoste, intaia noapte de razboi" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Rhetoric, law and history">
+              <dt><span lang="ro">Ultima noapte de dragoste, întâia noapte de război</span></dt>
+              <dd>
+                <p>The Last Night of Love, the First Night of War, a 1930 novel by Camil Petrescu. Its narrator, Ștefan Gheorghidiu, is consumed by jealousy of his wife Ela, then goes to the front in the First World War.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="unix semantics" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
               <dt>Unix semantics</dt>
               <dd>
                 <p>The rule of Unix file systems that when two programs write to the same place, the last write is the one that stays.</p>
-                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a></p>
+                <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c10" title="The yard">10</a>; <span>Part 3, chapter:</span> <a href="../part3.html#p3c1" title="Post-mortem">1</a></p>
               </dd>
             </div>
             <div class="gl-item" data-term="unmount" data-first="10" data-first-title="The yard" data-subject="Computing and electronics">
@@ -718,6 +1277,20 @@
         <h2 id="gl-W-h">W</h2>
         <section class="gl-sec" id="gl-W" aria-labelledby="gl-W-h">
           <dl class="gl-list">
+            <div class="gl-item" data-term="wayland" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>Wayland</dt>
+              <dd>
+                <p>The display protocol that replaced X11 on most Linux desktops. A program on another machine cannot draw on a Wayland screen by itself.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+            <div class="gl-item" data-term="western ghats" data-first="13" data-first-title="The night flight" data-first-name="Part 2, chapter 2: The night flight" data-first-short="2.2" data-subject="Places">
+              <dt>Western Ghats</dt>
+              <dd>
+                <p>The range of hills and mountains along the west coast of India. Near Pune they contain old hill forts that crowds visit during the monsoon.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c2" title="The night flight">2</a></p>
+              </dd>
+            </div>
             <div class="gl-item" data-term="white hole" data-first="11" data-first-title="Campi Flegrei" data-subject="Physics and technology">
               <dt>White hole</dt>
               <dd>
@@ -730,6 +1303,30 @@
               <dd>
                 <p>A theoretical tunnel through space and time joining two distant places.</p>
                 <p class="gl-ref"><span>Chapter:</span> <a href="../index.html#c11" title="Campi Flegrei">11</a></p>
+              </dd>
+            </div>
+          </dl>
+        </section>
+        <h2 id="gl-X-h">X</h2>
+        <section class="gl-sec" id="gl-X" aria-labelledby="gl-X-h">
+          <dl class="gl-list">
+            <div class="gl-item" data-term="x11" data-first="14" data-first-title="Three readers" data-first-name="Part 2, chapter 3: Three readers" data-first-short="2.3" data-subject="Computing and electronics">
+              <dt>X11</dt>
+              <dd>
+                <p>Version 11 of the X Window System, the display system of Unix desktops since 1987. A program running on another machine can draw its windows on an X11 screen over the network.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c3" title="Three readers">3</a></p>
+              </dd>
+            </div>
+          </dl>
+        </section>
+        <h2 id="gl-Z-h">Z</h2>
+        <section class="gl-sec" id="gl-Z" aria-labelledby="gl-Z-h">
+          <dl class="gl-list">
+            <div class="gl-item" data-term="zilina" data-first="15" data-first-title="The Thermidorian gathering" data-first-name="Part 2, chapter 4: The Thermidorian gathering" data-first-short="2.4" data-subject="Places">
+              <dt>Žilina</dt>
+              <dd>
+                <p>A city in northwestern Slovakia, a center of the country's automotive industry.</p>
+                <p class="gl-ref"><span>Part 2, chapter:</span> <a href="../part2.html#p2c4" title="The Thermidorian gathering">4</a></p>
               </dd>
             </div>
           </dl>

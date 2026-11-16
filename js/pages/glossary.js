@@ -43,7 +43,7 @@
       var sec = document.createElement("section");
       sec.className = "gl-sec";
       sec.id = id;
-      nav.push({ id: h.id, text: shortOf ? shortOf(k) : h.textContent, title: h.textContent });
+      nav.push({ id: h.id, text: shortOf ? shortOf(k, out[k][0]) : h.textContent, title: h.textContent });
       sec.setAttribute("aria-labelledby", h.id);
       var dl = document.createElement("dl");
       dl.className = "gl-list";
@@ -69,9 +69,10 @@
     } else if (mode === "first") {
       var nums = items.map(function (it) { return +it.getAttribute("data-first"); })
         .filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; });
+      /* a term first used in part 2 names its part and chapter there */
       group(function (it) { return +it.getAttribute("data-first"); },
-            function (k, it) { return "Chapter " + k + ": " + it.getAttribute("data-first-title"); }, nums,
-            function (k) { return String(k); });
+            function (k, it) { return it.getAttribute("data-first-name") || "Chapter " + k + ": " + it.getAttribute("data-first-title"); }, nums,
+            function (k, it) { return (it && it.getAttribute("data-first-short")) || String(k); });
     } else {
       group(function (it) { return it.getAttribute("data-subject"); }, function (k) { return k; }, subjects);
     }

@@ -4,7 +4,7 @@
 
   var $$ = K.$$, body = K.body;
 
-  /* ---------------------------------------------------------- pretty wrap */
+  /* pretty wrap */
 
   /* Native text-wrap-style: pretty where the browser has it, on every element.
      Elsewhere this engine visits every block that holds wrapping text, looks for
@@ -15,6 +15,12 @@
   var PW_SHORT = 0.15;      /* a last line narrower than this share of the block is short */
   var PW_MAX_JOINS = 2;     /* at most this many words move down */
   var PW_KEEP = 0.75;       /* the line before must stay at least this full */
+  /* short blocks the browser's own pretty wrap leaves with a lone word: the
+     cards of part 3, the entries of the contents and the headline of the
+     news article. The engine always runs
+     on them, with a stricter idea of a short last line */
+  var PW_ALWAYS = ".coda-card p, .toc a, .news-head";
+  var PW_ALWAYS_SHORT = 0.25;
   /* Trust the browser's native pretty wrap only when it actually prevents
      short last lines.  Firefox declares support for text-wrap-style: pretty
      through CSS.supports but its implementation does not rebalance lines
@@ -243,11 +249,12 @@
     return done === joins;
   }
 
-  function pwFix(el, nodes) {
+  function pwFix(el, nodes, short) {
+    short = short || PW_SHORT;
     var lines = pwLines(nodes);
     if (lines.length < 2) return;
     var width = pwWidth(el);
-    if (width <= 0 || pwLastWidth(lines) / width >= PW_SHORT) return;
+    if (width <= 0 || pwLastWidth(lines) / width >= short) return;
     var height = el.getBoundingClientRect().height;
     for (var k = 1; k <= PW_MAX_JOINS; k++) {
       if (!pwJoin(nodes, k)) { pwUndoNodes(nodes); return; }
@@ -258,7 +265,7 @@
       if (el.getBoundingClientRect().height > height + 1 || prevW / width < PW_KEEP) { pwUndoNodes(nodes); return; }
       /* long enough, or as long as it is allowed to get: keep it, since any
          join that passed the checks above beats a lone word on the last line */
-      if (lastW / width >= PW_SHORT || k === PW_MAX_JOINS) return;
+      if (lastW / width >= short || k === PW_MAX_JOINS) return;
       pwUndoNodes(nodes);
     }
   }
@@ -268,8 +275,12 @@
   function prettyWrap() {
     pwBusy = true;
     pwUndoAll();
-    if (!nativePretty && body.classList.contains("pretty")) {
-      pwBlocks().forEach(function (nodes, el) { pwFix(el, nodes); });
+    if (body.classList.contains("pretty")) {
+      pwBlocks().forEach(function (nodes, el) {
+        var always = el.closest(PW_ALWAYS);
+        if (always) pwFix(el, nodes, PW_ALWAYS_SHORT);
+        else if (!nativePretty) pwFix(el, nodes);
+      });
     }
     pwBusy = false;
   }

@@ -4,7 +4,7 @@
 
   var $$ = K.$$, root = K.root, body = K.body;
 
-  /* ---------------------------------------------------------- speaker column */
+  /* speaker column */
 
   /* the name column is as wide as the longest speaker name on the page,
      times a minimum coefficient so the names have room to breathe */

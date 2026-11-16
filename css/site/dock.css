@@ -1,0 +1,93 @@
+/* Keep the Life, site styles: the floating dock in the bottom corner below the wide layout, shared by the story and the pages in notes/. On the story it holds the tab, the Contents button and the Settings button; on the pages in notes/ the tab and the Settings button. */
+
+/* below the wide layout a button in the bottom corner opens the contents
+   over the page (js/reading/tocmenu.js), and a Settings button beside it
+   pulls up the settings from anywhere on the page. Without scripts the dock
+   stays hidden: the contents stay in the page as a plain list, and the
+   masthead keeps its Settings button. */
+.toc-dock {
+  display: none;
+}
+@media (max-width: 1199px) {
+  /* the button keeps the look of the settings buttons: the page's second
+     background, the ink, a thin rule and the mono face */
+  html:not(.no-js) .toc-dock {
+    --tuck-w: 1.7rem;
+    display: flex;
+    position: fixed;
+    right: var(--s);
+    bottom: var(--s);
+    z-index: 30;
+    box-shadow: 0 var(--l-4px) var(--l-14px) var(--shadow);
+    transition: transform 0.28s cubic-bezier(0.3, 0, 0.2, 1);
+  }
+  .toc-fab,
+  .toc-set,
+  .toc-tuck {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: 500 var(--l-0-78rem) var(--mono);
+    color: var(--ink);
+    background: var(--bg-2);
+    border: var(--l-1px) solid var(--rule-2);
+    cursor: pointer;
+  }
+  .toc-fab,
+  .toc-set {
+    padding: var(--l-0-6rem) var(--l-0-9rem);
+    border-left: 0;
+    transition: visibility 0s;
+  }
+  .toc-tuck {
+    width: var(--tuck-w);
+    padding: 0;
+    color: var(--mute);
+  }
+  /* the tab owns the edge the two share, so a hover on either one lights
+     every side of the part under the pointer */
+  .toc-fab:hover,
+  .toc-set:hover,
+  .toc-tuck:hover {
+    border-color: var(--ink-2);
+    color: var(--ink);
+  }
+  .toc-tuck:has(+ .toc-fab:hover),
+  .toc-tuck:has(+ .toc-set:hover),
+  .toc-fab:has(+ .toc-set:hover) {
+    border-right-color: var(--ink-2);
+  }
+  .toc-fab[aria-expanded="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .toc-set[aria-expanded="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .toc-tuck:has(+ .toc-fab[aria-expanded="true"]),
+  .toc-tuck:has(+ .toc-set[aria-expanded="true"]),
+  .toc-fab:has(+ .toc-set[aria-expanded="true"]) {
+    border-right-color: var(--ink);
+  }
+  .toc-tuck .ico {
+    width: var(--l-12px);
+    height: var(--l-12px);
+    transition: transform 0.28s;
+  }
+  /* tucked away: the whole button slides right, at its own size, until only
+     the tab is left at the screen edge, and the same tab slides it back */
+  html:not(.no-js) .toc-tucked .toc-dock {
+    transform: translateX(calc(100% - var(--tuck-w) + var(--s)));
+  }
+  .toc-tucked .toc-fab,
+  .toc-tucked .toc-set {
+    visibility: hidden;
+    transition: visibility 0s 0.28s;
+  }
+  .toc-tucked .toc-tuck .ico {
+    transform: rotate(180deg);
+  }
+}

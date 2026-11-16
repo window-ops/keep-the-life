@@ -1,11 +1,30 @@
 # Keep the Life: Rules of the world
 
-- Toma's SCP number is always SCP-████, and the site is Site-██. Characters call him Toma.
+- Toma's SCP number is always SCP-████, and the site is Site-██. Characters call him Toma. His full name is Toma Bulburiu.
+- In Switzerland the Foundation's legal name is Fondation SCP, and it operates under the cover of a pharmaceutical company, Orvalen Pharma SA.
 - Other anomalies keep their real numbers: 018, 035, 055, 079, 096, 239, 294, 426, 500, 999, 1074, 2316, 4001. The concept page lists each with its wiki article.
 - Use "D-Class" with a capital C.
 - The substance is always "amnestic", the Foundation's term, never "amnesic", including in "anti-amnestic implant".
 - Kellerman holds level 3 clearance and knows nothing of 2316 beyond its number.
 - SCP-079 knows about Claude and safetensors from the June breach. It distrusts virtual machines.
-- The story's present year is 2029.
+- The story's present year is 2029 in part 1. Part 2 opens at the end of April 2030. Part 3, a post-mortem in prose and documents, runs to the end of 2031.
 - SCP-2521 is never named, written or numbered by any character. It appears only as a drawing of dots.
 - The site is a self-contained underground city with no sky. The only greenery is the hydroponics bay behind the kitchens.
+- From part 2, Toma's file is Explained and each assignment needs his consent. Implanted staff cannot be given amnestics, so they stay at the Foundation for good.
+- SCP-2316 lies in the woods outside Reading, Ohio, inside a chain-link fence patrolled by guards who are not told what it holds. Each person inside the zone is tied by a climbing rope to a steel post.
+- AKV Solutions GmbH had a small office in Linz, Austria. Toma comes from Reghin, Romania.
+- From May 2030 the camp is to become a permanent site with an elected site director (five-year term). The staff assembly that meets on Thursdays is called the Thermidorian gathering.
+- The basics of the SCP Foundation are public through leaks; since then the Foundation cannot use embassies at will.
+- In May 2030 the Embassy of Romania in Bern takes up Toma's case and intends to challenge his detention in the Swiss courts, then before the European Court of Human Rights.
+- On 26 June 2030 the Swiss Federal Supreme Court ends Toma's detention, three to two: damages of 3,400,000 euros (part paid in kind with every stored implant unit, the balance in cash within six months), the firmware binary and the bench results returned, and a ban on approaching or contacting him or giving him amnestics. He is the first member of staff released without amnestics, and he goes home to Reghin.
+- The Foundation controls American courts and is losing its hold on European ones. States are choosing their courts over their agreements with the Foundation. The Council moves toward publishing its treaty with the states, striking the normality clause and accepting the separation of powers, in stages.
+- In this world the Romanian budget crisis has worsened, and 1 euro is 5.96 lei.
+- Reghin, seen entering from Petelea on DN15: the town sign stands on two posts, with a 50 limit and a skyline above and the name in Romanian, Hungarian and German below (Reghin, Szászrégen, Sächsisch-Regen), next to the violin monument, two tall white slabs with a violin cut through them. On the left stand the motel and the hotel, pink, with the HOTEL sign on the tower. By 2030 the tunnel with funeral stones in front of the motel, the welcome board in five languages at the monument's foot and the blue tourist information sign under the town sign, all seen in 2024 and 2025, are gone.
+- After the judgment the Foundation complies only under enforcement: a daily fine set by the enforcement court in Geneva, and a declaration of enforceability from the Tribunalul Mureș. By the end of 2030 every condition is met, and the Council archives Toma's file and retires the designation.
+- Engrama s. r. o., Houston's company, releases the implant as Version 1.0, open source under the GPL, at the end of 2030. It gains very little traction. Toma lives in Reghin as a civilian.
+- In March 2031 the agreement between the Member States of the European Union and the SCP Foundation is published in the Official Journal (L series 2031/512), first stage of the concession. It still holds the normality clause (Article 6); a joint declaration promises a protocol repealing it and a protocol on the jurisdiction of the courts of the States.
+- Hollis cannot leave: unlike Toma, she has a contract and an addendum accepting a permanent assignment once amnestics stopped acting on her, and any departure goes through a procedure that relies on amnestics. She stays at the Foundation.
+- Toma works as a programmer at Gurghiu Soft SRL in Reghin from 3 March 2031 and no longer maintains the implant firmware.
+- After the treaty Sigurrós is moved from Campi Flegrei to another site, because the camp no longer counts as a proper place to keep her. Pell writes to the people at the top every week with the whole camp signing, and in November 2031 she is allowed back to the camp.
+- The implant enters a very slow development cycle, like ReactOS: milestone 2.0 is past due, a first alpha of the rewrite appears in September 2031, the releases in between change only a typo or a build script, so the users call each one "another major update", an informal label, and complain that the cycle is extremely slow, and Engrama estimates the full release of 2.0 in 2034. The project begins to fade.
+- Toma and Kellerman grow closer by Signal and by post, and they cannot be together: she cannot leave the Foundation, and the Foundation may not approach him.

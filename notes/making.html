@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/site/tokens.css">
     <link rel="stylesheet" href="../css/site/base.css">
     <link rel="stylesheet" href="../css/site/masthead.css">
+    <link rel="stylesheet" href="../css/site/dock.css">
     <link rel="stylesheet" href="../css/site/tabs.css">
     <link rel="stylesheet" href="../css/site/end.css">
     <link rel="stylesheet" href="../css/site/motion.css">
@@ -21,6 +22,8 @@
     <script src="../js/pages/concept.js" defer></script>
     <script src="../js/making/counts.js" defer></script>
     <script src="../js/making/making.js" defer></script>
+    <script src="../js/reading/settings.js" defer></script>
+    <script src="../js/reading/tocmenu.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
     <script src="../js/base/scrollfocus.js" defer></script>
   </head>
@@ -31,8 +34,9 @@
         <p class="mast-sub">How the story was made</p>
       </div>
       <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
-      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" data-open-key="notes-settings-open" data-start="closed" hidden>
         <div class="mast-tools">
+          <span class="set-close-part"><button type="button" class="tool set-close">Close</button></span>
           <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
           <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
           <span class="tool-sep" aria-hidden="true"></span>
@@ -53,16 +57,25 @@
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
-            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
             <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
-            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
             <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
           </div>
         </div>
       </div>
     </header>
+    <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the settings button" title="Hide the settings button"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
     <main class="cx">
-      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html" aria-current="page">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="../part2.html">Part 2</a><a class="tab" href="../part3.html">Part 3</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html" aria-current="page">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html">Classes</a></nav>
       <h2 id="mk-about">About this page</h2>
       <section aria-labelledby="mk-about">
         <p>This page is an attempt to consolidate ideas that came from many separate sources: documentaries, reading, school lessons, Romanian public life, the SCP Wiki and games. It records how the story was written, where the ideas came from, and which rules held the text together.</p>
@@ -166,6 +179,13 @@
           <li>The Atticists, Roman orators who wanted a plainer style modelled on the Attic speakers and criticized Cicero's. Lindqvist names them in the hearing of chapter 6 (<a href="https://en.wikipedia.org/wiki/Gaius_Licinius_Macer_Calvus" rel="external">Calvus</a>, one of them).</li>
           <li>Quintilian, the Roman teacher of rhetoric, as an alternative to Cicero in the same hearing (<a href="https://en.wikipedia.org/wiki/Quintilian" rel="external">Quintilian</a>).</li>
           <li>Motivational interviewing, a counselling method built to be taught to ordinary staff, set beside Cicero in chapter 6 (<a href="https://en.wikipedia.org/wiki/Motivational_interviewing" rel="external">Motivational interviewing</a>).</li>
+          <li>The public deliberation of the Swiss Federal Supreme Court, held when the judges of a panel disagree: they debate aloud and vote by a show of hands in front of the public. The ruling of part 2, chapter 6 is read at one (<a href="https://en.wikipedia.org/wiki/Federal_Supreme_Court_of_Switzerland" rel="external">Federal Supreme Court of Switzerland</a>).</li>
+          <li>The Lugano Convention, under which the Swiss judgment can be enforced in Romania without a new trial, in the same chapter (<a href="https://en.wikipedia.org/wiki/Lugano_Convention" rel="external">Lugano Convention</a>).</li>
+          <li>Switzerland's signature of Protocol No. 1 to the European Convention on Human Rights without ratification, which closes Strasbourg to the Foundation's claim on the binary, and the state secrets privilege of American courts, both raised by the Overseers (<a href="https://en.wikipedia.org/wiki/State_secrets_privilege" rel="external">State secrets privilege</a>).</li>
+          <li>Romania's entry into the Schengen area, which removes the passport check on Toma's flight from Budapest, and the entry to Reghin on DN15 from Petelea, from a Street View capture I took: the town sign on two posts, with the 50 limit and a skyline above and the name in Romanian, Hungarian and German (Reghin, Szászrégen, Sächsisch-Regen) below, next to a white monument with a violin cut into it. The picture of part 2, chapter 7 draws both.</li>
+          <li>Günter Schabowski's press conference of 9 November 1989, the example the Overseers use for a concession announced too early (<a href="https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski" rel="external">Günter Schabowski</a>).</li>
+          <li>The enforcement court of the Swiss Civil Procedure Code, which can set a disciplinary fine of up to 1,000 francs for each day a party fails to do what a judgment orders. In part 3 it makes the Foundation hand over the binary (<a href="https://www.fedlex.admin.ch/eli/cc/2010/262/en" rel="external">Swiss Civil Procedure Code</a>, article 343).</li>
+          <li>The SCP Wiki's habits for a file that is no longer active: a banner by order of the O5 Council, archived sections, former object classes struck through and the -EX suffix of Explained files. The archived revision on the file page follows them (<a href="https://scp-wiki.wikidot.com/scp-5297-ex" rel="external">SCP-5297-EX</a>).</li>
           <li>The 5-HT2B receptor, through which fenfluramine caused valvular heart disease. The chemist in chapter 10 uses it to describe what the delete marker would do left in the body (<a href="https://en.wikipedia.org/wiki/5-HT2B_receptor" rel="external">5-HT2B receptor</a>, <a href="https://en.wikipedia.org/wiki/Fenfluramine" rel="external">fenfluramine</a>).</li>
         </ul>
       </section>
@@ -181,6 +201,10 @@
         <p>The guard brings the outside world into the wing. Two years on the rotation of SCP-035 taught him what an anomaly working on a person looks like, and an estranged sister who abused Class A and B amnestics puts the public health problem of the drugs into his own family. He carries Kellerman's letters past the screening office and refuses to sign anything. It represents the informal network that keeps working while the top changes.</p>
         <h3>Dr. Pryce, Corwin and the officials</h3>
         <p>Pryce stands for fairness of procedure used as a cover. Corwin came up through security and signs exceptions without being a reformist. Haas and Pryce are counter-reformists of different temperaments, Ferreira and Voss are reformists who test before they decide, and Lindqvist chairs a committee that writes decisions in numbered points. Together they map the competing groups that the story compares with the Romanian justice system.</p>
+        <h3>The Overseers</h3>
+        <p>In part 2, chapter 6 the Overseer Council meets as thirteen numbered tiles with filtered voices. Each Overseer speaks from a position and shows no face: one wants to fight the judgment in Strasbourg or move the sites to the United States, others count the consulates, the recruits and the Keter transfers that make this impossible, and the debate ends at the only option left, a concession made in stages.</p>
+        <h3>Hollis</h3>
+        <p>Hollis, a researcher on the SCP-2316 team in part 2, deals with the public health problem of amnestics from the other side of the Foundation. She grew up in Pune, where the drugs are sold in strips, checked dosing tables in the Amnestics Department, and now has the implant and cannot be given an amnestic. She doubts that the chip can end the trade in cheap amnestics and believes in Toma at the same time.</p>
         <h3>Sigurrós Stefánsdóttir</h3>
         <p>SCP-239 is a character from the SCP Wiki, read here as a child who is spoken to. The story ranks her own account above her file and lets her powers decay under the same thermodynamics as everything else.</p>
       </section>
@@ -204,10 +228,14 @@
       </section>
       <h2 id="mk-numbers">Numbers</h2>
       <section aria-labelledby="mk-numbers">
-        <p>The figures below are counted from the story each time this page opens, so they can change if the story changes. Spoken words leave out the speaker's name, the stage directions in italics and the translations in brackets. The stage directions are counted on their own, and a reply continued after a screen counts once.</p>
+        <p>The figures below are counted from both parts of the story each time this page opens, so they can change if the story changes. Spoken words leave out the speaker's name, the stage directions in italics and the translations in brackets. The stage directions are counted on their own, and a reply continued after a screen counts once.</p>
         <p>Next to the average length of a reply, each speaker has the median, or the length of the middle reply when all of a speaker's replies are lined up from shortest to longest. A few long replies pull the average up, so the median shows how long a typical reply is. Stage directions are measured one by one, with the number of replies that carry one: most replies carry none, so a median per reply would be zero for most speakers.</p>
-        <div id="mk-counts" aria-live="polite"><p>Counting the story.</p></div>
-        <noscript><p>The figures are counted by a script from the story itself, so they appear when JavaScript is turned on. The story and every other page read in full without it.</p></noscript>
+        <div id="mk-counts" aria-live="polite">
+          <p>Counting the story.</p>
+        </div>
+        <noscript>
+          <p>The figures are counted by a script from the story itself, so they appear when JavaScript is turned on. The story and every other page read in full without it.</p>
+        </noscript>
         <p>When I had the indefinite pronouns checked, most of Kellerman's were idioms, real questions, hypothetical persons, or references to file writers whom the files leave unnamed. I had the five that hid a known party rewritten.</p>
       </section>
       <footer class="end">

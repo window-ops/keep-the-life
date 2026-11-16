@@ -1,0 +1,318 @@
+/* Keep the Life, screen styles: the SCiPNET secure workstation of the recording team (part 2, chapter 3). A text console on a laptop: plain lines, numbered steps, key and value pairs, tables that wrap their text, a transcript, the teletext page pushed from another machine, and the firmware's reset dialog in the style of a text installer. Nothing is drawn as preformatted text, so every line wraps to the width of the reader's screen. */
+
+/* repeated values, defined once and used by name below */
+:root {
+  --ssw-bg: #050607;
+  --ssw-ink: #dadde0;
+  --ssw-dim: #8f969c;
+  --ssw-rule: #3a3f45;
+  --ssw-ok: #9fe3cf;
+  --ssw-note: #e6c35c;
+  --ssw-bar: #dadde0;
+  --ssw-pad-y: 0.75rem;
+  --ssw-pad-x: 0.9rem;
+  --ssw-font: 400 12.5px / 1.5 var(--mono);
+  --ttx-blue: #0000c8;
+  --ttx-yellow: #ffff00;
+  --ttx-cyan: #00ffff;
+  --ttx-white: #ffffff;
+  --ttx-green: #00ff00;
+  --dlg-blue: var(--fw-blue);
+  --dlg-gray: var(--fw-gray);
+  --dlg-ink: #1d1d1d;
+  --dlg-red: #a3231b;
+  --dlg-sub: #1a2a8c;
+  --dlg-frame: #1d1d1d;
+  --dlg-on: #f4f4f4;
+  --t-fill: 2.4s;
+  --ssw-col: 1.5ch;
+  --ssw-wide: 2ch;
+  --ssw-space: 0.75em;
+  --ttx-black: #000;
+}
+
+/* the console */
+.ssw {
+  background: var(--ssw-bg);
+  color: var(--ssw-ink);
+  font: var(--ssw-font);
+  padding: var(--ssw-pad-y) var(--ssw-pad-x);
+  overflow-wrap: anywhere;
+}
+.ssw > :first-child {
+  margin-top: 0;
+}
+.ssw > :last-child {
+  margin-bottom: 0;
+}
+.ssw p,
+.ssw ol,
+.ssw dl {
+  margin: 0;
+}
+.ssw-l + .ssw-l {
+  margin-top: 0;
+}
+.ssw-gap {
+  margin-top: 1.5em !important;
+}
+.ssw-h {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.ssw-dim {
+  color: var(--ssw-dim);
+}
+.ssw-ok {
+  color: var(--ssw-ok);
+  font-weight: 600;
+}
+.ssw-p {
+  color: var(--ssw-dim);
+}
+
+/* numbered steps that keep their numbers when they wrap */
+.ssw-steps {
+  padding-left: 3ch;
+  list-style: decimal;
+}
+.ssw-steps li {
+  padding-left: 0.5ch;
+}
+.ssw-steps li::marker {
+  color: var(--ssw-dim);
+}
+
+/* key and value pairs: a column of keys, the values beside them */
+.ssw-kv {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: var(--ssw-col);
+}
+.ssw-kv dt {
+  color: var(--ssw-dim);
+}
+.ssw-kv dd {
+  margin: 0;
+}
+
+/* tables: numbers and text left-aligned with their headers, wrapping in
+   place; a table wider than a phone scrolls inside the screen */
+.ssw-tw {
+  overflow-x: auto;
+  margin-block: var(--ssw-space);
+}
+.ssw-t {
+  border-collapse: collapse;
+  font: inherit;
+  color: inherit;
+  min-width: 100%;
+}
+.ssw-t th,
+.ssw-t td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.1em 1.5ch 0.1em 0;
+  font-weight: 400;
+}
+.ssw-t th {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  color: var(--ssw-dim);
+  border-bottom: 1px dashed var(--ssw-rule);
+}
+.ssw-t td:last-child,
+.ssw-t th:last-child {
+  padding-right: 0;
+}
+.ssw-t .num {
+  white-space: nowrap;
+}
+
+/* the transcript: line, time and speaker stay narrow, the words wrap */
+.ssw-tr td:nth-child(-n + 3) {
+  white-space: nowrap;
+  color: var(--ssw-dim);
+}
+.ssw-tr td:last-child {
+  width: 100%;
+}
+.ssw-tn {
+  color: var(--ssw-note);
+}
+
+/* the key bar along the bottom of the screen */
+.ssw-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em var(--ssw-wide);
+  margin-top: var(--ssw-space) !important;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--ssw-rule);
+  color: var(--ssw-dim);
+}
+.ssw-keys kbd {
+  font: inherit;
+  color: var(--ssw-bg);
+  background: var(--ssw-dim);
+  padding: 0 0.5ch;
+  margin-right: 0.5ch;
+}
+
+/* the audio player's progress line */
+.ssw-play {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  column-gap: var(--ssw-col);
+}
+.ssw-track {
+  height: 0.6em;
+  border: 1px solid var(--ssw-dim);
+}
+.ssw-track i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ssw-bar);
+  animation: ssw-fill var(--t-fill) linear both;
+}
+
+@keyframes ssw-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* the cursor */
+.ssw-cur {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--ssw-ink);
+  animation: blink 1.1s steps(1) infinite;
+}
+.no-motion .ssw-cur {
+  animation: none;
+}
+
+/* a page of the site's teletext service, pushed onto the screen from
+   another machine: the header row, a band in double height, then the
+   table in the teletext colors */
+.ttx {
+  background: var(--ttx-black);
+  color: var(--ttx-white);
+  font: var(--ssw-font);
+  padding: var(--ssw-pad-y) var(--ssw-pad-x);
+  overflow-wrap: anywhere;
+}
+.ttx p {
+  margin: 0;
+}
+.ttx-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 var(--ssw-wide);
+  color: var(--ttx-white);
+}
+.ttx-row b {
+  color: var(--ttx-yellow);
+  font-weight: 400;
+}
+.ttx-band {
+  margin: 0.5em 0 !important;
+  padding: 0.15em 1ch;
+  background: var(--ttx-blue);
+  color: var(--ttx-yellow);
+  font-size: 1.6em;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+.ttx .ssw-t th {
+  color: var(--ttx-cyan);
+  border-bottom-color: var(--ttx-blue);
+}
+.ttx-pass {
+  color: var(--ttx-green);
+}
+.ttx-foot {
+  margin-top: 0.5em !important;
+  color: var(--ttx-cyan);
+}
+
+/* the firmware's reset dialog, as in the Debian text installer: on a blue
+   screen, a gray box with a dark shadow; inside it a thin black frame whose
+   top line carries the title in red, a subtitle in blue, the message, and the
+   buttons, the chosen one in red */
+.dlg-screen {
+  background: var(--dlg-blue);
+  padding: 1.25rem var(--ssw-pad-x);
+  font: var(--ssw-font);
+}
+.dlg {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0.75em 1ch;
+  background: var(--dlg-gray);
+  color: var(--dlg-ink);
+  box-shadow: 1ch 0.75em 0 var(--ttx-black);
+}
+.dlg-frame {
+  border: 1px solid var(--dlg-frame);
+  padding: 0 1.5ch var(--ssw-space);
+}
+.dlg-title {
+  display: table;
+  margin: -0.75em auto 0.4em !important;
+  padding: 0 0.5ch;
+  background: var(--dlg-gray);
+  color: var(--dlg-red);
+  border-left: 1px solid var(--dlg-frame);
+  border-right: 1px solid var(--dlg-frame);
+}
+.dlg-sub {
+  margin: 0 !important;
+  text-align: center;
+  color: var(--dlg-sub);
+}
+.dlg p {
+  margin: 0 0 var(--ssw-space);
+}
+.dlg-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5em var(--ssw-wide);
+  margin: var(--ssw-space) 2ch 0 !important;
+}
+.dlg-btns span:last-child {
+  display: flex;
+  gap: var(--ssw-wide);
+}
+.dlg-btn.on {
+  background: var(--dlg-red);
+  color: var(--dlg-on);
+}
+.dlg-help {
+  margin: 0.9em 0 0 !important;
+  color: var(--dlg-gray);
+  text-align: center;
+}
+.dlg-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  column-gap: var(--ssw-col);
+  margin-bottom: var(--ssw-space);
+}
+.dlg-bar .ssw-track {
+  border-color: var(--dlg-ink);
+}
+.dlg-bar .ssw-track i {
+  background: var(--dlg-red);
+}

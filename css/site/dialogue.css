@@ -75,6 +75,48 @@
 [data-sp="ce"] {
   --c: var(--sp-ce);
 }
+[data-sp="kw"] {
+  --c: var(--sp-kw);
+}
+[data-sp="yo"] {
+  --c: var(--sp-yo);
+}
+[data-sp="ho"] {
+  --c: var(--sp-ho);
+}
+[data-sp="re"] {
+  --c: var(--sp-re);
+}
+[data-sp="hz"] {
+  --c: var(--sp-hz);
+}
+[data-sp="hu"] {
+  --c: var(--sp-hu);
+}
+[data-sp="db"] {
+  --c: var(--sp-db);
+}
+[data-sp="il"] {
+  --c: var(--sp-il);
+}
+[data-sp="mo"] {
+  --c: var(--sp-mo);
+}
+[data-sp="fv"] {
+  --c: var(--sp-fv);
+}
+[data-sp="ne"] {
+  --c: var(--sp-ne);
+}
+[data-sp="co"] {
+  --c: var(--sp-co);
+}
+[data-sp="o5"] {
+  --c: var(--sp-o5);
+}
+[data-sp="ia"] {
+  --c: var(--sp-ia);
+}
 /* the site announcement is a recording read over the speakers: set in the mono face */
 [data-sp="pa"] p {
   font-family: var(--mono);
@@ -147,7 +189,7 @@
 }
 .tabbed .chapter:first-of-type .ch-head,
 .tabbed .ch-head {
-  margin-top: var(--s);
+  margin-block: var(--s);
 }
 
 .ch-tabs {
@@ -174,16 +216,24 @@
   gap: var(--s);
   margin-block: var(--s);
 }
-.sec-nav button {
+.sec-nav button,
+.sec-nav a {
   padding: var(--l-0-4rem) var(--l-0-8rem);
   border: var(--l-1px) solid var(--rule-2);
   background: transparent;
   color: var(--ink);
   font: 500 var(--l-0-85rem) var(--sans);
+  text-decoration: none;
   cursor: pointer;
 }
-.sec-nav button:hover {
+.sec-nav button:hover,
+.sec-nav a:hover {
   border-color: var(--ink-2);
+}
+/* in tabbed view the link to the next part sits in the section navigation,
+   so the button under the end mark leaves */
+.tabbed .part-next {
+  display: none;
 }
 .sec-nav button[disabled] {
   visibility: hidden;
@@ -254,6 +304,13 @@
   border-left-style: dashed;
   border-left-color: var(--mute);
   color: color-mix(in srgb, var(--ink-2) 82%, var(--mute));
+}
+/* a time shift: the story jumps forward in time and stays with the same people.
+   Same scene type, a dotted rule, so it reads apart from the dashed cut to
+   another place */
+.scene-time {
+  padding-left: calc(var(--s) - 1px);
+  border-left: 2px dotted var(--mute);
 }
 /* a scene that opens a section takes the smaller spacing and sits under the heading */
 .sec > h3 + .scene {
@@ -350,6 +407,39 @@ details:not([open]) + .ln-cont > .sp-cont {
   line-height: 1.7;
   color: var(--ink);
 }
+/* the post-mortem of part 3: one card per thread, each under a small mono
+   label, set side by side and wrapping onto the next row like the closing
+   cards of a game */
+.coda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s);
+  margin: 0;
+}
+/* the last line keeps the same step from the cards above it as the cards
+   keep from each other */
+.coda + .scene.scene-final {
+  margin-block: var(--s);
+}
+.coda-card {
+  flex: 1 1 18rem;
+  padding: var(--s);
+  border: var(--l-1px) solid var(--rule-2);
+  border-radius: var(--l-6px);
+  background: var(--panel);
+  font: 400 1.1rem/1.65 var(--serif);
+  color: var(--ink-2);
+}
+.coda-card p {
+  margin: 0;
+}
+.coda-card .coda-k {
+  margin-bottom: var(--l-0-5rem);
+  font: 600 var(--l-0-72rem) / 1.4 var(--mono);
+  letter-spacing: var(--l-0-2em);
+  text-transform: uppercase;
+  color: var(--sp-k);
+}
 .the-end {
   display: flex;
   align-items: center;
@@ -370,6 +460,14 @@ details:not([open]) + .ln-cont > .sp-cont {
   margin-right: -0.4em;
   text-transform: uppercase;
   color: var(--sp-k);
+}
+
+/* the button from the end of part 1 to part 2, styled like the settings
+   buttons */
+.part-next {
+  display: flex;
+  justify-content: center;
+  margin: var(--s) 0 0;
 }
 
 /* folded screens and printed matter open and fold like a drawer, in CSS
@@ -414,4 +512,63 @@ details.app > :not(summary) {
    clickable */
 .no-js .sp-switch {
   cursor: auto;
+}
+
+/* a translation printed as its own line, under the words it translates, in
+   documents and on screens. It stays a .tr, so whatever shows or hides the
+   translations elsewhere does the same here */
+.tr.tr-line {
+  display: block;
+  margin-top: 0.15em;
+  font-family: var(--sans);
+  font-size: 0.86em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* the translation switch (js/reading/glosses.js): the original alone hides
+   the translations; the translation alone hides the foreign words it
+   translates and its brackets, and reads like the rest of the reply. In both
+   modes every reply or screen holding a translation offers a button back to
+   the normal mode, like a reply hidden with the stage directions */
+.gloss-original .tr {
+  display: none;
+}
+.gloss-translation .tr-orig,
+.gloss-translation .tr-p {
+  display: none;
+}
+/* with the original hidden, the translation takes the place and the look of
+   the words it translates: same color, size, face and weight as the text
+   around it, in the dialogue, in documents and on screens */
+body.gloss-translation .tr,
+body.gloss-translation .tr.tr-line {
+  color: inherit;
+  font-style: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+body.gloss-translation .tr.tr-line {
+  margin-top: 0;
+}
+.gloss-restore,
+.gloss-back {
+  display: none;
+}
+/* the same size as the button that brings back the stage directions */
+.gloss-original .gloss-restore,
+.gloss-translation .gloss-restore {
+  display: inline-block;
+  margin-left: 0.4em;
+  font-style: normal;
+}
+.gloss-original .gloss-back,
+.gloss-translation .gloss-back {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--xs);
 }

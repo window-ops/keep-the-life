@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/site/base.css">
     <link rel="stylesheet" href="css/site/masthead.css">
     <link rel="stylesheet" href="css/site/layout.css">
+    <link rel="stylesheet" href="css/site/dock.css">
     <link rel="stylesheet" href="css/site/tabs.css">
     <link rel="stylesheet" href="css/site/dialogue.css">
     <link rel="stylesheet" href="css/site/notes.css">
@@ -34,12 +35,14 @@
     <script src="js/reading/settings.js" defer></script>
     <script src="js/reading/sections.js" defer></script>
     <script src="js/devices/calc-font.js" defer></script>
+    <script src="js/devices/contacts.js" defer></script>
     <script src="js/devices/calculator.js" defer></script>
     <script src="js/devices/screens.js" defer></script>
     <script src="js/reading/tocmenu.js" defer></script>
     <script src="js/text/names.js" defer></script>
     <script src="js/reading/notes.js" defer></script>
     <script src="js/reading/toggles.js" defer></script>
+    <script src="js/reading/glosses.js" defer></script>
     <script src="js/reading/position.js" defer></script>
     <script src="js/devices/ghidra.js" defer></script>
     <script src="js/making/counts.js" defer></script>
@@ -61,6 +64,7 @@
           <button type="button" class="tool" data-toggle="no-toc" aria-pressed="false">Hide contents</button>
           <span class="tool-sep" aria-hidden="true"></span>
           <button type="button" class="tool" data-toggle="no-acts" aria-pressed="false">Hide stage directions</button>
+          <button type="button" class="tool" id="t-gloss" data-mode="both">Translations: shown</button>
           <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
           <button type="button" class="tool" data-toggle="fit-size" aria-pressed="false">Sizes: fixed</button>
           <button type="button" class="tool" data-toggle="open-all" aria-pressed="false">Screens: foldable</button>
@@ -93,9 +97,17 @@
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
-            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
             <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
-            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
             <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
           </div>
         </div>
@@ -131,7 +143,7 @@
             </ol>
           </li>
           <li class="toc-ch">
-            <a class="toc-cht" href="#c3"><span class="toc-n">03</span>Amaranth</a>
+            <a class="toc-cht" href="#c3"><span class="toc-n">03</span>The hydroponics bay</a>
             <ol>
               <li><a href="#c3-s1"><span class="toc-n">3.1</span>Toast with real butter</a></li>
               <li><a href="#c3-s2"><span class="toc-n">3.2</span>Amaranth</a></li>
@@ -158,7 +170,7 @@
             </ol>
           </li>
           <li class="toc-ch">
-            <a class="toc-cht" href="#c6"><span class="toc-n">06</span>Hooligans</a>
+            <a class="toc-cht" href="#c6"><span class="toc-n">06</span>The hearing</a>
             <ol>
               <li><a href="#c6-s1"><span class="toc-n">6.1</span>Line by line</a></li>
               <li><a href="#c6-s2"><span class="toc-n">6.2</span>Hooligans</a></li>
@@ -178,7 +190,7 @@
             </ol>
           </li>
           <li class="toc-ch">
-            <a class="toc-cht" href="#c8"><span class="toc-n">08</span>Old light</a>
+            <a class="toc-cht" href="#c8"><span class="toc-n">08</span>The first lesson</a>
             <ol>
               <li><a href="#c8-s1"><span class="toc-n">8.1</span>The black bars</a></li>
               <li><a href="#c8-s2"><span class="toc-n">8.2</span>Two speakers</a></li>
@@ -187,7 +199,7 @@
             </ol>
           </li>
           <li class="toc-ch">
-            <a class="toc-cht" href="#c9"><span class="toc-n">09</span>Screened</a>
+            <a class="toc-cht" href="#c9"><span class="toc-n">09</span>The acting director</a>
             <ol>
               <li><a href="#c9-s1"><span class="toc-n">9.1</span>Several exceptions</a></li>
               <li><a href="#c9-s2"><span class="toc-n">9.2</span>Screened</a></li>
@@ -221,7 +233,7 @@
         <p class="toc-touch">Tap with two fingers to open or close the settings.</p>
       </nav>
       <main class="story">
-        <div class="book-tabs" role="tablist" aria-label="Chapters" hidden><button type="button" role="tab" class="tab ctab" id="tab-c1" aria-controls="c1" aria-selected="false" tabindex="-1"><span class="tab-n">01</span>Nine days</button><button type="button" role="tab" class="tab ctab" id="tab-c2" aria-controls="c2" aria-selected="false" tabindex="-1"><span class="tab-n">02</span>Twenty-three minutes</button><button type="button" role="tab" class="tab ctab" id="tab-c3" aria-controls="c3" aria-selected="false" tabindex="-1"><span class="tab-n">03</span>Amaranth</button><button type="button" role="tab" class="tab ctab" id="tab-c4" aria-controls="c4" aria-selected="false" tabindex="-1"><span class="tab-n">04</span>Sigurrós</button><button type="button" role="tab" class="tab ctab" id="tab-c5" aria-controls="c5" aria-selected="false" tabindex="-1"><span class="tab-n">05</span>Project Cicero</button><button type="button" role="tab" class="tab ctab" id="tab-c6" aria-controls="c6" aria-selected="false" tabindex="-1"><span class="tab-n">06</span>Hooligans</button><button type="button" role="tab" class="tab ctab" id="tab-c7" aria-controls="c7" aria-selected="false" tabindex="-1"><span class="tab-n">07</span>Both ways</button><button type="button" role="tab" class="tab ctab" id="tab-c8" aria-controls="c8" aria-selected="false" tabindex="-1"><span class="tab-n">08</span>Old light</button><button type="button" role="tab" class="tab ctab" id="tab-c9" aria-controls="c9" aria-selected="false" tabindex="-1"><span class="tab-n">09</span>Screened</button><button type="button" role="tab" class="tab ctab" id="tab-c10" aria-controls="c10" aria-selected="false" tabindex="-1"><span class="tab-n">10</span>The yard</button><button type="button" role="tab" class="tab ctab" id="tab-c11" aria-controls="c11" aria-selected="false" tabindex="-1"><span class="tab-n">11</span>Campi Flegrei</button></div>
+        <div class="book-tabs" role="tablist" aria-label="Chapters" hidden><button type="button" role="tab" class="tab ctab" id="tab-c1" aria-controls="c1" aria-selected="false" tabindex="-1"><span class="tab-n">01</span>Nine days</button><button type="button" role="tab" class="tab ctab" id="tab-c2" aria-controls="c2" aria-selected="false" tabindex="-1"><span class="tab-n">02</span>Twenty-three minutes</button><button type="button" role="tab" class="tab ctab" id="tab-c3" aria-controls="c3" aria-selected="false" tabindex="-1"><span class="tab-n">03</span>The hydroponics bay</button><button type="button" role="tab" class="tab ctab" id="tab-c4" aria-controls="c4" aria-selected="false" tabindex="-1"><span class="tab-n">04</span>Sigurrós</button><button type="button" role="tab" class="tab ctab" id="tab-c5" aria-controls="c5" aria-selected="false" tabindex="-1"><span class="tab-n">05</span>Project Cicero</button><button type="button" role="tab" class="tab ctab" id="tab-c6" aria-controls="c6" aria-selected="false" tabindex="-1"><span class="tab-n">06</span>The hearing</button><button type="button" role="tab" class="tab ctab" id="tab-c7" aria-controls="c7" aria-selected="false" tabindex="-1"><span class="tab-n">07</span>Both ways</button><button type="button" role="tab" class="tab ctab" id="tab-c8" aria-controls="c8" aria-selected="false" tabindex="-1"><span class="tab-n">08</span>The first lesson</button><button type="button" role="tab" class="tab ctab" id="tab-c9" aria-controls="c9" aria-selected="false" tabindex="-1"><span class="tab-n">09</span>The acting director</button><button type="button" role="tab" class="tab ctab" id="tab-c10" aria-controls="c10" aria-selected="false" tabindex="-1"><span class="tab-n">10</span>The yard</button><button type="button" role="tab" class="tab ctab" id="tab-c11" aria-controls="c11" aria-selected="false" tabindex="-1"><span class="tab-n">11</span>Campi Flegrei</button></div>
         <article class="chapter" id="c1" aria-labelledby="c1-h">
           <header class="ch-head">
             <h2 id="c1-h">Nine days</h2>
@@ -924,7 +936,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of Twenty-three minutes" hidden><button type="button" role="tab" class="tab stab" id="tab-c2-s1" aria-controls="c2-s1" aria-selected="false" tabindex="-1"><span class="tab-n">2.1</span>Correspondent Toma</button><button type="button" role="tab" class="tab stab" id="tab-c2-s2" aria-controls="c2-s2" aria-selected="false" tabindex="-1"><span class="tab-n">2.2</span>Dash one, dash two</button><button type="button" role="tab" class="tab stab" id="tab-c2-s3" aria-controls="c2-s3" aria-selected="false" tabindex="-1"><span class="tab-n">2.3</span>Bigger than the box</button><button type="button" role="tab" class="tab stab" id="tab-c2-s4" aria-controls="c2-s4" aria-selected="false" tabindex="-1"><span class="tab-n">2.4</span>Out of range</button><button type="button" role="tab" class="tab stab" id="tab-c2-s5" aria-controls="c2-s5" aria-selected="false" tabindex="-1"><span class="tab-n">2.5</span>Screws I couldn't put back</button><button type="button" role="tab" class="tab stab" id="tab-c2-s6" aria-controls="c2-s6" aria-selected="false" tabindex="-1"><span class="tab-n">2.6</span>Keep the life</button></div>
           <section class="sec" id="c2-s1" aria-labelledby="c2-s1-h">
             <h3 id="c2-s1-h"><span class="sec-n">2.1</span>Correspondent Toma<button type="button" class="plink" data-target="c2-s1" aria-label="Copy link to Correspondent Toma">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Two days later, on Monday afternoon, the contact request is approved, and the four of them stand in the room where SCP-079 is kept, behind two locks in the research wing. The Exidy Sorcerer sits on a steel table in the middle, wired to a small black and white television that serves as its screen and to a bank of batteries along the wall, with no cable leading anywhere else. That morning the containment team moved the original file from Toma's virtual machine onto a sealed drive in their own storage. Dr. Halvard Brekke, who leads the team, stands beside the table with a printed log sheet, a security officer waits by the door, and Kellerman stands behind the chair at the keyboard, where Toma has been seated at her request, while a cursor blinks on the grey screen.</p>
             </div>
             <div class="ln" id="c2-s1-l1" data-sp="b">
@@ -2039,12 +2051,12 @@
         </article>
         <article class="chapter" id="c3" aria-labelledby="c3-h">
           <header class="ch-head">
-            <h2 id="c3-h">Amaranth</h2>
+            <h2 id="c3-h">The hydroponics bay</h2>
           </header>
-          <div class="ch-tabs" role="tablist" aria-label="Sections of Amaranth" hidden><button type="button" role="tab" class="tab stab" id="tab-c3-s1" aria-controls="c3-s1" aria-selected="false" tabindex="-1"><span class="tab-n">3.1</span>Toast with real butter</button><button type="button" role="tab" class="tab stab" id="tab-c3-s2" aria-controls="c3-s2" aria-selected="false" tabindex="-1"><span class="tab-n">3.2</span>Amaranth</button><button type="button" role="tab" class="tab stab" id="tab-c3-s3" aria-controls="c3-s3" aria-selected="false" tabindex="-1"><span class="tab-n">3.3</span>Two steps behind</button><button type="button" role="tab" class="tab stab" id="tab-c3-s4" aria-controls="c3-s4" aria-selected="false" tabindex="-1"><span class="tab-n">3.4</span>Under the ribs</button><button type="button" role="tab" class="tab stab" id="tab-c3-s5" aria-controls="c3-s5" aria-selected="false" tabindex="-1"><span class="tab-n">3.5</span>A suggestion from the top</button></div>
+          <div class="ch-tabs" role="tablist" aria-label="Sections of The hydroponics bay" hidden><button type="button" role="tab" class="tab stab" id="tab-c3-s1" aria-controls="c3-s1" aria-selected="false" tabindex="-1"><span class="tab-n">3.1</span>Toast with real butter</button><button type="button" role="tab" class="tab stab" id="tab-c3-s2" aria-controls="c3-s2" aria-selected="false" tabindex="-1"><span class="tab-n">3.2</span>Amaranth</button><button type="button" role="tab" class="tab stab" id="tab-c3-s3" aria-controls="c3-s3" aria-selected="false" tabindex="-1"><span class="tab-n">3.3</span>Two steps behind</button><button type="button" role="tab" class="tab stab" id="tab-c3-s4" aria-controls="c3-s4" aria-selected="false" tabindex="-1"><span class="tab-n">3.4</span>Under the ribs</button><button type="button" role="tab" class="tab stab" id="tab-c3-s5" aria-controls="c3-s5" aria-selected="false" tabindex="-1"><span class="tab-n">3.5</span>A suggestion from the top</button></div>
           <section class="sec" id="c3-s1" aria-labelledby="c3-s1-h">
             <h3 id="c3-s1-h"><span class="sec-n">3.1</span>Toast with real butter<button type="button" class="plink" data-target="c3-s1" aria-label="Copy link to Toast with real butter">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>On Tuesday morning the review board approves a supervised visit to the staff canteen on Brekke's recommendation, and at nine Kellerman collects Toma from his cell to take him there for breakfast. A security officer walks two steps behind them through the research wing and takes a table by the door. At this hour the canteen is half empty, a long room under fluorescent panels with a hot counter along one wall and the information terminal in the corner, its screen dark and a strip of tape across it marked OUT OF ORDER. A few researchers look up when the two of them come in, then go back to their coffee. Kellerman carries two trays to a table near the back, with eggs, toast, a bowl of porridge and two cups of coffee, and puts her notebook beside the cutlery, open to a blank page.</p>
             </div>
             <div class="ln" id="c3-s1-l1" data-sp="k">
@@ -2808,7 +2820,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of Sigurrós" hidden><button type="button" role="tab" class="tab stab" id="tab-c4-s1" aria-controls="c4-s1" aria-selected="false" tabindex="-1"><span class="tab-n">4.1</span>The bare room</button><button type="button" role="tab" class="tab stab" id="tab-c4-s2" aria-controls="c4-s2" aria-selected="false" tabindex="-1"><span class="tab-n">4.2</span>Everything gets old</button><button type="button" role="tab" class="tab stab" id="tab-c4-s3" aria-controls="c4-s3" aria-selected="false" tabindex="-1"><span class="tab-n">4.3</span>Thick jackets</button><button type="button" role="tab" class="tab stab" id="tab-c4-s4" aria-controls="c4-s4" aria-selected="false" tabindex="-1"><span class="tab-n">4.4</span>The red bag</button></div>
           <section class="sec" id="c4-s1" aria-labelledby="c4-s1-h">
             <h3 id="c4-s1-h"><span class="sec-n">4.1</span>The bare room<button type="button" class="plink" data-target="c4-s1" aria-label="Copy link to The bare room">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Eight days after the first suggestion, and after Toma and Kellerman have declined it three more times, the Site Director's office stopped suggesting. On a Wednesday afternoon Toma is taken to a bare room on the lowest level of Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span>, with a chair, a table, a microphone on a short stand and a single speaker set into the wall. Behind the one-way glass, Kellerman sits beside Dr. Anneke Voss, who leads the 239 team, and a medical technician who watches sedation readings on a monitor. Two floors below, behind three locked doors, SCP-239 lies in a hospital bed, brought up from her coma to light sedation for the first time in years. The rules came on a printed sheet, which Toma has left on the table: speak calmly, promise nothing, never tell her what is or isn't possible, and stop the second the technician says so.</p>
             </div>
             <div class="ln" id="c4-s1-l1" data-sp="v">
@@ -3265,7 +3277,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of Project Cicero" hidden><button type="button" role="tab" class="tab stab" id="tab-c5-s1" aria-controls="c5-s1" aria-selected="false" tabindex="-1"><span class="tab-n">5.1</span>Say why</button><button type="button" role="tab" class="tab stab" id="tab-c5-s2" aria-controls="c5-s2" aria-selected="false" tabindex="-1"><span class="tab-n">5.2</span>The rules anomalies follow</button><button type="button" role="tab" class="tab stab" id="tab-c5-s3" aria-controls="c5-s3" aria-selected="false" tabindex="-1"><span class="tab-n">5.3</span>The real fine</button></div>
           <section class="sec" id="c5-s1" aria-labelledby="c5-s1-h">
             <h3 id="c5-s1-h"><span class="sec-n">5.1</span>Say why<button type="button" class="plink" data-target="c5-s1" aria-label="Copy link to Say why">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Twelve days later, Project Cicero holds its first session in conference room 3 of the research wing. The Director approved the project with one clause added: while it runs, Toma will not be sent to speak with any anomaly. The clock went up on his cell wall the Friday after the 239 session.</p>
               <p>The conference room has a long table, a whiteboard that has been wiped too many times to come clean, and a jug of water no one has touched. Voss sits at the head with two members of her team, a linguist named Okafor and a junior researcher taking notes on a laptop. Kellerman sits beside Toma with her notebook open. On the screen at the end of the table the full transcript of the 239 session is projected, every line numbered.</p>
             </div>
@@ -3604,7 +3616,23 @@
                         <li>THERMODYNAMICS APPLIES</li>
                         <li>DON'T ASSUME UNIVERSAL ABILITY</li>
                         <li class="wb-sub">A KETER OR EUCLID THAT CAN TALK CAN'T DO EVERYTHING, ASK WHAT IT CAN DO</li>
-                        <li class="wb-drawing"><svg class="wb-dots" viewBox="0 0 168 28" width="168" height="28" role="img" aria-label="A drawing of dots and lines, with no words" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="6" cy="14" r="4.2"/><circle cx="18" cy="14" r="4.2"/><path d="M32 3v22"/><circle cx="44" cy="14" r="4.2"/><circle cx="56" cy="14" r="4.2"/><circle cx="68" cy="14" r="4.2"/><circle cx="80" cy="14" r="4.2"/><circle cx="92" cy="14" r="4.2"/><path d="M106 3v22"/><circle cx="118" cy="14" r="4.2"/><circle cx="130" cy="14" r="4.2"/><path d="M144 3v22"/><circle cx="156" cy="14" r="4.2"/></svg></li>
+                        <li class="wb-drawing">
+                          <svg class="wb-dots" viewBox="0 0 168 28" width="168" height="28" role="img" aria-label="A drawing of dots and lines, with no words" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                            <circle cx="6" cy="14" r="4.2"/>
+                            <circle cx="18" cy="14" r="4.2"/>
+                            <path d="M32 3v22"/>
+                            <circle cx="44" cy="14" r="4.2"/>
+                            <circle cx="56" cy="14" r="4.2"/>
+                            <circle cx="68" cy="14" r="4.2"/>
+                            <circle cx="80" cy="14" r="4.2"/>
+                            <circle cx="92" cy="14" r="4.2"/>
+                            <path d="M106 3v22"/>
+                            <circle cx="118" cy="14" r="4.2"/>
+                            <circle cx="130" cy="14" r="4.2"/>
+                            <path d="M144 3v22"/>
+                            <circle cx="156" cy="14" r="4.2"/>
+                          </svg>
+                        </li>
                         <li>DON'T RECYCLE THE METHOD</li>
                       </ul>
                     </div>
@@ -3726,12 +3754,12 @@
         </article>
         <article class="chapter" id="c6" aria-labelledby="c6-h">
           <header class="ch-head">
-            <h2 id="c6-h">Hooligans</h2>
+            <h2 id="c6-h">The hearing</h2>
           </header>
-          <div class="ch-tabs" role="tablist" aria-label="Sections of Hooligans" hidden><button type="button" role="tab" class="tab stab" id="tab-c6-s1" aria-controls="c6-s1" aria-selected="false" tabindex="-1"><span class="tab-n">6.1</span>Line by line</button><button type="button" role="tab" class="tab stab" id="tab-c6-s2" aria-controls="c6-s2" aria-selected="false" tabindex="-1"><span class="tab-n">6.2</span>Hooligans</button><button type="button" role="tab" class="tab stab" id="tab-c6-s3" aria-controls="c6-s3" aria-selected="false" tabindex="-1"><span class="tab-n">6.3</span>The energy budget</button><button type="button" role="tab" class="tab stab" id="tab-c6-s4" aria-controls="c6-s4" aria-selected="false" tabindex="-1"><span class="tab-n">6.4</span>Everything costs something</button><button type="button" role="tab" class="tab stab" id="tab-c6-s5" aria-controls="c6-s5" aria-selected="false" tabindex="-1"><span class="tab-n">6.5</span>A disputable orator</button><button type="button" role="tab" class="tab stab" id="tab-c6-s6" aria-controls="c6-s6" aria-selected="false" tabindex="-1"><span class="tab-n">6.6</span>The decision</button></div>
+          <div class="ch-tabs" role="tablist" aria-label="Sections of The hearing" hidden><button type="button" role="tab" class="tab stab" id="tab-c6-s1" aria-controls="c6-s1" aria-selected="false" tabindex="-1"><span class="tab-n">6.1</span>Line by line</button><button type="button" role="tab" class="tab stab" id="tab-c6-s2" aria-controls="c6-s2" aria-selected="false" tabindex="-1"><span class="tab-n">6.2</span>Hooligans</button><button type="button" role="tab" class="tab stab" id="tab-c6-s3" aria-controls="c6-s3" aria-selected="false" tabindex="-1"><span class="tab-n">6.3</span>The energy budget</button><button type="button" role="tab" class="tab stab" id="tab-c6-s4" aria-controls="c6-s4" aria-selected="false" tabindex="-1"><span class="tab-n">6.4</span>Everything costs something</button><button type="button" role="tab" class="tab stab" id="tab-c6-s5" aria-controls="c6-s5" aria-selected="false" tabindex="-1"><span class="tab-n">6.5</span>A disputable orator</button><button type="button" role="tab" class="tab stab" id="tab-c6-s6" aria-controls="c6-s6" aria-selected="false" tabindex="-1"><span class="tab-n">6.6</span>The decision</button></div>
           <section class="sec" id="c6-s1" aria-labelledby="c6-s1-h">
             <h3 id="c6-s1-h"><span class="sec-n">6.1</span>Line by line<button type="button" class="plink" data-target="c6-s1" aria-label="Copy link to Line by line">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Ten weeks after the first session of Project Cicero, the draft has left the site. The morning after the meeting Pell uploaded it to the project's repository on the Foundation's global version control system, where the team's notes sit beside the photographed whiteboard, and the repository was never marked local. Within a month it had been downloaded at more sites than the team could count, translated multiple times, quoted in memos for and against, and at least two sites had laminated the left-hand column and pinned it above their interview desks. The Ethics Committee has called for a remote hearing.</p>
               <p>At three in the afternoon, conference room 3 has been cleared except for one end of the long table. Toma sits facing a camera clipped to the top of the wall screen, where six panel members appear in a grid of small windows, each labelled with a name and a department. Kellerman sits beside him, Voss at the corner of the table with both transcripts in a folder, and at the far end, outside the camera's view, sits the Site Director, Elias Corwin, a heavy gray-haired man in a cardigan who has not spoken since he came in. The panel is chaired by Dr. Teresa Lindqvist of the Ethics Committee. In the window beside hers is Dr. Konrad Haas, who leads humanoid containment at a site in Bavaria, and whose name is on the first incident report that cites the Cicero rules.</p>
             </div>
@@ -4196,7 +4224,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of Both ways" hidden><button type="button" role="tab" class="tab stab" id="tab-c7-s1" aria-controls="c7-s1" aria-selected="false" tabindex="-1"><span class="tab-n">7.1</span>Small cards</button><button type="button" role="tab" class="tab stab" id="tab-c7-s2" aria-controls="c7-s2" aria-selected="false" tabindex="-1"><span class="tab-n">7.2</span>Without any warranty</button><button type="button" role="tab" class="tab stab" id="tab-c7-s3" aria-controls="c7-s3" aria-selected="false" tabindex="-1"><span class="tab-n">7.3</span>Clinic only</button><button type="button" role="tab" class="tab stab" id="tab-c7-s4" aria-controls="c7-s4" aria-selected="false" tabindex="-1"><span class="tab-n">7.4</span>The welfare box</button></div>
           <section class="sec" id="c7-s1" aria-labelledby="c7-s1-h">
             <h3 id="c7-s1-h"><span class="sec-n">7.1</span>Small cards<button type="button" class="plink" data-target="c7-s1" aria-label="Copy link to Small cards">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>At half past four the panel's windows close one by one, until only the site's logo is left on the wall screen. Corwin nods once to Voss and goes out without a word, and Voss follows him with the folder under her arm.</p>
             </div>
             <div class="ln" id="c7-s1-l1" data-sp="k">
@@ -4299,7 +4327,54 @@
               <div class="app-frame">
                 <blockquote class="doc doc-note nb-page" role="group" aria-label="Kellerman's notebook: pinout of the bench unit">
                   <p class="nb-title">AKV implant, bench unit (dash one): pinout from the disassembly</p>
-                  <svg class="nb-sketch" viewBox="0 0 380 150" role="img" aria-label="Pencil sketch of the implant board: a test area on the left with three large pads, WRITE, READ and DEBUG, and a switch; a usable area on the right with the NAND chip and ten numbered pins; a cluster of tiny unlabelled circles in the top right corner"><rect class="sk-board" x="6" y="8" width="368" height="134" rx="10"/><path class="sk-div" d="M172 14v122"/><text class="sk-lbl" x="18" y="28">TEST AREA</text><circle class="sk-pad" cx="42" cy="62" r="20"/><text x="42" y="100" text-anchor="middle">WRITE</text><circle class="sk-pad" cx="92" cy="62" r="20"/><text x="92" y="100" text-anchor="middle">READ</text><circle class="sk-pad" cx="142" cy="62" r="14"/><text x="142" y="100" text-anchor="middle">DEBUG</text><rect class="sk-sw" x="30" y="114" width="40" height="14" rx="2"/><text x="80" y="125">switch, off</text><text class="sk-lbl" x="186" y="28">USABLE AREA</text><rect class="sk-nand" x="196" y="40" width="96" height="50" rx="3"/><text x="244" y="70" text-anchor="middle">NAND</text><g class="sk-pins"><rect x="196" y="104" width="9" height="14" rx="1.5"/><text x="200.5" y="132" text-anchor="middle">1</text><rect x="213" y="104" width="9" height="14" rx="1.5"/><text x="217.5" y="132" text-anchor="middle">2</text><rect x="230" y="104" width="9" height="14" rx="1.5"/><text x="234.5" y="132" text-anchor="middle">3</text><rect x="247" y="104" width="9" height="14" rx="1.5"/><text x="251.5" y="132" text-anchor="middle">4</text><rect x="264" y="104" width="9" height="14" rx="1.5"/><text x="268.5" y="132" text-anchor="middle">5</text><rect x="281" y="104" width="9" height="14" rx="1.5"/><text x="285.5" y="132" text-anchor="middle">6</text><rect x="298" y="104" width="9" height="14" rx="1.5"/><text x="302.5" y="132" text-anchor="middle">7</text><rect x="315" y="104" width="9" height="14" rx="1.5"/><text x="319.5" y="132" text-anchor="middle">8</text><rect x="332" y="104" width="9" height="14" rx="1.5"/><text x="336.5" y="132" text-anchor="middle">9</text><rect x="349" y="104" width="9" height="14" rx="1.5"/><text x="353.5" y="132" text-anchor="middle">10</text></g><g class="sk-cluster"><circle cx="345" cy="22" r="2.2"/><circle cx="352" cy="22" r="2.2"/><circle cx="359" cy="22" r="2.2"/><circle cx="345" cy="29" r="2.2"/><circle cx="352" cy="29" r="2.2"/><circle cx="359" cy="29" r="2.2"/><circle cx="348.5" cy="36" r="2.2"/><circle cx="355.5" cy="36" r="2.2"/></g></svg>
+                  <svg class="nb-sketch" viewBox="0 0 380 150" role="img" aria-label="Pencil sketch of the implant board: a test area on the left with three large pads, WRITE, READ and DEBUG, and a switch; a usable area on the right with the NAND chip and ten numbered pins; a cluster of tiny unlabelled circles in the top right corner">
+                    <rect class="sk-board" x="6" y="8" width="368" height="134" rx="10"/>
+                    <path class="sk-div" d="M172 14v122"/>
+                    <text class="sk-lbl" x="18" y="28">TEST AREA</text>
+                    <circle class="sk-pad" cx="42" cy="62" r="20"/>
+                    <text x="42" y="100" text-anchor="middle">WRITE</text>
+                    <circle class="sk-pad" cx="92" cy="62" r="20"/>
+                    <text x="92" y="100" text-anchor="middle">READ</text>
+                    <circle class="sk-pad" cx="142" cy="62" r="14"/>
+                    <text x="142" y="100" text-anchor="middle">DEBUG</text>
+                    <rect class="sk-sw" x="30" y="114" width="40" height="14" rx="2"/>
+                    <text x="80" y="125">switch, off</text>
+                    <text class="sk-lbl" x="186" y="28">USABLE AREA</text>
+                    <rect class="sk-nand" x="196" y="40" width="96" height="50" rx="3"/>
+                    <text x="244" y="70" text-anchor="middle">NAND</text>
+                    <g class="sk-pins">
+                      <rect x="196" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="200.5" y="132" text-anchor="middle">1</text>
+                      <rect x="213" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="217.5" y="132" text-anchor="middle">2</text>
+                      <rect x="230" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="234.5" y="132" text-anchor="middle">3</text>
+                      <rect x="247" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="251.5" y="132" text-anchor="middle">4</text>
+                      <rect x="264" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="268.5" y="132" text-anchor="middle">5</text>
+                      <rect x="281" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="285.5" y="132" text-anchor="middle">6</text>
+                      <rect x="298" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="302.5" y="132" text-anchor="middle">7</text>
+                      <rect x="315" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="319.5" y="132" text-anchor="middle">8</text>
+                      <rect x="332" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="336.5" y="132" text-anchor="middle">9</text>
+                      <rect x="349" y="104" width="9" height="14" rx="1.5"/>
+                      <text x="353.5" y="132" text-anchor="middle">10</text>
+                    </g>
+                    <g class="sk-cluster">
+                      <circle cx="345" cy="22" r="2.2"/>
+                      <circle cx="352" cy="22" r="2.2"/>
+                      <circle cx="359" cy="22" r="2.2"/>
+                      <circle cx="345" cy="29" r="2.2"/>
+                      <circle cx="352" cy="29" r="2.2"/>
+                      <circle cx="359" cy="29" r="2.2"/>
+                      <circle cx="348.5" cy="36" r="2.2"/>
+                      <circle cx="355.5" cy="36" r="2.2"/>
+                    </g>
+                  </svg>
                   <div class="nb-cols">
                     <div>
                       <p class="nb-h">Test area</p>
@@ -4609,7 +4684,7 @@
               <b class="sp">Kellerman</b>
               <p><i class="act">a quiet laugh into his shoulder</i> You said you didn't want us to be more than friends, and your face said otherwise, and I'm the same.</p>
             </div>
-            <div class="scene scene-mid">
+            <div class="scene scene-mid scene-time">
               <p>The clock above the bed moves past seven when the door slides open. The night guard stands in the doorway with the log tablet in one hand, looking from the bed to the empty chair and back, while Kellerman sits up and pushes her hair out of her face.</p>
             </div>
             <div class="ln" id="c7-s4-l15" data-sp="g">
@@ -4708,12 +4783,12 @@
         </article>
         <article class="chapter" id="c8" aria-labelledby="c8-h">
           <header class="ch-head">
-            <h2 id="c8-h">Old light</h2>
+            <h2 id="c8-h">The first lesson</h2>
           </header>
-          <div class="ch-tabs" role="tablist" aria-label="Sections of Old light" hidden><button type="button" role="tab" class="tab stab" id="tab-c8-s1" aria-controls="c8-s1" aria-selected="false" tabindex="-1"><span class="tab-n">8.1</span>The black bars</button><button type="button" role="tab" class="tab stab" id="tab-c8-s2" aria-controls="c8-s2" aria-selected="false" tabindex="-1"><span class="tab-n">8.2</span>Two speakers</button><button type="button" role="tab" class="tab stab" id="tab-c8-s3" aria-controls="c8-s3" aria-selected="false" tabindex="-1"><span class="tab-n">8.3</span>Old light</button><button type="button" role="tab" class="tab stab" id="tab-c8-s4" aria-controls="c8-s4" aria-selected="false" tabindex="-1"><span class="tab-n">8.4</span>The next thing</button></div>
+          <div class="ch-tabs" role="tablist" aria-label="Sections of The first lesson" hidden><button type="button" role="tab" class="tab stab" id="tab-c8-s1" aria-controls="c8-s1" aria-selected="false" tabindex="-1"><span class="tab-n">8.1</span>The black bars</button><button type="button" role="tab" class="tab stab" id="tab-c8-s2" aria-controls="c8-s2" aria-selected="false" tabindex="-1"><span class="tab-n">8.2</span>Two speakers</button><button type="button" role="tab" class="tab stab" id="tab-c8-s3" aria-controls="c8-s3" aria-selected="false" tabindex="-1"><span class="tab-n">8.3</span>Old light</button><button type="button" role="tab" class="tab stab" id="tab-c8-s4" aria-controls="c8-s4" aria-selected="false" tabindex="-1"><span class="tab-n">8.4</span>The next thing</button></div>
           <section class="sec" id="c8-s1" aria-labelledby="c8-s1-h">
             <h3 id="c8-s1-h"><span class="sec-n">8.1</span>The black bars<button type="button" class="plink" data-target="c8-s1" aria-label="Copy link to The black bars">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>The next morning, at a quarter past eight, Kellerman comes through the airlock with two paper cups from the canteen. The first training session under the Committee's decision is set for ten o'clock on the lowest level. The chemistry lab's request form is clipped to the front of her notebook, filled in and signed.</p>
             </div>
             <div class="ln" id="c8-s1-l1" data-sp="k">
@@ -5087,12 +5162,12 @@
         </article>
         <article class="chapter" id="c9" aria-labelledby="c9-h">
           <header class="ch-head">
-            <h2 id="c9-h">Screened</h2>
+            <h2 id="c9-h">The acting director</h2>
           </header>
-          <div class="ch-tabs" role="tablist" aria-label="Sections of Screened" hidden><button type="button" role="tab" class="tab stab" id="tab-c9-s1" aria-controls="c9-s1" aria-selected="false" tabindex="-1"><span class="tab-n">9.1</span>Several exceptions</button><button type="button" role="tab" class="tab stab" id="tab-c9-s2" aria-controls="c9-s2" aria-selected="false" tabindex="-1"><span class="tab-n">9.2</span>Screened</button><button type="button" role="tab" class="tab stab" id="tab-c9-s3" aria-controls="c9-s3" aria-selected="false" tabindex="-1"><span class="tab-n">9.3</span>Across the flap</button><button type="button" role="tab" class="tab stab" id="tab-c9-s4" aria-controls="c9-s4" aria-selected="false" tabindex="-1"><span class="tab-n">9.4</span>Rice grains</button></div>
+          <div class="ch-tabs" role="tablist" aria-label="Sections of The acting director" hidden><button type="button" role="tab" class="tab stab" id="tab-c9-s1" aria-controls="c9-s1" aria-selected="false" tabindex="-1"><span class="tab-n">9.1</span>Several exceptions</button><button type="button" role="tab" class="tab stab" id="tab-c9-s2" aria-controls="c9-s2" aria-selected="false" tabindex="-1"><span class="tab-n">9.2</span>Screened</button><button type="button" role="tab" class="tab stab" id="tab-c9-s3" aria-controls="c9-s3" aria-selected="false" tabindex="-1"><span class="tab-n">9.3</span>Across the flap</button><button type="button" role="tab" class="tab stab" id="tab-c9-s4" aria-controls="c9-s4" aria-selected="false" tabindex="-1"><span class="tab-n">9.4</span>Rice grains</button></div>
           <section class="sec" id="c9-s1" aria-labelledby="c9-s1-h">
             <h3 id="c9-s1-h"><span class="sec-n">9.1</span>Several exceptions<button type="button" class="plink" data-target="c9-s1" aria-label="Copy link to Several exceptions">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Four days later, the clock above the bed passes a quarter past eight, then nine, and the airlock stays shut. At twenty past nine the door slides open on the officer, and behind him is Dr. Pryce, in the same pressed uniform shirt he wore in the top right window of the hearing, a tablet under his arm and the reading glasses hanging on their cord. He waits for the officer to step aside before he comes in, and he stays standing.</p>
             </div>
             <div class="ln" id="c9-s1-l1" data-sp="r">
@@ -5118,7 +5193,7 @@
           </section>
           <section class="sec" id="c9-s2" aria-labelledby="c9-s2-h">
             <h3 id="c9-s2-h"><span class="sec-n">9.2</span>Screened<button type="button" class="plink" data-target="c9-s2" aria-label="Copy link to Screened">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>For the rest of the day the cell runs the way it did before Kellerman's first visit. Lunch and dinner come through the hatch on gray trays. In the afternoon a researcher Toma has never seen sits on the spare chair for thirty minutes, reads the standard welfare questions from a tablet, types each answer and leaves. By evening the disassembly is open on the monitor again, under the clock. At eight the screening office's tray comes through the hatch with two envelopes, both slit open along the top and stamped SCREENED in blue. A little after eleven the night shift changes, and the door slides open on the night guard, the log tablet in one hand and a third envelope in the other, sealed and unstamped.</p>
             </div>
             <div class="ln" id="c9-s2-l1" data-sp="g">
@@ -5227,7 +5302,7 @@
           </section>
           <section class="sec" id="c9-s3" aria-labelledby="c9-s3-h">
             <h3 id="c9-s3-h"><span class="sec-n">9.3</span>Across the flap<button type="button" class="plink" data-target="c9-s3" aria-label="Copy link to Across the flap">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>A little after one the door slides open again for the night round. The guard looks first at the bed, then at the folded sheets on the desk, her blue ink on the outside and different handwriting.</p>
             </div>
             <div class="ln" id="c9-s3-l1" data-sp="g">
@@ -5262,7 +5337,7 @@
               <b class="sp">Toma</b>
               <p><i class="act">turning off the computer and going to bed</i></p>
             </div>
-            <div class="scene scene-mid">
+            <div class="scene scene-mid scene-time">
               <p>The next day runs like the one before. A little after eleven the door slides open on the night guard with a sealed envelope. Across the flap, in blue ink, her signature runs over the edge onto the paper beneath, and the two halves meet in one unbroken line.</p>
             </div>
             <div class="ln" id="c9-s3-l9" data-sp="g">
@@ -5304,7 +5379,7 @@
           </section>
           <section class="sec" id="c9-s4" aria-labelledby="c9-s4-h">
             <h3 id="c9-s4-h"><span class="sec-n">9.4</span>Rice grains<button type="button" class="plink" data-target="c9-s4" aria-label="Copy link to Rice grains">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Two nights later the guard takes Toma's page on his round. Four nights after that, a little after eleven, he is back at the door with a sealed envelope, her signature unbroken across the flap.</p>
             </div>
             <div class="ln" id="c9-s4-l1" data-sp="g">
@@ -5361,7 +5436,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of The yard" hidden><button type="button" role="tab" class="tab stab" id="tab-c10-s1" aria-controls="c10-s1" aria-selected="false" tabindex="-1"><span class="tab-n">10.1</span>Fifteen minutes</button><button type="button" role="tab" class="tab stab" id="tab-c10-s2" aria-controls="c10-s2" aria-selected="false" tabindex="-1"><span class="tab-n">10.2</span>The little piece inside</button><button type="button" role="tab" class="tab stab" id="tab-c10-s3" aria-controls="c10-s3" aria-selected="false" tabindex="-1"><span class="tab-n">10.3</span>Dash one</button><button type="button" role="tab" class="tab stab" id="tab-c10-s4" aria-controls="c10-s4" aria-selected="false" tabindex="-1"><span class="tab-n">10.4</span>The loading yard</button><button type="button" role="tab" class="tab stab" id="tab-c10-s5" aria-controls="c10-s5" aria-selected="false" tabindex="-1"><span class="tab-n">10.5</span>Grievances</button><button type="button" role="tab" class="tab stab" id="tab-c10-s6" aria-controls="c10-s6" aria-selected="false" tabindex="-1"><span class="tab-n">10.6</span>Setup mode</button><button type="button" role="tab" class="tab stab" id="tab-c10-s7" aria-controls="c10-s7" aria-selected="false" tabindex="-1"><span class="tab-n">10.7</span>Safe to shut down</button></div>
           <section class="sec" id="c10-s1" aria-labelledby="c10-s1-h">
             <h3 id="c10-s1-h"><span class="sec-n">10.1</span>Fifteen minutes<button type="button" class="plink" data-target="c10-s1" aria-label="Copy link to Fifteen minutes">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>Three weeks later, a little after ten at night, the corridor outside the cell is louder than it has been in months. Boots pass the door in pairs, then a whole column of them, heading toward the canteen. The door slides open on the night guard, who comes in and pushes it shut behind him with his heel.</p>
             </div>
             <div class="ln" id="c10-s1-l1" data-sp="g">
@@ -5370,7 +5445,7 @@
             </div>
             <div class="ln ln-pa" id="c10-s1-l2" data-sp="pa">
               <p class="pa-cap"><svg class="pa-mark" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M2 6.2h2.4L9 3v10L4.4 9.8H2z"/><path d="M11.4 6a3 3 0 0 1 0 4M13.2 4.4a5.4 5.4 0 0 1 0 7.2"/></svg>Site announcement</p>
-              <p><i class="act">The announcement tone sounds from the grille above the door and, a moment later, from every speaker in the corridor, a man's voice reads at an even pace, the way the evacuation drills are read</i> Attention, all personnel. By order of the Acting Site Director, Mobile Task Force Epsilon-11 has been deployed to Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> to restore normal operations. Personnel gathered in the canteen sector and the adjoining corridors without authorization are in breach of site regulations. Return to your assigned posts or quarters within fifteen minutes. Personnel who remain after that time will be detained, and their clearance suspended pending review. This order applies equally to all personnel, regardless of department or position.</p>
+              <p><i class="act">The announcement tone sounds from the grille above the door and, a moment later, from every speaker in the corridor, a man's voice reads at an even pace</i> Attention, all personnel. By order of the Acting Site Director, Mobile Task Force Epsilon-11 has been deployed to Site-<span class="redact"><span aria-hidden="true">██</span><span class="vh">redacted</span></span> to restore normal operations. Personnel gathered in the canteen sector and the adjoining corridors without authorization are in breach of site regulations. Return to your assigned posts or quarters within fifteen minutes. Personnel who remain after that time will be detained, and their clearance suspended pending review. This order applies equally to all personnel, regardless of department or position.</p>
             </div>
             <div class="ln" id="c10-s1-l3" data-sp="g">
               <b class="sp">Guard</b>
@@ -7243,7 +7318,7 @@
                         <li>Pass 4: Checking marker references</li>
                         <li>Pass 5: Checking block bitmap differences</li>
                         <li>/dev/akvstore0: FILE SYSTEM WAS MODIFIED</li>
-                        <li>/dev/akvstore0: 0/1148 entries, 1024/8388608 blocks</li>
+                        <li>/dev/akvstore0: 0/5876760 entries, 1024/8388608 blocks</li>
                         <li>root@akv-rc4:~#</li>
                       </ol>
                     </div>
@@ -7308,7 +7383,7 @@
             </div>
             <div class="ln" id="c10-s7-l75" data-sp="t">
               <b class="sp">Toma</b>
-              <p>We never thoroughly tested the process of clearing the implant. The implant immediately activates as soon as Coreboot manages to start the payload, and since in almost every case there is no setting to change, it immediately starts to do what it was meant to do. The coil is meant to be used only when there is a real problem, and once you input the unlock code, which is written once into the firmware and cannot be changed, it gives you full access to the system.</p>
+              <p>We never thoroughly tested the process of clearing the implant. The implant immediately activates as soon as coreboot manages to start the payload, and since in almost every case there is no setting to change, it immediately starts to do what it was meant to do. The coil is meant to be used only when there is a real problem, and once you input the unlock code, which is written once into the firmware and cannot be changed, it gives you full access to the system.</p>
             </div>
             <div class="ln" id="c10-s7-l76" data-sp="ce">
               <b class="sp">Containment engineer</b>
@@ -7323,7 +7398,7 @@
           <div class="ch-tabs" role="tablist" aria-label="Sections of Campi Flegrei" hidden><button type="button" role="tab" class="tab stab" id="tab-c11-s1" aria-controls="c11-s1" aria-selected="false" tabindex="-1"><span class="tab-n">11.1</span>Euclid</button><button type="button" role="tab" class="tab stab" id="tab-c11-s2" aria-controls="c11-s2" aria-selected="false" tabindex="-1"><span class="tab-n">11.2</span>The list</button><button type="button" role="tab" class="tab stab" id="tab-c11-s3" aria-controls="c11-s3" aria-selected="false" tabindex="-1"><span class="tab-n">11.3</span>Steps</button><button type="button" role="tab" class="tab stab" id="tab-c11-s4" aria-controls="c11-s4" aria-selected="false" tabindex="-1"><span class="tab-n">11.4</span>A red coat</button><button type="button" role="tab" class="tab stab" id="tab-c11-s5" aria-controls="c11-s5" aria-selected="false" tabindex="-1"><span class="tab-n">11.5</span>Little eyes</button></div>
           <section class="sec" id="c11-s1" aria-labelledby="c11-s1-h">
             <h3 id="c11-s1-h"><span class="sec-n">11.1</span>Euclid<button type="button" class="plink" data-target="c11-s1" aria-label="Copy link to Euclid">#</button></h3>
-            <div class="scene">
+            <div class="scene scene-time">
               <p>A few weeks later, the camp sits in a high valley under snow: two rows of prefabricated huts, a mess hut with a wood stove, and a board over the gate with CAMPI FLEGREI painted in red letters. Sigurrós has been awake for nineteen days. She wears a coat from the camp stores, two sizes too big, with the sleeves rolled three times. This morning she sits at the long table in the mess hut next to Pell, a mug of cocoa between her hands, with Toma across from them. The door opens on a gust of cold air, and Kellerman comes in with a printed sheet held flat against her chest.</p>
             </div>
             <div class="ln" id="c11-s1-l1" data-sp="k">
@@ -8361,8 +8436,9 @@
               <p>Sigurrós climbs down from the bench and walks a few steps out into the untouched snow beyond the viewer. She lies back in it with her arms spread, looking straight up, and stays there with her breath rising in small puffs, while Pell stands where her footprints end and waits for her to want to come back.</p>
             </div>
             <div class="the-end">
-              <p>The end</p>
+              <p>End of part 1</p>
             </div>
+            <p class="part-next"><a class="tool" href="part2.html">Part 2</a></p>
           </section>
         </article>
         <footer class="end">

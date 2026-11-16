@@ -2,28 +2,14 @@
    settings that apply to these pages. They share their saved values with the
    story, so a change here holds there and the other way round: the theme,
    motion and scroll speed are bound by base/theme.js and base/motion.js, the
-   page width by text/width.js, and this script binds the Settings button,
-   Pretty wrap and Remember settings. The row starts folded on these pages. */
+   page width by text/width.js, the Settings button, the floating panel and
+   Remember settings by reading/settings.js and the dock by reading/tocmenu.js,
+   as on the story, and this script binds Pretty wrap. The row starts folded
+   on these pages. */
 (function (K) {
   "use strict";
 
   var load = K.load, save = K.save, body = K.body;
-
-  var setBtn = document.querySelector(".set-btn");
-  var setPanel = document.getElementById("settings");
-  function showSettings(open) {
-    setPanel.hidden = !open;
-    setBtn.setAttribute("aria-expanded", String(open));
-  }
-  if (setBtn && setPanel) {
-    showSettings(load("notes-settings-open") === "1");
-    setBtn.addEventListener("click", function () {
-      var open = setBtn.getAttribute("aria-expanded") !== "true";
-      showSettings(open);
-      save("notes-settings-open", open ? "1" : "0");
-      if (open && K.schedulePretty) K.schedulePretty();
-    });
-  }
 
   var prettyBtn = document.querySelector('.tool[data-toggle="pretty"]');
   function showPretty(on) {
@@ -41,17 +27,4 @@
     });
   }
 
-  var storeBtn = document.getElementById("t-store");
-  function showRemember() {
-    var on = K.rememberAlways();
-    storeBtn.setAttribute("aria-pressed", String(on));
-    storeBtn.textContent = on ? "Remember settings: always" : "Remember settings: this tab";
-  }
-  if (storeBtn) {
-    showRemember();
-    storeBtn.addEventListener("click", function () {
-      K.setRemember(!K.rememberAlways());
-      showRemember();
-    });
-  }
 })(window.KeepTheLife);

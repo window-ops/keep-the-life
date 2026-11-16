@@ -4,7 +4,7 @@
 
   var $$ = K.$$, body = K.body;
 
-  /* ---------------------------------------------------------- sections and tabs */
+  /* sections and tabs */
 
   var sections = $$(".sec");
   var chapters = $$(".chapter");
@@ -53,21 +53,54 @@
 
   function chapterOf(sec) { return sec.closest(".chapter"); }
 
-  /* previous and next buttons, used in tabbed view */
+  /* previous and next buttons, used in tabbed view. The first section of a
+     later part leads back to the part before it, and the last section leads
+     on to the next part, as links in the same places */
+  var partBack = document.querySelector(".mast-back");
+  var partNext = document.querySelector(".part-next a");
+  function partLink(a, label) {
+    var link = document.createElement("a");
+    link.href = a.getAttribute("href");
+    link.textContent = label + a.textContent;
+    return link;
+  }
+  /* the link back opens the last chapter of the part before, which the
+     header link names in its data; the header link itself opens that part
+     at its start */
+  function lastChapterLink(a) {
+    if (!a.hasAttribute("data-last")) return partLink(a, "Previous: ");
+    var link = document.createElement("a");
+    var n = a.getAttribute("data-last-n"), title = a.getAttribute("data-last-title");
+    var part = a.textContent.replace(/^Part\s*/, "");
+    link.href = a.getAttribute("data-last");
+    link.textContent = "Previous: " + a.textContent + ", chapter " + n + ": " + title;
+    link.setAttribute("aria-label", "Previous: last chapter of part " + part + ", chapter " + n + ", " + title);
+    return link;
+  }
   sections.forEach(function (sec, i) {
     var nav = document.createElement("nav");
     nav.className = "sec-nav";
     nav.hidden = true;
     nav.setAttribute("aria-label", "Section navigation");
-    var prev = document.createElement("button");
-    var next = document.createElement("button");
-    prev.type = next.type = "button";
-    prev.textContent = i > 0 ? "Previous: " + sections[i - 1].querySelector("h3").childNodes[1].textContent : "";
-    next.textContent = i < sections.length - 1 ? "Next: " + sections[i + 1].querySelector("h3").childNodes[1].textContent : "";
-    prev.disabled = i === 0;
-    next.disabled = i === sections.length - 1;
-    prev.addEventListener("click", function () { show(sections[i - 1].id, true); });
-    next.addEventListener("click", function () { show(sections[i + 1].id, true); });
+    var prev, next;
+    if (i === 0 && partBack) {
+      prev = lastChapterLink(partBack);
+    } else {
+      prev = document.createElement("button");
+      prev.type = "button";
+      prev.textContent = i > 0 ? "Previous: " + sections[i - 1].querySelector("h3").childNodes[1].textContent : "";
+      prev.disabled = i === 0;
+      prev.addEventListener("click", function () { show(sections[i - 1].id, true); });
+    }
+    if (i === sections.length - 1 && partNext) {
+      next = partLink(partNext, "Next: ");
+    } else {
+      next = document.createElement("button");
+      next.type = "button";
+      next.textContent = i < sections.length - 1 ? "Next: " + sections[i + 1].querySelector("h3").childNodes[1].textContent : "";
+      next.disabled = i === sections.length - 1;
+      next.addEventListener("click", function () { show(sections[i + 1].id, true); });
+    }
     nav.appendChild(prev);
     nav.appendChild(next);
     sec.appendChild(nav);

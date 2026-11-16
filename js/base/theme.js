@@ -4,7 +4,7 @@
 
   var $$ = K.$$, root = K.root, load = K.load, save = K.save;
 
-  /* ---------------------------------------------------------- theme */
+  /* theme */
 
   /* dark, light, or system (follows the operating system setting) */
   var systemDark = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;

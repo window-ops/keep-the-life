@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/site/tokens.css">
     <link rel="stylesheet" href="../css/site/base.css">
     <link rel="stylesheet" href="../css/site/masthead.css">
+    <link rel="stylesheet" href="../css/site/dock.css">
     <link rel="stylesheet" href="../css/site/tabs.css">
     <link rel="stylesheet" href="../css/site/end.css">
     <link rel="stylesheet" href="../css/site/motion.css">
@@ -20,6 +21,8 @@
     <script src="../js/text/pretty.js" defer></script>
     <script src="../js/text/width.js" defer></script>
     <script src="../js/pages/concept.js" defer></script>
+    <script src="../js/reading/settings.js" defer></script>
+    <script src="../js/reading/tocmenu.js" defer></script>
     <script src="../js/pages/settings.js" defer></script>
     <script src="../js/base/scrollfocus.js" defer></script>
   </head>
@@ -30,8 +33,9 @@
         <p class="mast-sub">How the SCP Foundation classifies anomalies, files and people</p>
       </div>
       <button type="button" class="tool set-btn" aria-expanded="false" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
-      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" hidden>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings" data-open-key="notes-settings-open" data-start="closed" hidden>
         <div class="mast-tools">
+          <span class="set-close-part"><button type="button" class="tool set-close">Close</button></span>
           <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
           <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
           <span class="tool-sep" aria-hidden="true"></span>
@@ -57,16 +61,25 @@
           <span class="tool-sep" aria-hidden="true"></span>
           <div class="tool-group" role="group" aria-labelledby="pw-label">
             <span class="tg-label" id="pw-label">Page width</span>
-            <button type="button" class="tool" data-step="-4" aria-label="Narrower"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
             <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
-            <button type="button" class="tool" data-step="4" aria-label="Wider"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 8h10"/></svg></button>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
             <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
           </div>
         </div>
       </div>
     </header>
+    <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the settings button" title="Hide the settings button"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
     <main class="cx">
-      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html" aria-current="page">Classes</a></nav>
+      <nav class="cx-tabs" aria-label="Pages"><a class="tab" href="../index.html">Story</a><a class="tab" href="../part2.html">Part 2</a><a class="tab" href="../part3.html">Part 3</a><a class="tab" href="concept.html">Concept</a><a class="tab" href="summary.html">Summary</a><a class="tab" href="glossary.html">Glossary</a><a class="tab" href="making.html">Making</a><a class="tab" href="critics.html">Critics</a><a class="tab" href="file.html">File</a><a class="tab" href="classes.html" aria-current="page">Classes</a></nav>
       <h2 id="cl-intro">Classes</h2>
       <section aria-labelledby="cl-intro">
         <p>Every file on the SCP Wiki opens with a few lines that classify the anomaly it describes. The oldest of them is the object class, which says how hard the anomaly is to contain. The Anomaly Classification System (ACS) adds the clearance needed to read the file, how far the anomaly could spread and how badly it can hurt a person. Two further scales describe people: security clearance levels say what staff may read, and personnel classes say what staff may come near. The <a href="file.html">file page</a> can show Toma's header in either form.</p>
@@ -160,7 +173,7 @@
       <h2 id="cl-story">In the story</h2>
       <section aria-labelledby="cl-story">
         <ul class="cx-conv">
-          <li><strong>Toma:</strong> held under SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>, downgraded from Keter to Euclid once regular interviews began. His device is under review for Explained, which would end his status as an anomaly and make him staff who can never be released. His file discusses Class C and Class B for that case (Addendum H on the <a href="file.html">file page</a>).</li>
+          <li><strong>Toma:</strong> held under SCP-<span class="redact"><span aria-hidden="true">████</span><span class="vh">redacted</span></span>, downgraded from Keter to Euclid once regular interviews began. His device is under review for Explained, which would end his status as an anomaly and make him staff who can never be released. His file discusses Class C and Class B for that case (Addendum H on the <a href="file.html">file page</a>). In part 2 the Council has reclassified the device as Explained, and the file's April 2030 revision lists him as staff who cannot be released, with each assignment requiring his consent.</li>
           <li><strong>The implant:</strong> his file allows it for E-Class personnel and rules it out for D-Class personnel, since D-Class receive amnestics at the end of their term.</li>
           <li><strong>SCP-239:</strong> classed Keter while she was kept asleep, and reclassified as Euclid by the Overseer Council in chapter 11.</li>
           <li><strong>Containment and danger:</strong> Kellerman says in chapter 2 that object classes only measure how hard something is to keep in a room, and say nothing about who is in it. The ACS adds the Risk Class, which measures harm to a person.</li>

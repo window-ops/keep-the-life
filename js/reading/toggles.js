@@ -4,7 +4,7 @@
 
   var $$ = K.$$, body = K.body, load = K.load, save = K.save;
 
-  /* ---------------------------------------------------------- toggles */
+  /* toggles */
 
   function setToggle(btn, on) {
     var cls = btn.getAttribute("data-toggle");

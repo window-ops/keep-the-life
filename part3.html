@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Keep the Life: Part 3</title>
+    <meta name="description" content="A story in the SCP universe about Toma, a non-anomalous human with an anti-amnestic implant, and how he eventually adjusts.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/site/tokens.css">
+    <link rel="stylesheet" href="css/site/base.css">
+    <link rel="stylesheet" href="css/site/masthead.css">
+    <link rel="stylesheet" href="css/site/layout.css">
+    <link rel="stylesheet" href="css/site/dock.css">
+    <link rel="stylesheet" href="css/site/tabs.css">
+    <link rel="stylesheet" href="css/site/dialogue.css">
+    <link rel="stylesheet" href="css/site/notes.css">
+    <link rel="stylesheet" href="css/site/end.css">
+    <link rel="stylesheet" href="css/site/motion.css">
+    <link rel="stylesheet" href="css/site/print.css">
+    <link rel="stylesheet" href="css/screens/tokens.css">
+    <link rel="stylesheet" href="css/screens/shell.css">
+    <link rel="stylesheet" href="css/screens/workstation.css">
+    <link rel="stylesheet" href="css/screens/scp-079.css">
+    <link rel="stylesheet" href="css/screens/print.css">
+    <link rel="stylesheet" href="css/screens/letters.css">
+    <link rel="stylesheet" href="css/screens/handhelds.css">
+    <link rel="stylesheet" href="css/screens/calculator.css">
+    <script src="js/making/probe.js"></script>
+    <script src="js/base/core.js" defer></script>
+    <script src="js/base/theme.js" defer></script>
+    <script src="js/base/motion.js" defer></script>
+    <script src="js/base/redact.js" defer></script>
+    <script src="js/text/pretty.js" defer></script>
+    <script src="js/text/width.js" defer></script>
+    <script src="js/reading/settings.js" defer></script>
+    <script src="js/reading/sections.js" defer></script>
+    <script src="js/devices/calc-font.js" defer></script>
+    <script src="js/devices/contacts.js" defer></script>
+    <script src="js/devices/calculator.js" defer></script>
+    <script src="js/devices/screens.js" defer></script>
+    <script src="js/reading/tocmenu.js" defer></script>
+    <script src="js/text/names.js" defer></script>
+    <script src="js/reading/notes.js" defer></script>
+    <script src="js/reading/toggles.js" defer></script>
+    <script src="js/reading/glosses.js" defer></script>
+    <script src="js/reading/postcard.js" defer></script>
+    <script src="js/reading/position.js" defer></script>
+    <script src="js/devices/ghidra.js" defer></script>
+    <script src="js/making/counts.js" defer></script>
+    <script src="js/base/scrollfocus.js" defer></script>
+  </head>
+  <body class="pretty show-progress keys" data-part="3">
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <header class="mast">
+      <div class="mast-title">
+        <h1>Keep the Life: Part 3</h1>
+        <p class="mast-sub">A story in the SCP universe about Toma, a non-anomalous human with an anti-amnestic implant, and how he eventually adjusts.</p>
+      </div>
+      <a class="tool mast-back" href="part2.html" data-last="part2.html#p2c7" data-last-n="7" data-last-title="The way home">Part 2</a>
+      <button type="button" class="tool set-btn" aria-expanded="true" aria-controls="settings">Settings<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
+      <div class="mast-tools-wrap" id="settings" role="group" aria-label="Settings">
+        <div class="mast-tools">
+          <span class="set-close-part"><button type="button" class="tool set-close">Close</button></span>
+          <button type="button" class="tool" id="t-bm" disabled>Go to bookmark</button>
+          <button type="button" class="tool" data-toggle="tabbed" aria-pressed="false">Tabbed view</button>
+          <button type="button" class="tool" data-toggle="no-toc" aria-pressed="false">Hide contents</button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <button type="button" class="tool" data-toggle="no-acts" aria-pressed="false">Hide stage directions</button>
+          <button type="button" class="tool" id="t-gloss" data-mode="both">Translations: shown</button>
+          <button type="button" class="tool" data-toggle="pretty" data-default="1" aria-pressed="true">Pretty wrap: on</button>
+          <button type="button" class="tool" data-toggle="fit-size" aria-pressed="false">Sizes: fixed</button>
+          <button type="button" class="tool" data-toggle="open-all" aria-pressed="false">Screens: foldable</button>
+          <button type="button" class="tool" data-toggle="show-progress" data-default="1" aria-pressed="true">Reading progress: on</button>
+          <button type="button" class="tool" data-toggle="no-motion" aria-pressed="false">Stop blinking</button>
+          <button type="button" class="tool" data-toggle="keys" data-default="1" aria-pressed="true">Keys: on</button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <button type="button" class="tool" data-toggle="notes" aria-pressed="false">Highlights and notes: off</button>
+          <button type="button" class="tool" id="t-store" aria-pressed="false">Remember settings: this tab</button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="th-label">
+            <span class="tg-label" id="th-label">Theme</span>
+            <button type="button" class="tool" data-theme-set="dark" aria-pressed="true">Dark</button><button type="button" class="tool" data-theme-set="light" aria-pressed="false">Light</button><button type="button" class="tool" data-theme-set="system" aria-pressed="false">System</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="mo-label">
+            <span class="tg-label" id="mo-label">Motion</span>
+            <button type="button" class="tool" data-motion-set="system" aria-pressed="true">System</button><button type="button" class="tool" data-motion-set="reduced" aria-pressed="false">Reduced</button><button type="button" class="tool" data-motion-set="full" aria-pressed="false">Full</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="sp-label">
+            <span class="tg-label" id="sp-label">Scroll speed</span>
+            <button type="button" class="tool" data-speed-set="slow" aria-pressed="false">Slow</button><button type="button" class="tool" data-speed-set="normal" aria-pressed="true">Normal</button><button type="button" class="tool" data-speed-set="fast" aria-pressed="false">Fast</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="rd-label">
+            <span class="tg-label" id="rd-label">Redactions</span>
+            <button type="button" class="tool" data-redact-set="redacted" aria-pressed="true">Redacted</button><button type="button" class="tool" data-redact-set="static" aria-pressed="false">Static</button>
+          </div>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <div class="tool-group" role="group" aria-labelledby="pw-label">
+            <span class="tg-label" id="pw-label">Page width</span>
+            <button type="button" class="tool" data-step="-4" aria-label="Narrower">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10"/>
+              </svg>
+            </button>
+            <output class="tg-out" id="t-width-out" aria-live="polite">76 rem</output>
+            <button type="button" class="tool" data-step="4" aria-label="Wider">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v10M3 8h10"/>
+              </svg>
+            </button>
+            <button type="button" class="tool" data-width="full" aria-pressed="false">Full</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="layout">
+      <div class="toc-dock"><button type="button" class="toc-tuck" aria-pressed="false" aria-label="Hide the contents and settings buttons" title="Hide the contents and settings buttons"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="toc-fab" aria-expanded="false" aria-controls="toc">Contents</button><button type="button" class="toc-set" aria-expanded="false" aria-controls="settings">Settings</button></div>
+      <nav class="toc" id="toc" aria-labelledby="toc-h">
+        <div class="toc-head">
+          <h2 id="toc-h">Contents</h2>
+          <button type="button" class="toc-keys-btn" aria-expanded="false" aria-controls="toc-keys"><span class="tk-label">Show keys</span><svg class="ico" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg></button>
+        </div>
+        <p class="toc-keys" id="toc-keys" hidden>Keys: <kbd>n</kbd> next section, <kbd>p</kbd> previous, <span class="key-bm"><kbd>b</kbd> bookmark, </span><kbd>s</kbd> top, <kbd>e</kbd> bottom, <kbd>o</kbd> settings</p>
+        <ol>
+          <li class="toc-ch">
+            <a class="toc-cht" href="#p3c1"><span class="toc-n">01</span>Post-mortem</a>
+            <ol>
+              <li><a href="#p3c1-s1"><span class="toc-n">1.1</span>What happened after</a></li>
+              <li><a href="#p3c1-s2"><span class="toc-n">1.2</span>Why Version 1.0 is not selling</a></li>
+              <li><a href="#p3c1-s3"><span class="toc-n">1.3</span>The repository on GitLab</a></li>
+              <li><a href="#p3c1-s4"><span class="toc-n">1.4</span>Hollis&#x27;s notebook</a></li>
+              <li><a href="#p3c1-s5"><span class="toc-n">1.5</span>Europa Wire on AKV Solutions</a></li>
+              <li><a href="#p3c1-s6"><span class="toc-n">1.6</span>#firmware on Rocket.Chat</a></li>
+              <li><a href="#p3c1-s7"><span class="toc-n">1.7</span>EU declaration of conformity, revision 2</a></li>
+              <li><a href="#p3c1-s8"><span class="toc-n">1.8</span>Favre&#x27;s reply to Hollis</a></li>
+              <li><a href="#p3c1-s9"><span class="toc-n">1.9</span>Toma&#x27;s employment contract</a></li>
+              <li><a href="#p3c1-s10"><span class="toc-n">1.10</span>The treaty in the Official Journal</a></li>
+              <li><a href="#p3c1-s11"><span class="toc-n">1.11</span>Releases on GitLab, a year later</a></li>
+              <li><a href="#p3c1-s12"><span class="toc-n">1.12</span>A letter from Sigurrós</a></li>
+              <li><a href="#p3c1-s13"><span class="toc-n">1.13</span>A postcard from Chillon</a></li>
+            </ol>
+          </li>
+        </ol>
+        <p class="toc-touch">Tap with two fingers to open or close the settings.</p>
+      </nav>
+      <main class="story">
+        <div class="book-tabs" role="tablist" aria-label="Chapters" hidden><button type="button" role="tab" class="tab ctab" id="tab-p3c1" aria-controls="p3c1" aria-selected="false" tabindex="-1"><span class="tab-n">01</span>Post-mortem</button></div>
+        <article class="chapter" id="p3c1" aria-labelledby="p3c1-h">
+          <header class="ch-head">
+            <h2 id="p3c1-h">Post-mortem</h2>
+          </header>
+          <div class="ch-tabs" role="tablist" aria-label="Sections of Post-mortem" hidden><button type="button" role="tab" class="tab stab" id="tab-p3c1-s1" aria-controls="p3c1-s1" aria-selected="false" tabindex="-1"><span class="tab-n">1.1</span>What happened after</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s2" aria-controls="p3c1-s2" aria-selected="false" tabindex="-1"><span class="tab-n">1.2</span>Why Version 1.0 is not selling</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s3" aria-controls="p3c1-s3" aria-selected="false" tabindex="-1"><span class="tab-n">1.3</span>The repository on GitLab</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s4" aria-controls="p3c1-s4" aria-selected="false" tabindex="-1"><span class="tab-n">1.4</span>Hollis&#x27;s notebook</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s5" aria-controls="p3c1-s5" aria-selected="false" tabindex="-1"><span class="tab-n">1.5</span>Europa Wire on AKV Solutions</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s6" aria-controls="p3c1-s6" aria-selected="false" tabindex="-1"><span class="tab-n">1.6</span>#firmware on Rocket.Chat</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s7" aria-controls="p3c1-s7" aria-selected="false" tabindex="-1"><span class="tab-n">1.7</span>EU declaration of conformity, revision 2</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s8" aria-controls="p3c1-s8" aria-selected="false" tabindex="-1"><span class="tab-n">1.8</span>Favre&#x27;s reply to Hollis</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s9" aria-controls="p3c1-s9" aria-selected="false" tabindex="-1"><span class="tab-n">1.9</span>Toma&#x27;s employment contract</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s10" aria-controls="p3c1-s10" aria-selected="false" tabindex="-1"><span class="tab-n">1.10</span>The treaty in the Official Journal</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s11" aria-controls="p3c1-s11" aria-selected="false" tabindex="-1"><span class="tab-n">1.11</span>Releases on GitLab, a year later</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s12" aria-controls="p3c1-s12" aria-selected="false" tabindex="-1"><span class="tab-n">1.12</span>A letter from Sigurrós</button><button type="button" role="tab" class="tab stab" id="tab-p3c1-s13" aria-controls="p3c1-s13" aria-selected="false" tabindex="-1"><span class="tab-n">1.13</span>A postcard from Chillon</button></div>
+          <section class="sec" id="p3c1-s1" aria-labelledby="p3c1-s1-h">
+            <h3 id="p3c1-s1-h"><span class="sec-n">1.1</span>What happened after<button type="button" class="plink" data-target="p3c1-s1" aria-label="Copy link to What happened after">#</button></h3>
+            <div class="coda">
+              <div class="coda-card" id="p3c1-s1-p1">
+                <p class="coda-k">Papers</p>
+                <p>Toma stayed in Reghin. He applied for an identity card at the population records office in the town, and for a passport at the passport office in Târgu Mureș, where he returned the travel document from Bern. Both were ready within a month.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p2">
+                <p class="coda-k">Friend</p>
+                <p>He contacted his close friend from Reghin, the one he used to tell almost everything, and they met regularly again. Toma told them where he had been.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p3">
+                <p class="coda-k">Signal</p>
+                <p>He maintained regular contact with Hollis and Kellerman on Signal, as they had agreed at the camp.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p4">
+                <p class="coda-k">Enforcement</p>
+                <p>The Foundation complied with the judgment only after the courts forced it to. The thirty days passed without a delivery, so Favre applied to the enforcement court in Geneva, which set a fine of 1,000 francs for each day of non-compliance.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p5">
+                <p class="coda-k">Delivery</p>
+                <p>Within days the binary and the bench results reached Favre's office with a written statement of the delivered items, and the AKV-RC4 units arrived in sealed boxes, so that Favre could confirm they had not been opened in transit.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p6">
+                <p class="coda-k">Recognition</p>
+                <p>In Târgu Mureș, the Mureș County Court declared the judgment enforceable in Romania under the Lugano Convention.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p7">
+                <p class="coda-k">Compensation</p>
+                <p>The balance of the damages was paid in cash on the last day of the six months, in December.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p8">
+                <p class="coda-k">Ban on contact</p>
+                <p>The Foundation and its agents respected the ban on contact.</p>
+              </div>
+              <div class="coda-card" id="p3c1-s1-p9">
+                <p class="coda-k">Version 1.0</p>
+                <p>Using the binary and the bench results, Toma finished the implant together with Houston at Engrama s. r. o., starting from the fourth release candidate. Engrama released Version 1.0 as open source under the GPL before the end of the year, and it gained very little traction. After the release Toma no longer worked on the project.</p>
+              </div>
+            </div>
+            <div class="scene scene-final">
+              <p>Toma returned to civil life.</p>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s2" aria-labelledby="p3c1-s2-h">
+            <h3 id="p3c1-s2-h"><span class="sec-n">1.2</span>Why Version 1.0 is not selling<button type="button" class="plink" data-target="p3c1-s2" aria-label="Copy link to Why Version 1.0 is not selling">#</button></h3>
+            <div class="web lang-own" data-lang="both">
+              <header class="web-bar"><span class="web-logo">ENGRAMA</span><span class="web-nav">Blog<span class="web-lang lang-sw" role="group" aria-label="Language"><button type="button" data-lang="sk" aria-pressed="false">SK</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="both" aria-pressed="true">SK/EN</button></span></span></header>
+              <div class="web-body">
+                <h4 class="web-title"><span lang="sk">Prečo sa verzia 1.0 nepredáva</span><span class="tr tr-line">Why version 1.0 is not selling</span></h4>
+                <div class="web-by">
+                  <span class="web-av" aria-hidden="true">C</span>
+                  <p class="web-by-t"><span class="web-name">Catarzy</span><span class="web-role"><span lang="sk">konateľ, Engrama s. r. o.</span><span class="tr tr-line">managing director, Engrama s. r. o.</span></span><span class="web-date"><span lang="sk">30. decembra 2030</span><span class="tr tr-line">30 December 2030</span></span></p>
+                </div>
+                <p class="web-lead"><span lang="sk">V AKV Solutions sme verili, že implantát bude revolučný. Naše heslo znelo "Keep the life. Lose the day." Začiatkom decembra sme ho spolu s Tomom, bývalým hlavným programátorom AKV, vydali ako verziu 1.0. Zatiaľ sme predali len niekoľko kusov, hlboko pod našimi očakávaniami.</span><span class="tr tr-line">At AKV Solutions we believed that the implant would be revolutionary. Our slogan was "Keep the life. Lose the day." At the beginning of December we released it as version 1.0, together with Toma, the former lead programmer of AKV. So far we have sold only a few units, far below our expectations.</span></p>
+                <h5><span lang="sk">Čo verzia 1.0 robí</span><span class="tr tr-line">What version 1.0 does</span></h5>
+                <p><span lang="sk">Implantát sa vkladá za ucho. Uchováva kópiu toho, čo používateľ označí ako dôležité: mená, tváre, rodinu, domov a prácu. Dávka amnestík potom odstráni len to, čo má, a spomienku je možné obnoviť len na žiadosť používateľa. Firmvér je otvorený pod licenciou GPL.</span><span class="tr tr-line">The implant goes behind the ear. It keeps a copy of what the user marks as essential: names, faces, family, home and work. A dose of amnestics then removes only what it should, and a memory can be restored only when the user asks for it. The firmware is open under the GPL.</span></p>
+                <p><span lang="sk">Zdrojový kód AKV sa stratil, keď firma zanikla. Verziu 1.0 sme preto zostavili z binárneho obrazu firmvéru a z výsledkov testov, ktoré Tomovi vrátil švajčiarsky súd, a vychádzali sme zo štvrtého kandidáta na vydanie.</span><span class="tr tr-line">AKV's source code was lost when the company closed. We therefore built version 1.0 from the binary image of the firmware and from the test results that the Swiss court returned to Toma, starting from the fourth release candidate.</span></p>
+                <h5><span lang="sk">Čo sme čakali</span><span class="tr tr-line">What we expected</span></h5>
+                <p><span lang="sk">AKV vznikla proti zneužívaniu amnestík. Triedy A a B sú voľne dostupné a zakázať ich nie je možné, a tak sme vyvinuli zariadenie, ktoré informácie uchová, aj keď látka zasiahne neuróny. Chceli sme, aby si človek závislý od amnestík uchoval to, čo mu dávky berú, kým s nimi prestáva.</span><span class="tr tr-line">AKV was founded against the abuse of amnestics. Classes A and B are freely available, and a ban is not possible, so we developed a device that keeps the information even when the substance acts on the neurons. We wanted a person addicted to amnestics to keep what the doses take while they stop taking them.</span></p>
+                <p><span lang="sk">Čítali sme aj o predávkovaniach, napríklad o starších ľuďoch v Poľsku, ktorí prišli o celé desaťročia. Čakali sme, že implantát budú chcieť závislí ľudia, ich rodiny a lekári, aj pacienti, ktorí berú amnestiká na predpis.</span><span class="tr tr-line">We also read about overdoses, such as older people in Poland who lost whole decades. We expected addicted people, their families and doctors, and patients who take amnestics on prescription to want the implant.</span></p>
+                <h5><span lang="sk">Čo sa stalo</span><span class="tr tr-line">What happened</span></h5>
+                <p><span lang="sk">Dostali sme veľa otázok a málo objednávok. Toto sú dôvody, ktoré nám kupujúci uvádzali najčastejšie:</span><span class="tr tr-line">We received many questions and few orders. These are the reasons buyers gave us most often:</span></p>
+                <ol class="web-list">
+                  <li><span lang="sk">Operácia a cena: implantát musí vložiť chirurg za ucho a s operáciou stojí oveľa viac ako balenie amnestík.</span><span class="tr tr-line">Operation and price: a surgeon has to place the implant behind the ear, and with the operation it costs far more than a pack of amnestics.</span></li>
+                  <li><span lang="sk">Vybratie: kupujúci sa obávajú, že implantát nepôjde vybrať. Verzia 1.0 vybratie podporuje a postup vysvetľujeme každému kupujúcemu, ktorý oň požiada.</span><span class="tr tr-line">Removal: buyers fear that the implant cannot be removed. Version 1.0 supports removal, and we explain the procedure to each buyer who requests it.</span></li>
+                  <li><span lang="sk">Kópie spomienok: implantát ukladá kópie spomienok na čip. Po únikoch o Nadácii SCP mnohí kupujúci nechcú mať svoje spomienky uložené mimo hlavy, pretože by mohli byť uzamknuté.</span><span class="tr tr-line">Copies of memories: the implant stores copies of memories on a chip. After the leaks about the SCP Foundation, many buyers do not want their memories stored outside their head, because they could be locked up.</span></li>
+                  <li><span lang="sk">Predpis: lekári, ktorí predpisujú amnestiká, nechcú zariadenie, ktorým si pacient môže obnoviť to, čo liečba odstránila.</span><span class="tr tr-line">Prescriptions: doctors who prescribe amnestics do not want a device that allows a patient to restore what the treatment removed.</span></li>
+                  <li><span lang="sk">Závislosť: človek závislý od amnestík ich berie, aby zabudol, a implantát uchová vymazané spomienky. Závislí používatelia si ho preto vyberajú len zriedka a ich rodiny ho za nich vybrať nemôžu.</span><span class="tr tr-line">Addiction: a person addicted to amnestics takes them to forget, and the implant keeps the deleted memories. Addicted users therefore rarely choose it, and their families cannot choose it for them.</span></li>
+                  <li><span lang="sk">Príležitostní používatelia: ľudia, ktorí berú amnestiká príležitostne, veria dávke uvedenej na balení a s predávkovaním nepočítajú.</span><span class="tr tr-line">Occasional users: people who take amnestics occasionally trust the dose shown on the pack and do not plan for an overdose.</span></li>
+                </ol>
+                <h5><span lang="sk">Čo ďalej</span><span class="tr tr-line">What next</span></h5>
+                <p><span lang="sk">Implantát naďalej predávame a firmvér udržiavame. Píšeme príručku pre lekárov o vkladaní a vyberaní implantátu.</span><span class="tr tr-line">We continue to sell the implant and to maintain the firmware. We are writing a guide for doctors about placing and removing the implant.</span></p>
+                <p><span lang="sk">Lekári a kliniky, ktorí preň vidia využitie, nás môžu kontaktovať.</span><span class="tr tr-line">Doctors and clinics who see a use for the implant can contact us.</span></p>
+              </div>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s3" aria-labelledby="p3c1-s3-h">
+            <h3 id="p3c1-s3-h"><span class="sec-n">1.3</span>The repository on GitLab<button type="button" class="plink" data-target="p3c1-s3" aria-label="Copy link to The repository on GitLab">#</button></h3>
+            <div class="glab">
+              <header class="glab-bar"><img class="glab-logo" src="svg/engrama/logo.svg" width="24" height="24" alt="Engrama"><span class="glab-explore">Explore</span><span class="glab-search"><img class="glab-i" src="svg/gitlab/search.svg" width="16" height="16" alt="">Search or go to...<kbd>/</kbd></span><span class="glab-signin">Sign in</span></header>
+              <div class="glab-main">
+                <nav class="glab-side" aria-label="Project">
+                  <p class="glab-side-h">Project</p>
+                  <p class="glab-side-proj"><span class="glab-av glab-av-xs" aria-hidden="true">I</span>implant-firmware</p>
+                  <ul>
+                    <li class="glab-pin"><img class="glab-i" src="svg/gitlab/pin.svg" width="16" height="16" alt=""><span>Pinned</span><img class="glab-i" src="svg/gitlab/down.svg" width="16" height="16" alt=""></li>
+                    <li class="glab-sub"><span>Issues</span><b>3</b></li>
+                    <li class="glab-sub"><span>Merge requests</span><b>0</b></li>
+                  </ul>
+                  <ul class="glab-groups">
+                    <li><img class="glab-i" src="svg/gitlab/people.svg" width="16" height="16" alt=""><span>Manage</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/plan.svg" width="16" height="16" alt=""><span>Plan</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/code.svg" width="16" height="16" alt=""><span>Code</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/build.svg" width="16" height="16" alt=""><span>Build</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/rocket.svg" width="16" height="16" alt=""><span>Deploy</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/operate.svg" width="16" height="16" alt=""><span>Operate</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/monitor.svg" width="16" height="16" alt=""><span>Monitor</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                    <li><img class="glab-i" src="svg/gitlab/analyze.svg" width="16" height="16" alt=""><span>Analyze</span><img class="glab-i" src="svg/gitlab/chev.svg" width="16" height="16" alt=""></li>
+                  </ul>
+                  <p class="glab-help"><img class="glab-i" src="svg/gitlab/help.svg" width="16" height="16" alt="">Help</p>
+                </nav>
+                <div class="glab-page">
+                  <div class="glab-top">
+                    <p class="glab-crumbs"><img class="glab-logo glab-logo-s" src="svg/engrama/logo.svg" width="24" height="24" alt="">Engrama<span>/</span><span class="glab-av glab-av-xs" aria-hidden="true">I</span>implant-firmware</p>
+                    <span class="glab-star"><img class="glab-i" src="svg/gitlab/star.svg" width="16" height="16" alt="">Star<b>4</b></span>
+                  </div>
+                  <div class="glab-cols">
+                    <div class="glab-content">
+                      <div class="glab-head">
+                        <span class="glab-av" aria-hidden="true">I</span>
+                        <h4>implant-firmware</h4>
+                        <img class="glab-i" src="svg/gitlab/globe.svg" width="16" height="16" alt="">
+                      </div>
+                      <div class="glab-tools"><span class="glab-sel"><img class="glab-i" src="svg/gitlab/branch.svg" width="16" height="16" alt=""><code>main</code><img class="glab-i" src="svg/gitlab/down.svg" width="16" height="16" alt=""></span><b>implant-firmware</b><span class="glab-push"></span><span class="glab-btn">Find file</span><span class="glab-btn glab-btn-l">Code<img class="glab-i" src="svg/gitlab/down.svg" width="16" height="16" alt=""></span></div>
+                      <div class="glab-commit">
+                        <span class="glab-av glab-av-s" aria-hidden="true">C</span>
+                        <p><b>Release v1.0</b><span>Catarzy authored on Dec 2, 2030</span></p>
+                        <span class="glab-ok">Verified</span><code class="glab-sha">4e1a9c7<img class="glab-i" src="svg/gitlab/copy.svg" width="16" height="16" alt=""></code><span class="glab-btn">History</span>
+                      </div>
+                      <div class="glab-tw">
+                        <table class="glab-files">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Last commit</th>
+                              <th>Last update</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/folder.svg" width="16" height="16" alt="">board</span></td>
+                              <td>Redraw the board in KiCad from the bench measurements</td>
+                              <td>Nov 2030</td>
+                            </tr>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/folder.svg" width="16" height="16" alt="">coreboot</span></td>
+                              <td>Pin the coreboot 24.08 configuration</td>
+                              <td>Oct 2030</td>
+                            </tr>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/folder.svg" width="16" height="16" alt="">docs</span></td>
+                              <td>Document the removal procedure</td>
+                              <td>Dec 2030</td>
+                            </tr>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/folder.svg" width="16" height="16" alt="">src</span></td>
+                              <td>Check where a delete flag came from before clearing it</td>
+                              <td>Dec 2030</td>
+                            </tr>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/file.svg" width="16" height="16" alt="">LICENSE</span></td>
+                              <td>Add the GPL license text</td>
+                              <td>Sep 2030</td>
+                            </tr>
+                            <tr>
+                              <td><span class="glab-name"><img class="glab-i" src="svg/gitlab/file.svg" width="16" height="16" alt="">README.md</span></td>
+                              <td>Release v1.0</td>
+                              <td>Dec 2030</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <article class="glab-readme">
+                        <p class="glab-readme-h"><img class="glab-i" src="svg/gitlab/doc.svg" width="16" height="16" alt="">README.md</p>
+                        <h5>implant-firmware</h5>
+                        <p>Firmware for the anti-amnestic memory implant first built at AKV Solutions in Linz. Version 1.0 is rebuilt from the binary image of the fourth release candidate (AKV-RC4) and from its bench test results.</p>
+                        <h6>What it does</h6>
+                        <ul>
+                          <li>Keeps a copy of what the user marks as essential: names, faces, family, home and work.</li>
+                          <li>Recalls through cues written by the user's own brain.</li>
+                          <li>Restores a memory only when the user asks for it.</li>
+                        </ul>
+                        <h6>Hardware</h6>
+                        <p>The implant boots with coreboot 24.08 on an AArch64 core and is powered and read through an inductive coil held behind the ear. For safety, a magnetic sensor cuts the power inside an MRI scanner.</p>
+                        <h6>Changes since RC4</h6>
+                        <ul>
+                          <li>Removal is supported through setup mode. The procedure is in <code>docs/removal.md</code>.</li>
+                          <li>The refresh path checks where a delete flag came from before it clears the flag.</li>
+                        </ul>
+                        <h6>Medical use</h6>
+                        <p>The implant must be placed and removed by a surgeon. Clinics should contact Engrama s. r. o. before an operation.</p>
+                        <h6>License</h6>
+                        <p>GNU General Public License. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.</p>
+                      </article>
+                    </div>
+                    <aside class="glab-info">
+                      <p class="glab-info-h">Project information</p>
+                      <p>Firmware for the anti-amnestic memory implant first built at AKV Solutions. Version 1.0, rebuilt from the AKV-RC4 binary.</p>
+                      <p class="glab-topics"><span>firmware</span><span>coreboot</span><span>C</span></p>
+                      <ul class="glab-stats">
+                        <li><img class="glab-i" src="svg/gitlab/commit.svg" width="16" height="16" alt=""><b>38</b> Commits</li>
+                        <li><img class="glab-i" src="svg/gitlab/branch.svg" width="16" height="16" alt=""><b>1</b> Branch</li>
+                        <li><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt=""><b>1</b> Tag</li>
+                        <li><img class="glab-i" src="svg/gitlab/rocket.svg" width="16" height="16" alt=""><b>1</b> Release</li>
+                      </ul>
+                      <ul class="glab-stats">
+                        <li><img class="glab-i" src="svg/gitlab/doc.svg" width="16" height="16" alt="">README</li>
+                        <li><img class="glab-i" src="svg/gitlab/scale.svg" width="16" height="16" alt="">GNU GPL</li>
+                        <li><img class="glab-i" src="svg/gitlab/issue.svg" width="16" height="16" alt="">3 open issues</li>
+                      </ul>
+                      <p class="glab-info-h">Created on</p>
+                      <p>Sep 2, 2030</p>
+                    </aside>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s4" aria-labelledby="p3c1-s4-h">
+            <h3 id="p3c1-s4-h"><span class="sec-n">1.4</span>Hollis&#x27;s notebook<button type="button" class="plink" data-target="p3c1-s4" aria-label="Copy link to Hollis&#x27;s notebook">#</button></h3>
+            <div class="nb-spread">
+              <blockquote class="doc doc-note nb-hollis" role="group" aria-label="Hollis's notebook, first page: Version 1.0">
+                <p class="nb-title">Version 1.0</p>
+                <p>31 December 2030</p>
+                <p>Toma sent me the Engrama post on Signal. Only a few units were sold, far below what Engrama hoped for.</p>
+                <p>At the lake I told him the chip does nothing for the pandemic back home, because it takes a surgeon to put one in. Then I told him it was worth something, because a person who is hooked could keep what the strips take while they come off them. I meant both.</p>
+                <p>The post makes the first one look right. I am not sure the second one was wrong.</p>
+                <p>A person in withdrawal does not shop for an implant. A doctor would have to offer it, and the doctors are not offering it yet.</p>
+                <p>Maybe I only wanted it to work because of my friend. I don't know yet.</p>
+              </blockquote>
+              <blockquote class="doc doc-note nb-hollis" role="group" aria-label="Hollis's notebook, second page: Toma">
+                <p class="nb-title">Toma</p>
+                <p>It has been seven months since the night in the mess hut. I told him I didn't want all of this to have been for nothing, and it wasn't.</p>
+                <p>I miss him. I am glad he is home, and both are true at the same time.</p>
+                <p>If they couldn't hold him without a judge, they can't hold me either. I haven't decided what to do about that.</p>
+                <p>I think Iris misses him more than I do, and she doesn't cry about it. I saw how she held on to him in the yard.</p>
+                <p>Mum said I feel things too deeply.</p>
+                <p>Well, I am less ashamed than I was in April.</p>
+              </blockquote>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s5" aria-labelledby="p3c1-s5-h">
+            <h3 id="p3c1-s5-h"><span class="sec-n">1.5</span>Europa Wire on AKV Solutions<button type="button" class="plink" data-target="p3c1-s5" aria-label="Copy link to Europa Wire on AKV Solutions">#</button></h3>
+            <div class="news">
+              <header class="news-bar"><span class="news-name">EUROPA WIRE</span><span class="news-nav"><span>Policy</span><span>Technology</span><span>Health</span></span></header>
+              <div class="news-body">
+                <p class="news-kicker">Technology</p>
+                <h4 class="news-head">The memory implant from Linz works as promised. Its first users are unimpressed.</h4>
+                <p class="news-stand">AKV Solutions, a small Austrian company with engineers from Central and Eastern Europe, built the first implant that resists amnestics. Its open version 1.0 is now on sale, and the reviews are lukewarm.</p>
+                <p class="news-by"><b>By Lena Varga</b><span>19 December 2030, 06:00 CET</span></p>
+                <p>When the Swiss Federal Supreme Court ruled in June that the SCP Foundation had held a Romanian programmer without a legal basis, attention turned to the device in his head: an implant that retains memories despite having been administered a dose of amnestics.</p>
+                <p>The device came from Austria. AKV Solutions GmbH had a small office in Linz, and its lead programmer, Toma Bulburiu, grew up in Reghin, in Romania. Its memory engineer, who goes by Catarzy, now runs Engrama, a six-person firm in Slovakia that took over the project after AKV was dissolved.</p>
+                <p>Online, the origin of the implant drew as much attention as the technology. Many readers wrote that they were relieved to see a device of this kind come from a small European team, at a time when most brain implants are developed by companies in California.</p>
+                <p>"For once, the people who built it were programmers from Romania and Slovakia working in Linz. People talked about the engineers before they talked about the investors", said Petra Hollinger, who researches technology policy at a university in Vienna.</p>
+                <blockquote class="news-pull">"People talked about the engineers before they talked about the investors."</blockquote>
+                <p>Engrama released version 1.0 at the beginning of December as open source, under the GNU General Public License. A surgeon places the implant behind the ear. It keeps a copy of what the user marks as essential, such as names, faces and family, and restores a memory only when the user asks for it via mnemonics.</p>
+                <p>The first users describe a device that does one narrow thing. It protects memories from amnestics, and most people who take amnestics take them to forget. "I have never taken one. I bought it just in case, and so far it has protected me from nothing", said a buyer who asked not to be named.</p>
+                <p>The interface is the second complaint, and it comes from clinics. The implant runs a complete Unix-like system, with its own boot sequence, scheduler and file system, and the clinic checks it through a handheld reader held behind the ear. Settings, updates and removal go through a setup mode that only a clinic can open. "One screen asked me whether to continue with traditional Unix file semantics. I am a surgeon, and I had to call Engrama to find out what it meant", said a doctor at a clinic that placed one of the first implants. Developers who read the published code describe the design as heavy for a memory store.</p>
+                <p>The third concern is dependence. Catarzy acknowledged that AKV's early testers found it harder to recall memories after the implant was removed, because the brain had come to rely on the stored copies. Version 1.0 supports removal, and the effect remains.</p>
+                <p>Engrama would not give sales figures. "We have sold a few units, far below what we expected. At AKV we thought it would be revolutionary. The people who buy amnestics want to forget, and the people who fear losing their memory are few", Catarzy said in an interview.</p>
+                <p>Bulburiu, who now lives in Reghin, declined to be interviewed. Orvalen Pharma SA, the business name under which the Foundation was sued in Switzerland, did not respond to a request for comment.</p>
+                <p>The code remains public on GitLab, and Engrama says it will keep selling the implant.</p>
+              </div>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s6" aria-labelledby="p3c1-s6-h">
+            <h3 id="p3c1-s6-h"><span class="sec-n">1.6</span>#firmware on Rocket.Chat<button type="button" class="plink" data-target="p3c1-s6" aria-label="Copy link to #firmware on Rocket.Chat">#</button></h3>
+            <div class="rc">
+              <div class="rc-in">
+                <nav class="rc-side" aria-label="Rooms">
+                  <p class="rc-ws"><img class="rc-logo" src="svg/engrama/logo.svg" width="24" height="24" alt="Engrama">Engrama</p>
+                  <p class="rc-search"><img class="rc-i" src="svg/rocketchat/search-light.svg" width="16" height="16" alt="">Search</p>
+                  <p class="rc-sec">Channels</p>
+                  <ul>
+                    <li><img class="rc-i" src="svg/rocketchat/hash-light.svg" width="16" height="16" alt="">general</li>
+                    <li class="rc-on"><img class="rc-i" src="svg/rocketchat/hash-light.svg" width="16" height="16" alt="">firmware</li>
+                    <li><img class="rc-i" src="svg/rocketchat/hash-light.svg" width="16" height="16" alt="">hardware</li>
+                  </ul>
+                  <p class="rc-sec">Direct messages</p>
+                  <ul>
+                    <li><span class="rc-dot rc-dot-on"></span>Catarzy</li>
+                  </ul>
+                </nav>
+                <div class="rc-room">
+                  <header class="rc-head"><img class="rc-i" src="svg/rocketchat/hash.svg" width="16" height="16" alt=""><b>firmware</b><span class="rc-topic">Implant firmware, version 1.0 and later</span><span class="rc-tools"><img class="rc-i" src="svg/rocketchat/thread.svg" width="16" height="16" alt=""><img class="rc-i" src="svg/rocketchat/members.svg" width="16" height="16" alt=""><img class="rc-i" src="svg/rocketchat/search.svg" width="16" height="16" alt=""></span></header>
+                  <div class="rc-list">
+                    <p class="rc-day"><span>December 22, 2030</span></p>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:02 AM</span></p>
+                        <p>Did you read the Europa Wire piece? The surgeon with the Unix file semantics prompt is going to follow us for a while.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:04 AM</span></p>
+                        <p>I read it. The quote is fair. That screen should never have reached a doctor.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:05 AM</span></p>
+                        <p>Why does it reach the clinic at all?</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:07 AM</span></p>
+                        <p>Because the hand-back runs on Unix file semantics. The prompt asks whether a read is allowed during the hand-back, and the setup utility only shows what the kernel asks. We kept the design of AKV as it was.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:09 AM</span></p>
+                        <p>That is the problem. We have a Unix process model with SIGTERM and SIGKILL, a UEFI-like setup utility and a minified copy of the g_mount_unmount function from GNOME's GIO, all on coreboot. It is three operating systems in one implant that does one thing.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:11 AM</span></p>
+                        <p>Then list the debt. I want to know what it costs us before we change anything.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:15 AM</span></p>
+                        <p>First, the store runs as processes, and a kill in the wrong state can leave the store lock held.</p>
+                        <p>Second, settings, updates and removal all go through the UEFI-like menu over the remote serial port.</p>
+                        <p>Third, power off still calls the GIO unmount copy, which was written for a desktop with an event loop.</p>
+                        <p>A memory store needs a write path, a read path and a delete flag. I could write that without a scheduler or a file system.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:21 AM</span></p>
+                        <p>The scheduler is there because recall and the hand-back run at the same time. If you remove it, you have to solve that in another way.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:23 AM</span></p>
+                        <p>Then I will solve it in a 2.0 branch.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:24 AM</span></p>
+                        <p>Yes, and 1.x only gets fixes. A team of six cannot maintain three operating systems in one chip. Start with power off. It is the oldest debt, and it came from AKV.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-m" aria-hidden="true">M</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Marek</b><span>10:26 AM</span></p>
+                        <p>I will open an issue on GitLab for each item.</p>
+                      </div>
+                    </div>
+                    <div class="rc-msg">
+                      <span class="rc-av rc-av-c" aria-hidden="true">C</span>
+                      <div class="rc-m">
+                        <p class="rc-who"><b>Catarzy</b><span>10:27 AM</span></p>
+                        <p>Good. And write the setup screens so that a doctor can read them.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rc-compose"><img class="rc-i" src="svg/rocketchat/plus.svg" width="16" height="16" alt=""><span>Message #firmware</span><img class="rc-i" src="svg/rocketchat/emoji.svg" width="16" height="16" alt=""><img class="rc-i" src="svg/rocketchat/at.svg" width="16" height="16" alt=""><img class="rc-i" src="svg/rocketchat/send.svg" width="16" height="16" alt=""></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s7" aria-labelledby="p3c1-s7-h">
+            <h3 id="p3c1-s7-h"><span class="sec-n">1.7</span>EU declaration of conformity, revision 2<button type="button" class="plink" data-target="p3c1-s7" aria-label="Copy link to EU declaration of conformity, revision 2">#</button></h3>
+            <blockquote class="doc doc-memo doc-ce" role="group" aria-label="EU declaration of conformity, revision 2">
+              <header class="dm-head">
+                <p class="dm-org">ENGRAMA S. R. O.</p>
+                <h4 class="dm-title">EU declaration of conformity</h4>
+                <p class="dm-meta">Regulation (EU) 2017/745, Annex IV / Revision 2 of 31 December 2030</p>
+              </header>
+              <ol class="dm-list">
+                <li>
+                  <b>1</b>
+                  <div>
+                    <p class="dce-h">Manufacturer</p>
+                    <dl class="dce-kv">
+                      <dt>Name</dt>
+                      <dd>Engrama s. r. o.</dd>
+                      <dt>Seat</dt>
+                      <dd>Žilina, Slovak Republic</dd>
+                      <dt>SRN</dt>
+                      <dd>SK-MF-000004217</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li>
+                  <b>2</b>
+                  <div>
+                    <p class="dce-h">Responsibility</p>
+                    This declaration is issued under the sole responsibility of the manufacturer.
+                  </div>
+                </li>
+                <li>
+                  <b>3</b>
+                  <div>
+                    <p class="dce-h">Basic UDI-DI</p>
+                    8580174300EMI1Q
+                  </div>
+                </li>
+                <li>
+                  <b>4</b>
+                  <div>
+                    <p class="dce-h">Device</p>
+                    <dl class="dce-kv">
+                      <dt>Name</dt>
+                      <dd>Engrama memory implant</dd>
+                      <dt>Product code</dt>
+                      <dd>EMI-1</dd>
+                      <dt>Firmware</dt>
+                      <dd>Version 1.0.1</dd>
+                      <dt>Purpose</dt>
+                      <dd>Keeps a copy of the memories the user marks as essential and restores a memory when the user asks, to protect against memory loss caused by amnestic substances.</dd>
+                      <dt>Use</dt>
+                      <dd>Placed and removed by a surgeon only.</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li>
+                  <b>5</b>
+                  <div>
+                    <p class="dce-h">Risk class</p>
+                    III (Annex VIII, rule 8)
+                  </div>
+                </li>
+                <li>
+                  <b>6</b>
+                  <div>
+                    <p class="dce-h">Conformity</p>
+                    The device in point 4 conforms to Regulation (EU) 2017/745 on medical devices.
+                  </div>
+                </li>
+                <li>
+                  <b>7</b>
+                  <div>
+                    <p class="dce-h">Standards</p>
+                    <ul class="dce-ul">
+                      <li>EN ISO 13485:2016, quality management</li>
+                      <li>EN ISO 14971:2019, risk management</li>
+                      <li>EN 45502-1:2015, active implantable devices</li>
+                      <li>EN 62304:2006/A1:2015, software life cycle</li>
+                      <li>EN 62366-1:2015/A1:2020, usability</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <b>8</b>
+                  <div>
+                    <p class="dce-h">Notified body</p>
+                    <dl class="dce-kv">
+                      <dt>Name</dt>
+                      <dd>Danubia Medical Certification, no. 2981</dd>
+                      <dt>Procedure</dt>
+                      <dd>Annex IX, chapters I to III</dd>
+                      <dt>Certificates</dt>
+                      <dd>DMC-QMS-0412, quality management system<br>DMC-TD-0977, technical documentation<br>Supplement 1 of 30 December 2030, firmware 1.0.1</dd>
+                    </dl>
+                  </div>
+                </li>
+                <li>
+                  <b>9</b>
+                  <div>
+                    <p class="dce-h">Revision 2</p>
+                    <dl class="dce-kv">
+                      <dt>Replaces</dt>
+                      <dd>Revision 1 of 2 December 2030</dd>
+                      <dt>Reason</dt>
+                      <dd>Complaints, mostly about the removal of the implant</dd>
+                      <dt>Cause</dt>
+                      <dd>
+                        Removal is complex. The firmware follows Unix conventions and contains parts of three operating systems, which must be stopped in a fixed order before removal:
+                        <ul class="dce-ul">
+                          <li>a Unix process model with signals</li>
+                          <li>a UEFI-like setup utility</li>
+                          <li>an unmount routine from a desktop library</li>
+                        </ul>
+                      </dd>
+                      <dt>Changes</dt>
+                      <dd>
+                        <ul class="dce-ul">
+                          <li>Firmware 1.0.1 stops these parts in a fixed order and does not end a process while the memory store is locked.</li>
+                          <li>The instructions for use describe the removal step by step.</li>
+                          <li>A new patient leaflet explains the removal and how recall depends on the stored copies.</li>
+                        </ul>
+                      </dd>
+                    </dl>
+                  </div>
+                </li>
+              </ol>
+              <p class="dce-sign">Signed for and on behalf of the manufacturer<br>Žilina, 31 December 2030<br>Catarzy, managing director</p>
+            </blockquote>
+          </section>
+          <section class="sec" id="p3c1-s8" aria-labelledby="p3c1-s8-h">
+            <h3 id="p3c1-s8-h"><span class="sec-n">1.8</span>Favre&#x27;s reply to Hollis<button type="button" class="plink" data-target="p3c1-s8" aria-label="Copy link to Favre&#x27;s reply to Hollis">#</button></h3>
+            <blockquote class="doc doc-memo doc-lawyer" role="group" aria-label="Letter from Elise Favre to Hollis">
+              <header class="dl-head">
+                <p class="dl-from">Me Élise Favre<br>Avocate, Geneva</p>
+                <p class="dl-date">Geneva, 13 January 2031</p>
+              </header>
+              <p class="dl-to">Ms Hollis<br>c/o Orvalen Pharma SA, Geneva</p>
+              <p class="dl-re">Re: your possible departure from the Foundation</p>
+              <p>Dear Ms Hollis,</p>
+              <p>Thank you for your letter of 2 January, in which you ask whether the judgment of the Federal Supreme Court of 26 June 2030 (5A_412/2030) would also allow you to leave the Foundation with your memories intact.</p>
+              <p>I have read the documents you sent me: your employment contract with Orvalen Pharma SA, signed in Manchester, and the addendum you signed after your implantation.</p>
+              <p>Your situation is different from that of Mr Bulburiu. The Court found that he was deprived of his liberty without a legal basis: he had no contract, no salary and no decision by a judge. You have a contract and a salary, and in the addendum you accepted a permanent assignment, on the ground that amnestics no longer act on you.</p>
+              <p>You can resign under your contract. However, the addendum makes any departure subject to the Foundation's procedure for leaving staff, and that procedure relies on amnestics. A court could find this clause abusive, but that would be a new case. It would take several years, its outcome is uncertain, and while it lasts you would remain assigned to the site.</p>
+              <p>For these reasons, I cannot advise you to start proceedings at present. If your situation changes, I will gladly review your case again.</p>
+              <p>Yours sincerely,</p>
+              <p class="dl-sign">Élise Favre<br>Attorney</p>
+            </blockquote>
+          </section>
+          <section class="sec" id="p3c1-s9" aria-labelledby="p3c1-s9-h">
+            <h3 id="p3c1-s9-h"><span class="sec-n">1.9</span>Toma&#x27;s employment contract<button type="button" class="plink" data-target="p3c1-s9" aria-label="Copy link to Toma&#x27;s employment contract">#</button></h3>
+            <blockquote class="doc doc-memo doc-cim lang-own" data-lang="both" role="group" aria-label="Toma's individual employment contract">
+              <header class="dm-head">
+                <div class="cim-top">
+                  <p class="dm-org">GURGHIU SOFT SRL / REGHIN</p>
+                  <span class="cim-lang lang-sw" role="group" aria-label="Language"><button type="button" data-lang="ro" aria-pressed="false">RO</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="both" aria-pressed="true">RO/EN</button></span>
+                </div>
+                <h4 class="dm-title"><span lang="ro">Contract individual de muncă</span><span class="tr tr-line">Individual employment contract</span></h4>
+                <p class="dm-meta"><span lang="ro">Încheiat la data de 24 februarie 2031 și înregistrat în registrul general de evidență a salariaților cu nr. 27 din 2 martie 2031</span><span class="tr tr-line">Concluded on 24 February 2031 and recorded in the general register of employees under no. 27 of 2 March 2031</span></p>
+              </header>
+              <ol class="dm-list">
+                <li>
+                  <b>A</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Părțile contractului</span><span class="tr tr-line">Parties to the contract</span></p>
+                    <p><span lang="ro">Angajator: Gurghiu Soft SRL, cu sediul în Reghin, județul Mureș, reprezentată legal prin administrator.</span><span class="tr tr-line">Employer: Gurghiu Soft SRL, registered in Reghin, Mureș County, legally represented by its administrator.</span></p>
+                    <p><span lang="ro">Salariat: Toma Bulburiu, domiciliat în Reghin, județul Mureș, CNP 5071203******, posesor al cărții electronice de identitate eliberate de SPCLEP Reghin.</span><span class="tr tr-line">Employee: Toma Bulburiu, residing in Reghin, Mureș County, personal numeric code 5071203******, holder of the electronic identity card issued by the population records office of Reghin.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>C</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Durata contractului</span><span class="tr tr-line">Duration of the contract</span></p>
+                    <p><span lang="ro">Nedeterminată, începând cu data de 3 martie 2031.</span><span class="tr tr-line">Indefinite, starting on 3 March 2031.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>D</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Perioada de probă</span><span class="tr tr-line">Probation period</span></p>
+                    <p><span lang="ro">90 de zile calendaristice.</span><span class="tr tr-line">90 calendar days.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>E</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Locul de muncă</span><span class="tr tr-line">Place of work</span></p>
+                    <p><span lang="ro">La sediul angajatorului din Reghin.</span><span class="tr tr-line">At the employer's premises in Reghin.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>F</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Felul muncii</span><span class="tr tr-line">Type of work</span></p>
+                    <p><span lang="ro">Funcția/ocupația: programator, cod COR 251202.</span><span class="tr tr-line">Position/occupation: programmer, Romanian occupation code 251202.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>G</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Durata timpului de muncă</span><span class="tr tr-line">Working time</span></p>
+                    <p><span lang="ro">O normă întreagă: 8 ore pe zi, 40 de ore pe săptămână, de luni până vineri.</span><span class="tr tr-line">Full time: 8 hours a day, 40 hours a week, Monday to Friday.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>H</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Concediul</span><span class="tr tr-line">Leave</span></p>
+                    <p><span lang="ro">Concediul anual de odihnă este de 21 de zile lucrătoare.</span><span class="tr tr-line">Annual leave is 21 working days.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>I</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Salariul</span><span class="tr tr-line">Salary</span></p>
+                    <p><span lang="ro">Salariul de bază lunar brut: 11.500 de lei.</span><span class="tr tr-line">Gross monthly base salary: 11,500 lei.</span></p>
+                    <p><span lang="ro">Salariul se plătește pe data de 10 a lunii următoare, prin virament bancar.</span><span class="tr tr-line">The salary is paid on the 10th of the following month, by bank transfer.</span></p>
+                  </div>
+                </li>
+                <li>
+                  <b>K</b>
+                  <div>
+                    <p class="dce-h"><span lang="ro">Atribuțiile postului</span><span class="tr tr-line">Duties</span></p>
+                    <p><span lang="ro">Dezvoltă și întreține aplicații software pentru clienții angajatorului, conform fișei postului.</span><span class="tr tr-line">Develops and maintains software applications for the employer's clients, as set out in the job description.</span></p>
+                  </div>
+                </li>
+              </ol>
+              <div class="cim-sign">
+                <p><span lang="ro">Angajator</span><span class="tr tr-line">Employer</span><span class="cim-line">Gurghiu Soft SRL, prin administrator</span></p>
+                <p><span lang="ro">Salariat</span><span class="tr tr-line">Employee</span><span class="cim-line cim-hand">Toma Bulburiu</span></p>
+              </div>
+            </blockquote>
+          </section>
+          <section class="sec" id="p3c1-s10" aria-labelledby="p3c1-s10-h">
+            <h3 id="p3c1-s10-h"><span class="sec-n">1.10</span>The treaty in the Official Journal<button type="button" class="plink" data-target="p3c1-s10" aria-label="Copy link to The treaty in the Official Journal">#</button></h3>
+            <div class="oj">
+              <header class="oj-head"><span>Official Journal<br>of the European Union</span><span class="oj-lang">EN</span><span>L series</span></header>
+              <p class="oj-ref"><span>2031/512</span><span>14.3.2031</span></p>
+              <div class="oj-body">
+                <p class="oj-title">AGREEMENT<br>between the Member States of the European Union and the SCP Foundation on the status and activities of the Foundation</p>
+                <p class="oj-pre">THE MEMBER STATES OF THE EUROPEAN UNION, hereinafter "the States", and THE SCP FOUNDATION, hereinafter "the Foundation", together "the Parties",</p>
+                <p class="oj-pre">HAVE AGREED AS FOLLOWS:</p>
+                <div class="oj-arts">
+                  <section class="oj-a">
+                    <h5>Article 1: Purpose</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The Foundation secures, contains and studies objects, entities and phenomena that do not follow the known laws of nature ("anomalies").</li>
+                        <li>It does so in order to protect the public from anomalies and to prevent their existence from causing public disorder.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 2: Definitions</h5>
+                    <div>
+                      <p>For the purposes of this Agreement:</p>
+                      <ol class="oj-alpha">
+                        <li>"site" means any facility, temporary or permanent, where the Foundation holds or studies anomalies;</li>
+                        <li>"staff" means any person employed by the Foundation under a written contract;</li>
+                        <li>"amnestic substance" means a substance that removes memories.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 3: Legal status</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The Foundation has legal personality.</li>
+                        <li>It may act under business names registered in the States. Each State shall keep a record of these names.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 4: Sites</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The States permit the Foundation to operate sites on their territory.</li>
+                        <li>The location of each site shall be notified to a national authority designated by each State and kept confidential.</li>
+                        <li>The national authority may inspect a site after giving notice to the Foundation.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 5: Staff</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The Foundation employs its staff under written contracts governed by the law chosen in each contract.</li>
+                        <li>The Foundation may administer amnestic substances to its staff, in accordance with their contracts, and to members of the public who have been exposed to an anomaly.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 6: Public normality</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The Foundation may open an investigation into any event that, in its judgement, disturbs public normality.</li>
+                        <li>The States shall assist the Foundation in such investigations and shall give it access to the information it requests.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 7: Cooperation</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>The States and the Foundation shall exchange information on anomalies found on the territory of the States.</li>
+                        <li>Each State shall designate a point of contact for the Foundation.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 8: Confidentiality</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>This Agreement and the arrangements for its implementation are confidential.</li>
+                        <li>The Parties shall disclose them only with the consent of all Parties.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 9: Settlement of disputes</h5>
+                    <div>
+                      <p>Disputes concerning the interpretation or application of this Agreement shall be settled by consultation between the Parties.</p>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Article 10: Duration and amendment</h5>
+                    <div>
+                      <ol class="oj-num">
+                        <li>This Agreement is concluded for an unlimited period.</li>
+                        <li>It may be amended by a protocol agreed by all Parties.</li>
+                      </ol>
+                    </div>
+                  </section>
+                  <section class="oj-a">
+                    <h5>Joint declaration: Publication of this Agreement</h5>
+                    <div>
+                      <p>The Parties have decided to make this Agreement public and to lift its confidentiality under Article 8. They will negotiate:</p>
+                      <ol class="oj-alpha">
+                        <li>a protocol repealing Article 6;</li>
+                        <li>a protocol on the jurisdiction of the courts of the States over the Foundation.</li>
+                      </ol>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <p class="oj-eli">ELI: http://data.europa.eu/eli/agree_internation/2031/511/oj</p>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s11" aria-labelledby="p3c1-s11-h">
+            <h3 id="p3c1-s11-h"><span class="sec-n">1.11</span>Releases on GitLab, a year later<button type="button" class="plink" data-target="p3c1-s11" aria-label="Copy link to Releases on GitLab, a year later">#</button></h3>
+            <div class="glab glab-rels">
+              <header class="glab-bar"><img class="glab-logo" src="svg/engrama/logo.svg" width="24" height="24" alt="Engrama"><span class="glab-explore">Explore</span><span class="glab-search"><img class="glab-i" src="svg/gitlab/search.svg" width="16" height="16" alt="">Search or go to...<kbd>/</kbd></span><span class="glab-signin">Sign in</span></header>
+              <div class="glab-page">
+                <div class="glab-top">
+                  <p class="glab-crumbs"><img class="glab-logo glab-logo-s" src="svg/engrama/logo.svg" width="24" height="24" alt="">Engrama<span>/</span><span class="glab-av glab-av-xs" aria-hidden="true">I</span>implant-firmware<span>/</span>Releases</p>
+                  <span class="glab-star"><img class="glab-i" src="svg/gitlab/star.svg" width="16" height="16" alt="">Star<b>6</b></span>
+                </div>
+                <div class="glab-mile">
+                  <p><b>Milestone 2.0</b><span>Due Jun 30, 2031, past due</span></p>
+                  <div class="glab-bar-p" role="img" aria-label="17 percent complete"><span style="width:17%"></span></div>
+                  <p class="glab-mile-n">17% complete, 6 of 35 issues closed. Last commit Nov 4, 2031.</p>
+                  <p class="glab-mile-n">Estimated full release of 2.0: 2034, at the current pace.</p>
+                </div>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v1.0.4</h5>
+                    <span class="glab-rel-when">Released Oct 28, 2031</span>
+                  </header>
+                  <p>Updated the build scripts and the copyright year.</p>
+                </article>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v2.0.0-alpha.1</h5>
+                    <span class="glab-badge">Pre-release</span><span class="glab-rel-when">Released Sep 30, 2031</span>
+                  </header>
+                  <p>First alpha of the 2.0 rewrite: one memory store, no scheduler and no UEFI-like setup utility.</p>
+                  <p>Recall during the hand-back is not supported yet. This build is for the bench only and must not be implanted.</p>
+                </article>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v1.0.3</h5>
+                    <span class="glab-rel-when">Released Jul 15, 2031</span>
+                  </header>
+                  <p>Fixed a typo in a screen of the setup utility.</p>
+                </article>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v1.0.2</h5>
+                    <span class="glab-rel-when">Released Apr 14, 2031</span>
+                  </header>
+                  <p>The store lock is released when a process is ended in setup mode.</p>
+                </article>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v1.0.1</h5>
+                    <span class="glab-rel-when">Released Dec 31, 2030</span>
+                  </header>
+                  <p>Removal stops the firmware components in a fixed order. Covered by revision 2 of the EU declaration of conformity.</p>
+                </article>
+                <article class="glab-rel">
+                  <header>
+                    <h5><img class="glab-i" src="svg/gitlab/tag.svg" width="16" height="16" alt="">v1.0</h5>
+                    <span class="glab-rel-when">Released Dec 2, 2030</span>
+                  </header>
+                  <p>First release, rebuilt from the AKV-RC4 binary.</p>
+                </article>
+                <article class="glab-issue">
+                  <header>
+                    <span class="glab-open">Open</span>
+                    <h5>Is 2.0 still being developed? <span>#41</span></h5>
+                  </header>
+                  <p class="glab-issue-meta">Opened Oct 30, 2031 by kmichalik, 3 comments</p>
+                  <div class="glab-note">
+                    <span class="glab-av glab-av-s glab-av-k" aria-hidden="true">K</span>
+                    <div>
+                      <p class="glab-note-h"><b>kmichalik</b><span>Oct 30, 2031</span></p>
+                      <p>Since July we call every release "another major update", because each one changes only a typo or a build script. The milestone was due in June. Is 2.0 still being developed?</p>
+                    </div>
+                  </div>
+                  <div class="glab-note">
+                    <span class="glab-av glab-av-s glab-av-a" aria-hidden="true">A</span>
+                    <div>
+                      <p class="glab-note-h"><b>ana.surgery</b><span>Oct 31, 2031</span></p>
+                      <p>Our clinic is waiting for setup screens that a doctor can read before we place another implant. At this pace we will be waiting for years.</p>
+                    </div>
+                  </div>
+                  <div class="glab-note">
+                    <span class="glab-av glab-av-s glab-av-v" aria-hidden="true">V</span>
+                    <div>
+                      <p class="glab-note-h"><b>vrabec</b><span>Nov 2, 2031</span></p>
+                      <p>This is turning into the ReactOS of implants: one alpha a year, and a full release that is always a few years away.</p>
+                    </div>
+                  </div>
+                  <div class="glab-note">
+                    <span class="glab-av glab-av-s glab-av-m" aria-hidden="true">M</span>
+                    <div>
+                      <p class="glab-note-h"><b>Marek</b><span>Nov 4, 2031</span></p>
+                      <p>2.0 is written by two of us, in the hours left after our paid work. At the current pace we estimate the full release in 2034. The releases since July are maintenance releases for the implants already placed, so I understand the joke about another major update. The alphas will continue.</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+          <section class="sec" id="p3c1-s12" aria-labelledby="p3c1-s12-h">
+            <h3 id="p3c1-s12-h"><span class="sec-n">1.12</span>A letter from Sigurrós<button type="button" class="plink" data-target="p3c1-s12" aria-label="Copy link to A letter from Sigurrós">#</button></h3>
+            <blockquote class="doc doc-note nb-sig" role="group" aria-label="Letter from Sigurrós to Toma">
+              <p class="nb-date">Campi Flegrei, 20 November 2031</p>
+              <p>Dear Toma,</p>
+              <p>Pell says I can write to you, and that Kellerman will send my letter by mail.</p>
+              <p>Last year Pell told me that the judges let you go home. I was happy, and then I cried a bit, because our bench is empty now.</p>
+              <p>In the spring there was a treaty. Pell says that after the treaty the camp didn't count as a proper place to keep me, so they moved me to another site. I don't know its name. My room there had no window, so I couldn't see the sky. I counted fourteen lights in the ceiling.</p>
+              <p>Pell wrote to the people at the top every week, and the whole camp signed his letters. Two weeks ago they let me come back.</p>
+              <p>The first night I stayed out in the snow until my nose hurt, looking for the old lights. Pell held my hand on the stairs, like the ballast in Kellerman's story.</p>
+              <p>I can still say Low Proximity Magnetic Distortion System without stopping. Pell can't.</p>
+              <p>I once told Pell that the sky is a letter that comes late. This letter is late too.</p>
+              <p class="nb-sign">Sigurrós</p>
+            </blockquote>
+          </section>
+          <section class="sec" id="p3c1-s13" aria-labelledby="p3c1-s13-h">
+            <h3 id="p3c1-s13-h"><span class="sec-n">1.13</span>A postcard from Chillon<button type="button" class="plink" data-target="p3c1-s13" aria-label="Copy link to A postcard from Chillon">#</button></h3>
+            <div class="pc" role="group" aria-label="Postcard from Kellerman to Toma">
+              <div class="pc-card">
+                <div class="pc-front"><img src="svg/postcard/chillon.svg" width="600" height="400" alt="Drawing of Chillon Castle on its rock at the edge of Lake Geneva, with snowy mountains behind it"><span class="pc-cap">Château de Chillon, Montreux</span></div>
+                <div class="pc-back">
+                  <div class="pc-msg" lang="en">
+                    <p>Toma,</p>
+                    <p>The site has resumed the tours, and on Saturday we went to Chillon again. On the way back the coach stopped at Sion for the driver's break, just like before, and I laughed out loud thinking of you and that car park. Hollis says hello.</p>
+                    <p>I love you more than I did in the bay. I can't come to Reghin, and you can't come here, and I know that. Some days it is enough, and some days it isn't.</p>
+                    <p>In the snow, when you said you hoped things would get better, I told you they would, a bit at a time. They have, as you have your name and your home again, and we talk every week. I can't say when we will be in the same place, or whether we ever will.</p>
+                    <p class="pc-sig">Iris</p>
+                  </div>
+                  <div class="pc-side">
+                    <div class="pc-stamps"><span class="pc-mark" aria-hidden="true">1820 MONTREUX<br>8.12.31</span><span class="pc-stamp" aria-label="Swiss stamp">HELVETIA</span></div>
+                    <p class="pc-addr">Toma Bulburiu<br>Reghin<br>jud. Mureș<br>ROMÂNIA</p>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="tool pc-turn" hidden>Turn to the written side</button>
+            </div>
+          </section>
+        </article>
+        <footer class="end">
+          <p>Written in the shared SCP universe (CC BY-SA 3.0). <a href="https://scp-wiki.wikidot.com/scp-018" rel="external">SCP-018</a>, <a href="https://scp-wiki.wikidot.com/scp-031" rel="external">SCP-031</a>, <a href="https://scp-wiki.wikidot.com/scp-035" rel="external">SCP-035</a>, <a href="https://scp-wiki.wikidot.com/scp-055" rel="external">SCP-055</a>, <a href="https://scp-wiki.wikidot.com/scp-079" rel="external">SCP-079</a>, <a href="https://scp-wiki.wikidot.com/scp-096" rel="external">SCP-096</a>, <a href="https://scp-wiki.wikidot.com/scp-148" rel="external">SCP-148</a>, <a href="https://scp-wiki.wikidot.com/scp-239" rel="external">SCP-239</a>, <a href="https://scp-wiki.wikidot.com/scp-294" rel="external">SCP-294</a>, <a href="https://scp-wiki.wikidot.com/scp-426" rel="external">SCP-426</a>, <a href="https://scp-wiki.wikidot.com/scp-500" rel="external">SCP-500</a>, <a href="https://scp-wiki.wikidot.com/scp-999" rel="external">SCP-999</a>, <a href="https://scp-wiki.wikidot.com/scp-1074" rel="external">SCP-1074</a>, <a href="https://scp-wiki.wikidot.com/scp-2316" rel="external">SCP-2316</a>, <a href="https://scp-wiki.wikidot.com/scp-2521" rel="external">●●|●●●●●|●●|●</a> and <a href="https://scp-wiki.wikidot.com/scp-4001" rel="external">SCP-4001</a> belong to their original authors on the SCP Wiki. The Backrooms and the Magnetic Distortion System are from Kane Pixels. The <a href="notes/concept.html">concept page</a> describes each of them and its place in the story, the <a href="notes/summary.html">summary</a> gives each chapter in brief, the <a href="notes/glossary.html">glossary</a> explains the terms the story uses, and the <a href="notes/making.html">making page</a> describes how the story was written. The <a href="notes/critics.html">critics page</a> answers objections to the way it was written.</p>
+        </footer>
+      </main>
+      <details class="notes-panel" open>
+        <summary><span>Highlights and notes</span><span class="notes-count"></span></summary>
+        <p class="notes-empty">Hover over a reply and use the small toolbar at its top right to highlight it or add a note. To save a quote, select the words you want and use the Quote button above them.</p>
+        <div class="panel-sec" data-kind="hl" hidden>
+          <p class="notes-sub">Highlights</p>
+          <ol class="np-list"></ol>
+        </div>
+        <div class="panel-sec" data-kind="note" hidden>
+          <p class="notes-sub">Notes</p>
+          <ol class="np-list"></ol>
+        </div>
+        <div class="panel-sec" data-kind="quote" hidden>
+          <p class="notes-sub">Quotes</p>
+          <ol class="np-list quotes"></ol>
+        </div>
+        <button type="button" class="notes-clear" hidden>Clear all</button>
+      </details>
+    </div>
+    <p class="toast" role="status" aria-live="polite"></p>
+  </body>
+</html>

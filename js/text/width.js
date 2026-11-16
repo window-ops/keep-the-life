@@ -4,7 +4,7 @@
 
   var $$ = K.$$, root = K.root, load = K.load, save = K.save;
 
-  /* ---------------------------------------------------------- page width */
+  /* page width */
 
   var WIDTH_MIN = 40;
   var WIDTH_MAX = 120;

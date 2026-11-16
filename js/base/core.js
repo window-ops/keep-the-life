@@ -52,7 +52,7 @@
   /* removes one saved value */
   function remove(k) { try { var a = area(); if (a) a.removeItem(KEY + k); } catch (e) { /* storage unavailable */ } }
 
-  /* ---------------------------------------------------------- toast */
+  /* toast */
 
   var toast = document.querySelector(".toast");
   var toastTimer = null;

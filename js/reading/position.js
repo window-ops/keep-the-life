@@ -4,7 +4,7 @@
 
   var $$ = K.$$, body = K.body;
 
-  /* ---------------------------------------------------------- progress and position */
+  /* progress and position */
 
   var bar = document.querySelector(".progress span");
 
@@ -29,14 +29,20 @@
   window.addEventListener("resize", onScroll);
 
   var start = location.hash.slice(1);
-  if (start && document.getElementById(start) && document.getElementById(start).classList.contains("sec")) {
+  var startEl = start && document.getElementById(start);
+  if (startEl && startEl.classList.contains("sec")) {
     K.current = start;
+    if (K.isTabbed()) K.show(start, true);
+  } else if (startEl && startEl.classList.contains("chapter") && startEl.querySelector(".sec")) {
+    /* a chapter address, as the tabbed link back from the next part uses,
+       opens that chapter at its first section */
+    K.current = startEl.querySelector(".sec").id;
     if (K.isTabbed()) K.show(start, true);
   }
   K.markToc(K.current);
   onScroll();
 
-  /* ---------------------------------------------------------- section links */
+  /* section links */
 
   $$(".plink").forEach(function (btn) {
     btn.addEventListener("click", function () {

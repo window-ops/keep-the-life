@@ -2,18 +2,22 @@
    contents leave the page and open from a button at the bottom corner; a
    chosen section, Escape or a tap outside closes the menu again. A Settings
    button beside it pulls up the settings from anywhere on the page. On a
-   phone the two start tucked to a tab at the screen edge. */
+   phone the two start tucked to a tab at the screen edge. The pages in
+   notes/ have no contents, so their dock holds only the tab and the
+   Settings button, and the same script runs it. */
 (function (K) {
   "use strict";
 
   var btn = document.querySelector(".toc-fab");
   var toc = document.getElementById("toc");
-  if (!btn || !toc) return;
+  var hasMenu = !!(btn && toc);
+  if (!hasMenu && !document.querySelector(".toc-dock")) return;
 
   /* the menu pulls out upward from the button like a drawer, and slides
      back down into it */
   var closing = null;
   function open(on) {
+    if (!hasMenu) return;
     var isOpen = K.body.classList.contains("toc-open");
     btn.setAttribute("aria-expanded", on ? "true" : "false");
     if (!on) {
@@ -46,7 +50,8 @@
     K.body.classList.toggle("toc-tucked", on);
     if (on) open(false);
     tuck.setAttribute("aria-pressed", on ? "true" : "false");
-    var label = on ? "Show the contents and settings buttons" : "Hide the contents and settings buttons";
+    var what = hasMenu ? "the contents and settings buttons" : "the settings button";
+    var label = (on ? "Show " : "Hide ") + what;
     tuck.setAttribute("aria-label", label);
     tuck.title = label;
   }
@@ -66,12 +71,13 @@
     K.setTocTucked = tucked;
   }
 
-  btn.addEventListener("click", function () { open(!K.body.classList.contains("toc-open")); });
+  if (hasMenu) btn.addEventListener("click", function () { open(!K.body.classList.contains("toc-open")); });
   var setBtn = document.querySelector(".toc-set");
   if (setBtn) setBtn.addEventListener("click", function () {
     open(false);
     if (K.pullUpSettings) K.pullUpSettings();
   });
+  if (!hasMenu) return;
   toc.addEventListener("click", function (e) { if (e.target.closest("a")) open(false); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && K.body.classList.contains("toc-open")) { open(false); btn.focus(); }

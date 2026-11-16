@@ -3,10 +3,14 @@
    replies, the spoken words and the stage directions in italics, with the
    median length of a reply next to the average. A reply continued after a
    screen counts once, and its words join the reply it continues. Spoken words leave out the speaker's
-   name, the stage directions and the translations in brackets. On the story
-   page the counts are saved, and sent back to the making page on a probe, so
+   name, the stage directions and the translations in brackets. The story is
+   in two pages, one per part (body data-part), so countRaw keeps the length
+   of every reply, mergeRaw joins the two parts and finish works out the
+   medians. On a story page the raw counts of that part are saved, with the
+   finished counts of both parts, and on a probe part 1 hands its raw counts
+   to part 2, which sends the finished counts back to the making page, so
    that page can show them when it is opened from a disk and cannot read the
-   story file itself. */
+   story files itself. */
 (function (K) {
   "use strict";
 
@@ -31,7 +35,7 @@
     return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
   }
 
-  function countStory(doc) {
+  function countRaw(doc) {
     var total = { replies: 0, words: 0, acts: 0, actWords: 0 };
     var bySp = {};
     var order = [];
@@ -40,7 +44,7 @@
       var s = bySp[sp];
       if (!s) {
         var label = ln.querySelector(".sp");
-        s = bySp[sp] = { sp: sp, name: label ? label.textContent.trim() : sp, replies: 0, words: 0, acts: 0, actWords: 0, contr: 0, indef: 0, perReply: [], actPerReply: [], actLens: [] };
+        s = bySp[sp] = { sp: sp, name: ln.getAttribute("data-group") || (label ? label.textContent.trim() : sp), replies: 0, words: 0, acts: 0, actWords: 0, contr: 0, indef: 0, perReply: [], actPerReply: [], actLens: [] };
         order.push(s);
       }
       if (!ln.classList.contains("ln-cont") || !s.perReply.length) {
@@ -56,7 +60,7 @@
           s.actLens.push(w);
         });
         var speech = p.cloneNode(true);
-        Array.prototype.forEach.call(speech.querySelectorAll("i.act, .tr, .vh"), function (el) { el.parentNode.removeChild(el); });
+        Array.prototype.forEach.call(speech.querySelectorAll("i.act, .tr, .vh, .gloss-restore"), function (el) { el.parentNode.removeChild(el); });
         var text = speech.textContent;
         var w = words(text);
         s.words += w; total.words += w;
@@ -65,9 +69,36 @@
         s.indef += matches(INDEF, text);
       });
     });
-    /* only the medians travel with the counts, so the address sent back to
-       the making page stays short */
-    order.forEach(function (s) {
+    return { total: total, speakers: order };
+  }
+
+  /* the raw counts of two parts as one story: sums add up, the lengths of
+     the replies join, and a speaker new in the second part comes after the
+     speakers of the first */
+  function mergeRaw(a, b) {
+    if (!a) return b;
+    if (!b) return a;
+    var out = { total: {}, speakers: [] }, bySp = {};
+    ["replies", "words", "acts", "actWords"].forEach(function (k) { out.total[k] = (a.total[k] || 0) + (b.total[k] || 0); });
+    a.speakers.concat(b.speakers).forEach(function (s) {
+      var m = bySp[s.sp];
+      if (!m) {
+        m = bySp[s.sp] = { sp: s.sp, name: s.name, replies: 0, words: 0, acts: 0, actWords: 0, contr: 0, indef: 0, perReply: [], actPerReply: [], actLens: [] };
+        out.speakers.push(m);
+      }
+      ["replies", "words", "acts", "actWords", "contr", "indef"].forEach(function (k) { m[k] += s[k] || 0; });
+      m.perReply = m.perReply.concat(s.perReply || []);
+      m.actPerReply = m.actPerReply.concat(s.actPerReply || []);
+      m.actLens = m.actLens.concat(s.actLens || []);
+    });
+    return out;
+  }
+
+  /* only the medians travel with the finished counts, so the address sent
+     back to the making page stays short */
+  function finish(raw) {
+    var c = JSON.parse(JSON.stringify(raw));
+    c.speakers.forEach(function (s) {
       s.medWords = median(s.perReply);
       /* most replies carry no stage direction, so the median per reply is
          often zero; the length of a typical direction says more, with the
@@ -78,19 +109,42 @@
       delete s.actPerReply;
       delete s.actLens;
     });
-    return { total: total, speakers: order };
+    return c;
   }
 
-  K.countStory = countStory;
+  function countStory(doc) { return finish(countRaw(doc)); }
 
-  /* on the story page itself, keep the counts for the making page. Opened
-     as index.html?probe=making, the story also sends them back to notes/making.html
-     in the address, which works from a disk without any storage */
+  K.countStory = countStory;
+  K.countRaw = countRaw;
+  K.mergeRaw = mergeRaw;
+  K.finishCounts = finish;
+
+  function loadRaw(part) {
+    try { return JSON.parse((K.load && K.load("counts-raw-" + part)) || "null"); } catch (e) { return null; }
+  }
+
+  /* on a story page, keep the counts for the making page. Opened as
+     index.html?probe=making, part 1 hands its raw counts to part 2 in the
+     address (part2.html?probe=making#raw=), and part 2 sends the finished
+     counts of both parts back to notes/making.html (#counts=), which works
+     from a disk without any storage */
   if (document.querySelector(".ln")) {
-    var counts = countStory(document);
-    if (K.save) { try { K.save("counts", JSON.stringify(counts)); } catch (e) { /* storage unavailable */ } }
-    if (/[?&]probe=making(?:&|$)/.test(location.search)) {
-      location.replace("notes/making.html#counts=" + encodeURIComponent(JSON.stringify(counts)));
+    var part = document.body.getAttribute("data-part") || "1";
+    var raw = countRaw(document);
+    var probing = /[?&]probe=making(?:&|$)/.test(location.search);
+    if (K.save) { try { K.save("counts-raw-" + part, JSON.stringify(raw)); } catch (e) { /* storage unavailable */ } }
+    if (part === "1") {
+      var both = mergeRaw(raw, loadRaw("2"));
+      if (K.save) { try { K.save("counts", JSON.stringify(finish(both))); } catch (e) { /* storage unavailable */ } }
+      if (probing) location.replace("part2.html?probe=making#raw=" + encodeURIComponent(JSON.stringify(raw)));
+    } else {
+      var first = null;
+      var m = /[#&]raw=([^&]*)/.exec(location.hash);
+      if (m) { try { first = JSON.parse(decodeURIComponent(m[1])); } catch (e) { first = null; } }
+      if (!first) first = loadRaw("1");
+      var all = finish(mergeRaw(first, raw));
+      if (K.save) { try { K.save("counts", JSON.stringify(all)); } catch (e) { /* storage unavailable */ } }
+      if (probing) location.replace("notes/making.html#counts=" + encodeURIComponent(JSON.stringify(all)));
     }
   }
 })(window.KeepTheLife);

@@ -93,6 +93,20 @@
   --sp-rc: #c8b89e;
   --sp-fa: #dc9470;
   --sp-ce: #a3b4c4;
+  --sp-kw: #d6a24e;
+  --sp-yo: #9db3d0;
+  --sp-ho: #e28c9a;
+  --sp-re: #8ec77e;
+  --sp-hz: #b9a0e6;
+  --sp-hu: #cdb08a;
+  --sp-db: #8fc3e8;
+  --sp-il: #c2c78a;
+  --sp-mo: #b4b8e8;
+  --sp-fv: #e6a9c9;
+  --sp-ne: #9fc9b8;
+  --sp-co: #b0b0b0;
+  --sp-o5: #d1d5db;
+  --sp-ia: #f0b27a;
   --sp-t-bg: rgba(99, 185, 173, 0.07);
 
   --serif: "Newsreader", Georgia, serif;
@@ -149,6 +163,20 @@
   --sp-rc: #6a5b42;
   --sp-fa: #93421d;
   --sp-ce: #44566a;
+  --sp-kw: #85590f;
+  --sp-yo: #475d80;
+  --sp-ho: #a3384c;
+  --sp-re: #3a6b2c;
+  --sp-hz: #64399a;
+  --sp-hu: #6e5230;
+  --sp-db: #2e5f86;
+  --sp-il: #585d1c;
+  --sp-mo: #44478f;
+  --sp-fv: #8a3566;
+  --sp-ne: #2f6656;
+  --sp-co: #5a5a5a;
+  --sp-o5: #3d434b;
+  --sp-ia: #8a4513;
   --sp-t-bg: rgba(35, 120, 108, 0.08);
 
   color-scheme: light;

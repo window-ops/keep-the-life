@@ -4,7 +4,7 @@
 
   var $$ = K.$$;
 
-  /* ---------------------------------------------------------- Ghidra */
+  /* Ghidra */
 
   $$(".ghidra").forEach(function (g) {
     var lcode = g.querySelector(".g-lcode");
