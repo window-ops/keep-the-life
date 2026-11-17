@@ -13,6 +13,7 @@
 - From part 2, Toma's file is Explained and each assignment needs his consent. Implanted staff cannot be given amnestics, so they stay at the Foundation for good.
 - SCP-2316 lies in the woods outside Reading, Ohio, inside a chain-link fence patrolled by guards who are not told what it holds. Each person inside the zone is tied by a climbing rope to a steel post.
 - AKV Solutions GmbH had a small office in Linz, Austria. Toma comes from Reghin, Romania.
+- AKV's statutes make the lead programmer the controller of the project, without ownership of the company: on dissolution the project and any claim over it pass to them. On that basis Toma claims the damages for the destroyed project in his own name.
 - From May 2030 the camp is to become a permanent site with an elected site director (five-year term). The staff assembly that meets on Thursdays is called the Thermidorian gathering.
 - The basics of the SCP Foundation are public through leaks; since then the Foundation cannot use embassies at will.
 - In May 2030 the Embassy of Romania in Bern takes up Toma's case and intends to challenge his detention in the Swiss courts, then before the European Court of Human Rights.
